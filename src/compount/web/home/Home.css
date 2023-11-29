@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dosis:wght@500;600;800&family=Lugrasimo&family=Rubik:wght@300&display=swap');
+/*
+font-family: 'Dosis', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dosis:wght@200&family=Lugrasimo&family=Rubik:wght@300&display=swap');
+/*font-family: 'Dancing Script', cursive;
+font-family: 'Dosis', sans-serif;
+font-family: 'Lugrasimo', cursive;
+font-family: 'Rubik', sans-serif;
+
+*/
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+/*font-family: 'Pixelify Sans', cursive;*/
+/*start container*/
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+/*font-family: 'Young Serif', serif;*/
+/*start header*/
+:root{
+  --main-color:#c8e2ed;
+  --main:#e6b59e;
+}
+a{
+  text-decoration: none;
+}
+.bg-main-color{
+  background-color:#c8e2ed;
+}
+.header{
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(/images/header-img.jpg);
+  height: 100vh;
+  background-position: 50% 50%;
+  background-size:cover;
+  background-position: 3% 0%;
+  background-repeat: no-repeat;
+}
+.info-header{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-header span{
+  font-family: 'Dancing Script', cursive;
+  font-size: 50px;
+  color:var(--main-color)
+} 
+.header .content-public{
+  width:35%;
+  text-align: center;
+  
+}
+.header p{
+  color:var(--main);
+  font-family:'Dancing Script', cursive;
+  font-size: 30px;
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: change-p 4s infinite alternate-reverse steps(17) ,blink infinite;
+  -webkit-animation: change-p 4s infinite alternate-reverse steps(17) ,blink infinite;
+  border-right: solid 1px #dd4b39;
+}
+.info-home span{
+  font-size: 40px;
+}
+@keyframes change-p {
+  form{
+    width: 0%;
+  }
+  to{
+    width: 280px;
+  }
+}
+@keyframes blink {
+  from{
+    border-color:#3333;
+  }
+  to{
+    border-color:#333300;
+  }
+}
+/*end header */
+
+@media screen and (max-width:600px){
+  :root{
+    font-size: 10px;
+  }
+  .info-home span{
+    font-size: 30px;
+  }
+}

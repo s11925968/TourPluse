@@ -1,0 +1,6 @@
+.forms{
+  box-shadow: 5px 5px 5px rgba(100,100,100,0.999999999999999999);
+  border: none;
+  transition: all ease 0.3s;
+  border-radius: 10px;
+}
