@@ -73,6 +73,9 @@ a{
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
 }
+.about{
+  color:#b1b5b5 !important;
+}
 .back{
   width: 80%;
   margin: auto;

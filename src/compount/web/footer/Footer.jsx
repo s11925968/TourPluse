@@ -8,24 +8,24 @@ export default function Footer() {
           <div className="row align-items-center pb-4">
             <div className="col-md-4">
               <div className='text-center'>
-              <p className="m-0 p-0">
-                Contact Us<br/> Sameh <span className='text-danger'>+972 59-559-763</span>,<br/>  Gazal <span className='text-danger'>+972 59-523-0081</span><br/>
+              <p className="m-0 p-0 text-white">
+                Contact Us<br/> Sameh <span className='text-danger'>+972 59-559-763</span><br/>  Gazal <span className='text-danger'>+972 59-523-0081</span><br/>
                 Mo'tasem <span className='text-danger'>+972 56-867-6250</span>
               </p>
               </div>
               
             </div>
             <div className="images col-md-4 text-center">
-              <img
-                src="/images/icononly.png"
-                alt="logo in footer"
-                className="img-fluid"
-              />
+            <img
+              src="/images/fulllogo_transparent_nobuffer.png"
+              alt="logo"
+              className="logo"
+            />
             </div>
             <div className="col-md-4">
               <p className="m-0 p-0 text-end text-center">
                 Made By <br />
-                <span className="text-dark">
+                <span className="text-white">
                   <a
                     href="https://www.facebook.com/profile.php?id=100010760257745"
                     alt="link facebook"

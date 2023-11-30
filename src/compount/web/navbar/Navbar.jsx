@@ -29,7 +29,7 @@ export default function Navbar({ users, setUser }) {
     const scrollPosition = window.scrollY;
     // Change background color if the user has scrolled, for example, 100 pixels
     if (scrollPosition > 100) {
-      setNavbarBackground("white");
+      setNavbarBackground("#4b5357");
     } else {
       setNavbarBackground(""); // Revert back to default background color
     }
@@ -81,7 +81,7 @@ export default function Navbar({ users, setUser }) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
               <li className="nav-item">
                 <Link
-                  className="nav-link active text-black"
+                  className="nav-link active text-white"
                   aria-current="page"
                   to="/"
                 >
@@ -92,7 +92,7 @@ export default function Navbar({ users, setUser }) {
               {users && (
                 <li className="nav-item">
                   <a
-                    className="nav-link  text-black"
+                    className="nav-link text-white"
                     aria-current="page"
                     href="#"
                   >
@@ -103,7 +103,7 @@ export default function Navbar({ users, setUser }) {
               )}
 
               <li className="nav-item">
-                <a className="nav-link text-black" aria-current="page" href="#">
+                <a className="nav-link text-white" aria-current="page" href="#">
                   <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
                   Trips
                 </a>
@@ -111,7 +111,7 @@ export default function Navbar({ users, setUser }) {
               {users && (
                 <li className="nav-item">
                   <Link
-                    className="nav-link  text-black"
+                    className="nav-link  text-white"
                     aria-current="page"
                     to="/catagouries"
                   >
@@ -122,7 +122,7 @@ export default function Navbar({ users, setUser }) {
               )}
               <li className="nav-item dropdown me-2 mb-4">
                 <a
-                  className="down dropdown-toggle text-black text-decoration-none"
+                  className="down dropdown-toggle text-white text-decoration-none"
                   href="#"
                   role="button"
                 >
@@ -133,7 +133,7 @@ export default function Navbar({ users, setUser }) {
                     <>
                       <li>
                         <Link
-                          className="nav-link text-black"
+                          className="nav-link text-white"
                           aria-current="page"
                           to="/register"
                         >
@@ -191,7 +191,7 @@ export default function Navbar({ users, setUser }) {
                 {
                   <button
                     onClick={setSweet}
-                    className="btn nav-link text-warning btn-link text-decoration-none"
+                    className="about btn nav-link btn-link text-decoration-none"
                   >
                     <FontAwesomeIcon
                       icon={faCircleExclamation}
