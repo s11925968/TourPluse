@@ -55,7 +55,7 @@ export default function Navbar({ users, setUser }) {
   };
   return (
     <div className="back">
-      <nav className={`navbar navbar-expand-lg z-2 position-fixed   `}
+      <nav className={`navbar navbar-expand-lg z-2 position-fixed `}
         style={{ backgroundColor: navbarBackground }} // Set dynamic background color based on state
       >
         <div className="container">

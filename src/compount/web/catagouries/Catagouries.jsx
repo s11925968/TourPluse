@@ -10,6 +10,7 @@ import Loader from '../../shared/Loader.jsx'
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { Link } from 'react-router-dom';
 export default function Catagouries() {
   const getCatagories =async()=>{
     const {data}=await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/active`)
@@ -39,10 +40,14 @@ export default function Catagouries() {
       >
         {data?.categories.length
           ? data?.categories.map((catagourie) => (
-              <SwiperSlide className="imgaes-catagourie" key={catagourie._id}>
-                <img src={catagourie.image.secure_url} />
-                <h2 className='fs-5 d-flex ps-4'>{catagourie.name}</h2>
-              </SwiperSlide>
+                <SwiperSlide className="imgaes-catagourie" key={catagourie._id}>
+                  <Link to={`/categories/tourOperator/${catagourie._id}`}>
+                  <img src={catagourie.image.secure_url} className='w-25' />
+                  <h2 className='fs-5 d-flex ps-4'>{catagourie.name}</h2>
+                  </Link>
+                
+                </SwiperSlide>
+            
             ))
           : "no data available"}
       </Swiper>

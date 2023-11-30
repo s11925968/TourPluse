@@ -13,6 +13,7 @@ import Register from "./compount/web/register/Register.jsx";
 import Login from "./compount/web/login/Login.jsx";
 import { jwtDecode } from "jwt-decode";
 import Catagouries from "./compount/web/catagouries/Catagouries.jsx";
+import Categoriesyouroperator from "./compount/web/tourOperator/Categoriesyouroperator.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -49,6 +50,10 @@ export default function App() {
         {
           path: "catagouries",
           element: <Catagouries />,
+        },
+        {
+          path: "/categories/tourOperator/:_id",
+          element: <Categoriesyouroperator />,
         },
         {
           path: "Contact/create/createcompany",
