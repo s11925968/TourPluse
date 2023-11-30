@@ -12,7 +12,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 export default function Catagouries() {
   const getCatagories =async()=>{
-    const {data}=await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/get`)
+    const {data}=await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/active`)
     return data;
   }
 
