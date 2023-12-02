@@ -140,7 +140,41 @@ a{
   color:white;
 }
 /*end header */
-
+.map .info-map .container{
+  background-color: #317bc5;
+}
+.map .info .solid{
+  font-size: 16px !important;
+  height: 30px;
+  width: 30px;
+  border-radius:50%;
+  margin-right: 5px;
+  transition: 0.4s, 0.4s color;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  -ms-border-radius:50%;
+  -o-border-radius:50%;
+  -webkit-transition: 0.4s, 0.4s color;
+  -moz-transition: 0.4s, 0.4s color;
+  -ms-transition: 0.4s, 0.4s color;
+  -o-transition: 0.4s, 0.4s color;
+}
+.map .info .solid:hover{
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  background-color:var(--maincolor) !important;
+  color: white;
+}
+.main-color{
+  color:#363430;
+}
+.bg-main-color{
+  background-color: #363430;
+}
+/*end map*/
 @media screen and (max-width:600px){
   :root{
     font-size: 10px;
