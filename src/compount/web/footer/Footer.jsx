@@ -1,5 +1,7 @@
 import React from 'react'
 import './footer.css'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   return (
     <div>
@@ -31,6 +33,7 @@ export default function Footer() {
                     alt="link facebook"
                     target="_blank"
                   >
+                  <FontAwesomeIcon icon={faFacebook} className='brand brand-face'/>
                     Sameh Issa
                   </a>
                   <br />
@@ -39,6 +42,8 @@ export default function Footer() {
                     alt="link facebook"
                     target="_blank"
                   >
+                                      <FontAwesomeIcon icon={faFacebook} className='brand brand-face'/>
+
                     Gazal Masri
                   </a>
                   <br />
@@ -47,7 +52,8 @@ export default function Footer() {
                     alt="link facebook"
                     target="_blank"
                   >
-                    Mo'tasem Ayyash
+                    <FontAwesomeIcon icon={faFacebook} className='brand brand-face'/>
+                    Mo'tasem a
                   </a>
                 </span>
               </p>

@@ -5,6 +5,31 @@
 .footers .images img{
   width: 50%;
 }
+.footers .brand{
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  border: solid 2px;
+  margin-right:10px;
+  border-radius: 50%;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.footers .brand:hover{
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+}
 @media screen and (max-width:600px){
   :root{
     font-size: 12px;
