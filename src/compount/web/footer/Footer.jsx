@@ -3,7 +3,7 @@ import './footer.css'
 export default function Footer() {
   return (
     <div>
-      <footer className="footers" id="hire-me">
+      <footer className="footers py-5" id="hire-me">
         <div className="container">
           <div className="row align-items-center pb-4">
             <div className="col-md-4">
@@ -15,7 +15,7 @@ export default function Footer() {
               </div>
               
             </div>
-            <div className="images col-md-4 text-center">
+            <div className="images col-md-4 text-center py-5">
             <img
               src="/images/fulllogo_transparent_nobuffer.png"
               alt="logo"

@@ -1,5 +1,5 @@
 .footers{
-  height: 20vh!important;
+  
   background-color: #4b5357;
 }
 .footers .images img{
@@ -14,7 +14,6 @@
     margin-top: 10px !important;
   }
   .footers{
-    margin-top: 15px !important;
   }
   
 }
