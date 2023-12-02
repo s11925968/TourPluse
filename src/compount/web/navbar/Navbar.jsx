@@ -96,8 +96,7 @@ export default function Navbar({ users, setUser }) {
                     aria-current="page"
                     href="#"
                   >
-                    <FontAwesomeIcon icon={faPlane} className="pe-1" />
-                    Tourism Company
+                    Tourism
                   </a>
                 </li>
               )}
@@ -115,8 +114,8 @@ export default function Navbar({ users, setUser }) {
                     aria-current="page"
                     to="/catagouries"
                   >
-                    <FontAwesomeIcon icon={faCartShopping} />
-                    catagouries
+                    <FontAwesomeIcon icon={faPlane} className="pe-1" />
+                    Tourism Company
                   </Link>
                 </li>
               )}
