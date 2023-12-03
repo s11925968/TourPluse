@@ -57,8 +57,8 @@ export default function Home() {
         ></iframe>
         <div className="info-map position-absolute bottom-0 w-100">
           <div className="container text-white rounded-top-3 p-3 py-4">
-            <div className="row">
-              <div className="col-lg-4">
+            <div className="row d-flex">
+              <div className="col-lg-4 d-flex  justify-content-center">
                 <div className="info d-flex align-items-center">
                   <FontAwesomeIcon
                     icon={faPhone}
@@ -70,20 +70,20 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-              <div className="col-lg-4">
-                <div className="info d-flex align-items-center">
+              <div className="col-lg-4 d-flex  justify-content-center">
+                <div className="info d-flex align-items-center text-center">
                   <FontAwesomeIcon
                     icon={faEnvelope}
                     className="solid fs-4 d-flex justify-content-center align-items-center main-color pe-2"
                   />
-                  <span className="">
+                  <spam>
                     Email Address
                     <br />
                     tourplusecompany@gmail.com
-                  </span>
+                  </spam>
                 </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 d-flex  justify-content-center">
                 <div className="info d-flex align-items-center">
                   <FontAwesomeIcon
                     icon={faLocationDot}

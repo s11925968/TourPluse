@@ -14,6 +14,10 @@ import Login from "./compount/web/login/Login.jsx";
 import { jwtDecode } from "jwt-decode";
 import Catagouries from "./compount/web/catagouries/Catagouries.jsx";
 import Categoriesyouroperator from "./compount/web/tourOperator/Categoriesyouroperator.jsx";
+import Users from "./compount/admin/users/Users.jsx";
+import Admin from "./compount/admin/Admin/getadmin/Admin.jsx";
+import Creatadmin from "./compount/admin/Admin/creatadmin/Creatadmin.jsx";
+import Updata from "./compount/admin/Admin/updata/Updata.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -79,6 +83,22 @@ export default function App() {
         {
           path: "home",
           element: <AHome />,
+        },
+        {
+          path: "users",
+          element: <Users />,
+        },
+        {
+          path:'getAdmin',
+          element:<Admin />
+        },
+        {
+          path:'creatadmin',
+          element:<Creatadmin />
+        },
+        {
+          path:'updata/:_id',
+          element:<Updata />
         },
         {
           path: "*",

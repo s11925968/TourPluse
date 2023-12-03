@@ -33,7 +33,7 @@ export default function Register() {
             progress: undefined,
             theme: "light",
             });
-            navigite('/');
+            navigite('/admin/getAdmin');
         }
       }catch(error){
         setErrorBack(error.response.data.message);

@@ -55,7 +55,8 @@ export default function Navbar({ users, setUser }) {
   };
   return (
     <div className="back">
-      <nav className={`navbar navbar-expand-lg z-2 position-fixed `}
+      <nav
+        className={`navbar navbar-expand-lg z-2 position-fixed`}
         style={{ backgroundColor: navbarBackground }} // Set dynamic background color based on state
       >
         <div className="container">
@@ -77,7 +78,7 @@ export default function Navbar({ users, setUser }) {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="text-info-navbar collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
               <li className="nav-item">
                 <Link
@@ -119,21 +120,23 @@ export default function Navbar({ users, setUser }) {
                   </Link>
                 </li>
               )}
+
               <li className="nav-item dropdown me-2 mb-4">
                 <a
-                  className="down dropdown-toggle text-white text-decoration-none"
+                  className="nav-link dropdown-toggle text-white text-decoration-none"
                   href="#"
                   role="button"
+                  data-bs-toggle="dropdown" // Add data-bs-toggle attribute
+                  aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
                 </a>
-                <ul className="sing-in dropdown-menu dropdown-menu-start mb-2 text-center">
+                <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
                   {!users ? (
                     <>
                       <li>
                         <Link
-                          className="nav-link text-white"
-                          aria-current="page"
+                          className="dropdown-item text-white"
                           to="/register"
                         >
                           <FontAwesomeIcon
@@ -144,11 +147,7 @@ export default function Navbar({ users, setUser }) {
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          className="nav-link text-black"
-                          aria-current="page"
-                          to="/login"
-                        >
+                        <Link className="dropdown-item text-black" to="/login">
                           <FontAwesomeIcon
                             icon={faRightToBracket}
                             className="pe-3 text-success"
@@ -160,18 +159,14 @@ export default function Navbar({ users, setUser }) {
                   ) : (
                     <>
                       <li>
-                        <Link
-                          className="nav-link text-black "
-                          aria-current="page"
-                        >
+                        <Link className="dropdown-item text-black">
                           <FontAwesomeIcon icon={faUser} className="pe-2" />
                           Profile
                         </Link>
                       </li>
                       <li>
                         <Link
-                          className="nav-link text-black"
-                          aria-current="page"
+                          className="dropdown-item text-black"
                           onClick={logout}
                         >
                           <FontAwesomeIcon
@@ -185,6 +180,7 @@ export default function Navbar({ users, setUser }) {
                   )}
                 </ul>
               </li>
+
               <li className="nav-item  text-info"></li>
               <li className="nav-item " id="about">
                 {
