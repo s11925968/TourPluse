@@ -15,17 +15,31 @@ export default function Categoriesyouroperator() {
     return <Loader/>
   }
   return (
+    // <div className="container">
+    //   <div className="row Categoriesyouroperator">
+    //     {data?.length
+    //       ? data.map((tourOperator) => (
+    //           <div className="col-md-6" key={tourOperator._id}>
+    //             <img src={tourOperator.image.secure_url}></img>
+    //             <h2>{tourOperator.name}</h2>
+    //           </div>
+    //         ))
+    //       : "no data available"}
+    //   </div>
+    // </div>
     <div className="container">
-      <div className="row Categoriesyouroperator">
-        {data?.length
-          ? data.map((tourOperator) => (
-              <div className="col-md-6" key={tourOperator._id}>
-                <img src={tourOperator.image.secure_url}></img>
-                <h2>{tourOperator.name}</h2>
-              </div>
-            ))
-          : "no data available"}
-      </div>
+      <div className='row Categoriesyouroperator'>
+        {data.length? data.map((tour,index)=>
+        <div className='col-md-4 text-center' key={tour._id}>
+          <div >
+          <img src={tour.image.secure_url}className='img-fluid'></img>
+          </div>
+          <p>name:{tour.name},address:{tour.address},phone:{tour.phoneNumber}<br/>
+          phoneNumberEx:{tour.phoneNumberEx},<br/>description:{tour.description}</p>
+        </div>
+        ):"no data available"
+      }
+        </div>
     </div>
   );
 }

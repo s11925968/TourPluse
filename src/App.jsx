@@ -18,6 +18,9 @@ import Users from "./compount/admin/users/Users.jsx";
 import Admin from "./compount/admin/Admin/getadmin/Admin.jsx";
 import Creatadmin from "./compount/admin/Admin/creatadmin/Creatadmin.jsx";
 import Updata from "./compount/admin/Admin/updata/Updata.jsx";
+import Categorie from "./compount/admin/categories/Categorie.jsx";
+import Touroperatorcategorite from "./compount/admin/categories/Touroperatorcategorite.jsx";
+import CreateCatgories from "./compount/admin/categories/create/CreateCategories.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -99,6 +102,18 @@ export default function App() {
         {
           path:'updata/:_id',
           element:<Updata />
+        }
+        ,{
+          path:'categories/get',
+          element:<Categorie />
+        },
+        {
+          path:'categories/allTourOperator/:_id',
+          element:<Touroperatorcategorite />
+        },
+        {
+          path:'categories/create',
+          element:<CreateCatgories/>
         },
         {
           path: "*",

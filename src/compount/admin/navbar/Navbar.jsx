@@ -81,6 +81,35 @@ export default function Navbar() {
                   </li>
                 </ul>
               </li>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle text-white"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  categories
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/admin/categories/get">
+                      getcategories
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/admin/categories/create">
+                      createcategories
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                    <Link className="dropdown-item" to="">
+                      updatecategories
+                    </Link>
+                  </li>
+                </ul>
+              </li>
               <li className="nav-item">
                 <Link
                   className="nav-link text-white"
@@ -90,6 +119,7 @@ export default function Navbar() {
                   users
                 </Link>
               </li>
+              
             </ul>
           </div>
         </div>

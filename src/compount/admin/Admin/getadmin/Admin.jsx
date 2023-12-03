@@ -20,7 +20,6 @@ export default function Admin() {
   };
 
   const { data,isLoading} = useQuery("getadmin", getAdmin);
-  console.log(data);
   if(isLoading){
     return <Loader />;
   }

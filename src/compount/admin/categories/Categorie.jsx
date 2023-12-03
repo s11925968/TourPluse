@@ -1,24 +1,32 @@
-import React from 'react'
-import './catagories.css'
 import axios from 'axios'
-import { useQuery } from 'react-query'
+import React from 'react'
+import { useQuery } from 'react-query';
+import Loader from '../../shared/Loader';
 import { Navigation, Pagination, Scrollbar, A11y,Autoplay} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import Loader from '../../shared/Loader.jsx'
+import './style.css'
 // Import Swiper styles
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Link } from 'react-router-dom';
-export default function Catagouries() {
-  const getCatagories =async()=>{
-    const {data}=await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/active`)
-    return data;
+export default function Categorie() {
+  const getcategories=async()=>{
+    try {
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/get`, {
+        headers: {
+          Authorization: 'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYwYzIyOGEzODE1MGU3NDA5YTk3YiIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJTdXBlcmFkbWluIiwiaWF0IjoxNzAxMzM5MjYyfQ.258XoriDX6D_g5UJ_-9FNTIup20siAjH1Vv2WJeRnoQ'
+        },
+      });
+      return data.categories;
+    } catch (error) {
+      console.error('Error fetching admin data:', error);
+      throw error;
+    }
   }
-
-  const {data,isLoading}=useQuery('get_catagories',getCatagories);
-  if (isLoading) {
+  const {data,isLoading}=useQuery("getcategories",getcategories);
+  if(isLoading){
     return <Loader />;
   }
   return (
@@ -39,8 +47,8 @@ export default function Catagouries() {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          {data?.categories.length
-          ? data?.categories.map((catagourie,index) => (
+          {data?.length
+            ? data?.map((catagourie ,index) => (
                 <SwiperSlide className="imgaes-catagourie" key={catagourie._id}>
                   {/* <Link to={`/categories/tourOperator/${catagourie._id}`}> */}
                   <Link to={`/admin/categories/allTourOperator/${catagourie._id}`}>
@@ -48,7 +56,10 @@ export default function Catagouries() {
                     <img src={catagourie.image.secure_url} className="w-50" />
                   </div>
                   <div className="text-center pt-3">
-                    <h2 className="fs-5">{catagourie.name}</h2>
+                    <h1>#{index}</h1>
+                    <h2 className="fs-5 ps-4">name:{catagourie.name}</h2>
+                    {/* <h3 className="fs-5 ps-4">slug:{catagourie.slug}</h3>
+                    <h3 className="fs-5 ps-4">status:{catagourie.status}</h3> */}
                   </div>
                   </Link>
                 </SwiperSlide>
@@ -59,7 +70,3 @@ export default function Catagouries() {
     </div>
   );
 }
-
-
-
-
