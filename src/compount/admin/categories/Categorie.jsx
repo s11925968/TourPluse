@@ -57,7 +57,7 @@ export default function Categorie() {
                   </div>
                   <div className="text-center pt-3">
                     <h1>#{index}</h1>
-                    <h2 className="fs-5 ps-4">name:{catagourie.name}</h2>
+                    <h2 className="fs-5 ps-4">{catagourie.name}</h2>
                     <Link to={`/admin/updata/categories/${catagourie._id}`}>Update</Link>
 
                   </div>
