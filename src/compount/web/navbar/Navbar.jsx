@@ -17,7 +17,7 @@ import {
 export default function Navbar({ users, setUser }) {
   const navgite = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState(""); // State to manage navbar background color
-
+  
   useEffect(() => {
     window.addEventListener("scroll", handleScroll); // Adding scroll event listener
     return () => {
@@ -49,7 +49,7 @@ export default function Navbar({ users, setUser }) {
   }
 
   const logout = () => {
-    localStorage.removeItem("itemLogin");
+    localStorage.removeItem("userToken");
     setUser(null);
     navgite("/");
   };
@@ -136,7 +136,7 @@ export default function Navbar({ users, setUser }) {
                     <>
                       <li>
                         <Link
-                          className="dropdown-item text-white"
+                          className="dropdown-item text-black"
                           to="/register"
                         >
                           <FontAwesomeIcon

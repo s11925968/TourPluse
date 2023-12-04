@@ -21,6 +21,8 @@ import Updata from "./compount/admin/Admin/updata/Updata.jsx";
 import Categorie from "./compount/admin/categories/Categorie.jsx";
 import Touroperatorcategorite from "./compount/admin/categories/Touroperatorcategorite.jsx";
 import CreateCatgories from "./compount/admin/categories/create/CreateCategories.jsx";
+import Update from "./compount/admin/categories/Updatecategories.jsx";
+import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -114,6 +116,14 @@ export default function App() {
         {
           path:'categories/create',
           element:<CreateCatgories/>
+        },
+        {
+          path:'updata/categories/:_id',
+          element:<Update/>
+        },
+        {
+          path:'categories/details/:_id',
+          element:<DetalisCategories />
         },
         {
           path: "*",

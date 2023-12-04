@@ -58,10 +58,11 @@ export default function Categorie() {
                   <div className="text-center pt-3">
                     <h1>#{index}</h1>
                     <h2 className="fs-5 ps-4">name:{catagourie.name}</h2>
-                    {/* <h3 className="fs-5 ps-4">slug:{catagourie.slug}</h3>
-                    <h3 className="fs-5 ps-4">status:{catagourie.status}</h3> */}
+                    <Link to={`/admin/updata/categories/${catagourie._id}`}>Update</Link>
+
                   </div>
                   </Link>
+
                 </SwiperSlide>
               ))
             : "no data available"}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loader from '../../shared/Loader.jsx'
 
 export default function Touroperatorcategorite() {
@@ -20,7 +20,6 @@ export default function Touroperatorcategorite() {
     }
   }
   const {data,isLoading}=useQuery('gettouroperator',getTourOperators);
-  console.log(data);
   if(isLoading){
     return <Loader />;
   }
@@ -32,12 +31,13 @@ export default function Touroperatorcategorite() {
           <div >
           <img src={tour.image.secure_url}className='img-fluid'></img>
           </div>
-          <p>name:{tour.name},address:{tour.address},phone:{tour.phoneNumber}<br/>
-          phoneNumberEx:{tour.phoneNumberEx},<br/>description:{tour.description}</p>
+          <p>{tour.name}</p>
+          <Link to={`/admin/categories/details/${tour._id}`}>Details</Link>
+
         </div>
         ):"no data available"
       }
-        </div>
+      </div>
     </div>
   );
 }

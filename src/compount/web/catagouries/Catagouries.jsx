@@ -49,6 +49,7 @@ export default function Catagouries() {
                   </div>
                   <div className="text-center pt-3">
                     <h2 className="fs-5">{catagourie.name}</h2>
+
                   </div>
                   </Link>
                 </SwiperSlide>

@@ -102,12 +102,7 @@ export default function Navbar() {
                       createcategories
                     </Link>
                   </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                    <Link className="dropdown-item" to="">
-                      updatecategories
-                    </Link>
-                  </li>
+                
                 </ul>
               </li>
               <li className="nav-item">
