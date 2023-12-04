@@ -22,18 +22,17 @@ export default function Updatecategories() {
       formData.append('status', values.status);
 
       try {
+        const token=localStorage.getItem('userToken');
         const { data } = await axios.patch(
           `${import.meta.env.VITE_URL_LINK}/categories/${_id}`, // Replace :categoryId with the actual category ID you want to update
           formData,
           {
             headers: {
               Authorization:
-                'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjQ1ZGNlYjA5ZTZiNTk5NTdkZjllNCIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTA3ODA3NX0.t4rh4-2o1rhC0lHwhEhl9Xw2zt2WE-GYGQIvi_ubRuo'
-              
+                `ghazal__${token}`
             },
           }
         );
-
         if (data.message === 'success') {
           formik.resetForm();
           toast.success('Category updated successfully', {

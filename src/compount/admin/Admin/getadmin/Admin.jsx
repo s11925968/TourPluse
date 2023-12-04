@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 export default function Admin() {
   const getAdmin = async () => {
     try {
+      const token=localStorage.getItem('userToken');
       const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/admin/get`, {
         headers: {
-          Authorization: 'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYwYzIyOGEzODE1MGU3NDA5YTk3YiIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTEwMzk1OH0.djoZ8MEAuBDvMnqNo3QrNiAFosHpuuW0w8iMrHWRmlk', // Replace YOUR_TOKEN_HERE with your actual token
+          Authorization: `ghazal__${token}`, // Replace YOUR_TOKEN_HERE with your actual token
         },
       });
       return data.users;

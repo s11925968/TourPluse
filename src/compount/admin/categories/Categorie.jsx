@@ -14,9 +14,10 @@ import { Link } from 'react-router-dom';
 export default function Categorie() {
   const getcategories=async()=>{
     try {
+      const token=localStorage.getItem('userToken');
       const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/get`, {
         headers: {
-          Authorization: 'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYwYzIyOGEzODE1MGU3NDA5YTk3YiIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJTdXBlcmFkbWluIiwiaWF0IjoxNzAxMzM5MjYyfQ.258XoriDX6D_g5UJ_-9FNTIup20siAjH1Vv2WJeRnoQ'
+          Authorization: `ghazal__${token}`
         },
       });
       return data.categories;

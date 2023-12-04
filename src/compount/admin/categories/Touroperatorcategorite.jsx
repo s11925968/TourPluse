@@ -8,9 +8,10 @@ export default function Touroperatorcategorite() {
   const {_id}=useParams();
   const getTourOperators=async()=>{
     try {
+      const token=localStorage.getItem('userToken');
       const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/allTourOperator/${_id}`, {
         headers: {
-          Authorization: 'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYwYzIyOGEzODE1MGU3NDA5YTk3YiIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTEwMzk1OH0.djoZ8MEAuBDvMnqNo3QrNiAFosHpuuW0w8iMrHWRmlk'
+          Authorization: `ghazal__${token}`
         },
       });
       return data.tourOperator;

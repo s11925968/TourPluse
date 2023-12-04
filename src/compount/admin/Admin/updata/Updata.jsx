@@ -18,13 +18,14 @@ export default function Updata() {
     initialValues,
     onSubmit: async (values) => {
       try {
+        const token=localStorage.getItem('userToken');
         const { data } = await axios.patch(
           `${import.meta.env.VITE_URL_LINK}/admin/${_id}`,
           values,
           {
             headers: {
               Authorization:
-                "ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYwYzIyOGEzODE1MGU3NDA5YTk3YiIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJTdXBlcmFkbWluIiwiaWF0IjoxNzAxMTA1NzAwfQ.Alec_MEB9Ijsrgun36s7fLpt_7kDg7iL0qorl7EJYhA", // Replace YOUR_TOKEN_HERE with your actual token
+                `ghazal__${token}`, // Replace YOUR_TOKEN_HERE with your actual token
             },
           }
         );

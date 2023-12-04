@@ -9,6 +9,7 @@ export default function DetalisCategories() {
   const {_id}=useParams();
   const getDetalis=async()=>{
     try {
+      
       const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/${_id}`, {
         headers: {
           Authorization: 'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjQ1ZGNlYjA5ZTZiNTk5NTdkZjllNCIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTA3ODA3NX0.t4rh4-2o1rhC0lHwhEhl9Xw2zt2WE-GYGQIvi_ubRuo'

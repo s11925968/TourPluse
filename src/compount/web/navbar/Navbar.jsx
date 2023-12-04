@@ -101,7 +101,17 @@ export default function Navbar({ users, setUser }) {
                   </a>
                 </li>
               )}
-
+                 {!users && (
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="#"
+                  >
+                    company
+                  </a>
+                </li>
+              )}
               <li className="nav-item">
                 <a className="nav-link text-white" aria-current="page" href="#">
                   <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
@@ -120,7 +130,6 @@ export default function Navbar({ users, setUser }) {
                   </Link>
                 </li>
               )}
-
               <li className="nav-item dropdown me-2 mb-4">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"

@@ -9,40 +9,6 @@ const initialValues={
   name:'',
 
 }
-
-// const onSubmit=async users=>{
-//   const formdata=new FormData();
-//   formdata.append("name",users.name);
-//   formdata.append("image",users.image);
-//   try {
-//     const { data } = await axios.post(
-//       `${import.meta.env.VITE_URL_LINK}/categories/create`,
-//       formdata,
-//       {
-//         headers: {
-//           Authorization:
-//             'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjQ1ZGNlYjA5ZTZiNTk5NTdkZjllNCIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTA3ODA3NX0.t4rh4-2o1rhC0lHwhEhl9Xw2zt2WE-GYGQIvi_ubRuo', // Replace YOUR_TOKEN_HERE with your actual token
-//         },
-//       }
-      
-//     );
-//     if(data.message=="success"){
-//       toast.success('account admin created succesfully', {
-//         position: "top-center",
-//         autoClose: 5000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//         progress: undefined,
-//         theme: "light",
-//         });
-        
-//     }
-//   } catch (error) {
-//     console.error('Error creating admin:', error);
-//   }
-// }
 export default function CreateCatgories() {
   const navgite=useNavigate();
   const formik =useFormik({
@@ -52,13 +18,14 @@ export default function CreateCatgories() {
       formdata.append("name",users.name);
       formdata.append("image",users.image);
       try {
+        const token=localStorage.getItem('userToken');
         const { data } = await axios.post(
           `${import.meta.env.VITE_URL_LINK}/categories/create`,
           formdata,
           {
             headers: {
               Authorization:
-                'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjQ1ZGNlYjA5ZTZiNTk5NTdkZjllNCIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTA3ODA3NX0.t4rh4-2o1rhC0lHwhEhl9Xw2zt2WE-GYGQIvi_ubRuo', // Replace YOUR_TOKEN_HERE with your actual token
+                `ghazal__${token}`, // Replace YOUR_TOKEN_HERE with your actual token
             },
           }
           

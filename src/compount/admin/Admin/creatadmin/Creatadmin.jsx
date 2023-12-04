@@ -19,13 +19,14 @@ export default function Creatadmin() {
     initialValues,
     onSubmit: async (values) => {
       try {
+        const token=localStorage.getItem('userToken');
         const { data } = await axios.post(
           `${import.meta.env.VITE_URL_LINK}/admin/create`,
           values,
           {
             headers: {
               Authorization:
-                'ghazal__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYwYzIyOGEzODE1MGU3NDA5YTk3YiIsInN0YXR1cyI6IkFjdGl2ZSIsInJvbGUiOiJTdXBlcmFkbWluIiwiaWF0IjoxNzAxMTA0Mjg2fQ.BvDbX8lGjtXCtwD5GU2SG-5qZQjCsH0cDYyfwtStDS8', // Replace YOUR_TOKEN_HERE with your actual token
+                `ghazal__${token}`, 
             },
           }
         );
