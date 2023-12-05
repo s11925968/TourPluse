@@ -12,21 +12,7 @@ export default function About() {
           <h2>About us</h2>
           <div className="col-md-6 image-about">
             {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: "image-abour-us",
-                  isFluidWidth: true,
-                  src: "/images/info-images.jpg",
-                },
-                largeImage: {
-                  src: "/images/info-images.jpg",
-                  width: 1200,
-                  height: 1800,
-                },
-                isHintEnabled: true,
-              }}
-            />
+            <img src='/images/info-images.jpg'/>
           </div>
           <div className="col-md-6 about-info">
             <p>
