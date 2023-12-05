@@ -37,18 +37,6 @@ export default function App() {
     if(localStorage.getItem("userToken")){
       saveCurrentUser();
     }
-    // if (users) {
-    //   // Check the role in the users state
-    //   const userRole = users.role;
-  
-    //   if (userRole === "Superadmin") {
-    //     // The user is a Super Admin
-    //     console.log("User is a Super Admin");
-    //   } else {
-    //     // The user is a regular user
-    //     console.log("User is a regular user");
-    //   }
-    //}
   },[])
   const router = createBrowserRouter([
     {
@@ -103,10 +91,6 @@ export default function App() {
       path: "/admin",
       element: <Layoutadmin />,
       children: [
-        {
-          path: "", // This is the default route for "/admin"
-          element: <Singin />,
-        },
         {
           path: "home",
           element: <AHome />,

@@ -19,7 +19,7 @@ export default function Navbar() {
     <div className="back">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
         <div className="container">
-          <Link to="/">
+          <Link to="/admin/home">
             <img
               src="/images/fulllogo_transparent_nobuffer.png"
               alt="logo"
@@ -43,7 +43,7 @@ export default function Navbar() {
                 <Link
                   className="nav-link active text-white"
                   aria-current="page"
-                  to="/"
+                  to="/admin/home"
                 >
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
