@@ -23,6 +23,7 @@ import Touroperatorcategorite from "./compount/admin/categories/Touroperatorcate
 import CreateCatgories from "./compount/admin/categories/create/CreateCategories.jsx";
 import Update from "./compount/admin/categories/Updatecategories.jsx";
 import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx";
+import Singin from "./compount/admin/login/Singin.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -61,7 +62,7 @@ export default function App() {
           element: <Catagouries />,
         },
         {
-          path: "/categories/tourOperator/:_id",
+          path: "categories/tourOperator/:_id",
           element: <Categoriesyouroperator />,
         },
         {
@@ -88,6 +89,10 @@ export default function App() {
         {
           path: "home",
           element: <AHome />,
+        },
+        {
+          path:"login",
+          element:<Singin />,
         },
         {
           path: "users",
@@ -131,6 +136,7 @@ export default function App() {
         },
       ],
     },
+    
   ]);
 
   return <RouterProvider router={router} />;

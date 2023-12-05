@@ -43,7 +43,7 @@ export default function Catagouries() {
           ? data?.categories.map((catagourie,index) => (
                 <SwiperSlide className="imgaes-catagourie" key={catagourie._id}>
                   {/* <Link to={`/categories/tourOperator/${catagourie._id}`}> */}
-                  <Link to={`/admin/categories/allTourOperator/${catagourie._id}`}>
+                  <Link to={`/categories/tourOperator/${catagourie._id}`}>
                   <div className="d-flex justify-content-center">
                     <img src={catagourie.image.secure_url} className="w-50" />
                   </div>

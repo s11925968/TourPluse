@@ -15,18 +15,7 @@ export default function Categoriesyouroperator() {
     return <Loader/>
   }
   return (
-    // <div className="container">
-    //   <div className="row Categoriesyouroperator">
-    //     {data?.length
-    //       ? data.map((tourOperator) => (
-    //           <div className="col-md-6" key={tourOperator._id}>
-    //             <img src={tourOperator.image.secure_url}></img>
-    //             <h2>{tourOperator.name}</h2>
-    //           </div>
-    //         ))
-    //       : "no data available"}
-    //   </div>
-    // </div>
+    
     <div className="container">
       <div className='row Categoriesyouroperator'>
         {data.length? data.map((tour,index)=>
