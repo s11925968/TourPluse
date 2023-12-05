@@ -9,10 +9,7 @@ export default function About() {
       <section className="about-style about-us container">
         <div className="row info-images">
           <h2>About us</h2>
-          <div className="col-md-6 image-about">
-            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
-            <img src='/images/info-images.jpg'/>
-          </div>
+          
           <div className="col-md-6 about-info">
             <p>
               Tourpulse is a company based in Palestine that specializes in
@@ -21,6 +18,10 @@ export default function About() {
               committed to offering exceptional services to both local and
               international travelers.
             </p>
+          </div>
+          <div className="col-md-6 image-about">
+            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
+            <img src='/images/info-images.jpg'/>
           </div>
         </div>
       </section>

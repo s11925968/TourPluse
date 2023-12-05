@@ -104,10 +104,7 @@ export default function Home() {
       <section className="about-us container">
         <div className="row info-images">
           <h2>About us</h2>
-          <div className="col-md-6 image-about">
-            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
-            <img src="/images/info-images.jpg"/>
-          </div>
+          
           <div className="col-md-6 about-info">
             <p>
               Tourpulse is a company based in Palestine that specializes in
@@ -119,6 +116,10 @@ export default function Home() {
           <FontAwesomeIcon icon={faArrowRight} />
           </Link>
             </p>
+          </div>
+          <div className="col-md-6 image-about">
+            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
+            <img src="/images/info-images.jpg"/>
           </div>
 
         </div>
