@@ -175,6 +175,25 @@ a{
   background-color: #363430;
 }
 /*end map*/
+/*start info about*/
+.about-us{
+  padding-top:10px ;
+  padding-bottom:10px ;
+}
+.about-info{
+  font-size: 1.9rem;
+  line-height-step: 2px;
+}
+.image-about img{
+  width: 100%;
+  height: 100%;
+  border-radius: 20%;
+  -webkit-border-radius: 20%;
+  -moz-border-radius: 20%;
+  -ms-border-radius: 20%;
+  -o-border-radius: 20%;
+}
+/*end about*/
 @media screen and (max-width:600px){
   :root{
     font-size: 10px;

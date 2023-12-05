@@ -1,7 +1,23 @@
-.Categoriesyouroperator{
-  display: flex;
-  margin-top: 150px !important;
+
+.catagories{
+  height:100vh;
 }
-.Categoriesyouroperator img{
-  width: 100%;
+.imgaes-catagourie img{
+  box-shadow: 1px 10px 8px;
+  border-radius:100%;
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  -ms-border-radius:100%;
+  -o-border-radius:100%;
+  width: 108px;
+  aspect-ratio: 209/187;
+  object-fit: cover;
+}
+.swiper-custom-pagination{
+  color: aqua!important;
+  background-color: red;
+  
+}
+.swiper{
+  padding: 40px!important;
 }

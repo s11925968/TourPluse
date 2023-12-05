@@ -3,10 +3,12 @@ import './Home.css'
 import { Link } from 'react-router-dom'
 import { faBehance, faDribbble, faFacebook, faGoogle, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faHouse, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faEnvelope, faHouse, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import ReactImageMagnify from 'react-image-magnify';
+
 export default function Home() {
   return (
-    <div>
+    <section id="about">
       <header className="header">
         <div className="info-header">
           <div className="info-home text-center">
@@ -100,6 +102,42 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+      <section className="about-us container">
+        <div className="row info-images">
+          <h2>About us</h2>
+          <div className="col-md-6 image-about">
+            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: "image-abour-us",
+                  isFluidWidth: true,
+                  src: "/images/info-images.jpg",
+                },
+                largeImage: {
+                  src: "/images/info-images.jpg",
+                  width: 1200,
+                  height: 1800,
+                },
+                isHintEnabled:true,
+              }}
+            />
+          </div>
+          <div className="col-md-6 about-info">
+            <p>
+              Tourpulse is a company based in Palestine that specializes in
+              providing travel and tourism services. Established with the aim of
+              creating memorable and seamless travel experiences, Tourpulse is
+              committed to offering exceptional services to both local and
+              international travelers.
+              <Link to="/about">Read more about RateHawk 
+          <FontAwesomeIcon icon={faArrowRight} />
+          </Link>
+            </p>
+          </div>
+
+        </div>
+      </section>
+    </section>
   );
 }

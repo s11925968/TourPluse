@@ -34,19 +34,24 @@ export default function Navbar({ users, setUser }) {
       setNavbarBackground(""); // Revert back to default background color
     }
   };
-
-  function setSweet() {
-    Swal.fire({
-      title:
-        "Tourpulse is a company based in Palestine that specializes in providing travel and tourism services. Established with the aim of creating memorable and seamless travel experiences, Tourpulse is committed to offering exceptional services to both local and international travelers.",
-      showClass: {
-        popup: "animate__animated animate__fadeInDown",
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOutUp",
-      },
-    });
-  }
+  const handleAboutClick = () => {
+    const aboutElement = document.getElementById('about');
+    if (aboutElement) {
+      aboutElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  // function setSweet() {
+  //   Swal.fire({
+  //     title:
+  //       "Tourpulse is a company based in Palestine that specializes in providing travel and tourism services. Established with the aim of creating memorable and seamless travel experiences, Tourpulse is committed to offering exceptional services to both local and international travelers.",
+  //     showClass: {
+  //       popup: "animate__animated animate__fadeInDown",
+  //     },
+  //     hideClass: {
+  //       popup: "animate__animated animate__fadeOutUp",
+  //     },
+  //   });
+  // }
 
   const logout = () => {
     localStorage.removeItem("userToken");
@@ -78,7 +83,10 @@ export default function Navbar({ users, setUser }) {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="text-info-navbar collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className="text-info-navbar collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
               <li className="nav-item">
                 <Link
@@ -101,7 +109,7 @@ export default function Navbar({ users, setUser }) {
                   </a>
                 </li>
               )}
-                 {!users && (
+              {!users && (
                 <li className="nav-item">
                   <a
                     className="nav-link text-white"
@@ -191,10 +199,11 @@ export default function Navbar({ users, setUser }) {
               </li>
 
               <li className="nav-item  text-info"></li>
-              <li className="nav-item " id="about">
+              <li className="nav-item ">
                 {
-                  <button
-                    onClick={setSweet}
+                  // Inside Navbar.jsx
+                  <Link
+                    to="/about"
                     className="about btn nav-link btn-link text-decoration-none"
                   >
                     <FontAwesomeIcon
@@ -202,7 +211,7 @@ export default function Navbar({ users, setUser }) {
                       className="pe-1"
                     />
                     about
-                  </button>
+                  </Link>
                 }
               </li>
             </ul>

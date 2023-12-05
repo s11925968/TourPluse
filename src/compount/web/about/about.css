@@ -1,0 +1,21 @@
+a{
+  text-decoration: none;
+}
+.about-style{
+  height:100vh;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+/*start section adventures*/
+/*start section adventures*/
+.adventures{
+  background-color: var(--main-color);
+  }
+  .info-adven p{
+    font-family:'Rubik', sans-serif ;
+    line-height: 40px;
+  
+  }
+  /*end section adventures*/

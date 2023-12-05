@@ -24,6 +24,7 @@ import CreateCatgories from "./compount/admin/categories/create/CreateCategories
 import Update from "./compount/admin/categories/Updatecategories.jsx";
 import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx";
 import Singin from "./compount/admin/login/Singin.jsx";
+import About from "./compount/web/about/About.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -48,7 +49,10 @@ export default function App() {
           path: "/",
           element: <Home />,
         },
-
+        {
+          path: "about",
+          element: <About />,
+        },
         {
           path: "Contact/create",
           element: <Create />,
@@ -87,13 +91,14 @@ export default function App() {
       element: <Layoutadmin />,
       children: [
         {
+          path: "", // This is the default route for "/admin"
+          element: <Singin />,
+        },
+        {
           path: "home",
           element: <AHome />,
         },
-        {
-          path:"login",
-          element:<Singin />,
-        },
+        
         {
           path: "users",
           element: <Users />,
