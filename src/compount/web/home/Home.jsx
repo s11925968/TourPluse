@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { faBehance, faDribbble, faFacebook, faGoogle, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faEnvelope, faHouse, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
-import ReactImageMagnify from 'react-image-magnify';
 
 export default function Home() {
   return (
