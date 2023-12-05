@@ -33,9 +33,22 @@ export default function App() {
     setUser(decode);
   };
   useEffect(()=>{
+
     if(localStorage.getItem("userToken")){
       saveCurrentUser();
     }
+    // if (users) {
+    //   // Check the role in the users state
+    //   const userRole = users.role;
+  
+    //   if (userRole === "Superadmin") {
+    //     // The user is a Super Admin
+    //     console.log("User is a Super Admin");
+    //   } else {
+    //     // The user is a regular user
+    //     console.log("User is a regular user");
+    //   }
+    //}
   },[])
   const router = createBrowserRouter([
     {
@@ -75,7 +88,7 @@ export default function App() {
         },
         {
           path: "login",
-          element: <Login saveCurrentUser={saveCurrentUser}/>,
+          element: <Login saveCurrentUser={saveCurrentUser} users={users}/>,
         },
         {
           path: "*",

@@ -5,30 +5,44 @@ import { toast } from "react-toastify";
 import Inpute from "../../shared/Inpute";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({saveCurrentUser}) {
+export default function Login({saveCurrentUser,users}) {
   const navigate=useNavigate();
 const initialValues = {
   email: "",
   password: "",
 };
 
-const onSubmit = async (users) => {
-  const { data } =await await axios.post("https://gazaaaal.vercel.app/auth/signin",users);
+const onSubmit = async (user) => {
+  const { data } =await axios.post("https://gazaaaal.vercel.app/auth/signin",user);
   
-  if(data.message=="success"){
+  if(data.message=="success")
+  {
+    
     localStorage.setItem("userToken",data.token);
     saveCurrentUser();
-    toast.success('login succesfully', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-      navigate('/');
+    // toast.success('login succesfully', {
+    //   position: "top-center",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "light",
+    //   });
+      if (users) {
+        // Check the role in the users state
+        const userRole = users.role;
+    
+        if (userRole === "User") {
+          navigate('/');
+          
+        } else {
+          navigate("/admin/home")
+          // The user is a regular user
+          console.log("User is a Super Admin");
+        }
+      }
   }
 };
   const formik = useFormik({
