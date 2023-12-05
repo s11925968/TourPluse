@@ -36,7 +36,7 @@ export default function Categorie() {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={2}
           navigation
           loop={true}
           autoplay={{

@@ -18,6 +18,7 @@ export default function Catagouries() {
   }
 
   const {data,isLoading}=useQuery('get_catagories',getCatagories);
+  console.log(data);
   if (isLoading) {
     return <Loader />;
   }
@@ -27,7 +28,7 @@ export default function Catagouries() {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={2}
           navigation
           loop={true}
           autoplay={{
