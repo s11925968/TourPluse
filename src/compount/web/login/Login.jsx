@@ -20,27 +20,36 @@ const onSubmit = async (user) => {
     
     localStorage.setItem("userToken",data.token);
     saveCurrentUser();
-    // toast.success('login succesfully', {
-    //   position: "top-center",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    //   });
+    
       if (users) {
         // Check the role in the users state
         const userRole = users.role;
     
         if (userRole === "User") {
           navigate('/');
+          toast.success('login succesfully', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
           
         } else {
           navigate("/admin/home")
-          // The user is a regular user
-          console.log("User is a Super Admin");
+          toast.success('login succesfully', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
         }
       }
   }

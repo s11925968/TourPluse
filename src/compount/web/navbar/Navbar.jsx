@@ -204,7 +204,7 @@ export default function Navbar({ users, setUser }) {
                   // Inside Navbar.jsx
                   <Link
                     to="/about"
-                    className="about btn nav-link btn-link text-decoration-none"
+                    className="about btn nav-link btn-link text-decoration-none text-start"
                   >
                     <FontAwesomeIcon
                       icon={faCircleExclamation}
