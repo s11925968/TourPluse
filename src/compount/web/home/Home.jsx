@@ -14,10 +14,7 @@ export default function Home() {
             <div className="d-flex d-flex justify-content-center align-items-center">
               <p>Welcome to Tourpulse</p>
             </div>
-            <h1 className="text-white">
-              Travel &amp; Tour Booking
-              <br /> WordPress Theme
-            </h1>
+            
             <span>
               Revolutionizing the Way
               <br /> You Plan Adventures!
