@@ -23,8 +23,9 @@ import Touroperatorcategorite from "./compount/admin/categories/Touroperatorcate
 import CreateCatgories from "./compount/admin/categories/create/CreateCategories.jsx";
 import Update from "./compount/admin/categories/Updatecategories.jsx";
 import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx";
-import Singin from "./compount/admin/login/Singin.jsx";
 import About from "./compount/web/about/About.jsx";
+import SendCode from "./compount/web/sendcode/SendCode.jsx";
+import Forget from "./compount/web/forgetpassword/Forget.jsx"
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -63,6 +64,14 @@ export default function App() {
           element: <Register />,
         },
         {
+          path:"auth/sendCode",
+          element:<SendCode />
+        },
+        {
+          path:"auth/forgetPassword",
+          element:<Forget />
+        },
+        {
           path: "catagouries",
           element: <Catagouries />,
         },
@@ -89,10 +98,10 @@ export default function App() {
     },
     {
       path: "/admin",
-      element: <Layoutadmin />,
+      element: <Layoutadmin users={users} setUser={setUser}/>,
       children: [
         {
-          path: "home",
+          path: "",
           element: <AHome />,
         },
         

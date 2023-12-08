@@ -12,3 +12,9 @@ export const registerValidation = yup.object({
     .required('Confirm password is required')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
+export const registerValidationForget = yup.object({
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string()
+    .required("Password is required")
+    .matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character'),
+});

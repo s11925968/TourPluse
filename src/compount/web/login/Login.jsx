@@ -3,9 +3,10 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Inpute from "../../shared/Inpute";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login({saveCurrentUser,users}) {
+  let {errorBackend,setErrorBackend}=useState('');
   const navigate=useNavigate();
 const initialValues = {
   email: "",
@@ -13,46 +14,53 @@ const initialValues = {
 };
 
 const onSubmit = async (user) => {
-  const { data } =await axios.post("https://gazaaaal.vercel.app/auth/signin",user);
+  try{
+    const { data } =await axios.post(`${import.meta.env.VITE_URL_LINK}/auth/signin`,user);
   
-  if(data.message=="success")
-  {
-    
-    localStorage.setItem("userToken",data.token);
-    saveCurrentUser();
-    
-      if (users) {
-        // Check the role in the users state
-        const userRole = users.role;
-    
-        if (userRole === "User") {
-          navigate('/');
-          toast.success('login succesfully', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-          
-        } else {
-          navigate("/admin/home")
-          toast.success('login succesfully', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
+    if(data.message=="success")
+    {
+      
+      localStorage.setItem("userToken",data.token);
+      saveCurrentUser();
+      
+        if (users) {
+          // Check the role in the users state
+          const userRole = users.role;
+      
+          if (userRole === "User") {
+            navigate('/');
+            toast.success('login succesfully', {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
+            
+          } else {
+            navigate("/admin")
+            toast.success('login succesfully', {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
+          }
         }
-      }
+    }
   }
+  catch(error){ 
+  setErrorBackend(error.response.data.message);
+
+  }
+
 };
   const formik = useFormik({
     initialValues,
@@ -102,7 +110,11 @@ const onSubmit = async (user) => {
           >
             submit
           </button>
+          <Link to="/auth/sendCode">forget password</Link>
         </form>
+        <div className="text-center w-100">
+          {errorBackend && <p className="text text-danger">{errorBackend}</p>}
+        </div>
       </div>
     </div>
   );

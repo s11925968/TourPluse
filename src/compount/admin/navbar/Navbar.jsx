@@ -14,7 +14,13 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-export default function Navbar() {
+export default function Navbar({users,setUser}) {
+  const navgite=useNavigate();
+  const logout = () => {
+    localStorage.removeItem("userToken");
+    setUser(null);
+    navgite("/admin");
+  };
   return (
     <div className="back">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
@@ -43,7 +49,7 @@ export default function Navbar() {
                 <Link
                   className="nav-link active text-white"
                   aria-current="page"
-                  to="/admin/home"
+                  to="/admin"
                 >
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
@@ -114,7 +120,54 @@ export default function Navbar() {
                   users
                 </Link>
               </li>
-              
+              <li className="nav-item dropdown me-2 mb-4">
+                <a
+                  className="nav-link dropdown-toggle text-white text-decoration-none"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown" // Add data-bs-toggle attribute
+                  aria-expanded="false"
+                >
+                  <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
+                </a>
+                <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
+                  {!users ? (
+                    <>
+                      <li>
+                        <Link className="dropdown-item text-black" to="/login">
+                          <FontAwesomeIcon
+                            icon={faRightToBracket}
+                            className="pe-3 text-success"
+                          />
+                          Login
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link className="dropdown-item text-black">
+                          <FontAwesomeIcon icon={faUser} className="pe-2" />
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item text-black"
+                          onClick={logout}
+                        >
+                          <FontAwesomeIcon
+                            icon={faRightToBracket}
+                            className="pe-2 text-danger"
+                          />
+                          Logout
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </li>
+
             </ul>
           </div>
         </div>
