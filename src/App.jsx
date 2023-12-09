@@ -143,10 +143,10 @@ export default function App() {
           path:'updata/categories/:_id',
           element:<Update/>
         },
-        {
-          path:'operator/create',
-          element:<Creatoperator/>
-        },
+        // {
+        //   path:'operator/create',
+        //   element:<Creatoperator/>
+        // },
         {
           path:'operator/catgeoriesselect',
           element:<Catgeoriesselect/>
