@@ -111,6 +111,34 @@ export default function Navbar({users,setUser}) {
                 
                 </ul>
               </li>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle text-white"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Operator
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="">
+                      getOperator
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/admin/operator/catgeoriesselect">
+                      create-operator
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="">
+                      updata-operator
+                    </Link>
+                  </li>
+                </ul>
+              </li>
               <li className="nav-item">
                 <Link
                   className="nav-link text-white"
