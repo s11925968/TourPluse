@@ -51,7 +51,7 @@ export default function Catgeoriesselect() {
             ? data?.map((catagourie ,index) => (
                 <SwiperSlide  key={catagourie._id}>
                   
-                  <Link to={`/admin/operator/create/${catagourie._id}`} className='text-decoration-none'>
+                  <Link to={`/admin/operator/create`} className='text-decoration-none'>
                   <div className="d-flex justify-content-center">
                     <img src={catagourie.image.secure_url} className="w-100" />
                   </div>

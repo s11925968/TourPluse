@@ -5,8 +5,7 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 export default function Creaetoperator() {
-  const {_id}=useParams();
-  console.log(_id);
+  const {_id}=4444444444444;
   const navgite = useNavigate();
   const formik = useFormik({
     initialValues: {
