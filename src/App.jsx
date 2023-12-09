@@ -20,7 +20,7 @@ import Creatadmin from "./compount/admin/Admin/creatadmin/Creatadmin.jsx";
 import Updata from "./compount/admin/Admin/updata/Updata.jsx";
 import Categorie from "./compount/admin/categories/Categorie.jsx";
 import Touroperatorcategorite from "./compount/admin/categories/Touroperatorcategorite.jsx";
-import CreateCatgories from "./compount/admin/Operator/createoperator/creaetoperator.jsx";
+import CreateCatgories from "./compount/admin/Operator/createoperator/Creaetoperator.jsx";
 import Update from "./compount/admin/categories/Updatecategories.jsx";
 import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx";
 import About from "./compount/web/about/About.jsx";
@@ -28,7 +28,8 @@ import SendCode from "./compount/web/sendcode/SendCode.jsx";
 import Forget from "./compount/web/forgetpassword/Forget.jsx"
 import Protected from "./compount/web/routeProteced/Protected.jsx";
 import LoginProtected from "./compount/web/routeProteced/LoginProtected.jsx";
-import Catgeoriesselect from "./compount/admin/Operator/createoperator/catgeoriesselect.jsx";
+import Catgeoriesselect from "./compount/admin/Operator/createoperator/Catgeoriesselect.jsx";
+import Creaetoperator from "./compount/admin/Operator/createoperator/Creaetoperator.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -150,7 +151,7 @@ export default function App() {
         },
         {
           path:'operator/create/:_id',
-          element:<CreateCatgories/>
+          element:<Creaetoperator/>
         },
         {
           path:'operator/catgeoriesselect',
