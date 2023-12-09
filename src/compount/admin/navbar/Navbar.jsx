@@ -19,7 +19,7 @@ export default function Navbar({users,setUser}) {
   const logout = () => {
     localStorage.removeItem("userToken");
     setUser(null);
-    navgite("/admin");
+    navgite("/login");
   };
   return (
     <div className="back">

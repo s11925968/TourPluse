@@ -4,11 +4,6 @@
 }
 .imgaes-catagourie img{
   box-shadow: 1px 10px 8px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
   width: 108px;
   aspect-ratio: 209/187;
   object-fit: cover;

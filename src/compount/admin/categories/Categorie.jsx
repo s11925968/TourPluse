@@ -50,16 +50,15 @@ export default function Categorie() {
         >
           {data?.length
             ? data?.map((catagourie ,index) => (
-                <SwiperSlide className="imgaes-catagourie" key={catagourie._id}>
+                <SwiperSlide  key={catagourie._id}>
                   {/* <Link to={`/categories/tourOperator/${catagourie._id}`}> */}
-                  <Link to={`/admin/categories/allTourOperator/${catagourie._id}`}>
+                  <Link to={`/admin/categories/allTourOperator/${catagourie._id}`} className='text-decoration-none'>
                   <div className="d-flex justify-content-center">
-                    <img src={catagourie.image.secure_url} className="w-50" />
+                    <img src={catagourie.image.secure_url} className="w-100" />
                   </div>
                   <div className="text-center pt-3">
-                    <h1>#{index}</h1>
                     <h2 className="fs-5 ps-4">{catagourie.name}</h2>
-                    <Link to={`/admin/updata/categories/${catagourie._id}`}>Update</Link>
+                    <Link to={`/admin/updata/categories/${catagourie._id}`} className='btn btn-primary' >Update</Link>
 
                   </div>
                   </Link>
