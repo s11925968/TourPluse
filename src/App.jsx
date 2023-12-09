@@ -20,7 +20,7 @@ import Creatadmin from "./compount/admin/Admin/creatadmin/Creatadmin.jsx";
 import Updata from "./compount/admin/Admin/updata/Updata.jsx";
 import Categorie from "./compount/admin/categories/Categorie.jsx";
 import Touroperatorcategorite from "./compount/admin/categories/TouroperatorCategories/Touroperatorcategorite.jsx";
-import CreateCatgories from "./compount/admin/Operator/createoperator/Creaetoperator.jsx";
+import CreateCatgories from "./compount/admin/categories/create/CreateCategories.jsx";
 import Update from "./compount/admin/categories/Updatecategories.jsx";
 import About from "./compount/web/about/About.jsx";
 import SendCode from "./compount/web/sendcode/SendCode.jsx";
