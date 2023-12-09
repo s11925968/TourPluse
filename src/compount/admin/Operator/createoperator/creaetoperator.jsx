@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
-export default function CreateCategories() {
+export default function Creaetoperator() {
   const {_id}=useParams();
   console.log(_id);
   const navgite = useNavigate();
