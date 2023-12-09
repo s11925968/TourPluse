@@ -28,6 +28,7 @@ import Forget from "./compount/web/forgetpassword/Forget.jsx"
 import Protected from "./compount/web/routeProteced/Protected.jsx";
 import LoginProtected from "./compount/web/routeProteced/LoginProtected.jsx";
 import Catgeoriesselect from "./compount/admin/Operator/createoperator/Catgeoriesselect.jsx";
+import Creaetoperator from './compount/admin/Operator/Creat/Creaetoperator.jsx'
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -143,10 +144,10 @@ export default function App() {
           path:'updata/categories/:_id',
           element:<Update/>
         },
-        // {
-        //   path:'operator/create',
-        //   element:<Creatoperator/>
-        // },
+        {
+          path:'operator/create',
+          element:<Creaetoperator/>
+        },
         {
           path:'operator/catgeoriesselect',
           element:<Catgeoriesselect/>
