@@ -1,11 +1,12 @@
 import React from 'react'
-import Inpute from '../../../shared/Loader.jsx';
+import Inpute from '../../../shared/Inpute';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 export default function Creaetoperator() {
   const {_id}=useParams();
+  console.log(_id);
   const navgite = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -165,5 +166,3 @@ const renderInput=inputs.map((input,index)=>{
     </div>
   )
 }
-
-
