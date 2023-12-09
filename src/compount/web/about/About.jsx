@@ -29,9 +29,7 @@ export default function About() {
         <div className="container rounded-2 px-2">
           <div className="pt-2 text-center">
             <h1>TourPluse Highest rated </h1>
-          </div>
-          <div className="row py-5">
-            <div className="info-adven col-md-3">
+            <div className="info-adven">
               <h2>Organized Adventures: What are they?</h2>
               <p>
                 A multi-day travel experience seamlessly organized by a trusted
@@ -42,9 +40,11 @@ export default function About() {
                 operators on our platform.
               </p>
             </div>
-            <div className="col-md-3">
+          </div>
+          <div className="row py-5">
+            <div className="col-md-4">
               <div className="bg-white rounded-2">
-                <a href="#">
+                <p>
                   <img
                     src="/img/one-adv.jpg"
                     alt="Groub-Adventures"
@@ -54,15 +54,12 @@ export default function About() {
                   <p className="fs-3 ps-2 text-dark">
                     Join a group and forge lifelong friendships.
                   </p>
-                </a>
-                <a href="#" className="ps-2">
-                  Explore
-                </a>
+                </p>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <div className="bg-white rounded-2">
-                <a href="#">
+                <p >
                   <img
                     src="/img/tow-adv.jpg"
                     alt="Private-Adventures"
@@ -74,15 +71,12 @@ export default function About() {
                   <p className="fs-3 ps-2 text-dark">
                     Travel exclusively with your own group.
                   </p>
-                </a>
-                <a href="#" className="ps-2">
-                  Explore
-                </a>
+                </p>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <div className="bg-white rounded-2">
-                <a href="#">
+                <p>
                   <img
                     src="/img/tree-adv.jpg"
                     alt="Personalized-Adventures"
@@ -94,10 +88,7 @@ export default function About() {
                   <p className="fs-3 ps-2 text-dark">
                     Customize an existing itinerary, or create your own.
                   </p>
-                </a>
-                <a href="#" className="ps-2">
-                  Explore
-                </a>
+                </p>
               </div>
             </div>
           </div>

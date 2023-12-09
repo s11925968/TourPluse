@@ -42,15 +42,13 @@ export default function Catagouries() {
         >
           {data?.categories.length
           ? data?.categories.map((catagourie,index) => (
-                <SwiperSlide className="imgaes-catagourie" key={catagourie._id}>
-                  {/* <Link to={`/categories/tourOperator/${catagourie._id}`}> */}
-                  <Link to={`/categories/tourOperator/${catagourie._id}`}>
+                <SwiperSlide  key={catagourie._id}>
+                  <Link to={`/categories/tourOperator/${catagourie._id}`} className='text-decoration-none'>
                   <div className="d-flex justify-content-center">
-                    <img src={catagourie.image.secure_url} className="w-50" />
+                    <img src={catagourie.image.secure_url} className="w-100" />
                   </div>
                   <div className="text-center pt-3">
                     <h2 className="fs-5">{catagourie.name}</h2>
-
                   </div>
                   </Link>
                 </SwiperSlide>

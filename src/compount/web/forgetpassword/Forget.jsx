@@ -52,14 +52,14 @@ export default function Register() {
     type:'password',
     name:'password',
     id:'password',
-    title:'user password',
+    title:'new password',
     value:formik.values.password,
   },
   {
     type:'text',
     name:'code',
     id:'code',
-    title:'user code',
+    title:'code',
   },
 ];
 const renderInput=inputs.map((value,index)=>

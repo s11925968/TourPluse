@@ -26,6 +26,8 @@ import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx
 import About from "./compount/web/about/About.jsx";
 import SendCode from "./compount/web/sendcode/SendCode.jsx";
 import Forget from "./compount/web/forgetpassword/Forget.jsx"
+import Protected from "./compount/web/routeProteced/Protected.jsx";
+import LoginProtected from "./compount/web/routeProteced/LoginProtected.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -84,8 +86,12 @@ export default function App() {
           element: <CreateCompany />,
         },
         {
+          
           path: "login",
-          element: <Login saveCurrentUser={saveCurrentUser} users={users}/>,
+          element:
+            <LoginProtected users={users}>
+            <Login saveCurrentUser={saveCurrentUser} users={users}/>
+            </LoginProtected>,
         },
         {
           path: "*",
@@ -102,7 +108,7 @@ export default function App() {
       children: [
         {
           path: "",
-          element: <AHome />,
+          element:<Protected users={users}> <AHome /></Protected>,
         },
         
         {

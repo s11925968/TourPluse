@@ -6,8 +6,9 @@ import Inpute from "../../shared/Inpute";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login({saveCurrentUser,users}) {
-  let {errorBackend,setErrorBackend}=useState('');
   const navigate=useNavigate();
+  
+  let {errorBackend,setErrorBackend}=useState('');
 const initialValues = {
   email: "",
   password: "",
@@ -72,14 +73,14 @@ const onSubmit = async (user) => {
       type: "email",
       name: "email",
       id: "email",
-      title: "user email",
+      title: "email",
       value: formik.values.email,
     },
     {
       type: "password",
       name: "password",
       id: "password",
-      title: "user password",
+      title: "password",
       value: formik.values.password,
     },
   ];
