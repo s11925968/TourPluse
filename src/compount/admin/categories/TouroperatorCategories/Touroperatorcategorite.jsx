@@ -2,9 +2,10 @@ import axios from 'axios';
 import React from 'react'
 import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
-import Loader from '../../shared/Loader.jsx'
+import Loader from '../../../shared/Loader.jsx'
 import { Navigation, Pagination, Scrollbar, A11y,Autoplay} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import './TouroperatorCategories.css'
 import 'swiper/css';
 // Import Swiper styles
 import 'swiper/css/navigation';
@@ -54,7 +55,8 @@ export default function Touroperatorcategorite() {
                 <SwiperSlide key={catagourie._id}>
                   <div className='info-content'>
                     <div className='operator-image'>
-                      <img src={catagourie.image.secure_url} className="rounded-circle w-25"/>
+                      <img src={catagourie.image.secure_url} className="rounded-circle"
+                      />
                     </div>
                     <div className="text-info text-center pt-3">
                     <h2 className="fs-5"><span className='text-danger pe-2'>address:</span>{catagourie.address}</h2>

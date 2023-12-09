@@ -19,10 +19,9 @@ import Admin from "./compount/admin/Admin/getadmin/Admin.jsx";
 import Creatadmin from "./compount/admin/Admin/creatadmin/Creatadmin.jsx";
 import Updata from "./compount/admin/Admin/updata/Updata.jsx";
 import Categorie from "./compount/admin/categories/Categorie.jsx";
-import Touroperatorcategorite from "./compount/admin/categories/Touroperatorcategorite.jsx";
+import Touroperatorcategorite from "./compount/admin/categories/TouroperatorCategories/Touroperatorcategorite.jsx";
 import CreateCatgories from "./compount/admin/Operator/createoperator/Creaetoperator.jsx";
 import Update from "./compount/admin/categories/Updatecategories.jsx";
-import DetalisCategories from "./compount/admin/categories/DetalisCategories.jsx";
 import About from "./compount/web/about/About.jsx";
 import SendCode from "./compount/web/sendcode/SendCode.jsx";
 import Forget from "./compount/web/forgetpassword/Forget.jsx"
@@ -144,10 +143,6 @@ export default function App() {
         {
           path:'updata/categories/:_id',
           element:<Update/>
-        },
-        {
-          path:'categories/details/:_id',
-          element:<DetalisCategories />
         },
         {
           path:'operator/create/:_id',
