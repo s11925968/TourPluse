@@ -145,7 +145,7 @@ export default function App() {
           element:<Update/>
         },
         {
-          path:'operator/create/:_id',
+          path:'operator/create',
           element:<Creaetoperator/>
         },
         {
