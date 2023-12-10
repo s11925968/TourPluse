@@ -44,9 +44,6 @@ export default function App() {
   },[])
   const router = createBrowserRouter([
     {
-      //web end point
-    },
-    {
       path: "/",
       element: <Layout users={users} setUser={setUser}/>,
       children: [

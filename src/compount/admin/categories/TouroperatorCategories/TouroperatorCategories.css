@@ -3,6 +3,7 @@
   box-shadow: 1px 10px 8px;
   aspect-ratio: 209/187;
   object-fit: cover;
+  
 }
 .operator-image{
   display: flex;
@@ -11,4 +12,11 @@
 .operator-image img{
   width: 150px;
   height: 150px;
+}
+@media (max-width:600px){
+  .operator-image img{
+    width: 90px;
+    height: 90px;
+  }
+  
 }

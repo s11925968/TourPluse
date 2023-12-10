@@ -35,7 +35,6 @@ export default function Catgeoriesselect() {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
-          slidesPerView={2}
           navigation
           loop={true}
           autoplay={{
@@ -44,8 +43,22 @@ export default function Catgeoriesselect() {
           pagination={{
             clickable: true,
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          breakpoints={{
+            // when window width is >= 600px
+            600: {
+              slidesPerView: 1,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 1,
+            },
+            // when window width is >= 1024px
+            1024: {
+              slidesPerView: 2,
+            },
+          }}
+          // onSlideChange={() => console.log("slide change")}
+          // onSwiper={(swiper) => console.log(swiper)}
         >
           {data?.length
             ? data?.map((catagourie ,index) => (

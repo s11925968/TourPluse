@@ -25,7 +25,7 @@ export default function Navbar({users,setUser}) {
     <div className="back">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
         <div className="container">
-          <Link to="/admin/home">
+          <Link to="/admin">
             <img
               src="/images/fulllogo_transparent_nobuffer.png"
               alt="logo"

@@ -36,7 +36,6 @@ export default function Categorie() {
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
-          slidesPerView={2}
           navigation
           loop={true}
           autoplay={{
@@ -45,8 +44,22 @@ export default function Categorie() {
           pagination={{
             clickable: true,
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log("slide change")}
+          // onSwiper={(swiper) => console.log(swiper)}
+          breakpoints={{
+            // when window width is >= 600px
+            600: {
+              slidesPerView: 1,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 1,
+            },
+            // when window width is >= 1024px
+            1024: {
+              slidesPerView: 2,
+            },
+          }}
         >
           {data?.length
             ? data?.map((catagourie ,index) => (
