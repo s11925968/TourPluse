@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import Loader from '../../shared/Loader';
 
-export default function Protected({ users, children }) {
-  // Check if users is null or does not have a role property
+export default function Protected({ users, children,setUser }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      try {
+        const decode = jwtDecode(token);
+        setUser(decode);
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return <Loader />
+  }
   if (!users || !users.role) {
-    // Redirect to '/' if the user information is not available or has an undefined role
     return <Navigate to="/" />;
   }
-
-  // Check the user's role and redirect accordingly
   if (users.role === 'User') {
-    // Redirect to '/' for regular users
     return <Navigate to="/" />;
   } else {
-    // Render the protected content for other roles
     return children;
   }
 }

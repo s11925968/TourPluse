@@ -81,7 +81,7 @@ export default function Home() {
               },
             }}
           >
-            <h2>all company</h2>
+            <h2>All Agencies</h2>
             {data?.length
               ? data?.map((tourOperator) => (
                   <SwiperSlide key={tourOperator._id}>

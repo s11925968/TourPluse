@@ -103,13 +103,15 @@ export default function App() {
     {
 
       path: "/admin",
-      element:<Layoutadmin users={users} setUser={setUser}/>,
+      element:
+      <Protected users={users} setUser={setUser}>
+      <Layoutadmin users={users} setUser={setUser}/>
+      </Protected>,
       children: [
         {
           path: "",
           element: <AHome />,
         },
-        
         {
           path: "users",
           element: <Users />,
