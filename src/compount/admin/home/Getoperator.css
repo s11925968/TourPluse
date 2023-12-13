@@ -1,0 +1,21 @@
+.operator{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh
+}
+.operator-image{
+  display: flex;
+  justify-content: center;
+}
+.operator-image img{
+  width: 150px;
+  height: 150px;
+}
+@media (max-width:600px){
+  .operator-image img{
+    width: 90px;
+    height: 90px;
+  }
+  
+}

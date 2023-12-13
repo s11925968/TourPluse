@@ -194,6 +194,44 @@ a{
   -o-border-radius: 20%;
 }
 /*end about*/
+/*start operator*/
+.operator{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh
+}
+.operator-image{
+  display: flex;
+  justify-content: center;
+}
+.operator-image img{
+  width: 150px;
+  height: 150px;
+}
+.operator .text-info{
+  margin-top: 5px;
+  background-color: #0077b5;
+  border: solid 3px #1769ff;
+  border-radius: 3%;
+  -webkit-border-radius: 3%;
+  -moz-border-radius: 3%;
+  -ms-border-radius: 3%;
+  -o-border-radius: 3%;
+}
+.operator .text-info h2{
+  display: flex;
+  justify-content:center;
+  gap: 3px;
+}
+@media (max-width:600px){
+  .operator-image img{
+    width: 90px;
+    height: 90px;
+  }
+  
+}
+/*end operator*/
 @media screen and (max-width:600px){
   :root{
     font-size: 10px;

@@ -123,7 +123,7 @@ export default function Navbar({users,setUser}) {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="">
+                    <Link className="dropdown-item" to="/admin">
                       getOperator
                     </Link>
                   </li>

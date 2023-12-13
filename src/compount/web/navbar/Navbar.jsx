@@ -92,7 +92,7 @@ export default function Navbar({ users, setUser }) {
                 <Link
                   className="nav-link active text-white"
                   aria-current="page"
-                  to="/"
+                  // to={users&&users.role === "Users" ? "/" : "/admin"}
                 >
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
