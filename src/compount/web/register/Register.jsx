@@ -55,27 +55,27 @@ export default function Register() {
     type:'email',
     name:'email',
     id:'email',
-    title:'email',
+    title:'Email',
     value:formik.values.email,
   },
   {
     type:'password',
     name:'password',
     id:'password',
-    title:'password',
+    title:'New password',
     value:formik.values.password,
   },
   {
     type:'password',
     name:'confirmPassword',
     id:'confirmPassword',
-    title:'confirmPassword',
+    title:'Re-enter password',
   },
   {
     type:'text',
     name:'age',
     id:'age',
-    title:'age',
+    title:'Birthday',
   },
 ];
 const renderInput=inputs.map((value,index)=>
@@ -95,7 +95,7 @@ const renderInput=inputs.map((value,index)=>
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="phone-width">
-        <h2>create account</h2>
+        <h2>Create new account</h2>
         <form onSubmit={formik.handleSubmit} className='forms p-3'>
           {renderInput}
           <button
@@ -103,7 +103,7 @@ const renderInput=inputs.map((value,index)=>
             className="btn btn-primary w-100"
             disabled={!formik.isValid}
           >
-            submit
+            Submit
           </button>
         </form>
         <div className="text-center w-100">

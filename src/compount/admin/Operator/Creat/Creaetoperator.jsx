@@ -73,63 +73,63 @@ export default function Creaetoperator() {
     name:'name',
     type:'text',
     id:'name',
-    title:'name',
+    title:'Operator Name',
     value:formik.values.name,
   },
   {
     name:'address',
     type:'text',
     id:'address',
-    title:'address',
+    title:'Operator Address',
     value:formik.values.address,
   },
   {
     name:'email',
     type:'email',
     id:'email',
-    title:'email',
+    title:'Operator Email',
     value:formik.values.email,
   },
   {
     name:'phoneNumber',
     type:'number',
     id:'phoneNumber',
-    title:'phoneNumber',
+    title:'Operator Phone Number',
     value:formik.values.phoneNumber,
   },
   {
     name:'password',
     type:'password',
     id:'password',
-    title:'password',
+    title:'Operator Password',
     value:formik.values.password,
   },
   {
     name:'description',
     type:'text',
     id:'description',
-    title:'description',
+    title:'Operator Description',
     value:formik.values.description,
   },
   {
     name:'phoneNumberEx',
     type:'number',
     id:'phoneNumberEx',
-    title:'phoneNumberEx',
+    title:'Operator Phone Number Ex',
     value:formik.values.phoneNumberEx,
   },
   {
     name:'founderName',
     type:'text',
     id:'founderName',
-    title:'founderName',
+    title:'Founder Name',
     value:formik.values.founderName,
   },
   {
     name:'image',
     type:'file',
     id:'image',
-    title:'User image',
+    title:'Operator Image',
     onChange:handelFileChange,
   },
   
@@ -154,11 +154,11 @@ const renderInput=inputs.map((input,index)=>{
   return (
     <div className="container d-flex justify-content-center align-items-center mt-5">
       <div className='forms p-4'>
-      <h2 className='text-center'>Create Operator</h2>
+      <h2 className='text-center'></h2>
       <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
         {renderInput}
         <button type="submit" className='w-100'>
-          Submit
+          Add Operator
         </button>
       </form>
       </div>

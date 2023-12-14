@@ -73,14 +73,14 @@ const onSubmit = async (user) => {
       type: "email",
       name: "email",
       id: "email",
-      title: "email",
+      title: "Email",
       value: formik.values.email,
     },
     {
       type: "password",
       name: "password",
       id: "password",
-      title: "password",
+      title: "Eassword",
       value: formik.values.password,
     },
   ];
@@ -101,7 +101,7 @@ const onSubmit = async (user) => {
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="phone-width">
-        <h2>create account</h2>
+        <h2>Log in</h2>
         <form onSubmit={formik.handleSubmit} className="forms p-3">
           {renderInput}
           <button

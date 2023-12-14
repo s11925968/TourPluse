@@ -30,7 +30,7 @@ export default function Catgeoriesselect() {
   }
   return (
     <div>
-            <h1 className='text-center'>please chooce categories you company</h1>
+            <h1 className='text-center'>Please choose your company category</h1>
       <div className="catagories container d-flex justify-content-start align-items-center">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -72,7 +72,6 @@ export default function Catgeoriesselect() {
                     <h2 className="fs-5 ps-4">{catagourie.name}</h2>
                   </div>
                   </Link>
-
                 </SwiperSlide>
               ))
             : "no data available"}

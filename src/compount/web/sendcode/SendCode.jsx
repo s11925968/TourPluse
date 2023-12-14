@@ -44,7 +44,7 @@ export default function Sendcode() {
     type:'email',
     name:'email',
     id:'email',
-    title:'user email',
+    title:'Email',
     value:formik.values.email,
   },
 ];
@@ -65,7 +65,6 @@ const renderInput=inputs.map((value,index)=>
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="phone-width">
-        <h2>create account</h2>
         <form onSubmit={formik.handleSubmit} className='forms p-3'>
           {renderInput}
           <button
@@ -73,9 +72,9 @@ const renderInput=inputs.map((value,index)=>
             className="btn btn-primary w-100"
             disabled={!formik.isValid}
           >
-            sendcode
+            Send code
           </button>
-          <Link to="/auth/forgetPassword">changepassword</Link>
+          <Link to="/auth/forgetPassword">change password</Link>
         </form>
         <div className="text-center w-100">
           {errorBack && <p className="text text-danger">{errorBack}</p>}

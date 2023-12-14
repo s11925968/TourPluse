@@ -70,9 +70,9 @@ export default function Touroperatorcategorite() {
                       <img src={catagourie.image.secure_url} className="rounded-circle w-25"/>
                     </div>
                     <div className="text-info text-center pt-3">
-                    <h2 className="fs-5"><span className='text-danger pe-2'>address:</span>{catagourie.address}</h2>
-                      <h2 className="fs-5"><span className='text-danger pe-2'>phoneNumber:</span>{catagourie.phoneNumber}</h2>
-                      <p className="fs-5 "><span className='text-danger pe-2'>description:</span>{catagourie.description}</p>
+                    <h2 className="fs-5"><span className='text-danger pe-2'>Address:</span>{catagourie.address}</h2>
+                      <h2 className="fs-5"><span className='text-danger pe-2'>PhoneNumber:</span>{catagourie.phoneNumber}</h2>
+                      <p className="fs-5 "><span className='text-danger pe-2'>Description:</span>{catagourie.description}</p>
                     </div>
                   </div>
                 </SwiperSlide>

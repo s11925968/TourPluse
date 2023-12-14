@@ -74,12 +74,12 @@ export default function Navbar({users,setUser}) {
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="/admin/getAdmin">
-                      getAdmain
+                    Admin list
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/admin/creatadmin">
-                      createAdmain
+                    Add admin
                     </Link>
                   </li>
                   <li>
@@ -95,17 +95,17 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  categories
+                  Categories
                 </a>
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="/admin/categories/get">
-                      getcategories
+                    Categories list
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/admin/categories/create">
-                      createcategories
+                    Add Category
                     </Link>
                   </li>
                 
@@ -124,17 +124,17 @@ export default function Navbar({users,setUser}) {
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="/admin">
-                      getOperator
+                      Operators List
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/admin/operator/catgeoriesselect">
-                      create-operator
+                    Add Operator
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="">
-                      updata-operator
+                    Update Operator
                     </Link>
                   </li>
                 </ul>
@@ -145,7 +145,7 @@ export default function Navbar({users,setUser}) {
                   aria-current="page"
                   to="/admin/users"
                 >
-                  users
+                  Users
                 </Link>
               </li>
               <li className="nav-item dropdown me-2 mb-4">
@@ -188,7 +188,7 @@ export default function Navbar({users,setUser}) {
                             icon={faRightToBracket}
                             className="pe-2 text-danger"
                           />
-                          Logout
+                          Log out
                         </Link>
                       </li>
                     </>

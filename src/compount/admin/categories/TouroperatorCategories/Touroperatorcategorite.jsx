@@ -73,15 +73,15 @@ export default function Touroperatorcategorite() {
                     </div>
                     <div className="text-info text-center pt-3">
                       <h2 className="fs-5">
-                        <span className="text-danger pe-2">address:</span>
+                        <span className="text-danger pe-2">Address:</span>
                         {tourOperator.address}
                       </h2>
                       <h2 className="fs-5">
-                        <span className="text-danger pe-2">phoneNumber:</span>
+                        <span className="text-danger pe-2">PhoneNumber:</span>
                         {tourOperator.phoneNumber}
                       </h2>
                       <p className="fs-5 ">
-                        <span className="text-danger pe-2">description:</span>
+                        <span className="text-danger pe-2">Description:</span>
                         {tourOperator.description}
                       </p>
                     </div>

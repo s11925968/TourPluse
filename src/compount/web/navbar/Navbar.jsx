@@ -116,7 +116,7 @@ export default function Navbar({ users, setUser }) {
                     aria-current="page"
                     href="#"
                   >
-                    company
+                    agency
                   </a>
                 </li>
               )}
@@ -160,7 +160,7 @@ export default function Navbar({ users, setUser }) {
                             icon={faUserPlus}
                             className="pe-1 text-success"
                           />
-                          Signup
+                          Sign up
                         </Link>
                       </li>
                       <li>
@@ -169,7 +169,7 @@ export default function Navbar({ users, setUser }) {
                             icon={faRightToBracket}
                             className="pe-3 text-success"
                           />
-                          Login
+                          Sign in
                         </Link>
                       </li>
                     </>
@@ -210,7 +210,7 @@ export default function Navbar({ users, setUser }) {
                       icon={faCircleExclamation}
                       className="pe-1"
                     />
-                    about
+                    About
                   </Link>
                 }
               </li>

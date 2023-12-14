@@ -45,7 +45,7 @@ export default function Register() {
     type:'email',
     name:'email',
     id:'email',
-    title:'user email',
+    title:'Email',
     value:formik.values.email,
   },
   {
@@ -59,7 +59,7 @@ export default function Register() {
     type:'text',
     name:'code',
     id:'code',
-    title:'code',
+    title:'Code',
   },
 ];
 const renderInput=inputs.map((value,index)=>
@@ -87,7 +87,7 @@ const renderInput=inputs.map((value,index)=>
             className="btn btn-primary w-100"
             disabled={!formik.isValid}
           >
-            submit
+            Submit
           </button>
         </form>
         <div className="text-center w-100">

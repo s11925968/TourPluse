@@ -13,6 +13,8 @@ font-family: 'Rubik', sans-serif;
 /*start container*/
 @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 /*font-family: 'Young Serif', serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 /*start header*/
 :root{
   --main-color:#c8e2ed;
@@ -232,6 +234,43 @@ a{
   
 }
 /*end operator*/
+/*start category*/
+.info-category{
+  text-align: center;
+
+}
+.info-category p{
+  color:#181E4B;
+  font-size: 30px;
+}
+.info-category h2{
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.info-category h2::after {
+  position: absolute;
+  bottom: -36px;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 3px;
+  width: 140px;
+  background-color: #0077b5;
+  content: '';
+}
+.services .services-image{
+  text-align: center;
+}
+.services .services-image img{
+  width: 30%;
+}
+.services .services-image p{
+  width: 70%;
+  line-height: 25px;
+  margin: auto;
+}
+/*end category*/
 @media screen and (max-width:600px){
   :root{
     font-size: 10px;

@@ -32,16 +32,11 @@ export default function Home() {
             <div className="d-flex d-flex justify-content-center align-items-center">
               <p>Welcome to Tourpulse</p>
             </div>
-
             <span>
-              Revolutionizing the Way
-              <br /> You Plan Adventures!
+              All Palestinian Trips offers
+              <br />
+              ,in the palm of your hand
             </span>
-            <div className="content-public rounded-pill py-2 mt-3 bg-main-color m-auto d-none">
-              <Link to="/Contact/create" className="text-decoration-none">
-                create account
-              </Link>
-            </div>
             <div className="icons">
               <FontAwesomeIcon icon={faFacebook} className="brand brand-face" />
               <FontAwesomeIcon
@@ -53,6 +48,46 @@ export default function Home() {
           </div>
         </div>
       </header>
+      <section className="category-serives container pt-5">
+        <div className="info-category">
+          <h2>CATEGORY</h2>
+          <p>We Offer Best Services</p>
+        </div>
+        <div className="services my-5">
+          <div className="row">
+            <div className="col-md-3 services-image">
+            <img src="/img/serives/castle.png"/>
+
+              <h4 className="py-3">Guided Tours</h4>
+              <p>
+                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+              </p>
+            </div>
+            <div className="col-md-3 services-image">
+            <img src="/img/serives/plane.png"/>
+              <h4 className="py-3">Best Flights Options</h4>
+              <p>
+                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+              </p>
+            </div>
+            <div className="col-md-3 services-image">
+            <img src="/img/serives/reception.png"/>
+              <h4 className="py-3">Religious Tours</h4>
+              <p>
+                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+              </p>
+            </div>
+            <div className="col-md-3 services-image">
+            <img src="/img/serives/route.png"/>
+
+              <h4 className="py-3">Medical insurance</h4>
+              <p>
+                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="operator">
         <div className="container d-flex justify-content-start align-items-center ">
           <Swiper
@@ -94,12 +129,12 @@ export default function Home() {
                         />
                       </div>
                       <div className="text-info text-center pt-3">
-                      <h2 className="fs-5">
+                        <h2 className="fs-5">
                           <span className="text-white pe-2">Name:</span>
                           {tourOperator.name}
                           <span className="text-white pe-2">founderName:</span>
                           {tourOperator.founderName}
-                      </h2>
+                        </h2>
                         <h2 className="fs-5">
                           <span className="text-white pe-2">address:</span>
                           {tourOperator.address}
@@ -126,11 +161,11 @@ export default function Home() {
 
           <div className="col-md-6 about-info">
             <p>
-              Tourpulse is a company based in Palestine that specializes in
-              providing travel and tourism services. Established with the aim of
-              creating memorable and seamless travel experiences, Tourpulse is
-              committed to offering exceptional services to both local and
-              international travelers.
+              Tour Pulse acts as an intermediary between travel agencies and
+              travelers, allowing agencies to display their trips and offers and
+              provide travelers with a range of trips, so it provides
+              advertising for the agencies and providing a large selection of
+              trips for travelers.
               <Link to="/about">
                 Read more about TOURPLUSE
                 <FontAwesomeIcon icon={faArrowRight} />
