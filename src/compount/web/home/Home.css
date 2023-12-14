@@ -208,8 +208,13 @@ a{
   justify-content: center;
 }
 .operator-image img{
-  width: 150px;
-  height: 150px;
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 10%;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  -ms-border-radius: 10%;
+  -o-border-radius: 10%;
 }
 .operator .text-info{
   margin-top: 5px;
@@ -226,10 +231,21 @@ a{
   justify-content:center;
   gap: 3px;
 }
+.operator .text-info .name-company h2{
+  position: relative;
+  
+}
+.operator .text-info .name-company h2{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top:250px;
+}
 @media (max-width:600px){
   .operator-image img{
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
   }
   
 }

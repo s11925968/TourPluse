@@ -135,17 +135,20 @@ export default function Home() {
               ? data?.map((tourOperator) => (
                   <SwiperSlide key={tourOperator._id}>
                     <div className="info-content-operator">
-                      <div className="operator-image">
+                      <div className="operator-image my-5">
                         <img
                           src={tourOperator.image.secure_url}
-                          className="rounded-circle "
+                          className=""
                           alt={`Operator ${tourOperator._id}`}
                         />
                       </div>
                       <div className="text-info text-center pt-3">
+                        <div className="name-company">
+                          <h2 className="fs-5 ">
+                            {tourOperator.name}
+                          </h2>
+                        </div>
                         <h2 className="fs-5">
-                          <span className="text-white pe-2">Name:</span>
-                          {tourOperator.name}
                           <span className="text-white pe-2">founderName:</span>
                           {tourOperator.founderName}
                         </h2>
@@ -158,7 +161,7 @@ export default function Home() {
                           {tourOperator.phoneNumber}
                         </h2>
                         <p className="fs-5 text-white">
-                          <span className="text-white pe-2">description:</span>
+                          <span className="text-white px-2">description:</span>
                           {tourOperator.description}
                         </p>
                       </div>
