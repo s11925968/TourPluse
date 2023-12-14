@@ -1,27 +1,41 @@
-import React from 'react'
-import './Home.css'
-import { Link } from 'react-router-dom'
-import { faBehance, faDribbble, faFacebook, faGoogle, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faEnvelope, faHouse, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import Loader from '../../shared/Loader';
-import { Navigation, Pagination,Autoplay} from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import './Home.css'
+import React from "react";
+import "./Home.css";
+import { Link } from "react-router-dom";
+import {
+  faBehance,
+  faDribbble,
+  faFacebook,
+  faGoogle,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faEnvelope,
+  faHouse,
+  faLocationDot,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { useQuery } from "react-query";
+import Loader from "../../shared/Loader";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "./Home.css";
 export default function Home() {
-  const getOperator = async()=>{
-    const {data}=await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getActive`);
+  const getOperator = async () => {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_URL_LINK}/operator/getActive`
+    );
     return data.tourOperator;
-  }
-  const {data,isLoading}=useQuery('Get_Operator',getOperator);
-  console.log(data)
-  if(isLoading){
+  };
+  const { data, isLoading } = useQuery("Get_Operator", getOperator);
+  console.log(data);
+  if (isLoading) {
     return <Loader />;
   }
   return (
@@ -56,7 +70,7 @@ export default function Home() {
         <div className="services my-5">
           <div className="row">
             <div className="col-md-3 services-image">
-            <img src="/img/serives/castle.png"/>
+              <img src="/img/serives/castle.png" />
 
               <h4 className="py-3">Guided Tours</h4>
               <p>
@@ -64,21 +78,21 @@ export default function Home() {
               </p>
             </div>
             <div className="col-md-3 services-image">
-            <img src="/img/serives/plane.png"/>
+              <img src="/img/serives/plane.png" />
               <h4 className="py-3">Best Flights Options</h4>
               <p>
                 sunt qui repellat saepe quo velit aperiam id aliquam placeat.
               </p>
             </div>
             <div className="col-md-3 services-image">
-            <img src="/img/serives/reception.png"/>
+              <img src="/img/serives/reception.png" />
               <h4 className="py-3">Religious Tours</h4>
               <p>
                 sunt qui repellat saepe quo velit aperiam id aliquam placeat.
               </p>
             </div>
             <div className="col-md-3 services-image">
-            <img src="/img/serives/route.png"/>
+              <img src="/img/serives/route.png" />
 
               <h4 className="py-3">Medical insurance</h4>
               <p>

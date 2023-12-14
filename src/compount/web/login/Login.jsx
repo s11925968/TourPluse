@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Inpute from "../../shared/Inpute";
 import { Link, useNavigate } from "react-router-dom";
-
+import './loginstyle.css'
 export default function Login({saveCurrentUser,users}) {
   const navigate=useNavigate();
   
@@ -111,7 +111,7 @@ const onSubmit = async (user) => {
           >
             submit
           </button>
-          <Link to="/auth/sendCode">forget password</Link>
+          <Link to="/auth/sendCode" className="btn btn-primary mt-4">forget password</Link>
         </form>
         <div className="text-center w-100">
           {errorBackend && <p className="text text-danger">{errorBackend}</p>}

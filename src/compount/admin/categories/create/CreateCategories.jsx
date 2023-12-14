@@ -89,15 +89,19 @@ const renderInput=inputs.map((input,index)=>{
   )
 })
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div>
-      <h2 className='text-center'>create categories</h2>
-      <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
-        {renderInput}
-        <button type="submit" className='w-100'>
-          Submit
-        </button>
-      </form>
+    <div className='container py-4 d-flex justify-content-center align-items-center '>
+        <div className="phone-width">
+        <h2>Create Categories</h2>
+        <form onSubmit={formik.handleSubmit} className='forms p-3'>
+          {renderInput}
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+          >
+            submit
+          </button>
+        </form>
+        
       </div>
     </div>
   )

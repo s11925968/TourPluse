@@ -167,7 +167,7 @@ export default function Navbar({ users, setUser }) {
                         <Link className="dropdown-item text-black" to="/login">
                           <FontAwesomeIcon
                             icon={faRightToBracket}
-                            className="pe-3 text-success"
+                            className="pe-2 text-success"
                           />
                           Sign in
                         </Link>

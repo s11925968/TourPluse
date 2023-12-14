@@ -1,13 +1,20 @@
-.Login{
+.forms{
   box-shadow: 5px 5px 5px rgba(100,100,100,0.999999999999999999);
   border: none;
   transition: all ease 0.3s;
-  background-color: #CFCEAA;
+  background:url(/images/header-img.jpg);
+  background-position:center 70%;
+  aspect-ratio: 500/187;
+  object-fit: cover;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  -webkit-transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
 }
 .phone-width-login{
   width: 40%;
