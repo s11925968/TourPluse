@@ -149,19 +149,19 @@ export default function Home() {
                           </h2>
                         </div>
                         <h2 className="fs-5">
-                          <span className="text-white pe-2">founderName:</span>
+                          <span className="text-white pe-2">FounderName:</span>
                           {tourOperator.founderName}
                         </h2>
                         <h2 className="fs-5">
-                          <span className="text-white pe-2">address:</span>
+                          <span className="text-white pe-2">Address:</span>
                           {tourOperator.address}
                         </h2>
                         <h2 className="fs-5">
-                          <span className="text-white pe-2">phoneNumber:</span>
+                          <span className="text-white pe-2">PhoneNumber:</span>
                           {tourOperator.phoneNumber}
                         </h2>
                         <p className="fs-5 text-white">
-                          <span className="text-white px-2">description:</span>
+                          <span className="text-white px-2">Description:</span>
                           {tourOperator.description}
                         </p>
                       </div>
@@ -195,7 +195,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section className="map position-relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27002.02680188146!2d35.22707967947037!3d32.22434418493328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ce0f650425697%3A0x7f0ba930bd153d84!2sNablus!5e0!3m2!1sen!2s!4v1701524940071!5m2!1sen!2s"
