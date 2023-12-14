@@ -2,7 +2,7 @@
   box-shadow: 5px 5px 5px rgba(100,100,100,0.999999999999999999);
   border: none;
   transition: all ease 0.3s;
-  background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(/images/header-img.jpg);
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/images/header-img.jpg);
   background-position:center 70%;
   aspect-ratio: 500/187;
   object-fit: cover;
