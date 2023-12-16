@@ -154,7 +154,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import './Home.css';
 import { Link } from 'react-router-dom';
-
 export default function Home() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -187,6 +186,7 @@ export default function Home() {
   }
 
   return (
+    
     <section id="about">
       <header className="header">
         <div className="info-header">

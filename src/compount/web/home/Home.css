@@ -253,13 +253,12 @@ a{
     height: 150px;
   }
   .header{
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/bg-headers.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/header-img.jpg);
     height: 100vh;
     background-position:center center; /* Update this line to center the background image */
     background-size: cover;
-    background-attachment:fixed ;
+    background-attachment:none ;
   }
-  
 }
 /*end operator*/
 /*start category*/
