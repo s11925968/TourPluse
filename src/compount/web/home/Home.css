@@ -27,11 +27,11 @@ a{
   background-color:#c8e2ed;
 }
 .header{
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(/images/header-img.jpg);
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(/images/bg-headers.jpg);
   height: 100vh;
-  background-position: 50% 50%;
+  background-attachment: fixed;
+  background-position: 80% 70%;
   background-size:cover;
-  background-position: 50% 0%;
   background-repeat: no-repeat;
 }
 .info-header{
@@ -279,7 +279,10 @@ a{
   text-align: center;
 }
 .services .services-image img{
-  width: 30%;
+  width: 40%;
+  height: 40%;
+  aspect-ratio:200/287;
+  object-fit: cover;
 }
 .services .services-image p{
   width: 70%;

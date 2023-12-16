@@ -1,43 +1,197 @@
-import React from "react";
-import "./Home.css";
-import { Link } from "react-router-dom";
-import {
-  faBehance,
-  faDribbble,
-  faFacebook,
-  faGoogle,
-  faLinkedinIn,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faEnvelope,
-  faHouse,
-  faLocationDot,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useQuery } from "react-query";
-import Loader from "../../shared/Loader";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "./Home.css";
+// import React from "react";
+// import "./Home.css";
+// import { Link } from "react-router-dom";
+// import {
+//   faBehance,
+//   faDribbble,
+//   faFacebook,
+//   faGoogle,
+//   faLinkedinIn,
+// } from "@fortawesome/free-brands-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faArrowRight,
+//   faEnvelope,
+//   faHouse,
+//   faLocationDot,
+//   faPhone,
+// } from "@fortawesome/free-solid-svg-icons";
+// import axios from "axios";
+// import { useQuery } from "react-query";
+// import Loader from "../../shared/Loader";
+// import { Navigation, Pagination, Autoplay } from "swiper/modules";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
+// import "swiper/css/scrollbar";
+// import "./Home.css";
+// export default function Home() {
+//   const getOperator = async () => {
+//     const { data } = await axios.get(
+//       `${import.meta.env.VITE_URL_LINK}/operator/getActive`
+//     );
+//     return data.tourOperator;
+//   };
+//   const { data, isLoading } = useQuery("Get_Operator", getOperator);
+//   console.log(data);
+//   if (isLoading) {
+//     return <Loader />;
+//   }
+//   return (
+//     <section id="about">
+//       <header className="header">
+//         <div className="info-header">
+//           <div className="info-home text-center">
+//             <div className="d-flex d-flex justify-content-center align-items-center">
+//               <p>Welcome to Tourpulse</p>
+//             </div>
+//             <span>
+//               All Palestinian Trips offers
+//               <br />
+//               ,in the palm of your hand
+//             </span>
+//             <div className="icons">
+//               <FontAwesomeIcon icon={faFacebook} className="brand brand-face" />
+//               <FontAwesomeIcon
+//                 icon={faLinkedinIn}
+//                 className="brand brand-linked"
+//               />
+//               <FontAwesomeIcon icon={faGoogle} className="brand brand-google" />
+//             </div>
+//           </div>
+//         </div>
+//       </header>
+//       <div className="operator">
+//         <div className="container d-flex justify-content-start align-items-center ">
+//           <Swiper
+//             modules={[Navigation, Pagination, Autoplay]}
+//             spaceBetween={50}
+//             navigation
+//             loop={true}
+//             autoplay={{
+//               delay: 3000,
+//             }}
+//             pagination={{
+//               clickable: true,
+//             }}
+//             breakpoints={{
+//               // when window width is >= 600px
+//               600: {
+//                 slidesPerView: 1,
+//               },
+//               // when window width is >= 768px
+//               768: {
+//                 slidesPerView: 2,
+//               },
+//               // when window width is >= 1024px
+//               1024: {
+//                 slidesPerView: 2,
+//               },
+//             }}
+//           >
+//             <h2>All Agencies</h2>
+//             {data?.length
+//               ? data?.map((tourOperator) => (
+//                   <SwiperSlide key={tourOperator._id}>
+//                     <div className="info-content-operator">
+//                       <div className="operator-image my-5">
+//                         <img
+//                           src={tourOperator.image.secure_url}
+//                           className=""
+//                           alt={`Operator ${tourOperator._id}`}
+//                         />
+//                       </div>
+//                       <div className="text-info text-center pt-3">
+//                         <div className="name-company">
+//                           <h2 className="fs-5 ">
+//                             {tourOperator.name}
+//                           </h2>
+//                         </div>
+//                         <h2 className="fs-5">
+//                           <span className="text-white pe-2">FounderName:</span>
+//                           {tourOperator.founderName}
+//                         </h2>
+//                         <h2 className="fs-5">
+//                           <span className="text-white pe-2">Address:</span>
+//                           {tourOperator.address}
+//                         </h2>
+//                         <h2 className="fs-5">
+//                           <span className="text-white pe-2">PhoneNumber:</span>
+//                           {tourOperator.phoneNumber}
+//                         </h2>
+//                         <p className="fs-5 text-white">
+//                           <span className="text-white px-2">Description:</span>
+//                           {tourOperator.description}
+//                         </p>
+//                       </div>
+//                     </div>
+//                   </SwiperSlide>
+//                 ))
+//               : "no data available"}
+//           </Swiper>
+//         </div>
+//       </div>
+     
+//     </section>
+//   );
+// }
+
+
+// ... (previous imports)
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Loader from '../../shared/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faBehance, faDribbble, faFacebook, faGoogle, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import './Home.css';
+import { Link } from 'react-router-dom';
+
 export default function Home() {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [current, setCurrent] = useState(1);
+  const [selectedOperator, setSelectedOperator] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   const getOperator = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_URL_LINK}/operator/getActive`
-    );
-    return data.tourOperator;
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getActive`);
+      setData(data.tourOperator);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
-  const { data, isLoading } = useQuery("Get_Operator", getOperator);
-  console.log(data);
+
+  const handlePageClick = (pageNumber) => {
+    setCurrent(pageNumber + 1);
+    setSelectedOperator(null); // Clear selected operator when changing pages
+    setSelectedCategory(null); // Clear selected category when changing pages
+  };
+
+  const handleOperatorClick = (operatorId) => {
+    const clickedOperator = data.find((operator) => operator._id === operatorId);
+    setSelectedOperator(clickedOperator);
+  };
+  useEffect(() => {
+    getOperator();
+  }, [current]);
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <section id="about">
       <header className="header">
@@ -46,17 +200,10 @@ export default function Home() {
             <div className="d-flex d-flex justify-content-center align-items-center">
               <p>Welcome to Tourpulse</p>
             </div>
-            <span>
-              All Palestinian Trips offers
-              <br />
-              ,in the palm of your hand
-            </span>
+            <span>All Palestinian Trips offers,<br/> in the palm of your hand</span>
             <div className="icons">
               <FontAwesomeIcon icon={faFacebook} className="brand brand-face" />
-              <FontAwesomeIcon
-                icon={faLinkedinIn}
-                className="brand brand-linked"
-              />
+              <FontAwesomeIcon icon={faLinkedinIn} className="brand brand-linked" />
               <FontAwesomeIcon icon={faGoogle} className="brand brand-google" />
             </div>
           </div>
@@ -64,7 +211,7 @@ export default function Home() {
       </header>
       <section className="category-serives container pt-5">
         <div className="info-category">
-          <h2>CATEGORY</h2>
+          <h2>SERIVES</h2>
           <p>We Offer Best Services</p>
         </div>
         <div className="services my-5">
@@ -102,6 +249,33 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="category-serives container pt-5">
+        <div className="info-category">
+          <h2>CATEGORY</h2>
+          <p>All Agencies</p>
+        </div>
+        <div className="services my-5">
+          <div className="row">
+            {selectedCategory ? (
+              <div className="col-md-12">
+                <h2>{selectedCategory}</h2>
+                <h2>details</h2>
+              </div>
+            ) : (
+              data?.map((tourOperator) => (
+                <div className="col-md-3 services-image" key={tourOperator.name}>
+                  <img
+                    src={tourOperator.image.secure_url}
+                    alt={`Operator ${tourOperator._id}`}
+                  />
+                  <h4 className="py-3">{tourOperator.name}</h4>
+                  <p>{tourOperator.description}</p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
       <div className="operator">
         <div className="container d-flex justify-content-start align-items-center ">
           <Swiper
@@ -116,66 +290,62 @@ export default function Home() {
               clickable: true,
             }}
             breakpoints={{
-              // when window width is >= 600px
               600: {
                 slidesPerView: 1,
               },
-              // when window width is >= 768px
               768: {
                 slidesPerView: 2,
               },
-              // when window width is >= 1024px
               1024: {
                 slidesPerView: 2,
               },
             }}
           >
             <h2>All Agencies</h2>
-            {data?.length
-              ? data?.map((tourOperator) => (
-                  <SwiperSlide key={tourOperator._id}>
-                    <div className="info-content-operator">
-                      <div className="operator-image my-5">
-                        <img
-                          src={tourOperator.image.secure_url}
-                          className=""
-                          alt={`Operator ${tourOperator._id}`}
-                        />
-                      </div>
-                      <div className="text-info text-center pt-3">
-                        <div className="name-company">
-                          <h2 className="fs-5 ">
-                            {tourOperator.name}
-                          </h2>
-                        </div>
-                        <h2 className="fs-5">
-                          <span className="text-white pe-2">FounderName:</span>
-                          {tourOperator.founderName}
-                        </h2>
-                        <h2 className="fs-5">
-                          <span className="text-white pe-2">Address:</span>
-                          {tourOperator.address}
-                        </h2>
-                        <h2 className="fs-5">
-                          <span className="text-white pe-2">PhoneNumber:</span>
-                          {tourOperator.phoneNumber}
-                        </h2>
-                        <p className="fs-5 text-white">
-                          <span className="text-white px-2">Description:</span>
-                          {tourOperator.description}
-                        </p>
-                      </div>
+            {data?.length ? (
+              data.map((tourOperator) => (
+                <SwiperSlide key={tourOperator._id}>
+                  <div className="info-content-operator" onClick={() => handleOperatorClick(tourOperator._id)}>
+                    <div className="operator-image my-5">
+                      <img
+                        src={tourOperator.image.secure_url}
+                        className=""
+                        alt={`Operator ${tourOperator._id}`}
+                      />
                     </div>
-                  </SwiperSlide>
-                ))
-              : "no data available"}
+                    <div className="text-info text-center pt-3">
+                      <div className="name-company">
+                        <h2 className="fs-5 ">{tourOperator.name}</h2>
+                      </div>
+                      <h2 className="fs-5">
+                        <span className="text-white pe-2">FounderName:</span>
+                        {tourOperator.founderName}
+                      </h2>
+                      <h2 className="fs-5">
+                        <span className="text-white pe-2">Address:</span>
+                        {tourOperator.address}
+                      </h2>
+                      <h2 className="fs-5">
+                        <span className="text-white pe-2">PhoneNumber:</span>
+                        {tourOperator.phoneNumber}
+                      </h2>
+                      <p className="fs-5 text-white">
+                        <span className="text-white px-2">Description:</span>
+                        {tourOperator.description}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))
+            ) : (
+              'no data available'
+            )}
           </Swiper>
         </div>
       </div>
       <section className="about-us container">
         <div className="row info-images">
           <h2>About us</h2>
-
           <div className="col-md-6 about-info">
             <p>
               Tour Pulse acts as an intermediary between travel agencies and

@@ -1,6 +1,6 @@
 aside {
   color: #fff;
-  width: 300px;
+  width: 250px;
   padding-left: 20px;
   margin-top: 10px;
   height: 100vh;
@@ -86,7 +86,7 @@ body {
 }
 
 .table{
-  width: 100% !important;
+  width: 90% !important;
   margin-top: 20px;
   margin-left: 10px;
   border-collapse:collapse ;
