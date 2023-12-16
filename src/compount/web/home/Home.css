@@ -278,6 +278,7 @@ a{
     display: none !important;
   }
   .header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/header-img.jpg);
     background-position: center center;
     background-size: cover;
     background-attachment: none;
