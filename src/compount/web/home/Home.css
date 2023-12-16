@@ -213,8 +213,8 @@ a{
   justify-content: center;
 }
 .operator-image img{
-  width: 200px !important;
-  height: 200px !important;
+  width: 250px !important;
+  height: 250px !important;
   border-radius: 10%;
   -webkit-border-radius: 10%;
   -moz-border-radius: 10%;
@@ -289,10 +289,10 @@ a{
 .services .services-image{
   text-align: center;
 }
-.services .services-image img{
+.services .services-image img {
   width: 40%;
   height: 40%;
-  aspect-ratio:200/287;
+  aspect-ratio: 200/287;
   object-fit: cover;
 }
 .services .services-image p{
@@ -311,5 +311,11 @@ a{
   .icons .brand{
     height: 30px;
     width: 30px;
+  }
+  .services .services-image img {
+    width: 50%;
+    height: 50%;
+    aspect-ratio: 200/287;
+    object-fit: cover;
   }
 }
