@@ -29,6 +29,7 @@ import Protected from "./compount/web/routeProteced/Protected.jsx";
 import LoginProtected from "./compount/web/routeProteced/LoginProtected.jsx";
 import Catgeoriesselect from "./compount/admin/Operator/createoperator/Catgeoriesselect.jsx";
 import Creaetoperator from './compount/admin/Operator/Creat/Creaetoperator.jsx'
+import Profile from "./compount/web/profile/Profile.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -54,6 +55,10 @@ export default function App() {
         {
           path: "about",
           element: <About />,
+        },
+        {
+          path:'user/profile/:_id',
+          element:<Profile />
         },
         {
           path: "Contact/create",

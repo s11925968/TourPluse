@@ -245,7 +245,7 @@ a{
   left: 0;
   bottom: 0;
   right: 0;
-  top:250px;
+  top:300px;
 }
 @media (max-width:600px){
   .operator-image img{
@@ -266,6 +266,28 @@ a{
     background-attachment:none ;
   }
 }
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .operator-image img {
+    width: 150px;
+    height: 150px;
+  }
+  .operator .text-info .name-company h2 {
+    top: 300px;
+  }
+  .category-phone {
+    display: none !important;
+  }
+  .header {
+    background-position: center center;
+    background-size: cover;
+    background-attachment: none;
+  }
+  .services .services-image img {
+    width: 35%!important;
+    height: 55% !important;
+  }
+}
+
 /*end operator*/
 /*start category*/
 .info-category{
@@ -296,7 +318,7 @@ a{
   text-align: center;
 }
 .services .services-image img {
-  width: 40%;
+  width: 50%;
   height: 40%;
   aspect-ratio: 200/287;
   object-fit: cover;

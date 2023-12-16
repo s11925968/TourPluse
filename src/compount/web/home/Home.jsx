@@ -132,49 +132,62 @@
 //           </Swiper>
 //         </div>
 //       </div>
-     
+
 //     </section>
 //   );
 // }
 
-
 // ... (previous imports)
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Loader from '../../shared/Loader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faBehance, faDribbble, faFacebook, faGoogle, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import './Home.css';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Loader from "../../shared/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faEnvelope,
+  faLocationDot,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBehance,
+  faDribbble,
+  faFacebook,
+  faGoogle,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "./Home.css";
+import { Link } from "react-router-dom";
 export default function Home() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(1);
   const [selectedOperator, setSelectedOperator] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const getOperator = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getActive`);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/operator/getActive`
+      );
       setData(data.tourOperator);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleOperatorClick = (operatorId) => {
-    const clickedOperator = data.find((operator) => operator._id === operatorId);
+    const clickedOperator = data.find(
+      (operator) => operator._id === operatorId
+    );
     setSelectedOperator(clickedOperator);
   };
   useEffect(() => {
@@ -186,7 +199,6 @@ export default function Home() {
   }
 
   return (
-    
     <section id="about">
       <header className="header">
         <div className="info-header">
@@ -194,10 +206,16 @@ export default function Home() {
             <div className="d-flex d-flex justify-content-center align-items-center">
               <p>Welcome to Tourpulse</p>
             </div>
-            <span>All Palestinian Trips offers,<br/> in the palm of your hand</span>
+            <span>
+              All Palestinian Trips offers,
+              <br /> in the palm of your hand
+            </span>
             <div className="icons">
               <FontAwesomeIcon icon={faFacebook} className="brand brand-face" />
-              <FontAwesomeIcon icon={faLinkedinIn} className="brand brand-linked" />
+              <FontAwesomeIcon
+                icon={faLinkedinIn}
+                className="brand brand-linked"
+              />
               <FontAwesomeIcon icon={faGoogle} className="brand brand-google" />
             </div>
           </div>
@@ -210,34 +228,38 @@ export default function Home() {
         </div>
         <div className="services my-5">
           <div className="row">
-            <div className="col-md-3 services-image">
+            <div className="col-lg-3 services-image">
               <img src="/img/serives/castle.png" />
 
-              <h4 className="py-3">Guided Tours</h4>
+              <h4 className="py-3">historical tours</h4>
               <p>
-                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+                Visit ancient historical landmarks full of ancient monuments and
+                civilizations
               </p>
             </div>
-            <div className="col-md-3 services-image">
+            <div className="col-lg-3 services-image">
               <img src="/img/serives/plane.png" />
               <h4 className="py-3">Best Flights Options</h4>
               <p>
-                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+                Various flight classes, First class, Business Class, Premium
+                Economy Class, and Economy Class
               </p>
             </div>
-            <div className="col-md-3 services-image">
-              <img src="/img/serives/reception.png" />
-              <h4 className="py-3">Religious Tours</h4>
+            <div className="col-lg-3 services-image">
+              <img src="/img/serives/rock.png" />
+              <h4 className="py-3">Islamic tours</h4>
               <p>
-                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+                haje and omrah tours, with appropriate guide and schedule, with
+                all reservations needed
               </p>
             </div>
-            <div className="col-md-3 services-image">
-              <img src="/img/serives/route.png" />
+            <div className="col-lg-3 services-image">
+              <img src="/img/serives/flight.png" />
 
-              <h4 className="py-3">Medical insurance</h4>
+              <h4 className="py-3">Diversity</h4>
               <p>
-                sunt qui repellat saepe quo velit aperiam id aliquam placeat.
+                There are a large number of trips of various types available to
+                meet the needs of a large segment of travelers
               </p>
             </div>
           </div>
@@ -257,7 +279,10 @@ export default function Home() {
               </div>
             ) : (
               data?.map((tourOperator) => (
-                <div className="col-md-3 services-image" key={tourOperator.name}>
+                <div
+                  className="col-md-3 services-image"
+                  key={tourOperator.name}
+                >
                   <img
                     src={tourOperator.image.secure_url}
                     alt={`Operator ${tourOperator._id}`}
@@ -287,7 +312,7 @@ export default function Home() {
               600: {
                 slidesPerView: 1,
               },
-              768: {
+              900: {
                 slidesPerView: 2,
               },
               1024: {
@@ -296,44 +321,45 @@ export default function Home() {
             }}
           >
             <h2>All Agencies</h2>
-            {data?.length ? (
-              data.map((tourOperator) => (
-                <SwiperSlide key={tourOperator._id}>
-                  <div className="info-content-operator" onClick={() => handleOperatorClick(tourOperator._id)}>
-                    <div className="operator-image my-5">
-                      <img
-                        src={tourOperator.image.secure_url}
-                        className=""
-                        alt={`Operator ${tourOperator._id}`}
-                      />
-                    </div>
-                    <div className="text-info text-center pt-3">
-                      <div className="name-company">
-                        <h2 className="fs-5 ">{tourOperator.name}</h2>
+            {data?.length
+              ? data.map((tourOperator) => (
+                  <SwiperSlide key={tourOperator._id}>
+                    <div
+                      className="info-content-operator"
+                      onClick={() => handleOperatorClick(tourOperator._id)}
+                    >
+                      <div className="operator-image my-5">
+                        <img
+                          src={tourOperator.image.secure_url}
+                          className=""
+                          alt={`Operator ${tourOperator._id}`}
+                        />
                       </div>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">FounderName:</span>
-                        {tourOperator.founderName}
-                      </h2>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">Address:</span>
-                        {tourOperator.address}
-                      </h2>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">PhoneNumber:</span>
-                        {tourOperator.phoneNumber}
-                      </h2>
-                      <p className="fs-5 text-white">
-                        <span className="text-white px-2">Description:</span>
-                        {tourOperator.description}
-                      </p>
+                      <div className="text-info text-center pt-3">
+                        <div className="name-company">
+                          <h2 className="fs-5 ">{tourOperator.name}</h2>
+                        </div>
+                        <h2 className="fs-5">
+                          <span className="text-white pe-2">FounderName:</span>
+                          {tourOperator.founderName}
+                        </h2>
+                        <h2 className="fs-5">
+                          <span className="text-white pe-2">Address:</span>
+                          {tourOperator.address}
+                        </h2>
+                        <h2 className="fs-5">
+                          <span className="text-white pe-2">PhoneNumber:</span>
+                          {tourOperator.phoneNumber}
+                        </h2>
+                        <p className="fs-5 text-white">
+                          <span className="text-white px-2">Description:</span>
+                          {tourOperator.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))
-            ) : (
-              'no data available'
-            )}
+                  </SwiperSlide>
+                ))
+              : "no data available"}
           </Swiper>
         </div>
       </div>

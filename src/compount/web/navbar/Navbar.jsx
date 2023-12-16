@@ -15,6 +15,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 export default function Navbar({ users, setUser }) {
+  console.log(users);
   const navgite = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState(""); // State to manage navbar background color
   
@@ -176,7 +177,7 @@ export default function Navbar({ users, setUser }) {
                   ) : (
                     <>
                       <li>
-                        <Link className="dropdown-item text-black">
+                        <Link className="dropdown-item text-black" to="/user/profile/444">
                           <FontAwesomeIcon icon={faUser} className="pe-2" />
                           Profile
                         </Link>
