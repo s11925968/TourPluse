@@ -243,7 +243,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="category-serives container pt-5">
+      <section className="category-phone category-serives container pt-5">
         <div className="info-category">
           <h2>CATEGORY</h2>
           <p>All Agencies</p>

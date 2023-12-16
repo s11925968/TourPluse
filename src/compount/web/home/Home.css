@@ -255,6 +255,9 @@ a{
   .operator .text-info .name-company h2{
     top:290px;
   }
+  .category-phone{
+    display: none !important;
+  }
   .header{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/header-img.jpg);
     height: 100vh;
