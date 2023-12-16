@@ -252,11 +252,8 @@ a{
     width: 150px;
     height: 150px;
   }
-  .header {
-    height: 100vh;
-    background-position:center center; /* Update this line to center the background image */
-    background-size: cover;
-    background-repeat: no-repeat;
+  .header{
+    background-attachment:none !important;
   }
   
 }

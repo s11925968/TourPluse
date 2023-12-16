@@ -174,12 +174,6 @@ export default function Home() {
     }
   };
 
-  const handlePageClick = (pageNumber) => {
-    setCurrent(pageNumber + 1);
-    setSelectedOperator(null); // Clear selected operator when changing pages
-    setSelectedCategory(null); // Clear selected category when changing pages
-  };
-
   const handleOperatorClick = (operatorId) => {
     const clickedOperator = data.find((operator) => operator._id === operatorId);
     setSelectedOperator(clickedOperator);
