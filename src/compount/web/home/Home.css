@@ -26,14 +26,19 @@ a{
 .bg-main-color{
   background-color:#c8e2ed;
 }
-.header{
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(/images/bg-headers.jpg);
+/* ... (previous code) ... */
+
+.header {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/bg-headers.jpg);
   height: 100vh;
   background-attachment: fixed;
-  background-position: 80% 70%;
-  background-size:cover;
+  background-position:center center; /* Update this line to center the background image */
+  background-size: cover;
   background-repeat: no-repeat;
 }
+
+/* ... (rest of your CSS code) ... */
+
 .info-header{
   height: 100vh;
   display: flex;
