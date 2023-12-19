@@ -213,8 +213,8 @@ a{
   justify-content: center;
 }
 .operator-image img{
-  width: 250px !important;
-  height: 250px !important;
+  width: 200px ;
+  height: 200px ;
   border-radius: 10%;
   -webkit-border-radius: 10%;
   -moz-border-radius: 10%;
@@ -245,15 +245,12 @@ a{
   left: 0;
   bottom: 0;
   right: 0;
-  top:300px;
+  top:200px;
 }
 @media (max-width:600px){
-  .operator-image img{
-    width: 150px;
-    height: 150px;
-  }
+
   .operator .text-info .name-company h2{
-    top:290px;
+    top:150px;
   }
   .category-phone{
     display: none !important;
@@ -267,12 +264,8 @@ a{
   }
 }
 @media screen and (min-width: 600px) and (max-width: 1000px) {
-  .operator-image img {
-    width: 150px;
-    height: 150px;
-  }
   .operator .text-info .name-company h2 {
-    top: 300px;
+    top: 220px;
   }
   .category-phone {
     display: none !important;
