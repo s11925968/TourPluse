@@ -30,6 +30,13 @@ import LoginProtected from "./compount/web/routeProteced/LoginProtected.jsx";
 import Catgeoriesselect from "./compount/admin/Operator/createoperator/Catgeoriesselect.jsx";
 import Creaetoperator from './compount/admin/Operator/Creat/Creaetoperator.jsx'
 import Profile from "./compount/web/profile/Profile.jsx";
+import Tourlist from "./compount/admin/tours/TourList/Tourlist.jsx";
+import Logincompany from "./compount/web/Logincompany/Logincompany.jsx";
+import LayoutDashBord from "./compount/layout/LayoutDashBord.jsx";
+import HomeDashbord from "./compount/dashbord/home/Home.jsx";
+import TourlistActive from "./compount/dashbord/Tours/TourList/TourList.jsx";
+import SelectCategories from "./compount/dashbord/Tours/selectCategories/SelectCategories.jsx";
+import Createtour from "./compount/dashbord/Tours/CreateTours/Createtour.jsx"
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -46,7 +53,7 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout users={users} setUser={setUser}/>,
+      element: <Layout users={users} setUser={setUser} />,
       children: [
         {
           path: "/",
@@ -89,12 +96,15 @@ export default function App() {
           element: <CreateCompany />,
         },
         {
-          
           path: "login",
           element:
             <LoginProtected users={users}>
             <Login saveCurrentUser={saveCurrentUser} users={users}/>
             </LoginProtected>,
+        },
+        {
+          path:"logincompany",
+          element:<Logincompany />,
         },
         {
           path: "*",
@@ -158,10 +168,36 @@ export default function App() {
           element:<Catgeoriesselect/>
         },
         {
+          path:'tour/get',
+          element:<Tourlist />
+        },
+        {
           path: "*",
           element: <Apage />,
         },
       ],
+    },
+    {
+      path:'/dashboard',
+      element:<LayoutDashBord />,
+      children:[
+        {
+          path:'',
+          element:<HomeDashbord />
+        },
+        {
+          path:'tour/getActive',
+          element:<TourlistActive />
+        },
+        {
+          path:'selectCategories',
+          element:<SelectCategories />
+        },
+        {
+          path:'createTours/:_id',
+          element:<Createtour />
+        },
+      ]
     },
     
   ]);

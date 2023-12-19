@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import './CategoriestourOperator.css'
 export default function Touroperatorcategorite() {
   const {_id}=useParams();
   const getTourOperators=async()=>{
@@ -30,7 +31,6 @@ export default function Touroperatorcategorite() {
   if(isLoading){
     return <Loader />;
   }
-  console.log(data);
   return (
     <div>
       <div className="catagories container d-flex justify-content-start align-items-center ">
@@ -51,7 +51,7 @@ export default function Touroperatorcategorite() {
               slidesPerView: 1,
             },
             // when window width is >= 768px
-            768: {
+            900: {
               slidesPerView: 1,
             },
             // when window width is >= 1024px
@@ -59,15 +59,14 @@ export default function Touroperatorcategorite() {
               slidesPerView: 2,
             },
           }}
-          // onSlideChange={() => console.log("slide change")}
-          // onSwiper={(swiper) => console.log(swiper)}
+         
         >
           {data?.length
             ? data?.map((catagourie) => (
                 <SwiperSlide key={catagourie._id}>
                   <div className='info-content'>
                     <div className='operator-image'>
-                      <img src={catagourie.image.secure_url} className="rounded-circle w-25"/>
+                      <img src={catagourie.image.secure_url} className="rounded-circle"/>
                     </div>
                     <div className="text-info text-center pt-3">
                     <h2 className="fs-5"><span className='text-danger pe-2'>Address:</span>{catagourie.address}</h2>

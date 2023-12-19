@@ -14,8 +14,7 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-export default function Navbar({ users, setUser }) {
-  console.log(users);
+export default function Navbar({ users, setUser}) {
   const navgite = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState(""); // State to manage navbar background color
   
@@ -41,18 +40,6 @@ export default function Navbar({ users, setUser }) {
       aboutElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  // function setSweet() {
-  //   Swal.fire({
-  //     title:
-  //       "Tourpulse is a company based in Palestine that specializes in providing travel and tourism services. Established with the aim of creating memorable and seamless travel experiences, Tourpulse is committed to offering exceptional services to both local and international travelers.",
-  //     showClass: {
-  //       popup: "animate__animated animate__fadeInDown",
-  //     },
-  //     hideClass: {
-  //       popup: "animate__animated animate__fadeOutUp",
-  //     },
-  //   });
-  // }
 
   const logout = () => {
     localStorage.removeItem("userToken");
@@ -112,13 +99,13 @@ export default function Navbar({ users, setUser }) {
               )}
               {!users && (
                 <li className="nav-item">
-                  <a
+                  <Link to="/logincompany"
                     className="nav-link text-white"
                     aria-current="page"
                     href="#"
                   >
                     agency
-                  </a>
+                  </Link>
                 </li>
               )}
               <li className="nav-item">

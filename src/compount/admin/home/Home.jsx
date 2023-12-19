@@ -25,7 +25,6 @@ export default function Home() {
   if(isLoading){
     return <Loader />;
   }
-  console.log(data);
   return (
     <div className="operator">
         <div className="container d-flex justify-content-start align-items-center ">

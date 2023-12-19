@@ -44,8 +44,7 @@ export default function Categorie() {
           pagination={{
             clickable: true,
           }}
-          // onSlideChange={() => console.log("slide change")}
-          // onSwiper={(swiper) => console.log(swiper)}
+          
           breakpoints={{
             // when window width is >= 600px
             600: {

@@ -58,7 +58,6 @@ export default function Creaetoperator() {
             navgite('/admin/categories/get');
 
         }
-        console.log(data);
       } catch (error) {
         console.error("Error creating admin:", error);
       }

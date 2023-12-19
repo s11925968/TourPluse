@@ -17,21 +17,6 @@ export default function Sendcode() {
     onSubmit:async values=>{
       try{
         const {data}=await axios.patch(`${import.meta.env.VITE_URL_LINK}/auth/sendCode`,values);
-        // if(data.message=="success"){
-        //   formik.resetForm();
-        //   toast.success('account created succesfully,please verify your email to login', {
-        //     position: "top-center",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "light",
-        //     });
-        //     navigite('/login');
-        // }
-        console.log(data);
       }catch(error){
         setErrorBack(error.response.data.message);
         

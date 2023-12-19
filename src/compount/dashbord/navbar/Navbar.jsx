@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import "./Navbaradmin.css";
+import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,18 +13,20 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-export default function Navbar({users,setUser}) {
+import { CompanyContext } from "../../web/context/company/Companycontext";
+export default function Navbar() {
+  const {company,setCompanycontext}=useContext(CompanyContext);
   const navgite=useNavigate();
   const logout = () => {
-    localStorage.removeItem("userToken");
-    setUser(null);
-    navgite("/login");
+    localStorage.removeItem("companyToken");
+    setCompanycontext(null);
+    navgite("/logincompany");
   };
   return (
     <div className="back">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
         <div className="container">
-          <Link to="/admin">
+          <Link to="">
             <img
               src="/images/fulllogo_transparent_nobuffer.png"
               alt="logo"
@@ -49,44 +50,13 @@ export default function Navbar({users,setUser}) {
                 <Link
                   className="nav-link active text-white"
                   aria-current="page"
-                  to="/admin"
+                  to=""
                 >
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" aria-current="page" href="#">
-                  <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
-                  Trips
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle text-white"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Admin
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="/admin/getAdmin">
-                    Admin list
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/admin/creatadmin">
-                    Add admin
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                </ul>
-              </li>
+
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle text-white"
@@ -99,16 +69,10 @@ export default function Navbar({users,setUser}) {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/admin/categories/get">
-                    Categories list
+                    <Link className="dropdown-item" to="">
+                      Categories list
                     </Link>
                   </li>
-                  <li>
-                    <Link className="dropdown-item" to="/admin/categories/create">
-                    Add Category
-                    </Link>
-                  </li>
-                
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -123,18 +87,8 @@ export default function Navbar({users,setUser}) {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/admin">
-                      Operators List
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/admin/operator/catgeoriesselect">
-                    Add Operator
-                    </Link>
-                  </li>
-                  <li>
                     <Link className="dropdown-item" to="">
-                    Update Operator
+                      Operators List
                     </Link>
                   </li>
                 </ul>
@@ -151,45 +105,41 @@ export default function Navbar({users,setUser}) {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/admin/tour/get">
+                    <Link
+                      className="dropdown-item"
+                      to="/dashboard/tour/getActive"
+                    >
                       Tours List
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      to="/dashboard/selectCategories"
+                    >
+                      Add Tours
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="">
+                      Update Tours
                     </Link>
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-white"
-                  aria-current="page"
-                  to="/admin/users"
-                >
-                  Users
-                </Link>
-              </li>
+
               <li className="nav-item dropdown me-2 mb-4">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
                   href="#"
                   role="button"
-                  data-bs-toggle="dropdown" // Add data-bs-toggle attribute
+                  data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
-                  {!users ? (
-                    <>
-                      <li>
-                        <Link className="dropdown-item text-black" to="/login">
-                          <FontAwesomeIcon
-                            icon={faRightToBracket}
-                            className="pe-3 text-success"
-                          />
-                          Login
-                        </Link>
-                      </li>
-                    </>
-                  ) : (
+                  {company !== null ? (
                     <>
                       <li>
                         <Link className="dropdown-item text-black">
@@ -210,10 +160,21 @@ export default function Navbar({users,setUser}) {
                         </Link>
                       </li>
                     </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link className="dropdown-item text-black" to="/login">
+                          <FontAwesomeIcon
+                            icon={faRightToBracket}
+                            className="pe-3 text-success"
+                          />
+                          Login
+                        </Link>
+                      </li>
+                    </>
                   )}
                 </ul>
               </li>
-
             </ul>
           </div>
         </div>

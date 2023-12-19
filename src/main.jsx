@@ -12,15 +12,16 @@ import {
     QueryClient,
     QueryClientProvider,
     } from 'react-query'
+import { CompanyContextProvider } from './compount/web/context/company/Companycontext.jsx'
     const queryClient = new QueryClient()
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <>
-    <QueryClientProvider client={queryClient}>
-    <ToastContainer />
-    <App />
-    </QueryClientProvider>
-    
-    </>
-    
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <>
+    <CompanyContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <ToastContainer />
+        <App />
+      </QueryClientProvider>
+    </CompanyContextProvider>
+  </>
+);

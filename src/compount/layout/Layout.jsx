@@ -3,7 +3,7 @@ import Navbar from '../web/navbar/Navbar.jsx';
 import Footer from '../web/footer/Footer.jsx';
 import { Outlet, useLocation } from 'react-router-dom';
 
-export default function Layout({ users, setUser }) {
+export default function Layout({ users, setUser}) {
   const [isLoginPage, setIsLoginPage] = useState("");
   const location = useLocation();
 

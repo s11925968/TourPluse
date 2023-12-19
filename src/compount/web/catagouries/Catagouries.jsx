@@ -18,7 +18,6 @@ export default function Catagouries() {
   }
 
   const {data,isLoading}=useQuery('get_catagories',getCatagories);
-  console.log(data);
   if (isLoading) {
     return <Loader />;
   }
@@ -50,8 +49,7 @@ export default function Catagouries() {
               slidesPerView: 2,
             },
           }}
-          // onSlideChange={() => console.log("slide change")}
-          // onSwiper={(swiper) => console.log(swiper)}
+        
         >
           {data?.categories.length
           ? data?.categories.map((catagourie,index) => (

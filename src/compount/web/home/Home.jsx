@@ -1,143 +1,3 @@
-// import React from "react";
-// import "./Home.css";
-// import { Link } from "react-router-dom";
-// import {
-//   faBehance,
-//   faDribbble,
-//   faFacebook,
-//   faGoogle,
-//   faLinkedinIn,
-// } from "@fortawesome/free-brands-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faArrowRight,
-//   faEnvelope,
-//   faHouse,
-//   faLocationDot,
-//   faPhone,
-// } from "@fortawesome/free-solid-svg-icons";
-// import axios from "axios";
-// import { useQuery } from "react-query";
-// import Loader from "../../shared/Loader";
-// import { Navigation, Pagination, Autoplay } from "swiper/modules";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/scrollbar";
-// import "./Home.css";
-// export default function Home() {
-//   const getOperator = async () => {
-//     const { data } = await axios.get(
-//       `${import.meta.env.VITE_URL_LINK}/operator/getActive`
-//     );
-//     return data.tourOperator;
-//   };
-//   const { data, isLoading } = useQuery("Get_Operator", getOperator);
-//   console.log(data);
-//   if (isLoading) {
-//     return <Loader />;
-//   }
-//   return (
-//     <section id="about">
-//       <header className="header">
-//         <div className="info-header">
-//           <div className="info-home text-center">
-//             <div className="d-flex d-flex justify-content-center align-items-center">
-//               <p>Welcome to Tourpulse</p>
-//             </div>
-//             <span>
-//               All Palestinian Trips offers
-//               <br />
-//               ,in the palm of your hand
-//             </span>
-//             <div className="icons">
-//               <FontAwesomeIcon icon={faFacebook} className="brand brand-face" />
-//               <FontAwesomeIcon
-//                 icon={faLinkedinIn}
-//                 className="brand brand-linked"
-//               />
-//               <FontAwesomeIcon icon={faGoogle} className="brand brand-google" />
-//             </div>
-//           </div>
-//         </div>
-//       </header>
-//       <div className="operator">
-//         <div className="container d-flex justify-content-start align-items-center ">
-//           <Swiper
-//             modules={[Navigation, Pagination, Autoplay]}
-//             spaceBetween={50}
-//             navigation
-//             loop={true}
-//             autoplay={{
-//               delay: 3000,
-//             }}
-//             pagination={{
-//               clickable: true,
-//             }}
-//             breakpoints={{
-//               // when window width is >= 600px
-//               600: {
-//                 slidesPerView: 1,
-//               },
-//               // when window width is >= 768px
-//               768: {
-//                 slidesPerView: 2,
-//               },
-//               // when window width is >= 1024px
-//               1024: {
-//                 slidesPerView: 2,
-//               },
-//             }}
-//           >
-//             <h2>All Agencies</h2>
-//             {data?.length
-//               ? data?.map((tourOperator) => (
-//                   <SwiperSlide key={tourOperator._id}>
-//                     <div className="info-content-operator">
-//                       <div className="operator-image my-5">
-//                         <img
-//                           src={tourOperator.image.secure_url}
-//                           className=""
-//                           alt={`Operator ${tourOperator._id}`}
-//                         />
-//                       </div>
-//                       <div className="text-info text-center pt-3">
-//                         <div className="name-company">
-//                           <h2 className="fs-5 ">
-//                             {tourOperator.name}
-//                           </h2>
-//                         </div>
-//                         <h2 className="fs-5">
-//                           <span className="text-white pe-2">FounderName:</span>
-//                           {tourOperator.founderName}
-//                         </h2>
-//                         <h2 className="fs-5">
-//                           <span className="text-white pe-2">Address:</span>
-//                           {tourOperator.address}
-//                         </h2>
-//                         <h2 className="fs-5">
-//                           <span className="text-white pe-2">PhoneNumber:</span>
-//                           {tourOperator.phoneNumber}
-//                         </h2>
-//                         <p className="fs-5 text-white">
-//                           <span className="text-white px-2">Description:</span>
-//                           {tourOperator.description}
-//                         </p>
-//                       </div>
-//                     </div>
-//                   </SwiperSlide>
-//                 ))
-//               : "no data available"}
-//           </Swiper>
-//         </div>
-//       </div>
-
-//     </section>
-//   );
-// }
-
-// ... (previous imports)
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -364,7 +224,7 @@ export default function Home() {
         </div>
       </div>
       <section className="about-us container">
-        <div className="row info-images">
+        <div className="row info-images mt-5">
           <h2>About us</h2>
           <div className="col-md-6 about-info">
             <p>
@@ -395,7 +255,7 @@ export default function Home() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
-        <div className="info-map position-absolute bottom-0 w-100">
+        <div className="mt-5 info-map position-absolute bottom-0 w-100">
           <div className="container text-white rounded-top-3 p-3 py-4">
             <div className="row d-flex">
               <div className="col-lg-4 d-flex  justify-content-center">
