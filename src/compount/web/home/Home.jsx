@@ -166,7 +166,7 @@ export default function Home() {
             ) : (
               data?.map((tourOperator) => (
                 <div
-                  className="col-md-3 services-image-map text-center"
+                  className="col-md-3 services-image text-center"
                   key={tourOperator.name}
                   onClick={() => handleCategoryClick(tourOperator)}
                 >

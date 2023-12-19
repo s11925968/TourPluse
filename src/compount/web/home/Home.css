@@ -320,13 +320,7 @@ a{
 }
 .services .services-image img {
   width: 50%;
-  height:40%;
-  aspect-ratio: 200/287;
-  object-fit: cover;
-}
-.services .services-image-map img{
-  width: 50%;
-  height: 42%;
+  height:30%;
   aspect-ratio: 200/287;
   object-fit: cover;
 }
