@@ -111,7 +111,6 @@ export default function Home() {
             <div className="col-lg-3 col-md-6 services-image text-center">
               <img
                 src="/img/serives/plane.png"
-                className="img-fluid"
                 alt="Best Flights Options"
               />
               <h4 className="py-3">Best Flights Options</h4>
@@ -123,7 +122,6 @@ export default function Home() {
             <div className="col-lg-3 col-md-6 services-image text-center">
               <img
                 src="/img/serives/rock.png"
-                className="img-fluid"
                 alt="Islamic Tours"
               />
               <h4 className="py-3">Islamic Tours</h4>
@@ -207,7 +205,7 @@ export default function Home() {
                 },
               }}
             >
-              <h2>All Agencies</h2>
+              <h2 className="py-3">All Agencies</h2>
               {data.map((tourOperator) => (
                 <SwiperSlide key={tourOperator._id}>
                   <div
@@ -217,7 +215,7 @@ export default function Home() {
                     <div className="operator-image my-5">
                       <img
                         src={tourOperator.image.secure_url}
-                        className=""
+                        className="img-fluid "
                         alt={`Operator ${tourOperator._id}`}
                       />
                     </div>

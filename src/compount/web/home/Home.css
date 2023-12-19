@@ -245,7 +245,7 @@ a{
   left: 0;
   bottom: 0;
   right: 0;
-  top:200px;
+  top:220px;
 }
 @media (max-width:600px){
 
@@ -275,10 +275,6 @@ a{
     background-position: center center;
     background-size: cover;
     background-attachment: none;
-  }
-  .services .services-image img {
-    width: 35%!important;
-    height: 55% !important;
   }
 }
 
@@ -312,7 +308,7 @@ a{
   text-align: center;
 }
 .services .services-image img {
-  width: 50%;
+  width: 30%;
   height:30%;
   aspect-ratio: 200/287;
   object-fit: cover;
