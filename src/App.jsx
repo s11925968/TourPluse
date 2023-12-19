@@ -37,6 +37,7 @@ import HomeDashbord from "./compount/dashbord/home/Home.jsx";
 import TourlistActive from "./compount/dashbord/Tours/TourList/TourList.jsx";
 import SelectCategories from "./compount/dashbord/Tours/selectCategories/SelectCategories.jsx";
 import Createtour from "./compount/dashbord/Tours/CreateTours/Createtour.jsx"
+import TourlistWeb from "./compount/web/Tour/TourList/TourListWeb.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -105,6 +106,10 @@ export default function App() {
         {
           path:"logincompany",
           element:<Logincompany />,
+        },
+        {
+          path:"tourlistweb",
+          element:<TourlistWeb />,
         },
         {
           path: "*",

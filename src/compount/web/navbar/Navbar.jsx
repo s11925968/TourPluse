@@ -109,10 +109,10 @@ export default function Navbar({ users, setUser}) {
                 </li>
               )}
               <li className="nav-item">
-                <a className="nav-link text-white" aria-current="page" href="#">
+                <Link className="nav-link text-white" aria-current="page" to="/tourlistweb">
                   <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
-                  Trips
-                </a>
+                  Tours
+                </Link>
               </li>
               {users && (
                 <li className="nav-item">

@@ -83,43 +83,37 @@ export default function Home() {
       </header>
       <section className="category-serives container pt-5">
         <div className="info-category">
-          <h2>SERIVES</h2>
+          <h2>SERVICES</h2>
           <p>We Offer Best Services</p>
         </div>
         <div className="services my-5">
           <div className="row">
-            <div className="col-lg-3 services-image">
-              <img src="/img/serives/castle.png" />
-
-              <h4 className="py-3">historical tours</h4>
+            <div className="col-lg-3 col-md-6 services-image text-center">
+              <img src="/img/serives/castle.png" className="img-fluid" alt="Historical Tours" />
+              <h4 className="py-3">Historical Tours</h4>
               <p>
-                Visit ancient historical landmarks full of ancient monuments and
-                civilizations
+                Visit ancient historical landmarks full of ancient monuments and civilizations
               </p>
             </div>
-            <div className="col-lg-3 services-image">
-              <img src="/img/serives/plane.png" />
+            <div className="col-lg-3 col-md-6 services-image text-center">
+              <img src="/img/serives/plane.png" className="img-fluid" alt="Best Flights Options" />
               <h4 className="py-3">Best Flights Options</h4>
               <p>
-                Various flight classes, First class, Business Class, Premium
-                Economy Class, and Economy Class
+                Various flight classes, First class, Business Class, Premium Economy Class, and Economy Class
               </p>
             </div>
-            <div className="col-lg-3 services-image">
-              <img src="/img/serives/rock.png" />
-              <h4 className="py-3">Islamic tours</h4>
+            <div className="col-lg-3 col-md-6 services-image text-center">
+              <img src="/img/serives/rock.png" className="img-fluid" alt="Islamic Tours" />
+              <h4 className="py-3">Islamic Tours</h4>
               <p>
-                haje and omrah tours, with appropriate guide and schedule, with
-                all reservations needed
+                Hajj and Umrah tours, with appropriate guide and schedule, with all reservations needed
               </p>
             </div>
-            <div className="col-lg-3 services-image">
-              <img src="/img/serives/flight.png" />
-
+            <div className="col-lg-3 col-md-6 services-image text-center">
+              <img src="/img/serives/flight.png" className="img-fluid" alt="Diversity" />
               <h4 className="py-3">Diversity</h4>
               <p>
-                There are a large number of trips of various types available to
-                meet the needs of a large segment of travelers
+                There are a large number of trips of various types available to meet the needs of a large segment of travelers
               </p>
             </div>
           </div>
@@ -140,7 +134,7 @@ export default function Home() {
             ) : (
               data?.map((tourOperator) => (
                 <div
-                  className="col-md-3 services-image"
+                  className="col-md-3 services-image-map"
                   key={tourOperator.name}
                 >
                   <img
