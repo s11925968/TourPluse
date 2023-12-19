@@ -50,6 +50,14 @@ export default function Home() {
     );
     setSelectedOperator(clickedOperator);
   };
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleBackToCategoriesClick = () => {
+    setSelectedCategory(null);
+  };
+
   useEffect(() => {
     getOperator();
   }, [current]);
@@ -89,31 +97,51 @@ export default function Home() {
         <div className="services my-5">
           <div className="row">
             <div className="col-lg-3 col-md-6 services-image text-center">
-              <img src="/img/serives/castle.png" className="img-fluid" alt="Historical Tours" />
+              <img
+                src="/img/serives/castle.png"
+                className="img-fluid"
+                alt="Historical Tours"
+              />
               <h4 className="py-3">Historical Tours</h4>
               <p>
-                Visit ancient historical landmarks full of ancient monuments and civilizations
+                Visit ancient historical landmarks full of ancient monuments and
+                civilizations
               </p>
             </div>
             <div className="col-lg-3 col-md-6 services-image text-center">
-              <img src="/img/serives/plane.png" className="img-fluid" alt="Best Flights Options" />
+              <img
+                src="/img/serives/plane.png"
+                className="img-fluid"
+                alt="Best Flights Options"
+              />
               <h4 className="py-3">Best Flights Options</h4>
               <p>
-                Various flight classes, First class, Business Class, Premium Economy Class, and Economy Class
+                Various flight classes, First class, Business Class, Premium
+                Economy Class, and Economy Class
               </p>
             </div>
             <div className="col-lg-3 col-md-6 services-image text-center">
-              <img src="/img/serives/rock.png" className="img-fluid" alt="Islamic Tours" />
+              <img
+                src="/img/serives/rock.png"
+                className="img-fluid"
+                alt="Islamic Tours"
+              />
               <h4 className="py-3">Islamic Tours</h4>
               <p>
-                Hajj and Umrah tours, with appropriate guide and schedule, with all reservations needed
+                Hajj and Umrah tours, with appropriate guide and schedule, with
+                all reservations needed
               </p>
             </div>
             <div className="col-lg-3 col-md-6 services-image text-center">
-              <img src="/img/serives/flight.png" className="img-fluid" alt="Diversity" />
+              <img
+                src="/img/serives/flight.png"
+                className="img-fluid"
+                alt="Diversity"
+              />
               <h4 className="py-3">Diversity</h4>
               <p>
-                There are a large number of trips of various types available to meet the needs of a large segment of travelers
+                There are a large number of trips of various types available to
+                meet the needs of a large segment of travelers
               </p>
             </div>
           </div>
@@ -127,22 +155,27 @@ export default function Home() {
         <div className="services my-5">
           <div className="row">
             {selectedCategory ? (
-              <div className="col-md-12">
-                <h2>{selectedCategory}</h2>
-                <h2>details</h2>
+              <div className="col-md-12 text-center">
+                <h2>{selectedCategory.name}</h2>
+                <h2>{selectedCategory.description}</h2>
+
+                <button onClick={() => setSelectedCategory(null)}>
+                  Back to Categories
+                </button>
               </div>
             ) : (
               data?.map((tourOperator) => (
                 <div
-                  className="col-md-3 services-image-map"
+                  className="col-md-3 services-image-map text-center"
                   key={tourOperator.name}
+                  onClick={() => handleCategoryClick(tourOperator)}
                 >
                   <img
                     src={tourOperator.image.secure_url}
                     alt={`Operator ${tourOperator._id}`}
                   />
                   <h4 className="py-3">{tourOperator.name}</h4>
-                  <p>{tourOperator.description}</p>
+                  <Link className="btn btn-danger">Clink To Show Details</Link>
                 </div>
               ))
             )}
