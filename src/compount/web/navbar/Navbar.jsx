@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBuilding,
   faCartShopping,
   faCircleExclamation,
   faEarthAmericas,
@@ -104,6 +105,7 @@ export default function Navbar({ users, setUser}) {
                     aria-current="page"
                     href="#"
                   >
+                    <FontAwesomeIcon icon={faBuilding} className="pe-1"/>
                     agency
                   </Link>
                 </li>

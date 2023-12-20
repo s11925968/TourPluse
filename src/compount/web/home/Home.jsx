@@ -43,7 +43,6 @@ export default function Home() {
       setIsLoading(false);
     }
   };
-
   const handleOperatorClick = (operatorId) => {
     const clickedOperator = data.find(
       (operator) => operator._id === operatorId
@@ -52,10 +51,6 @@ export default function Home() {
   };
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-  };
-
-  const handleBackToCategoriesClick = () => {
-    setSelectedCategory(null);
   };
 
   useEffect(() => {
@@ -155,8 +150,12 @@ export default function Home() {
             {selectedCategory ? (
               <div className="col-md-12 text-center">
                 <h2>{selectedCategory.name}</h2>
-                <h2>{selectedCategory.description}</h2>
-                <button onClick={() => setSelectedCategory(null)}>
+                <p>{selectedCategory.description}</p>
+                <p>{selectedCategory.address}</p>
+                <p>{selectedCategory.email}</p>
+                <p>{selectedCategory.phoneNumber}</p>
+                <p>{selectedCategory.founderName}</p>
+                <button className="btn btn-info" onClick={() => setSelectedCategory(null)}>
                   Back to Categories
                 </button>
               </div>
@@ -172,7 +171,7 @@ export default function Home() {
                     alt={`Operator ${tourOperator._id}`}
                   />
                   <h4 className="py-3">{tourOperator.name}</h4>
-                  <Link className="btn btn-danger">Clink To Show Details</Link>
+                  <Link className="btn btn-info">Clink To Show Details</Link>
                 </div>
               ))
             )}

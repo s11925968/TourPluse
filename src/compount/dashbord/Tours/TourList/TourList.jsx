@@ -55,6 +55,7 @@ export default function Tourlist() {
                     <p>Location: {tour.location}</p>
                     <p>Meals: {tour.meals}</p>
                     <p>Note: {tour.note}</p>
+                    <Link className='btn btn-info' to={`/dashboard/tour/forceDelete/${tour._id}`}>Delete Tour</Link>
                   </div>
                 )}
               </div>

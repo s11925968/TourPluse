@@ -16,7 +16,6 @@ export default function Catagouries() {
   }
 
   const {data,isLoading}=useQuery('get_catagories',getCatagories);
-  console.log(data);
   if (isLoading) {
     return <Loader />;
   }
