@@ -4,12 +4,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Inpute from "../../shared/Inpute";
 import { Link, useNavigate } from "react-router-dom";
-import { CompanyContext } from "../../web/context/company/Companycontext.jsx"
+import { CompanyContext } from "../../web/context/company/Companycontext.jsx";
 
 export default function Logincompany() {
-  const {setCompanycontext}=useContext(CompanyContext);
+  const { setCompanycontext } = useContext(CompanyContext);
   const navigate = useNavigate();
-  const [errorBackend, setErrorBackend] = useState(''); // Fix: Use const instead of let
+  const [errorBackend, setErrorBackend] = useState(""); // Fix: Use const instead of let
 
   const initialValues = {
     email: "",
@@ -18,28 +18,27 @@ export default function Logincompany() {
 
   const onSubmit = async (user) => {
     try {
-      const { data } = await axios.post(`${import.meta.env.VITE_URL_LINK}/auth/tourOperator/signin`, user);    
-      if(data.message=="success")
-      {
-        
-        localStorage.setItem("companyToken",data.token);
-        setCompanycontext();        
-              navigate('/dashboard');
-              toast.success('login succesfully', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                });
-            } 
-    }
-    catch(error){ 
-    setErrorBackend(error.response.data.message);
-  
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL_LINK}/auth/tourOperator/signin`,
+        user
+      );
+      if (data.message == "success") {
+        localStorage.setItem("companyToken", data.token);
+        setCompanycontext();
+        navigate("/dashboard");
+        toast.success("login succesfully", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      setErrorBackend(error.response.data.message);
     }
   };
 
@@ -82,24 +81,26 @@ export default function Logincompany() {
   ));
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="phone-width">
-        <h2>Log in</h2>
-        <form onSubmit={formik.handleSubmit} className="forms p-3">
-          {renderInput}
-          <button
-            type="submit"
-            className="btn btn-primary w-100"
-            disabled={!formik.isValid}
-          >
-            Submit
-          </button>
-          <Link to="/auth/sendCode" className="btn btn-primary mt-4">
-            Forgot Password
-          </Link>
-        </form>
-        <div className="text-center w-100">
-          {errorBackend && <p className="text text-danger">{errorBackend}</p>}
+    <div className="bg-forms">
+      <div className="container d-flex justify-content-center align-items-center vh-100">
+        <div className="phone-width">
+          <h2>Log in</h2>
+          <form onSubmit={formik.handleSubmit} className="forms p-3">
+            {renderInput}
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={!formik.isValid}
+            >
+              Submit
+            </button>
+            <Link to="/auth/sendCode" className="btn btn-primary mt-4">
+              Forgot Password
+            </Link>
+          </form>
+          <div className="text-center w-100">
+            {errorBackend && <p className="text text-danger">{errorBackend}</p>}
+          </div>
         </div>
       </div>
     </div>

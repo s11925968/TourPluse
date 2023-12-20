@@ -35,7 +35,6 @@ export default function DeleteTour() {
       console.error("Error deleting tour:", error);
     }
   };
-
   useEffect(() => {
     removeTour();
   },[]);

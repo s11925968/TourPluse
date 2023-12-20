@@ -13,7 +13,7 @@ export function CompanyContextProvider({ children }) {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("companyToken")!=null) {
+    if (localStorage.getItem("companyToken")) {
       saveCurrentCompany();
     }
   }, []);

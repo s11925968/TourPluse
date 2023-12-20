@@ -106,7 +106,7 @@ export default function Navbar({ users, setUser}) {
                     href="#"
                   >
                     <FontAwesomeIcon icon={faBuilding} className="pe-1"/>
-                    agency
+                    Agency
                   </Link>
                 </li>
               )}

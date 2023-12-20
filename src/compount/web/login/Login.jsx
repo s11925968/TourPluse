@@ -99,6 +99,7 @@ const onSubmit = async (user) => {
     />
   ));
   return (
+    <div className="bg-forms ">
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="phone-width">
         <h2>Log in</h2>
@@ -118,5 +119,7 @@ const onSubmit = async (user) => {
         </div>
       </div>
     </div>
+    </div>
+
   );
 }

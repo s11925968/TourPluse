@@ -1,11 +1,11 @@
-import React from 'react'
-import Inpute from '../../../shared/Inpute';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
+import React from "react";
+import Inpute from "../../../shared/Inpute";
+import axios from "axios";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 export default function Creaetoperator() {
-  const {_id}=useParams();
+  const { _id } = useParams();
   const navgite = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -15,7 +15,7 @@ export default function Creaetoperator() {
       phoneNumber: "",
       password: "",
       image: "",
-      categoryId:_id,
+      categoryId: _id,
       description: "",
       founderName: "",
       phoneNumberEx: "",
@@ -43,9 +43,9 @@ export default function Creaetoperator() {
             },
           }
         );
-        if(data.message=="success"){
+        if (data.message == "success") {
           formik.resetForm();
-          toast.success('you seccess create operator', {
+          toast.success("you seccess create operator", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -54,113 +54,113 @@ export default function Creaetoperator() {
             draggable: true,
             progress: undefined,
             theme: "light",
-            });
-            navgite('/admin/categories/get');
-
+          });
+          navgite("/admin/categories/get");
         }
       } catch (error) {
         console.error("Error creating admin:", error);
       }
     },
   });
-  const handelFileChange=(event)=>{
-    formik.setFieldValue('image',event.target.files[0]);
-  }
-  
-  const inputs=[
-  {
-    name:'name',
-    type:'text',
-    id:'name',
-    title:'Operator Name',
-    value:formik.values.name,
-  },
-  {
-    name:'address',
-    type:'text',
-    id:'address',
-    title:'Operator Address',
-    value:formik.values.address,
-  },
-  {
-    name:'email',
-    type:'email',
-    id:'email',
-    title:'Operator Email',
-    value:formik.values.email,
-  },
-  {
-    name:'phoneNumber',
-    type:'number',
-    id:'phoneNumber',
-    title:'Operator Phone Number',
-    value:formik.values.phoneNumber,
-  },
-  {
-    name:'password',
-    type:'password',
-    id:'password',
-    title:'Operator Password',
-    value:formik.values.password,
-  },
-  {
-    name:'description',
-    type:'text',
-    id:'description',
-    title:'Operator Description',
-    value:formik.values.description,
-  },
-  {
-    name:'phoneNumberEx',
-    type:'number',
-    id:'phoneNumberEx',
-    title:'Operator Phone Number Ex',
-    value:formik.values.phoneNumberEx,
-  },
-  {
-    name:'founderName',
-    type:'text',
-    id:'founderName',
-    title:'Founder Name',
-    value:formik.values.founderName,
-  },
-  {
-    name:'image',
-    type:'file',
-    id:'image',
-    title:'Operator Image',
-    onChange:handelFileChange,
-  },
-  
-];
+  const handelFileChange = (event) => {
+    formik.setFieldValue("image", event.target.files[0]);
+  };
 
-const renderInput=inputs.map((input,index)=>{
-  return(
-    <Inpute
-    key={index}
-    name={input.name}
-    type={input.type} 
-    title={input.title}
-    id={input.id}
-    value={input.value}
-    onChange={input.onChange ||formik.handleChange}
-    onBlur={formik.handleBlur}
-    touched={formik.touched}
-    error={formik.errors}
-    />
-  )
-})
+  const inputs = [
+    {
+      name: "name",
+      type: "text",
+      id: "name",
+      title: "Operator Name",
+      value: formik.values.name,
+    },
+    {
+      name: "address",
+      type: "text",
+      id: "address",
+      title: "Operator Address",
+      value: formik.values.address,
+    },
+    {
+      name: "email",
+      type: "email",
+      id: "email",
+      title: "Operator Email",
+      value: formik.values.email,
+    },
+    {
+      name: "phoneNumber",
+      type: "number",
+      id: "phoneNumber",
+      title: "Operator Phone Number",
+      value: formik.values.phoneNumber,
+    },
+    {
+      name: "password",
+      type: "password",
+      id: "password",
+      title: "Operator Password",
+      value: formik.values.password,
+    },
+    {
+      name: "description",
+      type: "text",
+      id: "description",
+      title: "Operator Description",
+      value: formik.values.description,
+    },
+    {
+      name: "phoneNumberEx",
+      type: "number",
+      id: "phoneNumberEx",
+      title: "Operator Phone Number Ex",
+      value: formik.values.phoneNumberEx,
+    },
+    {
+      name: "founderName",
+      type: "text",
+      id: "founderName",
+      title: "Founder Name",
+      value: formik.values.founderName,
+    },
+    {
+      name: "image",
+      type: "file",
+      id: "image",
+      title: "Operator Image",
+      onChange: handelFileChange,
+    },
+  ];
+
+  const renderInput = inputs.map((input, index) => {
+    return (
+      <Inpute
+        key={index}
+        name={input.name}
+        type={input.type}
+        title={input.title}
+        id={input.id}
+        value={input.value}
+        onChange={input.onChange || formik.handleChange}
+        onBlur={formik.handleBlur}
+        touched={formik.touched}
+        error={formik.errors}
+      />
+    );
+  });
   return (
-    <div className="container d-flex justify-content-center align-items-center mt-5">
-      <div className='forms p-4'>
-      <h2 className='text-center'></h2>
-      <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
-        {renderInput}
-        <button type="submit" className='w-100'>
-          Add Operator
-        </button>
-      </form>
+    <div className="bg-forms">
+      <div className="container d-flex justify-content-center align-items-center mt-5">
+        <div className="forms p-4">
+          <h2 className="text-center"></h2>
+          <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
+            {renderInput}
+            <button type="submit" className="w-100">
+              Add Operator
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  )
+  );
 }

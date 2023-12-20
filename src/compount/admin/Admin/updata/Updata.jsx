@@ -1,31 +1,29 @@
-
-import React from 'react';
-import Inpute from '../../../shared/Inpute';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from "react";
+import Inpute from "../../../shared/Inpute";
+import { useFormik } from "formik";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const initialValues = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 export default function Updata() {
-  const {_id}=useParams();
-  const navigite=useNavigate();
+  const { _id } = useParams();
+  const navigite = useNavigate();
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
       try {
-        const token=localStorage.getItem('userToken');
+        const token = localStorage.getItem("userToken");
         const { data } = await axios.patch(
           `${import.meta.env.VITE_URL_LINK}/admin/${_id}`,
           values,
           {
             headers: {
-              Authorization:
-                `ghazal__${token}`, // Replace YOUR_TOKEN_HERE with your actual token
+              Authorization: `ghazal__${token}`, // Replace YOUR_TOKEN_HERE with your actual token
             },
           }
         );
@@ -51,17 +49,17 @@ export default function Updata() {
 
   const inputs = [
     {
-      name: 'email',
-      type: 'email',
-      id: 'email',
-      title: 'New Email',
+      name: "email",
+      type: "email",
+      id: "email",
+      title: "New Email",
       value: formik.values.email,
     },
     {
-      name: 'password',
-      type: 'password',
-      id: 'password',
-      title: 'New Password',
+      name: "password",
+      type: "password",
+      id: "password",
+      title: "New Password",
       value: formik.values.password,
     },
   ];
@@ -82,18 +80,18 @@ export default function Updata() {
   ));
 
   return (
-    <div className="container py-4 d-flex justify-content-center align-items-center ">
-      <div className="phone-width">
-        <h2>Update Email and Password</h2>
-        <form onSubmit={formik.handleSubmit} className="forms p-3">
-          {renderInput}
-          <button type="submit" className="btn btn-primary w-100">
-            Update
-          </button>
-        </form>
+    <div className="bg-forms">
+      <div className="container py-4 d-flex justify-content-center align-items-center ">
+        <div className="phone-width">
+          <h2>Update Email and Password</h2>
+          <form onSubmit={formik.handleSubmit} className="forms p-3">
+            {renderInput}
+            <button type="submit" className="btn btn-primary w-100">
+              Update
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
 }
-
-
