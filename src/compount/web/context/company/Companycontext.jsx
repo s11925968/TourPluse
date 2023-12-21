@@ -1,5 +1,5 @@
-import {jwtDecode} from "jwt-decode";
-import { createContext, useEffect, useState } from "react";
+import { jwtDecode } from 'jwt-decode';
+import { createContext, useEffect, useState } from 'react';
 
 export let CompanyContext = createContext();
 
@@ -7,16 +7,31 @@ export function CompanyContextProvider({ children }) {
   const [company, setCompanycontext] = useState(null);
 
   const saveCurrentCompany = () => {
-    const token = localStorage.getItem("companyToken");
-    const decode = jwtDecode(token);
-    setCompanycontext(decode);
+    const token = localStorage.getItem('companyToken');
+    if (token) {
+      const decode = jwtDecode(token);
+      setCompanycontext(decode);
+    }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("companyToken")) {
+    const storedToken = localStorage.getItem('companyToken');
+    if (storedToken) {
       saveCurrentCompany();
+    } else {
+      // Token is not available, set company to null
+      setCompanycontext(null);
     }
   }, []);
+
+  useEffect(() => {
+    // If company is still undefined, fetch it again
+    if (company === undefined || company === null) {
+      saveCurrentCompany();
+    }
+  }, [company]);
+
+  console.log(company);
 
   return (
     <CompanyContext.Provider value={{ company, setCompanycontext }}>
