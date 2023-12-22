@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loader from '../../../shared/Loader.jsx';
 import { Link } from 'react-router-dom';
-
+import './Tourlist.css'
 export default function TourlistWeb() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -31,13 +31,13 @@ export default function TourlistWeb() {
   }
 
   return (
-    <div className="container">
+    <div className="tourlist container">
       <div className="row">
         {data.length ? (
           data.map((tour) => (
             <div key={tour._id} className="col-lg-4 mb-4">
-              <div>
-                <img src={tour.image.secure_url} className="w-100" alt={tour.name} />
+              <div className='image'>
+                <img src={tour.image.secure_url} className="w-50" alt={tour.name} />
               </div>
               <div className='text-center'>
                 <h3>{tour.name}</h3>

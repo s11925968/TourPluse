@@ -1,29 +1,32 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import Loader from '../../../shared/Loader.jsx';
-import { Link } from 'react-router-dom';
-import { CompanyContext } from '../../../web/context/company/Companycontext.jsx';
+import { Link, useParams } from 'react-router-dom';
 
-export default function Tourlist() {
+export default function SpesificTour() {
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const { company } = useContext(CompanyContext);
-  const operators = company?.id || '';  // Set to an empty string if null
   const [dataTour, setData] = useState("");
-  
+  const [loading,setLoading] = useState(false);
+  const {_id}=useParams();
+  console.log(_id);
   const getCategories = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getTour/${operators}`);
+      setLoading(true);
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getTour/${_id}`);
       console.log(data);
       setData(data.tour);
     } catch (error) {
       console.error('Error fetching tour data:', error);
+    }
+    finally{
+      setLoading(false);
     }
   };
   console.log(dataTour);
   
   useEffect(() => {
     getCategories();
-  }, [operators]); 
+  }, [_id]); 
 
   const handleProductClick = (productId) => {
     const clickedProduct = dataTour.find((tour) => tour._id === productId);
@@ -31,7 +34,9 @@ export default function Tourlist() {
       prevProduct && prevProduct._id === clickedProduct._id ? null : clickedProduct
     );
   };
-
+  if(loading){
+    return <Loader/>
+  }
   return (
     <div className="container py-4">
       <div className="row">
@@ -57,7 +62,6 @@ export default function Tourlist() {
                     <p>Location: {tour.location}</p>
                     <p>Meals: {tour.meals}</p>
                     <p>Note: {tour.note}</p>
-                    <Link className='btn btn-info' to={`/dashboard/tour/forceDelete/${tour._id}`}>Delete Tour</Link>
                   </div>
                 )}
               </div>

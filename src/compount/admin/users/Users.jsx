@@ -34,7 +34,7 @@ export default function Users() {
                 </tr>
               </thead>
               <tbody>
-                {data.length > 0 ? (
+                {data && data.length > 0 ? (
                   data.map((user, index) => (
                     <React.Fragment key={user._id}>
                       <tr>

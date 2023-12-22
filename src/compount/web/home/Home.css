@@ -236,22 +236,10 @@ a{
   justify-content:center;
   gap: 3px;
 }
-.operator .text-info .name-company h2{
-  position: relative;
-  
-}
-.operator .text-info .name-company h2{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top:220px;
-}
+
 @media (max-width:600px){
 
-  .operator .text-info .name-company h2{
-    top:150px;
-  }
+
   .category-phone{
     display: none !important;
   }
@@ -264,9 +252,6 @@ a{
   }
 }
 @media screen and (min-width: 600px) and (max-width: 1000px) {
-  .operator .text-info .name-company h2 {
-    top: 220px;
-  }
   .category-phone {
     display: none !important;
   }

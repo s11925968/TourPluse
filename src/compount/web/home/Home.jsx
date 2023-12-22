@@ -104,10 +104,7 @@ export default function Home() {
               </p>
             </div>
             <div className="col-lg-3 col-md-6 services-image text-center">
-              <img
-                src="/img/serives/plane.png"
-                alt="Best Flights Options"
-              />
+              <img src="/img/serives/plane.png" alt="Best Flights Options" />
               <h4 className="py-3">Best Flights Options</h4>
               <p>
                 Various flight classes, First class, Business Class, Premium
@@ -115,10 +112,7 @@ export default function Home() {
               </p>
             </div>
             <div className="col-lg-3 col-md-6 services-image text-center">
-              <img
-                src="/img/serives/rock.png"
-                alt="Islamic Tours"
-              />
+              <img src="/img/serives/rock.png" alt="Islamic Tours" />
               <h4 className="py-3">Islamic Tours</h4>
               <p>
                 Hajj and Umrah tours, with appropriate guide and schedule, with
@@ -155,14 +149,20 @@ export default function Home() {
                 <p>{selectedCategory.email}</p>
                 <p>{selectedCategory.phoneNumber}</p>
                 <p>{selectedCategory.founderName}</p>
-                <button className="btn btn-info" onClick={() => setSelectedCategory(null)}>
+                <p>
+                <Link to={`/tour/get/${selectedCategory._id}`} className="fs-3">Show Tours</Link>
+                </p>
+                <button
+                  className="btn btn-info"
+                  onClick={() => setSelectedCategory(null)}
+                >
                   Back to Categories
                 </button>
               </div>
             ) : (
               data?.map((tourOperator) => (
                 <div
-                  className="col-md-3 services-image text-center"
+                  className="col-md-3 services-image text-center my-3"
                   key={tourOperator.name}
                   onClick={() => handleCategoryClick(tourOperator)}
                 >
@@ -200,46 +200,34 @@ export default function Home() {
                   slidesPerView: 2,
                 },
                 1024: {
-                  slidesPerView: 2,
+                  slidesPerView: 3,
                 },
               }}
             >
               <h2 className="py-3">All Agencies</h2>
               {data.map((tourOperator) => (
                 <SwiperSlide key={tourOperator._id}>
-                  <div
-                    className="info-content-operator"
-                    onClick={() => handleOperatorClick(tourOperator._id)}
-                  >
-                    <div className="operator-image my-5">
-                      <img
-                        src={tourOperator.image.secure_url}
-                        className="img-fluid "
-                        alt={`Operator ${tourOperator._id}`}
-                      />
-                    </div>
-                    <div className="text-info text-center pt-3">
-                      <div className="name-company">
-                        <h2 className="fs-5 ">{tourOperator.name}</h2>
+                  <Link to={`/tour/get/${tourOperator._id}`} className="text-decoration-none">
+                    <div
+                      className={`info-content-operator ${
+                        selectedOperator === tourOperator._id ? "selected" : ""
+                      }`}
+                      onClick={() => handleOperatorClick(tourOperator._id)}
+                    >
+                      <div className="operator-image my-5">
+                        <img
+                          src={tourOperator.image.secure_url}
+                          className="img-fluid"
+                          alt={`Operator ${tourOperator._id}`}
+                        />
                       </div>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">FounderName:</span>
-                        {tourOperator.founderName}
-                      </h2>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">Address:</span>
-                        {tourOperator.address}
-                      </h2>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">PhoneNumber:</span>
-                        {tourOperator.phoneNumber}
-                      </h2>
-                      <p className="fs-5 text-white">
-                        <span className="text-white px-2">Description:</span>
-                        {tourOperator.description}
-                      </p>
+                      <div>
+                        <h2 className="fs-5 w-50 m-auto">
+                          {tourOperator.name}
+                        </h2>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))}
             </Swiper>

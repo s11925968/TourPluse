@@ -10,15 +10,14 @@ export default function CreatTour() {
   const { company } = useContext(CompanyContext);
   const [errorBackend, setErrorBackend] = useState("");
   const [loading, setLoading] = useState(false);
-  const operators = company?.id || null;
-  console.log(company);
+  const id = company?.id || null;
   const { _id } = useParams();
   const navgite = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
       image: "",
-      operatorId: operators,
+      operatorId: id,
       price: "",
       discount: "",
       location: "",
@@ -222,10 +221,8 @@ export default function CreatTour() {
             </button>
           </form>
           <div className="text-center w-100">
-              {errorBackend && (
-                <p className="text text-danger">{errorBackend}</p>
-              )}
-            </div>
+            {errorBackend && <p className="text text-danger">{errorBackend}</p>}
+          </div>
         </div>
       </div>
     </div>

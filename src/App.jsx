@@ -39,7 +39,9 @@ import SelectCategories from "./compount/dashbord/Tours/selectCategories/SelectC
 import Createtour from "./compount/dashbord/Tours/CreateTours/Createtour.jsx"
 import TourlistWeb from "./compount/web/Tour/TourList/TourListWeb.jsx";
 import DeleteTour from "./compount/dashbord/Tours/DeleteTour/DeleteTour.jsx";
-import UpdateOperator from './compount/admin/Operator/UpdateOperator/UpdateOperator.jsx'
+import UpdateOperator from './compount/admin/Operator/UpdateOperator/UpdateOperator.jsx';
+import Spesific from './compount/admin/Operator/spesificTour/Spesific';
+import SpesificTour from "./compount/web/Tour/spesificTour/SpesificTour.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -113,6 +115,10 @@ export default function App() {
           element:<TourlistWeb />,
         },
         {
+          path:'tour/get/:_id',
+          element:<SpesificTour />
+        },
+        {
           path: "*",
           element: <Page />,
         },
@@ -180,6 +186,10 @@ export default function App() {
         {
           path:'tour/get',
           element:<Tourlist />
+        },
+        {
+          path:'tour/get/:_id',
+          element:<Spesific />
         },
         {
           path: "*",
