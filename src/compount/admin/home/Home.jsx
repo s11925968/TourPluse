@@ -27,74 +27,77 @@ export default function Home() {
   }
   return (
     <div className="operator">
-        <div className="container d-flex justify-content-start align-items-center ">
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={50}
-            navigation
-            loop={true}
-            autoplay={{
-              delay: 3000,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              // when window width is >= 600px
-              600: {
-                slidesPerView: 1,
-              },
-              // when window width is >= 768px
-              768: {
-                slidesPerView: 2,
-              },
-              // when window width is >= 1024px
-              1024: {
-                slidesPerView: 2,
-              },
-            }}
-          >
-            <h2>All Agencies</h2>
-            {data?.length
-              ? data?.map((tourOperator) => (
-                  <SwiperSlide key={tourOperator._id}>
-                    <div className="info-content-operator">
-                      <div className="operator-image my-5">
-                        <img
-                          src={tourOperator.image.secure_url}
-                          className=""
-                          alt={`Operator ${tourOperator._id}`}
-                        />
-                      </div>
-                      <div className="text-info text-center pt-3">
-                        <div className="name-company">
-                          <h2 className="fs-5 ">
-                            {tourOperator.name}
-                          </h2>
-                        </div>
-                        <h2 className="fs-5">
-                          <span className="text-white pe-2">FounderName:</span>
-                          {tourOperator.founderName}
-                        </h2>
-                        <h2 className="fs-5">
-                          <span className="text-white pe-2">Address:</span>
-                          {tourOperator.address}
-                        </h2>
-                        <h2 className="fs-5">
-                          <span className="text-white pe-2">PhoneNumber:</span>
-                          {tourOperator.phoneNumber}
-                        </h2>
-                        <p className="fs-5 text-white">
-                          <span className="text-white px-2">Description:</span>
-                          {tourOperator.description}
-                        </p>
-                      </div>
+      <div className="container d-flex justify-content-start align-items-center ">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={50}
+          navigation
+          loop={true}
+          autoplay={{
+            delay: 3000,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            // when window width is >= 600px
+            600: {
+              slidesPerView: 1,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 2,
+            },
+            // when window width is >= 1024px
+            1024: {
+              slidesPerView: 2,
+            },
+          }}
+        >
+          <h2>All Agencies</h2>
+          {data?.length
+            ? data?.map((tourOperator) => (
+                <SwiperSlide key={tourOperator._id}>
+                  <div className="info-content-operator">
+                    <div className="operator-image my-5">
+                      <img
+                        src={tourOperator.image.secure_url}
+                        className=""
+                        alt={`Operator ${tourOperator._id}`}
+                      />
                     </div>
-                  </SwiperSlide>
-                ))
-              : "no data available"}
-          </Swiper>
-        </div>
+                    <div className="text-info text-center pt-3">
+                      <div className="name-company">
+                        <h2 className="fs-5 ">{tourOperator.name}</h2>
+                      </div>
+                      <h2 className="fs-5">
+                        <span className="text-white pe-2">FounderName:</span>
+                        {tourOperator.founderName}
+                      </h2>
+                      <h2 className="fs-5">
+                        <span className="text-white pe-2">Address:</span>
+                        {tourOperator.address}
+                      </h2>
+                      <h2 className="fs-5">
+                        <span className="text-white pe-2">PhoneNumber:</span>
+                        {tourOperator.phoneNumber}
+                      </h2>
+                      <p className="fs-5 text-white">
+                        <span className="text-white px-2">Description:</span>
+                        {tourOperator.description}
+                      </p>
+                    </div>
+                    <div>
+                      <h3>
+                        <Link to={`/update/${tourOperator._id}`}>update</Link>
+                      </h3>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))
+            : "no data available"}
+        </Swiper>
       </div>
-  )
+    </div>
+  );
 }

@@ -22,7 +22,7 @@ export default function Navbar({users,setUser}) {
     navgite("/login");
   };
   return (
-    <div className="back">
+    <div className="back w-100">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
         <div className="container">
           <Link to="/admin">
@@ -44,7 +44,7 @@ export default function Navbar({users,setUser}) {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
+            <ul className="navbar-nav ms-auto mb-lg-0  ">
               <li className="nav-item">
                 <Link
                   className="nav-link active text-white"
@@ -119,22 +119,22 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Operator
+                  Agency
                 </a>
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="/admin">
-                      Operators List
+                    Agency List
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/admin/operator/catgeoriesselect">
-                    Add Operator
+                    Add Agency
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="">
-                    Update Operator
+                    Update Agency
                     </Link>
                   </li>
                 </ul>
@@ -166,7 +166,7 @@ export default function Navbar({users,setUser}) {
                   Users
                 </Link>
               </li>
-              <li className="nav-item dropdown me-2 mb-4">
+              <li className="nav-item dropdown me-2">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
                   href="#"
@@ -176,7 +176,7 @@ export default function Navbar({users,setUser}) {
                 >
                   <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
                 </a>
-                <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
+                <ul className="dropdown-menu dropdown-menu-start text-center">
                   {!users ? (
                     <>
                       <li>

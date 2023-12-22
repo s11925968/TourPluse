@@ -23,7 +23,7 @@ export default function Navbar() {
     navgite("/logincompany");
   };
   return (
-    <div className="back">
+    <div className="back w-100">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
         <div className="container">
           <Link to="">
@@ -45,7 +45,7 @@ export default function Navbar() {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
+            <ul className="navbar-nav ms-auto mb-lg-0 d-flex align-items-center">
               <li className="nav-item">
                 <Link
                   className="nav-link active text-white"
@@ -56,7 +56,6 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle text-white"
@@ -128,7 +127,7 @@ export default function Navbar() {
                 </ul>
               </li>
 
-              <li className="nav-item dropdown me-2 mb-4">
+              <li className="nav-item dropdown me-2">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
                   href="#"
@@ -138,7 +137,7 @@ export default function Navbar() {
                 >
                   <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
                 </a>
-                <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
+                <ul className="dropdown-menu dropdown-menu-start text-center">
                   {company !== null ? (
                     <>
                       <li>

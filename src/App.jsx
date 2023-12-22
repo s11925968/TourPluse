@@ -39,6 +39,7 @@ import SelectCategories from "./compount/dashbord/Tours/selectCategories/SelectC
 import Createtour from "./compount/dashbord/Tours/CreateTours/Createtour.jsx"
 import TourlistWeb from "./compount/web/Tour/TourList/TourListWeb.jsx";
 import DeleteTour from "./compount/dashbord/Tours/DeleteTour/DeleteTour.jsx";
+import UpdateOperator from './compount/admin/Operator/UpdateOperator/UpdateOperator.jsx'
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -47,7 +48,6 @@ export default function App() {
     setUser(decode);
   };
   useEffect(()=>{
-
     if(localStorage.getItem("userToken")){
       saveCurrentUser();
     }
@@ -174,6 +174,10 @@ export default function App() {
           element:<Catgeoriesselect/>
         },
         {
+          path:'operator/UpdateOperator/:_id',
+          element:<UpdateOperator/>
+        },
+        {
           path:'tour/get',
           element:<Tourlist />
         },
@@ -209,8 +213,6 @@ export default function App() {
         },
       ]
     },
-    
   ]);
-
   return <RouterProvider router={router} />;
 }

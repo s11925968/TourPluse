@@ -27,7 +27,6 @@ const onSubmit = async (user) => {
         if (users) {
           // Check the role in the users state
           const userRole = users.role;
-      
           if (userRole === "User") {
             navigate('/');
             toast.success('login succesfully', {

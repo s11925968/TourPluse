@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Inpute from "../../../shared/Inpute";
 import axios from "axios";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../../../shared/Loader";
 export default function Creaetoperator() {
   const { _id } = useParams();
+  const [errorBackend, setErrorBackend] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navgite = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -21,6 +25,7 @@ export default function Creaetoperator() {
       phoneNumberEx: "",
     },
     onSubmit: async (users) => {
+      setLoading(true);
       const formdata = new FormData();
       formdata.append("name", users.name);
       formdata.append("image", users.image);
@@ -58,7 +63,9 @@ export default function Creaetoperator() {
           navgite("/admin/categories/get");
         }
       } catch (error) {
-        console.error("Error creating admin:", error);
+        setErrorBackend(error.response.data.message);
+      }finally{
+        setLoading(false);
       }
     },
   });
@@ -71,49 +78,49 @@ export default function Creaetoperator() {
       name: "name",
       type: "text",
       id: "name",
-      title: "Operator Name",
+      title: "Agency Name",
       value: formik.values.name,
     },
     {
       name: "address",
       type: "text",
       id: "address",
-      title: "Operator Address",
+      title: "Agency Address",
       value: formik.values.address,
     },
     {
       name: "email",
       type: "email",
       id: "email",
-      title: "Operator Email",
+      title: "Agency Email",
       value: formik.values.email,
     },
     {
       name: "phoneNumber",
       type: "number",
       id: "phoneNumber",
-      title: "Operator Phone Number",
+      title: "Agency Phone Number",
       value: formik.values.phoneNumber,
     },
     {
       name: "password",
       type: "password",
       id: "password",
-      title: "Operator Password",
+      title: "Agency Password",
       value: formik.values.password,
     },
     {
       name: "description",
       type: "text",
       id: "description",
-      title: "Operator Description",
+      title: "Agency Description",
       value: formik.values.description,
     },
     {
       name: "phoneNumberEx",
       type: "number",
       id: "phoneNumberEx",
-      title: "Operator Phone Number Ex",
+      title: "Agency Phone Number Ex",
       value: formik.values.phoneNumberEx,
     },
     {
@@ -127,7 +134,7 @@ export default function Creaetoperator() {
       name: "image",
       type: "file",
       id: "image",
-      title: "Operator Image",
+      title: "Agency Image",
       onChange: handelFileChange,
     },
   ];
@@ -148,17 +155,23 @@ export default function Creaetoperator() {
       />
     );
   });
+  if(loading){
+    return <Loader />;
+  }
   return (
-    <div className="bg-forms">
+    <div className="bg-forms py-4">
       <div className="container d-flex justify-content-center align-items-center mt-5">
         <div className="forms p-4">
           <h2 className="text-center"></h2>
-          <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
+          <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
             {renderInput}
             <button type="submit" className="w-100">
-              Add Operator
+              Add Agency
             </button>
           </form>
+          <div className="text-center w-100">
+            {errorBackend && <p className="text text-danger">{errorBackend}</p>}
+          </div>
         </div>
       </div>
     </div>
