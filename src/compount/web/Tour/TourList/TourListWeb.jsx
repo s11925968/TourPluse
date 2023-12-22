@@ -55,6 +55,7 @@ export default function TourlistWeb() {
                     <p>Location: {tour.location}</p>
                     <p>Meals: {tour.meals}</p>
                     <p>Note: {tour.note}</p>
+                    <Link to={`/tour/${tour._id}/review`}>Create Review</Link>
                   </div>
                 )}
               </div>

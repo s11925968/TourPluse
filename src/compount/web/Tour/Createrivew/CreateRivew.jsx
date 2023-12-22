@@ -80,7 +80,7 @@ export default function CreateRivew() {
         <div className="phone-width">
           <div className="">
             <form onSubmit={formik.handleSubmit} className="forms p-3">
-              <h2 className="text-center">Create ceview</h2>
+              <h2 className="text-center">Create Review</h2>
               {renderInput}
               <button
                 type="submit"
