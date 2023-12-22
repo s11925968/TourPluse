@@ -42,6 +42,7 @@ import DeleteTour from "./compount/dashbord/Tours/DeleteTour/DeleteTour.jsx";
 import UpdateOperator from './compount/admin/Operator/UpdateOperator/UpdateOperator.jsx';
 import Spesific from './compount/admin/Operator/spesificTour/Spesific';
 import SpesificTour from "./compount/web/Tour/spesificTour/SpesificTour.jsx";
+import CreateRivew from "./compount/web/Tour/Createrivew/CreateRivew.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -117,6 +118,10 @@ export default function App() {
         {
           path:'tour/get/:_id',
           element:<SpesificTour />
+        },
+        {
+          path:'tour/:_id/review',
+          element:<CreateRivew />
         },
         {
           path: "*",

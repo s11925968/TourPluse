@@ -8,12 +8,10 @@ export default function SpesificTour() {
   const [dataTour, setData] = useState("");
   const [loading,setLoading] = useState(false);
   const {_id}=useParams();
-  console.log(_id);
   const getCategories = async () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getTour/${_id}`);
-      console.log(data);
       setData(data.tour);
     } catch (error) {
       console.error('Error fetching tour data:', error);
@@ -23,7 +21,6 @@ export default function SpesificTour() {
     }
   };
   console.log(dataTour);
-  
   useEffect(() => {
     getCategories();
   }, [_id]); 

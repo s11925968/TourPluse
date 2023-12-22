@@ -1,66 +1,73 @@
-import React from 'react'
-import './footer.css'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import React from 'react';
+import './footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-export default function Footer() {
-  return (
-    <div>
-      <footer className="footers py-5" id="hire-me">
-        <div className="container">
-          <div className="row align-items-center pb-4">
-            <div className="col-md-4">
-              <div className='text-center'>
-              <p className="m-0 p-0 text-white">
-                Contact Us<br/> Sameh <span className='text-danger'>+972 59-559-763</span><br/>  Gazal <span className='text-danger'>+972 59-523-0081</span><br/>
-                Mo'tasem <span className='text-danger'>+972 56-867-6250</span>
-              </p>
-              </div>
-              
-            </div>
-            <div className="images col-md-4 text-center py-5">
-            <img
-              src="/images/fulllogo_transparent_nobuffer.png"
-              alt="logo"
-              className="logo"
-            />
-            </div>
-            <div className="col-md-4">
-              <p className="m-0 p-0 text-end text-center">
-                Made By <br />
-                <span className="text-white">
-                  <a
-                    href="https://www.facebook.com/profile.php?id=100010760257745"
-                    alt="link facebook"
-                    target="_blank"
-                  >
-                  <FontAwesomeIcon icon={faFacebook} className='brand brand-face'/>
-                    Sameh Issa
-                  </a>
-                  <br />
-                  <a
-                    href="https://www.facebook.com/ghazool.masri"
-                    alt="link facebook"
-                    target="_blank"
-                  >
-                                      <FontAwesomeIcon icon={faFacebook} className='brand brand-face'/>
+import { faDownload, faInfoCircle, faCogs, faMobileAlt, faUsers, faBuilding, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { faAndroid, faApple, faAws, faWindows } from '@fortawesome/free-brands-svg-icons';
 
-                    Gazal Masri
-                  </a>
-                  <br />
-                  <a
-                    href="https://www.facebook.com/profile.php?id=100007870096834"
-                    alt="link facebook"
-                    target="_blank"
-                  >
-                    <FontAwesomeIcon icon={faFacebook} className='brand brand-face'/>
-                    Mo'tasem a
-                  </a>
-                </span>
-              </p>
-            </div>
-          </div>
+function Footer() {
+  return (
+    <div className="footer container">
+      <div className="footer-logo"></div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Download</th>
+            <th>About</th>
+            <th>Resources</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Match way these she avoids seeing</td>
+            <td><FontAwesomeIcon icon={faAws}/> Web Browser </td>
+            <td>About social</td>
+            <td>Join</td>
+          </tr>
+          <tr>
+            <td>Death their fat off.</td>
+            <td><FontAwesomeIcon icon={faWindows} /> Windows</td>
+            <td>Security</td>
+            <td>Help center</td>
+          </tr>
+          <tr>
+            <td>Mobile experience</td>
+            <td><FontAwesomeIcon icon={faMobileAlt} /> Phone</td>
+            <td>Learn about our mobile app</td>
+            <td>Download now</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><FontAwesomeIcon icon={faApple} /> Mack</td>
+            <td>Customer Support</td>
+            <td>Developers</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><FontAwesomeIcon icon={faAndroid} /> Android</td>
+            <td>Partners</td>
+            <td>Status</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Careers-Join Us!</td>
+            <td>Communities</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <div className="word-spacing-copyright">
+        <div className="word-spacing">
+          <a href="support">Support</a>
+          <a href="docs">Docs</a>
+          <a href="terms">Terms of Use</a>
+          <a href="privacy">Privacy & terms</a>
         </div>
-      </footer>
+        <div className="copyright">©2023 Webestica All rights reserved.</div>
+      </div>
     </div>
   );
 }
+
+export default Footer;

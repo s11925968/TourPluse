@@ -31,7 +31,6 @@ export function CompanyContextProvider({ children }) {
     }
   }, [company]);
 
-  console.log(company);
 
   return (
     <CompanyContext.Provider value={{ company, setCompanycontext }}>

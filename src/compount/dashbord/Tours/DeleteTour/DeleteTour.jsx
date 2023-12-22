@@ -6,7 +6,6 @@ import Loader from '../../../shared/Loader'
 export default function DeleteTour() {
   const { id } = useParams();
   const [loading,setLoading] = useState(false );
-  console.log(id);
   const navigite=useNavigate();
   const removeTour = async () => {
     try {

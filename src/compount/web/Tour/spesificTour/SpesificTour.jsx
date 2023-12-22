@@ -19,13 +19,11 @@ export default function SpesificTour() {
     finally{
       setLoading(false);
     }
-  };
-  console.log(dataTour);
-  
+  };  
   useEffect(() => {
     getCategories();
   }, [_id]); 
-
+console.log(dataTour)
   const handleProductClick = (productId) => {
     const clickedProduct = dataTour.find((tour) => tour._id === productId);
     setSelectedProduct((prevProduct) =>
@@ -60,6 +58,7 @@ export default function SpesificTour() {
                     <p>Location: {tour.location}</p>
                     <p>Meals: {tour.meals}</p>
                     <p>Note: {tour.note}</p>
+                    <Link to={`/tour/${tour._id}/review`}>Create Review</Link>
                   </div>
                 )}
               </div>

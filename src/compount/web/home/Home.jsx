@@ -52,7 +52,6 @@ export default function Home() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
   useEffect(() => {
     getOperator();
   }, [current]);
