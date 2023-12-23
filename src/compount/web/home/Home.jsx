@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../../shared/Loader";
@@ -24,12 +23,19 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 export default function Home() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(1);
   const [selectedOperator, setSelectedOperator] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [BlogsData, setBlogsData] = useState("blogs");
+  const [selectedBlog, setSelectedBlog] = useState(null);
+  const handleBlogClick = (blogId) => {
+    setSelectedBlog(selectedBlog === blogId ? null : blogId);
+  };
+
   const getOperator = async () => {
     try {
       setIsLoading(true);
@@ -43,6 +49,10 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+  const getBlogs = async () => {
+    const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/blog`);
+    setBlogsData(data.blogs);
+  };
   const handleOperatorClick = (operatorId) => {
     const clickedOperator = data.find(
       (operator) => operator._id === operatorId
@@ -54,8 +64,9 @@ export default function Home() {
   };
   useEffect(() => {
     getOperator();
+    getBlogs();
   }, [current]);
-
+  console.log(BlogsData);
   if (isLoading) {
     return <Loader />;
   }
@@ -149,7 +160,12 @@ export default function Home() {
                 <p>{selectedCategory.phoneNumber}</p>
                 <p>{selectedCategory.founderName}</p>
                 <p>
-                <Link to={`/tour/get/${selectedCategory._id}`} className="fs-3">Show Tours</Link>
+                  <Link
+                    to={`/tour/get/${selectedCategory._id}`}
+                    className="fs-3"
+                  >
+                    Show Tours
+                  </Link>
                 </p>
                 <button
                   className="btn btn-info"
@@ -206,7 +222,10 @@ export default function Home() {
               <h2 className="py-3">All Agencies</h2>
               {data.map((tourOperator) => (
                 <SwiperSlide key={tourOperator._id}>
-                  <Link to={`/tour/get/${tourOperator._id}`} className="text-decoration-none">
+                  <Link
+                    to={`/tour/get/${tourOperator._id}`}
+                    className="text-decoration-none"
+                  >
                     <div
                       className={`info-content-operator ${
                         selectedOperator === tourOperator._id ? "selected" : ""
@@ -258,6 +277,63 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div>
+        <h2>Blog List</h2>
+        {BlogsData && BlogsData.length > 0 ? (
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={50}
+            navigation
+            loop={true}
+            autoplay={{
+              delay: 3000,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              600: {
+                slidesPerView: 1,
+              },
+              900: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            {BlogsData.map((blog) => (
+              <SwiperSlide key={blog._id}>
+                <div>
+                  <div className="operator-image my-5">
+                    <img
+                      src="/images/images.jpeg"
+                      alt={`Blog ${blog._id}`}
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <h3>{blog.title}</h3>
+                    <Link
+                      className="btn btn-info"
+                      to="#"
+                      onClick={() => handleBlogClick(blog._id)}
+                    >
+                      Details
+                    </Link>
+                    {selectedBlog === blog._id && <p>{blog.description}</p>}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p>No blogs available</p>
+        )}
+      </div>
+
       <section className="map position-relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27002.02680188146!2d35.22707967947037!3d32.22434418493328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ce0f650425697%3A0x7f0ba930bd153d84!2sNablus!5e0!3m2!1sen!2s!4v1701524940071!5m2!1sen!2s"

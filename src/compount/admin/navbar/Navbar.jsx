@@ -69,6 +69,24 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  Blogs
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/admin/blog/createBlog">
+                      Add Blogs
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle text-white"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Admin
                 </a>
                 <ul className="dropdown-menu">
@@ -213,7 +231,7 @@ export default function Navbar({users,setUser}) {
                   )}
                 </ul>
               </li>
-
+              
             </ul>
           </div>
         </div>

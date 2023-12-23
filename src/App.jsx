@@ -43,6 +43,7 @@ import UpdateOperator from './compount/admin/Operator/UpdateOperator/UpdateOpera
 import Spesific from './compount/admin/Operator/spesificTour/Spesific';
 import SpesificTour from "./compount/web/Tour/spesificTour/SpesificTour.jsx";
 import CreateRivew from "./compount/web/Tour/Createrivew/CreateRivew.jsx";
+import CreateBlog from "./compount/admin/CreateBlogs/CreateBlog.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -195,6 +196,10 @@ export default function App() {
         {
           path:'tour/get/:_id',
           element:<Spesific />
+        },
+        {
+          path:'blog/createBlog',
+          element:<CreateBlog/>
         },
         {
           path: "*",

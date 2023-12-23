@@ -1,0 +1,67 @@
+.footer {
+  background-color: #faf9f9;
+  padding: 20px 0;
+  font-size: 0.9em;
+}
+
+.footer table {
+  margin: 10px 20px;
+  padding: 10px;
+  text-align: left;
+  width: 90%;
+}
+
+.footer-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.logo1 {
+  width: 40px;
+  height: 40px;
+}
+
+.word-spacing-copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  padding: 10px 20px; /* Add padding for spacing */
+  background-color: #faf9f9; /* Background color */
+  font-size: 0.9em;
+}
+
+.word-spacing {
+  display: flex;
+}
+
+.word-spacing a {
+  text-decoration: none;
+  color: #333; /* Link color */
+  margin-right: 20px; /* Adjust the spacing between links */
+}
+
+.copyright {
+  text-align: right;
+  color: #333; /* Copyright text color */
+}
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    font-size: 12px;
+  }
+
+  .footer table {
+    width: 100%;
+  }
+
+  .footer .images img {
+    width: 40%;
+    margin-top: 10px !important;
+  }
+
+  /* Remove .footers */
+}

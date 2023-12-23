@@ -23,7 +23,6 @@ export default function SpesificTour() {
   useEffect(() => {
     getCategories();
   }, [_id]); 
-console.log(dataTour)
   const handleProductClick = (productId) => {
     const clickedProduct = dataTour.find((tour) => tour._id === productId);
     setSelectedProduct((prevProduct) =>

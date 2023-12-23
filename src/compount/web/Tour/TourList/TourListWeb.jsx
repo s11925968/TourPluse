@@ -18,7 +18,6 @@ export default function TourlistWeb() {
   };
 
   const { data, isLoading } = useQuery('getcategories', getCategories);
-  console.log(data);
   const handleProductClick = (productId) => {
     const clickedProduct = data.find((tour) => tour._id === productId);
     setSelectedProduct((prevProduct) =>

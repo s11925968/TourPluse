@@ -20,7 +20,6 @@ export default function SpesificTour() {
       setLoading(false);
     }
   };
-  console.log(dataTour);
   useEffect(() => {
     getCategories();
   }, [_id]); 
