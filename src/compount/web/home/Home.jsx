@@ -30,7 +30,7 @@ export default function Home() {
   const [current, setCurrent] = useState(1);
   const [selectedOperator, setSelectedOperator] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [BlogsData, setBlogsData] = useState("blogs");
+  const [BlogsData, setBlogsData] = useState("");
   const [selectedBlog, setSelectedBlog] = useState(null);
   const handleBlogClick = (blogId) => {
     setSelectedBlog(selectedBlog === blogId ? null : blogId);
@@ -304,26 +304,26 @@ export default function Home() {
               },
             }}
           >
-            {BlogsData.map((blog) => (
-              <SwiperSlide key={blog._id}>
+            {BlogsData &&BlogsData.map((blogs) => (
+              <SwiperSlide key={blogs._id}>
                 <div>
                   <div className="operator-image my-5">
                     <img
                       src="/images/images.jpeg"
-                      alt={`Blog ${blog._id}`}
+                      alt={`Blog ${blogs._id}`}
                       className="img-fluid"
                     />
                   </div>
                   <div className="text-center">
-                    <h3>{blog.title}</h3>
+                    <h3>{blogs.title}</h3>
                     <Link
                       className="btn btn-info"
                       to="#"
-                      onClick={() => handleBlogClick(blog._id)}
+                      onClick={() => handleBlogClick(blogs._id)}
                     >
                       Details
                     </Link>
-                    {selectedBlog === blog._id && <p>{blog.description}</p>}
+                    {selectedBlog === blogs._id && <p>{blogs.description}</p>}
                   </div>
                 </div>
               </SwiperSlide>
