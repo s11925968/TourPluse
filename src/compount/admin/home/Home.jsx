@@ -1,121 +1,206 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "./Getoperator.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../shared/Loader";
 
-export default function Home() {
+export default function Home({ users }) {
   const [selectedTour, setSelectedTour] = useState(null);
+  const [current, setCurrent] = useState(1);
+  const [title, setTitle] = useState(null);
+  const [dataOperater, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedOperator, setSelectedOperator] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showComments, setShowComments] = useState(false); // Add showComments state
 
   const getOperator = async () => {
-    const token = localStorage.getItem("userToken");
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_URL_LINK}/operator/get`,
-      {
-        headers: {
-          Authorization: `ghazal__${token}`,
-        },
-      }
+    try {
+      setIsLoading(true);
+      const token = localStorage.getItem("userToken");
+      const params = new URLSearchParams();
+      params.append("page", current);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/operator/get?${params.toString()}&limit=8`,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`,
+          },
+        }
+      );
+      setTitle(data.title);
+      setData(data.tourOperator);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleOperatorClick = (operatorId) => {
+    const clickedOperator = dataOperater.find(
+      (operator) => operator._id === operatorId
     );
-    return data.tourOperator;
+    setSelectedOperator(clickedOperator);
+  };
+console.log(dataOperater);
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
   };
 
-  const { data, isLoading } = useQuery("getOperator", getOperator);
-
-  const handleTourClick = (tourOperator) => {
-    setSelectedTour(selectedTour === tourOperator ? null : tourOperator);
+  const handlePageClick = (pageNumber) => {
+    setCurrent(pageNumber + 1);
+    setSelectedCategory(null);
   };
+
+  // const calculateAvgRating = (reviews) => {
+  //   if (reviews.length === 0) {
+  //     return 0;
+  //   }
+
+  //   const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+  //   return Math.round(totalRating / reviews.length);
+  // };
+
+  useEffect(() => {
+    getOperator();
+  }, [current]);
 
   if (isLoading) {
     return <Loader />;
   }
 
   return (
-    <div className="operator">
-      <div className="container d-flex justify-content-start align-items-center">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={50}
-          navigation
-          loop={true}
-          autoplay={{
-            delay: 5000,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          breakpoints={{
-            600: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 2,
-            },
-          }}
-        >
-          <h2 className="mb-4">All Agencies</h2>
-          {data?.length ? (
-            data?.map((tourOperator) => (
-              <SwiperSlide key={tourOperator._id}>
-                <div className="info-content-operator">
+    <section className="category-serives container pt-5">
+      <div className="info-category">
+        <h2>CATEGORY</h2>
+        <p>All Agencies</p>
+      </div>
+      <div className="services my-5">
+        <div className="row">
+          {selectedCategory ? (
+            <div className="col-md-12 text-center">
+              <h2>{selectedCategory.name}</h2>
+              <p>{selectedCategory.description}</p>
+              <p>{selectedCategory.address}</p>
+              <p>{selectedCategory.email}</p>
+              <p>{selectedCategory.phoneNumber}</p>
+              <p>{selectedCategory.founderName}</p>
+              <div className="d-flex w-100 justify-content-center">
+              <div className="text-center">
+                <Link
+                  to={`/admin/operator/UpdateOperator/${selectedCategory._id}`}
+                  className="btn btn-info me-4"
+                >
+                  Update Agency
+                </Link>
+              </div>
+              <div className="d-flex justify-content-center align-items-center">
+                <div>
+                  <Link to="" className="btn btn-info">
+                    Show Tours
+                  </Link>
+                </div>
+              </div>
+              </div>
+              {showComments && (
+                <div>
+                  {selectedCategory.rev.map((review, index) => (
+                    <div key={review._id}>
+                      <h1>Comment {index}</h1>
+                      <h2>{review.comment}</h2>
+                      {Array.from({ length: review.rating }).map(
+                        (_, starIndex) => (
+                          <FontAwesomeIcon
+                            key={starIndex}
+                            icon={faStar}
+                            className=""
+                          />
+                        )
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <button
+                className="btn btn-info mt-3"
+                onClick={() => setSelectedCategory(null)}
+              >
+                Back to Categories
+              </button>
+            </div>
+          ) : (
+            <>
+              {dataOperater?.map((tourOperator, index) => {
+                return (
                   <div
-                    className="operator-image my-5"
-                    onClick={() => handleTourClick(tourOperator)}
+                    className="col-md-3 services-image text-center my-3"
+                    key={tourOperator.name}
+                    onClick={() => handleCategoryClick(tourOperator)}
                   >
                     <img
                       src={tourOperator.image.secure_url}
                       alt={`Operator ${tourOperator._id}`}
+                      className="w-50 rounded-pill"
                     />
-                  </div>
-                  {selectedTour === tourOperator && (
-                    <div className="text-info text-center pt-3">
-                      <div className="name-company">
-                        <h2 className="fs-5 ">{tourOperator.name}</h2>
-                      </div>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">FounderName:</span>
-                        {tourOperator.founderName}
-                      </h2>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">Address:</span>
-                        {tourOperator.address}
-                      </h2>
-                      <h2 className="fs-5">
-                        <span className="text-white pe-2">PhoneNumber:</span>
-                        {tourOperator.phoneNumber}
-                      </h2>
-                      <p className="fs-5 text-white">
-                        <span className="text-white px-2">Description:</span>
-                        {tourOperator.description}
-                      </p>
-                    </div>
-                  )}
-                  <p className="text-center">
-                    <Link
-                      to={`/admin/operator/UpdateOperator/${tourOperator._id}`}
-                      className="btn btn-primary btn-xs"
-                    >
-                      Update Agency
+                    <h4 className="py-3">{tourOperator.name}</h4>
+                    <Link to="#" className="btn btn-info">
+                      Click To Show Details
                     </Link>
-                  </p>
-                </div>
-              </SwiperSlide>
-            ))
-          ) : (
-            <p>No data available</p>
+                  </div>
+                );
+              })}
+              <nav aria-label="Page navigation example ">
+                <ul className="pagination justify-content-center my-5">
+                  <li
+                    className={`z-1 page-item ${
+                      current === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageClick(current - 2)}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  {Array.from({ length: Math.ceil(title / 8) || 0 }).map(
+                    (_, pageIndex) => (
+                      <li
+                        key={pageIndex}
+                        className={`z-1 page-item ${
+                          current === pageIndex + 1 ? "active" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(pageIndex)}
+                        >
+                          {pageIndex + 1}
+                        </button>
+                      </li>
+                    )
+                  )}
+                  <li
+                    className={`z-1 page-item ${
+                      current === Math.ceil(title / 8) ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageClick(current)}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </>
           )}
-        </Swiper>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

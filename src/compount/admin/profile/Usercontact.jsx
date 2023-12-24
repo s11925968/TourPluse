@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import style from './Profile.module.css';
-import { Link, Outlet, useParams } from 'react-router-dom';
-import axios from 'axios';
 import Loader from '../../shared/Loader';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-export default function Profile() {
+import style from './Userinfo.module.css'; // Make sure to import your CSS module
+
+export default function Usercontact() {
   const { _id } = useParams();
   const token = localStorage.getItem('userToken');
   const [loader, setLoader] = useState(false);
@@ -21,14 +22,14 @@ export default function Profile() {
           }
         }
       );
-      setData(data);
+      setData(data.user);
     } catch (error) {
       console.log(error);
     } finally {
       setLoader(false);
     }
   }
-  console.log(data);
+
   useEffect(() => {
     getProfile();
   }, [_id]);
@@ -38,16 +39,28 @@ export default function Profile() {
   }
 
   return (
-    <div className={style.profile}>
-      <div className={style.profileLinks}>
-        <nav>
-          <Link to="">info</Link>
-          <Link to="contact">contact</Link>
-        </nav>
-      </div>
-      <div className={style.userData}>
-        <Outlet />
-      </div>
+    <div className={style.userInfo}>
+      <table className={style.userTable}>
+        <tbody>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>User Email</td>
+            <td>{data.email}</td>
+          </tr>
+          <tr>
+            <td>User Role</td>
+            <td>{data.role}</td>
+          </tr>
+          <tr>
+            <td>User Status</td>
+            <td>{data.status}</td>
+          </tr>
+          
+        </tbody>
+      </table>
     </div>
   );
 }

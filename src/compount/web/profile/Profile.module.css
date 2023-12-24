@@ -1,0 +1,48 @@
+.profile {
+  display: flex;
+  margin-top: 120px;
+  height: 80vh;
+}
+
+.profileLinks {
+  background-color: #2c3e50;
+  width: 250px;
+  padding: 20px;
+  color: white;
+  border-radius:0 20% 20% 0;
+  -webkit-border-radius:0 20% 20% 0;
+  -moz-border-radius:0 20% 20% 0;
+  -ms-border-radius:0 20% 20% 0;
+  -o-border-radius:0 20% 20% 0;
+}
+
+.profileLinks nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profileLinks nav a {
+  text-decoration: none;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.profileLinks nav a:hover {
+  background-color: #34495e;
+}
+
+.userData {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.userData img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}

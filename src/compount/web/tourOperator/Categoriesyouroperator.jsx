@@ -16,18 +16,19 @@ export default function Touroperatorcategorite() {
   const getTourOperators=async()=>{
     try {
       const token=localStorage.getItem('userToken');
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/allTourOperator/${_id}`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/tourOperator/${_id}?limit=6`, {
         headers: {
           Authorization: `ghazal__${token}`
         },
       });
-      return data.tourOperator;
+      return data;
     } catch (error) {
       console.error('Error fetching admin data:', error);
       throw error;
     }
   }
   const {data,isLoading}=useQuery('gettouroperator',getTourOperators);
+  console.log(data);
   if(isLoading){
     return <Loader />;
   }
@@ -59,10 +60,9 @@ export default function Touroperatorcategorite() {
               slidesPerView: 2,
             },
           }}
-         
         >
-          {data?.length
-            ? data?.map((catagourie) => (
+          {data.tourOperator?.length
+            ? data.tourOperator?.map((catagourie) => (
                 <SwiperSlide key={catagourie._id}>
                   <div className='info-content'>
                     <div className='operator-image'>

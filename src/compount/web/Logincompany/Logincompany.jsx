@@ -84,7 +84,6 @@ export default function Logincompany() {
     <div className="bg-forms">
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="phone-width">
-          <h2>Log in</h2>
           <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
             <button
@@ -92,7 +91,7 @@ export default function Logincompany() {
               className="btn btn-primary w-100"
               disabled={!formik.isValid}
             >
-              Submit
+              Log in
             </button>
             <Link to="/auth/sendCode" className="btn btn-primary mt-4">
               Forgot Password

@@ -1,0 +1,32 @@
+/* Userinfo.module.css */
+
+.userInfo {
+  padding: 20px;
+}
+
+.userTable {
+  margin: auto;
+  width: 60%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.userTable th,
+.userTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.userTable th {
+  background-color: #3498db;
+  color: white;
+}
+
+.userTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.userTable tr:hover {
+  background-color: #e5e5e5;
+}

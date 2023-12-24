@@ -1,20 +1,22 @@
-.tourlist{
+.tourlist-web{
   display: flex;
-  height: 100vh;
   align-items: center;
 }
-.tourlist .image{
+.tourlist-web .image{
   display: flex;
   width: 100%;
   justify-content: center;
 }
+.tourlist-web .image img{
+  width: 50%;
+  margin-top:110px ;
+}
 @media (max-width:600px){
-  .tourlist{
+  .tourlist-web{
     display: flex;
-    height: 120vh;
     align-items: center;
   }
-  .tourlist .image img{
-    width: 40%!important;
+  .tourlist-web .image img{
+    width: 25%;
   }
 }

@@ -13,7 +13,7 @@ import {
     QueryClientProvider,
     } from 'react-query'
 import { CompanyContextProvider } from './compount/web/context/company/Companycontext.jsx'
-    const queryClient = new QueryClient()
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>

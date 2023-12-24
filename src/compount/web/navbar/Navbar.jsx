@@ -15,7 +15,13 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import Loader from "../../shared/Loader";
 export default function Navbar({ users, setUser}) {
+  const token = localStorage.getItem('userToken');
+  const [loader, setLoader] = useState(false);
+  const [data, setData] = useState("");
+
   const navgite = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState(""); // State to manage navbar background color
   
@@ -41,12 +47,40 @@ export default function Navbar({ users, setUser}) {
       aboutElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
+  
+  const getProfile = async () => {
+    try {
+      setLoader(true);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/user/${users.id}`,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`
+          }
+        }
+      );
+      setData(data.user);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoader(false);
+    }
+  }
+  console.log(data);
+  useEffect(() => {
+    if (users) {
+      getProfile();
+    }
+  }, [users]);
+  console.log(users);
   const logout = () => {
     localStorage.removeItem("userToken");
     setUser(null);
     navgite("/");
   };
+  if(loader){
+    return <Loader/>
+  }
   return (
     <div className="back">
       <nav
@@ -116,7 +150,6 @@ export default function Navbar({ users, setUser}) {
                   Tours
                 </Link>
               </li>
-              {users && (
                 <li className="nav-item">
                   <Link
                     className="nav-link  text-white"
@@ -127,7 +160,6 @@ export default function Navbar({ users, setUser}) {
                     Tourism Company
                   </Link>
                 </li>
-              )}
               <li className="nav-item dropdown me-2 mb-4">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
@@ -136,7 +168,7 @@ export default function Navbar({ users, setUser}) {
                   data-bs-toggle="dropdown" // Add data-bs-toggle attribute
                   aria-expanded="false"
                 >
-                  <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
+                  {data &&data?data.userName:"acount"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
                   {!users ? (
@@ -166,8 +198,8 @@ export default function Navbar({ users, setUser}) {
                   ) : (
                     <>
                       <li>
-                        <Link className="dropdown-item text-black" to="/user/profile/444">
-                          <FontAwesomeIcon icon={faUser} className="pe-2" />
+                        <Link className="dropdown-item text-black" to={`/user/profile/${users.id}`}>
+                          <FontAwesomeIcon icon={faUser} className="pe-2"/>
                           Profile
                         </Link>
                       </li>

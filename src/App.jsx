@@ -44,6 +44,13 @@ import Spesific from './compount/admin/Operator/spesificTour/Spesific';
 import SpesificTour from "./compount/web/Tour/spesificTour/SpesificTour.jsx";
 import CreateRivew from "./compount/web/Tour/Createrivew/CreateRivew.jsx";
 import CreateBlog from "./compount/admin/CreateBlogs/CreateBlog.jsx";
+import CreateRivewCompany from './compount/web/tourOperator/Createrivew/CreateRivew.jsx';
+import Userinfo from './compount/web/profile/Userinfo.jsx';
+import Usercontact from './compount/web/profile/Usercontact.jsx';
+import ProfileAdmin from './compount/admin/profile/Profile.jsx';
+import UserinfoAdmin from './compount/admin/profile/Userinfo.jsx'
+import UsercontactAdmin from './compount/admin/profile/Usercontact.jsx';
+
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -63,7 +70,7 @@ export default function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Home users={users} />,
         },
         {
           path: "about",
@@ -122,7 +129,25 @@ export default function App() {
         },
         {
           path:'tour/:_id/review',
-          element:<CreateRivew />
+          element:<CreateRivew users={users} />
+        },
+        {
+          path:'company/:_id/review',
+          element:<CreateRivewCompany users={users}/>
+        },
+        {
+          path:'user/profile/:_id',
+          element:<Profile />,
+          children:[
+            {
+              path:'',
+              element:<Userinfo />,
+            },
+            {
+              path:'contact',
+              element:<Usercontact />,
+            },
+          ]
         },
         {
           path: "*",
@@ -200,6 +225,20 @@ export default function App() {
         {
           path:'blog/createBlog',
           element:<CreateBlog/>
+        },
+        {
+          path:'user/profile/:_id',
+          element:<ProfileAdmin />,
+          children:[
+            {
+              path:'',
+              element:<UserinfoAdmin />,
+            },
+            {
+              path:'contact',
+              element:<UsercontactAdmin />,
+            },
+          ]
         },
         {
           path: "*",

@@ -30,13 +30,13 @@ export default function TourlistWeb() {
   }
 
   return (
-    <div className="tourlist container">
+    <div className="tourlist-web container">
       <div className="row">
         {data.length ? (
           data.map((tour) => (
             <div key={tour._id} className="col-lg-4 mb-4">
               <div className='image'>
-                <img src={tour.image.secure_url} className="w-50" alt={tour.name} />
+                <img src={tour.image.secure_url}  alt={tour.name} />
               </div>
               <div className='text-center'>
                 <h3>{tour.name}</h3>

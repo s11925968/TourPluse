@@ -20,7 +20,7 @@ export default function CreateRivew({users}) {
   const onSubmit = async (users) => {
     const token = localStorage.getItem("userToken");
     const { data } = await axios.post(
-      `${import.meta.env.VITE_URL_LINK}/tour/${_id}/review`,
+      `${import.meta.env.VITE_URL_LINK}/operator/${_id}/reviewOp`,
       users,
       {
         headers: {
@@ -85,14 +85,9 @@ export default function CreateRivew({users}) {
         <div className="phone-width">
           <div className="">
             <form onSubmit={formik.handleSubmit} className="forms p-3">
-              <h2 className="text-center">Create Review</h2>
               {renderInput}
-              <button
-                type="submit"
-                disabled={!formik.isValid}
-                className="w-100"
-              >
-                Submit
+              <button type="submit" disabled={!formik.isValid} className="w-100">
+                Create Review
               </button>
             </form>
           </div>

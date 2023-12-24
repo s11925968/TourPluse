@@ -5,7 +5,7 @@ import axios from 'axios';
 import Loader from '../../shared/Loader';
 
 export default function Profile() {
-  const { _id } = useParams();
+  const { id } = useParams();
   const token = localStorage.getItem('userToken');
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState("");
@@ -14,7 +14,7 @@ export default function Profile() {
     try {
       setLoader(true);
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/user/${_id}`,
+        `${import.meta.env.VITE_URL_LINK}/user/${id}`,
         {
           headers: {
             Authorization: `ghazal__${token}`
@@ -31,7 +31,7 @@ export default function Profile() {
   console.log(data);
   useEffect(() => {
     getProfile();
-  }, [_id]);
+  }, [id]);
 
   if (loader) {
     return <Loader />;

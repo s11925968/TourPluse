@@ -14,8 +14,13 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import Loader from "../../shared/Loader";
 export default function Navbar({users,setUser}) {
+
   const navgite=useNavigate();
+  
+
   const logout = () => {
     localStorage.removeItem("userToken");
     setUser(null);
@@ -210,8 +215,8 @@ export default function Navbar({users,setUser}) {
                   ) : (
                     <>
                       <li>
-                        <Link className="dropdown-item text-black">
-                          <FontAwesomeIcon icon={faUser} className="pe-2" />
+                      <Link className="dropdown-item text-black" to={`/admin/user/profile/${users.id}`}>
+                          <FontAwesomeIcon icon={faUser} className="pe-2"/>
                           Profile
                         </Link>
                       </li>
