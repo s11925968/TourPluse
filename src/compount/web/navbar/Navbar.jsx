@@ -66,13 +66,11 @@ export default function Navbar({ users, setUser}) {
       setLoader(false);
     }
   }
-  console.log(data);
   useEffect(() => {
     if (users) {
       getProfile();
     }
   }, [users]);
-  console.log(users);
   const logout = () => {
     localStorage.removeItem("userToken");
     setUser(null);

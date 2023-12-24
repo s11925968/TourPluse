@@ -26,7 +26,7 @@ import "swiper/css/scrollbar";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
-export default function Home({users}) {
+export default function Home({ users }) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(1);
@@ -45,9 +45,11 @@ export default function Home({users}) {
       setIsLoading(true);
       const params = new URLSearchParams();
       params.append("page", current);
-  
+
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/operator/getActive?${params.toString()}&limit=8`
+        `${
+          import.meta.env.VITE_URL_LINK
+        }/operator/getActive?${params.toString()}&limit=8`
       );
       setTitle(data.title);
       setData(data.tourOperator);
@@ -74,17 +76,16 @@ export default function Home({users}) {
     setCurrent(pageNumber + 1);
     setSelectedCategory(null);
   };
-  
+
   const calculateAvgRating = (reviews) => {
     if (reviews.length === 0) {
       return 0;
     }
-  
+
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
-    
-  
+
   useEffect(() => {
     getOperator();
     getBlogs();
@@ -168,8 +169,7 @@ export default function Home({users}) {
       </section>
       <section className="category-serives container pt-5">
         <div className="info-category">
-          <h2>CATEGORY</h2>
-          <p>All Agencies</p>
+          <h2>AGENCIES</h2>
         </div>
         <div className="services my-5">
           <div className="row">
@@ -211,7 +211,7 @@ export default function Home({users}) {
                   <div>
                     {selectedCategory.rev.map((review, index) => (
                       <div key={review._id}>
-                        <h1>Comment {index}</h1>
+                        <h1>Comment {index+1}</h1>
                         <h2>{review.comment}</h2>
                         {Array.from({ length: review.rating }).map(
                           (_, starIndex) => (
@@ -402,7 +402,6 @@ export default function Home({users}) {
         </div>
       </section>
       <div>
-        <h2>Blog List</h2>
         {BlogsData && BlogsData.length > 0 ? (
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}

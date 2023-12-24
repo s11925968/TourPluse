@@ -43,6 +43,8 @@ export default function Profile() {
         <nav>
           <Link to="">info</Link>
           <Link to="contact">contact</Link>
+          <Link to="changePassword">Change Password</Link>
+          <Link to="changeEmail">Change Email</Link>
         </nav>
       </div>
       <div className={style.userData}>

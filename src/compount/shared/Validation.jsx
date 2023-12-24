@@ -27,3 +27,18 @@ export const registerReview = yup.object({
     .min(1, "Must be greater than or equal to 1")
     .max(5, "Must be less than or equal to 5"),
 });
+export const registerChangePassword= yup.object({
+  password:yup.string().required("Password is required"),
+  newPassword: yup.string()
+    .required("Password is required")
+    .matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character'),
+  confirmPassword: yup.string()
+    .required('Confirm password is required')
+    .oneOf([yup.ref('newPassword'), null], 'Passwords must match'),
+});
+export const registerChangeEmail = yup.object({
+  newEmail: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string()
+    .required("Password is required")
+    .matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character'),
+});

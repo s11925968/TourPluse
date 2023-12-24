@@ -14,18 +14,46 @@ import {
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import Loader from "../../shared/Loader";
+import axios from "axios";
 export default function Navbar({users,setUser}) {
-
+  const token = localStorage.getItem('userToken');
+  const [loader, setLoader] = useState(false);
+  const [data, setData] = useState("");
   const navgite=useNavigate();
-  
+  const getProfile = async () => {
+    try {
+      setLoader(true);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/user/${users.id}`,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`
+          }
+        }
+      );
+      setData(data.user);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoader(false);
+    }
+  }
+  console.log(data);
+  useEffect(() => {
+    if (users) {
+      getProfile();
+    }
+  }, [users]);
 
   const logout = () => {
     localStorage.removeItem("userToken");
     setUser(null);
     navgite("/login");
   };
+  if(loader){
+    return <Loader />;
+  }
   return (
     <div className="back w-100">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
@@ -59,12 +87,6 @@ export default function Navbar({users,setUser}) {
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
                 </Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" aria-current="page" href="#">
-                  <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
-                  Trips
-                </a>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -180,15 +202,6 @@ export default function Navbar({users,setUser}) {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-white"
-                  aria-current="page"
-                  to="/admin/users"
-                >
-                  Users
-                </Link>
-              </li>
               <li className="nav-item dropdown me-2">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
@@ -197,7 +210,7 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown" // Add data-bs-toggle attribute
                   aria-expanded="false"
                 >
-                  <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
+                  {data &&data?data.userName:"acount"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start text-center">
                   {!users ? (

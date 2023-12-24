@@ -7,7 +7,6 @@ import { faAndroid, faApple, faAws, faWindows } from '@fortawesome/free-brands-s
 function Footer() {
   return (
     <div className="footer container">
-        <h1 className='text-center'>Welcome to the Admin Page</h1>
       <div className="footer-logo"></div>
       <table>
         <thead>

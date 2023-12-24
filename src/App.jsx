@@ -14,7 +14,6 @@ import Login from "./compount/web/login/Login.jsx";
 import { jwtDecode } from "jwt-decode";
 import Catagouries from "./compount/web/catagouries/Catagouries.jsx";
 import Categoriesyouroperator from "./compount/web/tourOperator/Categoriesyouroperator.jsx";
-import Users from "./compount/admin/users/Users.jsx";
 import Admin from "./compount/admin/Admin/getadmin/Admin.jsx";
 import Creatadmin from "./compount/admin/Admin/creatadmin/Creatadmin.jsx";
 import Updata from "./compount/admin/Admin/updata/Updata.jsx";
@@ -50,7 +49,10 @@ import Usercontact from './compount/web/profile/Usercontact.jsx';
 import ProfileAdmin from './compount/admin/profile/Profile.jsx';
 import UserinfoAdmin from './compount/admin/profile/Userinfo.jsx'
 import UsercontactAdmin from './compount/admin/profile/Usercontact.jsx';
-
+import ChangePassword from './compount/web/profile/ChangePassword.jsx'
+import ChangePasswordAdmin from './compount/admin/profile/ChangePassword.jsx'
+import ChangeEmail from "./compount/web/profile/ChangeEmail.jsx";
+import ChangeEmailAdmin from "./compount/admin/profile/ChangeEmail";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -147,6 +149,14 @@ export default function App() {
               path:'contact',
               element:<Usercontact />,
             },
+            {
+              path:'changePassword',
+              element:<ChangePassword/>
+            },
+            {
+              path:'changeEmail',
+              element:<ChangeEmail/>
+            },
           ]
         },
         {
@@ -169,10 +179,6 @@ export default function App() {
         {
           path: "",
           element: <AHome />,
-        },
-        {
-          path: "users",
-          element: <Users />,
         },
         {
           path:'getAdmin',
@@ -237,6 +243,14 @@ export default function App() {
             {
               path:'contact',
               element:<UsercontactAdmin />,
+            },
+            {
+              path:'changePassword',
+              element:<ChangePasswordAdmin/>
+            },
+            {
+              path:'changeEmail',
+              element:<ChangeEmailAdmin/>
             },
           ]
         },

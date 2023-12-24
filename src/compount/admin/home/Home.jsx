@@ -75,8 +75,7 @@ console.log(dataOperater);
   return (
     <section className="category-serives container pt-5">
       <div className="info-category">
-        <h2>CATEGORY</h2>
-        <p>All Agencies</p>
+        <h2>AGENCIES</h2>
       </div>
       <div className="services my-5">
         <div className="row">
@@ -99,7 +98,7 @@ console.log(dataOperater);
               </div>
               <div className="d-flex justify-content-center align-items-center">
                 <div>
-                  <Link to="" className="btn btn-info">
+                  <Link to={`/admin/tour/get/${selectedCategory._id}`} className="btn btn-info">
                     Show Tours
                   </Link>
                 </div>
