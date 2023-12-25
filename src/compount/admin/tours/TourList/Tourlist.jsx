@@ -63,14 +63,39 @@ export default function Tourlist() {
                 Details
               </Link>
               {selectedProduct && selectedProduct._id === tour._id && (
-                <div>
-                  <p>Tour: {tour.discount}</p>
-                  <p>{tour.description}</p>
-                  <p>Final Price: {tour.finalPrice}</p>
-                  <p>Location: {tour.location}</p>
-                  <p>Meals: {tour.meals}</p>
-                  <p>Note: {tour.note}</p>
-                </div>
+              <div>
+              <p>
+                {tour.discount
+                  ? "discount: " + tour.discount
+                  : null}
+              </p>
+              <p>
+                {tour.description
+                  ? "description: " + tour.description
+                  : null}
+              </p>
+              <p>
+                {tour.finalPrice
+                  ? "Final Price: " + tour.finalPrice
+                  : null}
+              </p>
+              <p>
+                {tour.location
+                  ? "location: " + tour.location
+                  : null}
+              </p>
+              <p>
+                {tour.meals
+                  ? "Meals: " + tour.meals
+                  : null}
+              </p>
+              <p>
+                {tour.note
+                  ? "Note: " + tour.note
+                  : null}
+              </p>
+              <Link to={`/tour/${tour._id}/review`}className='text-danger'>Create Review</Link>
+            </div>
               )}
             </div>
           </div>

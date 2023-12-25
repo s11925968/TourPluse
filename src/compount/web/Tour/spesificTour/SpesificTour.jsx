@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import Loader from '../../../shared/Loader.jsx';
 import { Link, useParams } from 'react-router-dom';
-
+import './Spesific.css'
 export default function SpesificTour() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [dataTour, setData] = useState("");
@@ -39,25 +39,59 @@ export default function SpesificTour() {
           dataTour.map((tour) => (
             <div key={tour._id} className="col-lg-4 mb-4">
               <div className="image">
-                <img src={tour.image.secure_url} className="w-100" alt={tour.name} />
+                <img
+                  src={tour.image.secure_url}
+                  className="w-100"
+                  alt={tour.name}
+                />
               </div>
-              <div className='text-center'>
+              <div className="text-center">
                 <h3>{tour.name}</h3>
                 <p>Price: ${tour.price}</p>
-                <p>Start Date: {new Date(tour.startDate).toLocaleDateString()}</p>
+                <p>
+                  Start Date: {new Date(tour.startDate).toLocaleDateString()}
+                </p>
                 <p>End Date: {new Date(tour.endDate).toLocaleDateString()}</p>
-                <Link to="#" className="btn btn-primary" onClick={() => handleProductClick(tour._id)}>
+                <Link
+                  to="#"
+                  className="btn btn-primary"
+                  onClick={() => handleProductClick(tour._id)}
+                >
                   Details
                 </Link>
                 {selectedProduct && selectedProduct._id === tour._id && (
                   <div>
-                    <p>Tour: {tour.discount}</p>
-                    <p>{tour.description}</p>
-                    <p>Final Price: {tour.finalPrice}</p>
-                    <p>Location: {tour.location}</p>
-                    <p>Meals: {tour.meals}</p>
-                    <p>Note: {tour.note}</p>
-                    <Link to={`/tour/${tour._id}/review`}>Create Review</Link>
+                    <p>
+                      {tour.discount
+                        ? "discount: " + tour.discount
+                        : null}
+                    </p>
+                    <p>
+                      {tour.description
+                        ? "description: " + tour.description
+                        : null}
+                    </p>
+                    <p>
+                      {tour.finalPrice
+                        ? "Final Price: " + tour.finalPrice
+                        : null}
+                    </p>
+                    <p>
+                      {tour.location
+                        ? "location: " + tour.location
+                        : null}
+                    </p>
+                    <p>
+                      {tour.meals
+                        ? "Meals: " + tour.meals
+                        : null}
+                    </p>
+                    <p>
+                      {tour.note
+                        ? "Note: " + tour.note
+                        : null}
+                    </p>
+                    <Link to={`/tour/${tour._id}/review`}className='text-danger'>Create Review</Link>
                   </div>
                 )}
               </div>

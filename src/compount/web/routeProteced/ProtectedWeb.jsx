@@ -24,7 +24,15 @@ export default function ProtectedWeb({ children }) {
   }, []);
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
-  
+
+  if (company) {
+    if (window.location.pathname === '/companylogin') {
+      return children;
+    }
+    return <Navigate to="/dashboard" />;
+  }
+
+  return children;
 }

@@ -71,7 +71,9 @@ export default function App() {
     {
       path: "/",
       element:
+      <ProtectedWeb>
         <Layout users={users} setUser={setUser} />
+      </ProtectedWeb>
         ,
       children: [
         {
