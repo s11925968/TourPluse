@@ -48,38 +48,26 @@ export default function Tourlist() {
                 </Link>
                 {selectedProduct && selectedProduct._id === tour._id && (
                   <div>
-                  <p>
-                    {tour.discount
-                      ? "discount: " + tour.discount
-                      : null}
-                  </p>
-                  <p>
-                    {tour.description
-                      ? "description: " + tour.description
-                      : null}
-                  </p>
-                  <p>
-                    {tour.finalPrice
-                      ? "Final Price: " + tour.finalPrice
-                      : null}
-                  </p>
-                  <p>
-                    {tour.location
-                      ? "location: " + tour.location
-                      : null}
-                  </p>
-                  <p>
-                    {tour.meals
-                      ? "Meals: " + tour.meals
-                      : null}
-                  </p>
-                  <p>
-                    {tour.note
-                      ? "Note: " + tour.note
-                      : null}
-                  </p>
-                  <Link to={`/tour/${tour._id}/review`}className='text-danger'>Create Review</Link>
-                </div>
+                      <p>
+                        {tour.discount ? "discount: " + tour.discount : null}
+                      </p>
+                      <p>
+                        {tour.description
+                          ? "description: " + tour.description
+                          : null}
+                      </p>
+                      <p>
+                        {tour.finalPrice
+                          ? "Final Price: " + tour.finalPrice
+                          : null}
+                      </p>
+                      <p>
+                        {tour.location ? "location: " + tour.location : null}
+                      </p>
+                      <p>{tour.meals ? "Meals: " + tour.meals : null}</p>
+                      <p>{tour.note ? "Note: " + tour.note : null}</p>
+                    <Link className='btn btn-info' to={`/dashboard/tour/forceDelete/${tour._id}`}>Delete Tour</Link>
+                  </div>
                 )}
               </div>
             </div>

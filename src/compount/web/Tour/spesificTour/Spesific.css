@@ -1,3 +1,12 @@
 .tourlist{
   margin-top: 100px;
 }
+.tourlist .image{
+  display: flex;
+  justify-content: center;
+}
+.tourlist .image img{
+  width: 70%;
+  aspect-ratio: 200/100;
+  
+}

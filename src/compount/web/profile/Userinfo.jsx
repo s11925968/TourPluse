@@ -54,14 +54,7 @@ export default function Userinfo() {
             <td>Age</td>
             <td>{data.age}</td>
           </tr>
-          <tr>
-            <td>Created At</td>
-            <td>{new Date(data.createdAt).toLocaleString()}</td>
-          </tr>
-          <tr>
-            <td>Updated At</td>
-            <td>{new Date(data.updatedAt).toLocaleString()}</td>
-          </tr>
+         
         </tbody>
       </table>
     </div>

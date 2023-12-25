@@ -54,11 +54,6 @@ export default function Usercontact() {
             <td>User Role</td>
             <td>{data.role}</td>
           </tr>
-          <tr>
-            <td>User Status</td>
-            <td>{data.status}</td>
-          </tr>
-          
         </tbody>
       </table>
     </div>

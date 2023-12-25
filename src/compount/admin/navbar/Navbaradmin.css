@@ -18,7 +18,9 @@ a{
   color:var(--main)!important;
 }
 
-
+.back{
+  width: 90%!important;
+}
 
 .base-sing span{
   font-family: 'Young Serif', serif;

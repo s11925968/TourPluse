@@ -1,11 +1,10 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import './CategoriestourOperator.css'
+import "./CategoriestourOperator.css";
 
 import Loader from "../../shared/Loader";
 

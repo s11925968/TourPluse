@@ -49,16 +49,7 @@ export default function Usercontact() {
           <tr>
             <td>User Email</td>
             <td>{data.email}</td>
-          </tr>
-          <tr>
-            <td>User Role</td>
-            <td>{data.role}</td>
-          </tr>
-          <tr>
-            <td>User Status</td>
-            <td>{data.status}</td>
-          </tr>
-          
+          </tr>          
         </tbody>
       </table>
     </div>

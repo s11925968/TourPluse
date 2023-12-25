@@ -85,7 +85,7 @@ export default function ChangePassword() {
               <button
                 type="submit"
                 disabled={!formik.isValid}
-                className="w-100"
+                className="button w-100"
               >
                 Change Passwrod
               </button>

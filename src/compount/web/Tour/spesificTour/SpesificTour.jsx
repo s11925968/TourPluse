@@ -41,7 +41,6 @@ export default function SpesificTour() {
               <div className="image">
                 <img
                   src={tour.image.secure_url}
-                  className="w-100"
                   alt={tour.name}
                 />
               </div>

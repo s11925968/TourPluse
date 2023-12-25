@@ -41,11 +41,14 @@ export default function Profile() {
     <div className={style.profile}>
       <div className={style.profileLinks}>
         <nav>
-          <Link to="">info</Link>
-          <Link to="contact">contact</Link>
+          <Link to="">Info</Link>
+          <hr/>
+          <Link to="contact">Contact</Link>
+          <hr/>
           <Link to="changePassword">Change Password</Link>
+          <hr/>
           <Link to="changeEmail">Change Email</Link>
-
+          <hr/>
         </nav>
       </div>
       <div className={style.userData}>

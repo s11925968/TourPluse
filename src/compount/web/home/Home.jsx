@@ -241,14 +241,14 @@ export default function Home({ users }) {
                   );
                   return (
                     <div
-                      className="col-md-3 services-image text-center my-3"
+                      className="col-md-6 services-image text-center my-3"
                       key={tourOperator.name}
                       onClick={() => handleCategoryClick(tourOperator)}
                     >
                       <img
                         src={tourOperator.image.secure_url}
                         alt={`Operator ${tourOperator._id}`}
-                        className="w-75 rounded-pill"
+                        className="w-100"
                       />
                       <p className="py-3">
                         {Array.from({ length: operatorAvgRating }).map(

@@ -119,17 +119,6 @@ export default function Navbar({ users, setUser}) {
                   Home
                 </Link>
               </li>
-              {users && (
-                <li className="nav-item">
-                  <a
-                    className="nav-link text-white"
-                    aria-current="page"
-                    href="#"
-                  >
-                    Tourism
-                  </a>
-                </li>
-              )}
               {!users && (
                 <li className="nav-item">
                   <Link to="/logincompany"
