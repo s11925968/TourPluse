@@ -1,84 +1,226 @@
-import axios from 'axios';
-import React from 'react'
-import { useQuery } from 'react-query';
-import { Link, useParams } from 'react-router-dom';
-import Loader from '../../shared/Loader.jsx'
-import { Navigation, Pagination, Scrollbar, A11y,Autoplay} from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-// Import Swiper styles
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import './CategoriestourOperator.css'
-export default function Touroperatorcategorite() {
-  const {_id}=useParams();
-  const getTourOperators=async()=>{
+
+import Loader from "../../shared/Loader";
+
+export default function Home() {
+  const [selectedTour, setSelectedTour] = useState(null);
+  const [current, setCurrent] = useState(1);
+  const [title, setTitle] = useState(null);
+  const [dataOperater, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedOperator, setSelectedOperator] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showComments, setShowComments] = useState(false); // Add showComments state
+  const { _id } = useParams();
+
+  const getOperator = async () => {
     try {
-      const token=localStorage.getItem('userToken');
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/categories/tourOperator/${_id}?limit=6`, {
-        headers: {
-          Authorization: `ghazal__${token}`
-        },
-      });
-      return data;
+      setIsLoading(true);
+      const token = localStorage.getItem("userToken");
+      const params = new URLSearchParams();
+      params.append("page", current);
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_URL_LINK
+        }/categories/tourOperator/${_id}?${params.toString()}&limit=8`,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`,
+          },
+        }
+      );
+      setTitle(data.title);
+      setData(data.tourOperator);
     } catch (error) {
-      console.error('Error fetching admin data:', error);
-      throw error;
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
-  }
-  const {data,isLoading}=useQuery('gettouroperator',getTourOperators);
-  console.log(data);
-  if(isLoading){
+  };
+
+  const handleOperatorClick = (operatorId) => {
+    const clickedOperator = dataOperater.find(
+      (operator) => operator._id === operatorId
+    );
+    setSelectedOperator(clickedOperator);
+  };
+  console.log(dataOperater);
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrent(pageNumber + 1);
+    setSelectedCategory(null);
+  };
+  const calculateAvgRating = (reviews) => {
+    if (reviews.length === 0) {
+      return 0;
+    }
+
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return Math.round(totalRating / reviews.length);
+  };
+  useEffect(() => {
+    getOperator();
+  }, [current]);
+
+  if (isLoading) {
     return <Loader />;
   }
+
   return (
-    <div>
-      <div className="catagories container d-flex justify-content-start align-items-center ">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={50}
-          navigation
-          loop={true}
-          autoplay={{
-            delay: 3000,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          breakpoints={{
-            // when window width is >= 600px
-            600: {
-              slidesPerView: 1,
-            },
-            // when window width is >= 768px
-            900: {
-              slidesPerView: 1,
-            },
-            // when window width is >= 1024px
-            1024: {
-              slidesPerView: 2,
-            },
-          }}
-        >
-          {data.tourOperator?.length
-            ? data.tourOperator?.map((catagourie) => (
-                <SwiperSlide key={catagourie._id}>
-                  <div className='info-content'>
-                    <div className='operator-image'>
-                      <img src={catagourie.image.secure_url} className="rounded-circle"/>
-                    </div>
-                    <div className="text-info text-center pt-3">
-                    <h2 className="fs-5"><span className='text-danger pe-2'>Address:</span>{catagourie.address}</h2>
-                      <h2 className="fs-5"><span className='text-danger pe-2'>PhoneNumber:</span>{catagourie.phoneNumber}</h2>
-                      <p className="fs-5 "><span className='text-danger pe-2'>Description:</span>{catagourie.description}</p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))
-            : "no data available"}
-        </Swiper>
+    <section className="category-serives container pt-5">
+      <div className="info-category">
+        <h2>AGENCIES</h2>
       </div>
-    </div>
+      <div className="services my-5">
+        <div className="row">
+          {selectedCategory ? (
+            <div className="col-md-12 text-center">
+              <h2>{selectedCategory.name}</h2>
+              <p>{selectedCategory.description}</p>
+              <p>{selectedCategory.address}</p>
+              <p>{selectedCategory.email}</p>
+              <p>{selectedCategory.phoneNumber}</p>
+              <p>{selectedCategory.founderName}</p>
+              <div className="d-flex justify-content-center align-items-center">
+                <div>
+                  <Link
+                    to={`/company/${selectedCategory._id}/review`}
+                    className="btn btn-info me-3"
+                  >
+                    Create Review
+                  </Link>
+                  <button
+                    className="btn btn-info me-3"
+                    onClick={() => setShowComments(!showComments)}
+                  >
+                    {showComments ? "Hide Comments" : "Show Comments"}
+                  </button>
+                  <Link
+                    to={`/tour/get/${selectedCategory._id}`}
+                    className="btn btn-info"
+                  >
+                    Show Tours
+                  </Link>
+                </div>
+              </div>
+              {showComments && (
+                <div>
+                  {selectedCategory.rev.map((review, index) => (
+                    <div key={review._id}>
+                      <h1>Comment {index + 1}</h1>
+                      <h2>{review.comment}</h2>
+                      {Array.from({ length: review.rating }).map(
+                        (_, starIndex) => (
+                          <FontAwesomeIcon
+                            key={starIndex}
+                            icon={faStar}
+                            className=""
+                          />
+                        )
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <button
+                className="btn btn-info mt-3"
+                onClick={() => setSelectedCategory(null)}
+              >
+                Back to Categories
+              </button>
+            </div>
+          ) : (
+            <>
+              {dataOperater?.map((tourOperator, index) => {
+                const operatorAvgRating = calculateAvgRating(tourOperator.rev);
+                return (
+                  <div
+                    className="col-md-3 services-image text-center my-3"
+                    key={tourOperator.name}
+                    onClick={() => handleCategoryClick(tourOperator)}
+                  >
+                    <img
+                      src={tourOperator.image.secure_url}
+                      alt={`Operator ${tourOperator._id}`}
+                      className="rounded-pill"
+                    />
+                    <p className="py-3">
+                      {Array.from({ length: operatorAvgRating }).map(
+                        (_, starIndex) => (
+                          <FontAwesomeIcon
+                            key={starIndex}
+                            icon={faStar}
+                            className=""
+                          />
+                        )
+                      )}
+                    </p>
+                    <h4 className="py-3">{tourOperator.name}</h4>
+                    <Link to="#" className="btn btn-info">
+                      Click To Show Details
+                    </Link>
+                  </div>
+                );
+              })}
+              <nav aria-label="Page navigation example ">
+                <ul className="pagination justify-content-center my-5">
+                  <li
+                    className={`z-1 page-item ${
+                      current === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageClick(current - 2)}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  {Array.from({ length: Math.ceil(title / 8) || 0 }).map(
+                    (_, pageIndex) => (
+                      <li
+                        key={pageIndex}
+                        className={`z-1 page-item ${
+                          current === pageIndex + 1 ? "active" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(pageIndex)}
+                        >
+                          {pageIndex + 1}
+                        </button>
+                      </li>
+                    )
+                  )}
+                  <li
+                    className={`z-1 page-item ${
+                      current === Math.ceil(title / 8) ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageClick(current)}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

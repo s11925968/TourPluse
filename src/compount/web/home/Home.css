@@ -15,6 +15,8 @@ font-family: 'Rubik', sans-serif;
 /*font-family: 'Young Serif', serif;*/
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,900&display=swap');
 /*start header*/
 :root{
   --main-color:#c8e2ed;
@@ -46,7 +48,7 @@ a{
   align-items: center;
 }
 .info-header span{
-  font-family: 'Dancing Script', cursive;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 50px;
   color:var(--main-color)
 } 
@@ -57,14 +59,18 @@ a{
 }
 .header p{
   color:var(--main);
-  font-family:'Dancing Script', cursive;
+  font-family: 'Exo 2', sans-serif;
   font-size: 30px;
   width: 0;
   white-space: nowrap;
   overflow: hidden;
   animation: change-p 4s infinite alternate-reverse steps(17) ,blink infinite;
   -webkit-animation: change-p 4s infinite alternate-reverse steps(17) ,blink infinite;
-  border-right: solid 1px #dd4b39;
+  border-right: solid 1px #e6b59e;
+  border-bottom:solid 1px  #0077b5;
+  border-top: solid 1px #e6b59e;
+  border-left:solid 1px  #0077b5;
+
 }
 .info-home span{
   font-size: 40px;
@@ -74,7 +80,7 @@ a{
     width: 0%;
   }
   to{
-    width: 280px;
+    width: 360px;
   }
 }
 @keyframes blink {
@@ -293,6 +299,7 @@ a{
   font-family: 'Oswald', sans-serif;
 }
 .info-category h2::after {
+  font-family: 'Exo 2', sans-serif;
   position: absolute;
   bottom: -36px;
   left: 0;
@@ -312,10 +319,12 @@ a{
   height:30%;
 }
 .services .services-image p{
+  font-family: 'Exo 2', sans-serif;
   width: 70%;
   line-height: 25px;
   margin: auto;
 }
+
 /*end category*/
 @media screen and (max-width:600px){
   :root{

@@ -53,6 +53,8 @@ import ChangePassword from './compount/web/profile/ChangePassword.jsx'
 import ChangePasswordAdmin from './compount/admin/profile/ChangePassword.jsx'
 import ChangeEmail from "./compount/web/profile/ChangeEmail.jsx";
 import ChangeEmailAdmin from "./compount/admin/profile/ChangeEmail";
+import ProtectedCompany from "./compount/web/routeProteced/ProtextedCompany.jsx";
+import ProtectedWeb from "./compount/web/routeProteced/ProtectedWeb.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -68,7 +70,9 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout users={users} setUser={setUser} />,
+      element:
+        <Layout users={users} setUser={setUser} />
+        ,
       children: [
         {
           path: "/",
@@ -79,24 +83,28 @@ export default function App() {
           element: <About />,
         },
         {
-          path:'user/profile/:_id',
-          element:<Profile />
+          path: "user/profile/:_id",
+          element: <Profile />,
         },
         {
           path: "Contact/create",
           element: <Create />,
         },
         {
+          path: "logincompany",
+          element: <Logincompany />,
+        },
+        {
           path: "register",
           element: <Register />,
         },
         {
-          path:"auth/sendCode",
-          element:<SendCode />
+          path: "auth/sendCode",
+          element: <SendCode />,
         },
         {
-          path:"auth/forgetPassword",
-          element:<Forget />
+          path: "auth/forgetPassword",
+          element: <Forget />,
         },
         {
           path: "catagouries",
@@ -112,52 +120,49 @@ export default function App() {
         },
         {
           path: "login",
-          element:
+          element: (
             <LoginProtected users={users}>
-            <Login saveCurrentUser={saveCurrentUser} users={users}/>
-            </LoginProtected>,
+              <Login saveCurrentUser={saveCurrentUser} users={users} />
+            </LoginProtected>
+          ),
         },
         {
-          path:"logincompany",
-          element:<Logincompany />,
+          path: "tourlistweb",
+          element: <TourlistWeb />,
         },
         {
-          path:"tourlistweb",
-          element:<TourlistWeb />,
+          path: "tour/get/:_id",
+          element: <SpesificTour />,
         },
         {
-          path:'tour/get/:_id',
-          element:<SpesificTour />
+          path: "tour/:_id/review",
+          element: <CreateRivew users={users} />,
         },
         {
-          path:'tour/:_id/review',
-          element:<CreateRivew users={users} />
+          path: "company/:_id/review",
+          element: <CreateRivewCompany users={users} />,
         },
         {
-          path:'company/:_id/review',
-          element:<CreateRivewCompany users={users}/>
-        },
-        {
-          path:'user/profile/:_id',
-          element:<Profile />,
-          children:[
+          path: "user/profile/:_id",
+          element: <Profile />,
+          children: [
             {
-              path:'',
-              element:<Userinfo />,
+              path: "",
+              element: <Userinfo />,
             },
             {
-              path:'contact',
-              element:<Usercontact />,
+              path: "contact",
+              element: <Usercontact />,
             },
             {
-              path:'changePassword',
-              element:<ChangePassword/>
+              path: "changePassword",
+              element: <ChangePassword />,
             },
             {
-              path:'changeEmail',
-              element:<ChangeEmail/>
+              path: "changeEmail",
+              element: <ChangeEmail />,
             },
-          ]
+          ],
         },
         {
           path: "*",
@@ -169,90 +174,90 @@ export default function App() {
       //admin end point
     },
     {
-
       path: "/admin",
-      element:
-      <Protected users={users} setUser={setUser}>
-      <Layoutadmin users={users} setUser={setUser}/>
-      </Protected>,
+      element: (
+        <Protected users={users} setUser={setUser}>
+          <Layoutadmin users={users} setUser={setUser} />
+        </Protected>
+      ),
       children: [
         {
           path: "",
           element: <AHome />,
         },
         {
-          path:'getAdmin',
-          element:<Admin />
+          path: "getAdmin",
+          element: <Admin />,
         },
         {
-          path:'creatadmin',
-          element:<Creatadmin />
+          path: "creatadmin",
+          element: <Creatadmin />,
         },
         {
-          path:'updata/:_id',
-          element:<Updata />
-        }
-        ,{
-          path:'categories/get',
-          element:<Categorie />
+          path: "updata/:_id",
+          element: <Updata />,
         },
         {
-          path:'categories/allTourOperator/:_id',
-          element:<Touroperatorcategorite />
+          path: "categories/get",
+          element: <Categorie />,
         },
         {
-          path:'categories/create',
-          element:<CreateCatgories/>
+          path: "categories/allTourOperator/:_id",
+          element: <Touroperatorcategorite />,
         },
         {
-          path:'updata/categories/:_id',
-          element:<Update/>
+          path: "categories/create",
+          element: <CreateCatgories />,
         },
         {
-          path:'operator/create/:_id',
-          element:<Creaetoperator/>
+          path: "updata/categories/:_id",
+          element: <Update />,
         },
         {
-          path:'operator/catgeoriesselect',
-          element:<Catgeoriesselect/>
+          path: "operator/create/:_id",
+          element: <Creaetoperator />,
         },
         {
-          path:'operator/UpdateOperator/:_id',
-          element:<UpdateOperator/>
+          path: "operator/catgeoriesselect",
+          element: <Catgeoriesselect />,
         },
         {
-          path:'tour/get',
-          element:<Tourlist />
+          path: "operator/UpdateOperator/:_id",
+          element: <UpdateOperator />,
         },
         {
-          path:'tour/get/:_id',
-          element:<Spesific />
+          path: "tour/get",
+          element: <Tourlist />,
         },
         {
-          path:'blog/createBlog',
-          element:<CreateBlog/>
+          path: "tour/get/:_id",
+          element: <Spesific />,
         },
         {
-          path:'user/profile/:_id',
-          element:<ProfileAdmin />,
-          children:[
+          path: "blog/createBlog",
+          element: <CreateBlog />,
+        },
+        {
+          path: "user/profile/:_id",
+          element: <ProfileAdmin />,
+          children: [
             {
-              path:'',
-              element:<UserinfoAdmin />,
+              path: "",
+              element: <UserinfoAdmin />,
             },
             {
-              path:'contact',
-              element:<UsercontactAdmin />,
+              path: "contact",
+              element: <UsercontactAdmin />,
             },
             {
-              path:'changePassword',
-              element:<ChangePasswordAdmin/>
+              path: "changePassword",
+              element: <ChangePasswordAdmin />,
             },
             {
-              path:'changeEmail',
-              element:<ChangeEmailAdmin/>
+              path: "changeEmail",
+              element: <ChangeEmailAdmin />,
             },
-          ]
+          ],
         },
         {
           path: "*",
@@ -261,30 +266,34 @@ export default function App() {
       ],
     },
     {
-      path:'/dashboard',
-      element:<LayoutDashBord />,
-      children:[
+      path: "/dashboard",
+      element: (
+        <ProtectedCompany>
+          <LayoutDashBord />
+        </ProtectedCompany>
+      ),
+      children: [
         {
-          path:'',
-          element:<HomeDashbord />
+          path: "",
+          element: <HomeDashbord />,
         },
         {
-          path:'tour/getActive',
-          element:<TourlistActive />
+          path: "tour/getActive",
+          element: <TourlistActive />,
         },
         {
-          path:'selectCategories',
-          element:<SelectCategories />
+          path: "selectCategories",
+          element: <SelectCategories />,
         },
         {
-          path:'createTours/:_id',
-          element:<Createtour />
+          path: "createTours/:_id",
+          element: <Createtour />,
         },
         {
-          path:'tour/forceDelete/:id',
-          element:<DeleteTour />
+          path: "tour/forceDelete/:id",
+          element: <DeleteTour />,
         },
-      ]
+      ],
     },
   ]);
   return <RouterProvider router={router} />;

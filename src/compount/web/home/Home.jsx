@@ -185,7 +185,7 @@ export default function Home({ users }) {
                   <div>
                     {users && (
                       <Link
-                        to={`company/${selectedCategory._id}/review`}
+                        to={`/company/${selectedCategory._id}/review`}
                         className="btn btn-info me-3"
                       >
                         Create Review
@@ -248,7 +248,7 @@ export default function Home({ users }) {
                       <img
                         src={tourOperator.image.secure_url}
                         alt={`Operator ${tourOperator._id}`}
-                        className="w-50 rounded-pill"
+                        className="w-75 rounded-pill"
                       />
                       <p className="py-3">
                         {Array.from({ length: operatorAvgRating }).map(

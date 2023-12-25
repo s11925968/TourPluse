@@ -39,7 +39,6 @@ export default function Navbar({users,setUser}) {
       setLoader(false);
     }
   }
-  console.log(data);
   useEffect(() => {
     if (users) {
       getProfile();

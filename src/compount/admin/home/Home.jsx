@@ -45,7 +45,6 @@ export default function Home({ users }) {
     );
     setSelectedOperator(clickedOperator);
   };
-console.log(dataOperater);
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };

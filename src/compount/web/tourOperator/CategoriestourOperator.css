@@ -1,15 +1,6 @@
-.info-content{
-  margin: auto;
-  box-shadow: 1px 10px 8px;
-  aspect-ratio: 209/187;
-  object-fit: cover;
-}
-.operator-image{
-  width: 40%;
-  height: 50%;
-  aspect-ratio: 200/187;
-  object-fit: cover;
-  margin: auto;
+
+.services-image img{
+  width: 60%!important;
 }
 @media (max-width:600px){
   .operator-image img{

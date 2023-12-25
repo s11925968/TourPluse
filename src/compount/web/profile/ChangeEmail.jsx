@@ -29,7 +29,6 @@ export default function ChangeEmail() {
       });
       navigte("/");
     }
-    console.log(data);
   };
   const formik = useFormik({
     initialValues,

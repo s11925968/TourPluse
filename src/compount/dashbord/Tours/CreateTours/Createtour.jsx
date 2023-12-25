@@ -99,7 +99,7 @@ export default function CreatTour() {
     },
     {
       name: "price",
-      type: "number",
+      type: "text",
       id: "price",
       title: "Price",
       value: formik.values.price,

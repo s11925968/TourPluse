@@ -28,7 +28,6 @@ export default function Profile() {
       setLoader(false);
     }
   }
-  console.log(data);
   useEffect(() => {
     getProfile();
   }, [_id]);

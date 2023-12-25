@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import Loader from '../../shared/Loader';
 import { CompanyContext } from '../context/company/Companycontext';
 
-export default function Protected({ users, children,setUser }) {
+export default function ProtectedWeb({ children }) {
   const { company, setCompanycontext } = useContext(CompanyContext);
   const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,6 @@ export default function Protected({ users, children,setUser }) {
     if (token) {
       try {
         const decode = jwtDecode(token);
-        setUser(decode);
       } catch (error) {
         console.error('Error decoding token:', error);
       } finally {
@@ -27,13 +26,5 @@ export default function Protected({ users, children,setUser }) {
   if (loading) {
     return <Loader />
   }
- 
-  if (!users || !users.role) {
-    return <Navigate to="/" />;
-  }
-  if (users.role === 'User') {
-    return <Navigate to="/" />;
-  } else {
-    return children;
-  }
+  
 }

@@ -30,7 +30,6 @@ export default function ChangePassword() {
       });
       navigte("/");
     }
-    console.log(data);
   };
   const formik = useFormik({
     initialValues,
