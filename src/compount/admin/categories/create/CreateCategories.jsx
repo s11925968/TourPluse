@@ -85,13 +85,12 @@ export default function CreateCatgories() {
   });
   return (
     <div className="bg-forms">
-      <div className="container py-4 d-flex justify-content-center align-items-center ">
+      <div className="container py-4 d-flex justify-content-center align-items-center vh-100">
         <div className="phone-width">
-          <h2>Create Categories</h2>
           <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
             <button type="submit" className="btn btn-primary w-100">
-              submit
+            Create Categories
             </button>
           </form>
         </div>

@@ -82,11 +82,9 @@ export default function Creatablogs() {
       <div className="container py-4 d-flex justify-content-center align-items-center vh-100">
         <div className="phone-width">
           <form onSubmit={formik.handleSubmit} className="forms p-3">
-          <h2>Create Blog</h2>
             {renderInput}
             <button type="submit" className="btn btn-primary w-100">
-              submit
-            </button>
+            Create Blog            </button>
           </form>
         </div>
       </div>

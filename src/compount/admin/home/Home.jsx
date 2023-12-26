@@ -23,7 +23,7 @@ export default function Home({ users }) {
       const params = new URLSearchParams();
       params.append("page", current);
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/operator/get?${params.toString()}&limit=8`,
+        `${import.meta.env.VITE_URL_LINK}/operator/get?${params.toString()}&limit=9`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -53,15 +53,6 @@ export default function Home({ users }) {
     setCurrent(pageNumber + 1);
     setSelectedCategory(null);
   };
-
-  // const calculateAvgRating = (reviews) => {
-  //   if (reviews.length === 0) {
-  //     return 0;
-  //   }
-
-  //   const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-  //   return Math.round(totalRating / reviews.length);
-  // };
 
   useEffect(() => {
     getOperator();
@@ -134,16 +125,16 @@ export default function Home({ users }) {
               {dataOperater?.map((tourOperator, index) => {
                 return (
                   <div
-                    className="col-md-3 services-image text-center my-3"
+                    className="col-md-4 services-image text-center my-3"
                     key={tourOperator.name}
                     onClick={() => handleCategoryClick(tourOperator)}
                   >
                     <img
                       src={tourOperator.image.secure_url}
                       alt={`Operator ${tourOperator._id}`}
-                      className="w-50 rounded-pill"
+                      className=""
                     />
-                    <h4 className="py-3">{tourOperator.name}</h4>
+                      <h4>{tourOperator.name.split(" ").slice(0, 4).join(" ")}...</h4>  
                     <Link to="#" className="btn btn-info">
                       Click To Show Details
                     </Link>

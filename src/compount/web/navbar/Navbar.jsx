@@ -127,7 +127,7 @@ export default function Navbar({ users, setUser}) {
                     href="#"
                   >
                     <FontAwesomeIcon icon={faBuilding} className="pe-1"/>
-                    Singin Agency
+                    Signin Agency
                   </Link>
                 </li>
               )}
