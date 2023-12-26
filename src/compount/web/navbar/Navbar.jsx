@@ -80,7 +80,7 @@ export default function Navbar({ users, setUser}) {
     return <Loader/>
   }
   return (
-    <div className="back">
+    <div className="back w-100 d-flex justify-content-center">
       <nav
         className={`navbar navbar-expand-lg z-2 position-fixed`}
         style={{ backgroundColor: navbarBackground }} // Set dynamic background color based on state

@@ -117,7 +117,8 @@ export default function Home({ users }) {
           </div>
         </div>
       </header>
-      <section className="category-serives container pt-5">
+      <section className="serives">
+        <div className="container pt-5">
         <div className="info-category">
           <h2>SERVICES</h2>
           <p>We Offer Best Services</p>
@@ -166,8 +167,72 @@ export default function Home({ users }) {
             </div>
           </div>
         </div>
+        </div>
+      
       </section>
-      <section className="category-serives container pt-5">
+      <div className="operator">
+        <div className="container d-flex justify-content-start align-items-center ">
+          {data && data.length > 0 ? (
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={50}
+              navigation
+              loop={true}
+              autoplay={{
+                delay: 3000,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                600: {
+                  slidesPerView: 1,
+                },
+                900: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              <h2 className="py-3">All Agencies</h2>
+              {data.map((tourOperator) => (
+                <SwiperSlide key={tourOperator._id}>
+                  <Link
+                    to={`/tour/get/${tourOperator._id}`}
+                    className="text-decoration-none"
+                  >
+                    <div
+                      className={`info-content-operator ${
+                        selectedOperator === tourOperator._id ? "selected" : ""
+                      }`}
+                      onClick={() => handleOperatorClick(tourOperator._id)}
+                    >
+                      <div className="operator-image my-5">
+                        <img
+                          src={tourOperator.image.secure_url}
+                          className="img-fluid"
+                          alt={`Operator ${tourOperator._id}`}
+                        />
+                      </div>
+                      <div className="d-flex justify-content-center">
+                      <h4 className="py-3 text-center w-75">
+                        {tourOperator.name.split(" ").slice(0, 4).join(" ")}...
+                      </h4>
+                      </div>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <p>No agencies available</p>
+          )}
+        </div>
+      </div>
+      <section className="pagination-operater">
+        <div className="container pt-5">
         <div className="info-category">
           <h2>AGENCIES</h2>
         </div>
@@ -209,21 +274,49 @@ export default function Home({ users }) {
                 </div>
                 {showComments && (
                   <div>
-                    {selectedCategory.rev.map((review, index) => (
-                      <div key={review._id}>
-                        <h1>Comment {index+1}</h1>
-                        <h2>{review.comment}</h2>
-                        {Array.from({ length: review.rating }).map(
-                          (_, starIndex) => (
-                            <FontAwesomeIcon
-                              key={starIndex}
-                              icon={faStar}
-                              className=""
-                            />
-                          )
-                        )}
-                      </div>
-                    ))}
+                    <Swiper
+                      modules={[Navigation, Pagination, Autoplay]}
+                      spaceBetween={50}
+                      navigation
+                      loop={true}
+                      autoplay={{
+                        delay: 3000,
+                      }}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      breakpoints={{
+                        600: {
+                          slidesPerView: 1,
+                        },
+                        900: {
+                          slidesPerView: 1,
+                        },
+                        1024: {
+                          slidesPerView: 1,
+                        },
+                      }}
+                    >
+                      {selectedCategory.rev.map((review, index) => (
+                        <SwiperSlide key={review._id}>
+                          <div>
+                            <h1>Comment {index + 1}</h1>
+                            <h2>{review.comment}</h2>
+                            <div>
+                              {Array.from({ length: review.rating }).map(
+                                (_, starIndex) => (
+                                  <FontAwesomeIcon
+                                    key={starIndex}
+                                    icon={faStar}
+                                    className=""
+                                  />
+                                )
+                              )}
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </div>
                 )}
                 <button
@@ -261,7 +354,9 @@ export default function Home({ users }) {
                           )
                         )}
                       </p>
-                      <h4 className="py-3">{tourOperator.name}</h4>
+                      <h4 className="py-3">
+                        {tourOperator.name.split(" ").slice(0, 4).join(" ")}...
+                      </h4>
                       <Link to="#" className="btn btn-info">
                         Click To Show Details
                       </Link>
@@ -317,68 +412,10 @@ export default function Home({ users }) {
             )}
           </div>
         </div>
-      </section>
-      <div className="operator">
-        <div className="container d-flex justify-content-start align-items-center ">
-          {data && data.length > 0 ? (
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={50}
-              navigation
-              loop={true}
-              autoplay={{
-                delay: 3000,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              breakpoints={{
-                600: {
-                  slidesPerView: 1,
-                },
-                900: {
-                  slidesPerView: 2,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
-              }}
-            >
-              <h2 className="py-3">All Agencies</h2>
-              {data.map((tourOperator) => (
-                <SwiperSlide key={tourOperator._id}>
-                  <Link
-                    to={`/tour/get/${tourOperator._id}`}
-                    className="text-decoration-none"
-                  >
-                    <div
-                      className={`info-content-operator ${
-                        selectedOperator === tourOperator._id ? "selected" : ""
-                      }`}
-                      onClick={() => handleOperatorClick(tourOperator._id)}
-                    >
-                      <div className="operator-image my-5">
-                        <img
-                          src={tourOperator.image.secure_url}
-                          className="img-fluid"
-                          alt={`Operator ${tourOperator._id}`}
-                        />
-                      </div>
-                      <div>
-                        <h2 className="fs-5 w-50 m-auto">
-                          {tourOperator.name}
-                        </h2>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            <p>No agencies available</p>
-          )}
         </div>
-      </div>
+       
+      </section>
+    
       <section className="about-us container">
         <div className="row info-images mt-5">
           <h2>About us</h2>

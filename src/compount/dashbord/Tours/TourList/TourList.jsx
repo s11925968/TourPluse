@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Loader from '../../../shared/Loader.jsx';
 import { Link } from 'react-router-dom';
 import { CompanyContext } from '../../../web/context/company/Companycontext.jsx';
-
+import './Tourlist.css'
 export default function Tourlist() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { company } = useContext(CompanyContext);
@@ -30,13 +30,13 @@ export default function Tourlist() {
   };
 
   return (
-    <div className="container py-4">
+    <div className="Tourlist-admin container py-4">
       <div className="row">
         {dataTour && dataTour.length ? (
           dataTour.map((tour) => (
             <div key={tour._id} className="col-lg-4 mb-4">
-              <div>
-                <img src={tour.image.secure_url} className="w-100" alt={tour.name} />
+              <div className='image'>
+                <img src={tour.image.secure_url}  alt={tour.name} />
               </div>
               <div className='text-center'>
                 <h3>{tour.name}</h3>
