@@ -9,7 +9,13 @@
   justify-content: center;
 }
 .tourlist-web .image img{
-  width: 50%;
+  width: 90%;
+  border-radius: 15px!important;
+  aspect-ratio: 200/100;
+  -webkit-border-radius: 15px!;
+  -moz-border-radius: 15px!;
+  -ms-border-radius: 15px!;
+  -o-border-radius: 15px!;
 }
 @media (max-width:600px){
   .tourlist-web{

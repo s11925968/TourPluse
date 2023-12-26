@@ -28,7 +28,7 @@ export default function Home() {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/categories/tourOperator/${_id}?${params.toString()}&limit=8`,
+        }/categories/tourOperator/${_id}?${params.toString()}&limit=9`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -123,7 +123,7 @@ export default function Home() {
                           <FontAwesomeIcon
                             key={starIndex}
                             icon={faStar}
-                            className=""
+                            className="text-warning"
                           />
                         )
                       )}
@@ -144,14 +144,14 @@ export default function Home() {
                 const operatorAvgRating = calculateAvgRating(tourOperator.rev);
                 return (
                   <div
-                    className="col-md-3 services-image text-center my-3"
+                    className="col-lg-4 services-image text-center my-3"
                     key={tourOperator.name}
                     onClick={() => handleCategoryClick(tourOperator)}
                   >
                     <img
                       src={tourOperator.image.secure_url}
                       alt={`Operator ${tourOperator._id}`}
-                      className="rounded-pill"
+                      className=""
                     />
                     <p className="py-3">
                       {Array.from({ length: operatorAvgRating }).map(
@@ -159,14 +159,14 @@ export default function Home() {
                           <FontAwesomeIcon
                             key={starIndex}
                             icon={faStar}
-                            className=""
+                            className="text-warning"
                           />
                         )
                       )}
                     </p>
-                    <h4 className="py-3">{tourOperator.name}</h4>
+                    <h5>{tourOperator.name.split(" ").slice(0, 3).join(" ")}...</h5>
                     <Link to="#" className="btn btn-info">
-                      Click To Show Details
+                        Show Details
                     </Link>
                   </div>
                 );

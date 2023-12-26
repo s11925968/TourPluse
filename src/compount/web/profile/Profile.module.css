@@ -2,7 +2,8 @@
   display: flex;
   height: 80vh;
   margin-left: 190px;
-  margin-top: 99px;
+  margin-top: 80px;
+  align-items: center;
 }
 
 .profileLinks {
@@ -47,6 +48,7 @@ background-color:#34495e!important; ;
   margin-bottom: 20px;
 }
 .ChangePassword{
+ 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 5px 6px 10px rgba(0,0,0,0.6);

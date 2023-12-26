@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 import Loader from "../../shared/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useTranslation } from 'react-i18next';
 import {
   faArrowRight,
   faEnvelope,
@@ -27,6 +27,7 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 export default function Home({ users }) {
+  const [t,i18n]=useTranslation("global");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(1);
@@ -308,7 +309,7 @@ export default function Home({ users }) {
                                   <FontAwesomeIcon
                                     key={starIndex}
                                     icon={faStar}
-                                    className=""
+                                    className="text-warning"
                                   />
                                 )
                               )}
@@ -349,7 +350,7 @@ export default function Home({ users }) {
                             <FontAwesomeIcon
                               key={starIndex}
                               icon={faStar}
-                              className=""
+                              className="text-warning"
                             />
                           )
                         )}
@@ -413,7 +414,6 @@ export default function Home({ users }) {
           </div>
         </div>
         </div>
-       
       </section>
     
       <section className="about-us container">
@@ -439,60 +439,58 @@ export default function Home({ users }) {
         </div>
       </section>
       <div>
-        {BlogsData && BlogsData.length > 0 ? (
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={50}
-            navigation
-            loop={true}
-            autoplay={{
-              delay: 3000,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              600: {
-                slidesPerView: 1,
-              },
-              900: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-          >
-            {BlogsData &&
-              BlogsData.map((blogs) => (
-                <SwiperSlide key={blogs._id}>
-                  <div>
-                    <div className="operator-image my-5">
-                      <img
-                        src="/images/images.jpeg"
-                        alt={`Blog ${blogs._id}`}
-                        className="img-fluid"
-                      />
-                    </div>
-                    <div className="text-center">
-                      <h3>{blogs.title}</h3>
-                      <Link
-                        className="btn btn-info"
-                        to="#"
-                        onClick={() => handleBlogClick(blogs._id)}
-                      >
-                        Details
-                      </Link>
-                      {selectedBlog === blogs._id && <p>{blogs.description}</p>}
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        ) : (
-          <p>No blogs available</p>
-        )}
-      </div>
+      {BlogsData && BlogsData.length > 0 ? (
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={50}
+          navigation
+          loop={true}
+          autoplay={{
+            delay: 3000,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            600: {
+              slidesPerView: 1,
+            },
+            900: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          {BlogsData.map((blogs) => (
+            <SwiperSlide key={blogs._id}>
+              <div>
+                <div className="operator-image my-5">
+                  <img
+                    src="/images/images.jpeg"
+                    alt={`Blog ${blogs._id}`}
+                    className="img-fluid"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3>{blogs.title}</h3>
+                  <Link
+                    className="btn btn-info"
+                    to={`/details/${blogs._id}`} // Specify the correct route for details
+                  >
+                    Details
+                  </Link>
+                  {selectedBlog === blogs._id && <p>{blogs.description}</p>}
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <p>No blogs available</p>
+      )}
+    </div>
       <section className="map position-relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27002.02680188146!2d35.22707967947037!3d32.22434418493328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ce0f650425697%3A0x7f0ba930bd153d84!2sNablus!5e0!3m2!1sen!2s!4v1701524940071!5m2!1sen!2s"

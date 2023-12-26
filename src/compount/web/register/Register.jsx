@@ -76,10 +76,10 @@ export default function Register() {
       title: "Re-enter password",
     },
     {
-      type: "text",
+      type: "number",
       name: "age",
       id: "age",
-      title: "Birthday",
+      title: "Age",
     },
   ];
   const renderInput = inputs.map((value, index) => (
@@ -100,7 +100,6 @@ export default function Register() {
     <div className="bg-forms">
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="phone-width">
-          <h2>Create new account</h2>
           <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
             <button
@@ -108,7 +107,7 @@ export default function Register() {
               className="btn btn-primary w-100"
               disabled={!formik.isValid}
             >
-              Submit
+              Create new account
             </button>
           </form>
           <div className="text-center w-100">

@@ -88,7 +88,8 @@ export default function TourlistWeb() {
                   <img src={tour.image.secure_url} alt={tour.name} />
                 </div>
                 <div className="text-center">
-                  <h3>{tour.name}</h3>
+                  
+                  <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
                   <p>Price: ${tour.price}</p>
                   <p>
                     Start Date: {new Date(tour.startDate).toLocaleDateString()}
@@ -101,7 +102,7 @@ export default function TourlistWeb() {
                       <FontAwesomeIcon
                         key={starIndex}
                         icon={faStar}
-                        className=""
+                        className="text-warning"
                       />
                     ))}
                   </p>
@@ -131,7 +132,7 @@ export default function TourlistWeb() {
                                   <FontAwesomeIcon
                                     key={starIndex}
                                     icon={faStar}
-                                    className="text-danger"
+                                    className="text-warning"
                                   />
                                 )
                               )}

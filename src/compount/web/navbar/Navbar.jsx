@@ -127,7 +127,7 @@ export default function Navbar({ users, setUser}) {
                     href="#"
                   >
                     <FontAwesomeIcon icon={faBuilding} className="pe-1"/>
-                    Sing Agency
+                    Singin Agency
                   </Link>
                 </li>
               )}
@@ -155,7 +155,7 @@ export default function Navbar({ users, setUser}) {
                   data-bs-toggle="dropdown" // Add data-bs-toggle attribute
                   aria-expanded="false"
                 >
-                  {data &&data?data.userName:"acount"}
+                  {data &&data?data.userName:"Acount"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
                   {!users ? (

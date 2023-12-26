@@ -50,11 +50,8 @@ export default function Userinfo() {
             <td>User Name</td>
             <td>{data.userName}</td>
           </tr>
-          <tr>
-            <td>Age</td>
-            <td>{data.age}</td>
-          </tr>
-         
+          <td>Age</td>
+          <td>{data.age}</td>
         </tbody>
       </table>
     </div>

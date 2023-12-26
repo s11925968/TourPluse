@@ -6,7 +6,8 @@ import { faAndroid, faApple, faAws, faWindows } from '@fortawesome/free-brands-s
 
 function Footer() {
   return (
-    <div className="footer container">
+    <div className="footer ">
+      <div className='container'>
       <div className="footer-logo"></div>
       <table>
         <thead>
@@ -66,6 +67,8 @@ function Footer() {
         </div>
         <div className="copyright">©2023 Webestica All rights reserved.</div>
       </div>
+      </div>
+      
     </div>
   );
 }
