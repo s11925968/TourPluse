@@ -363,6 +363,30 @@ a{
     width: 50%;
     height: 50%;
   }
+  .services .services-image:hover{
+    cursor: pointer;
+    width:auto!important;
+    background-color:white;;
+    border: solid 2px #eef0f1;
+    padding: 10px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+  }
+  .swiper-hover img:hover{
+    width: auto!important;
+  }
+  .services .services-image img {
+    width:auto;
+    border-radius: 15px;
+    aspect-ratio: 100/100;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+  }
 }
 /*start serivese*/
 .serives{
