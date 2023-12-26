@@ -21,7 +21,6 @@ export default function Navbar({ users, setUser}) {
   const token = localStorage.getItem('userToken');
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState("");
-
   const navgite = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState(""); // State to manage navbar background color
   
@@ -31,7 +30,6 @@ export default function Navbar({ users, setUser}) {
       window.removeEventListener("scroll", handleScroll); // Removing scroll event listener on component unmount
     };
   }, []);
-
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     // Change background color if the user has scrolled, for example, 100 pixels
@@ -119,34 +117,27 @@ export default function Navbar({ users, setUser}) {
                   Home
                 </Link>
               </li>
-              {!users && (
-                <li className="nav-item">
-                  <Link to="/logincompany"
-                    className="nav-link text-white"
-                    aria-current="page"
-                    href="#"
-                  >
-                    <FontAwesomeIcon icon={faBuilding} className="pe-1"/>
-                    Signin Agency
-                  </Link>
-                </li>
-              )}
+
               <li className="nav-item">
-                <Link className="nav-link text-white" aria-current="page" to="/tourlistweb">
+                <Link
+                  className="nav-link text-white"
+                  aria-current="page"
+                  to="/tourlistweb"
+                >
                   <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
                   Tours
                 </Link>
               </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link  text-white"
-                    aria-current="page"
-                    to="/catagouries"
-                  >
-                    <FontAwesomeIcon icon={faPlane} className="pe-1" />
-                    Tourism Company
-                  </Link>
-                </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link  text-white"
+                  aria-current="page"
+                  to="/catagouries"
+                >
+                  <FontAwesomeIcon icon={faPlane} className="pe-1" />
+                  Agencies
+                </Link>
+              </li>
               <li className="nav-item dropdown me-2 mb-4">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
@@ -155,7 +146,7 @@ export default function Navbar({ users, setUser}) {
                   data-bs-toggle="dropdown" // Add data-bs-toggle attribute
                   aria-expanded="false"
                 >
-                  {data &&data?data.userName:"Acount"}
+                  {data && data ? data.userName : "Acount"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
                   {!users ? (
@@ -181,12 +172,27 @@ export default function Navbar({ users, setUser}) {
                           Sign in
                         </Link>
                       </li>
+                      <hr className="m-0"/>
+                      <li className="nav-item">
+                        <Link
+                          to="/logincompany"
+                          className="nav-link text-black"
+                          aria-current="page"
+                          href="#"
+                        >
+                          <FontAwesomeIcon icon={faBuilding} className="pe-1 text-success" />
+                          Sign in as Agency
+                        </Link>
+                      </li>
                     </>
                   ) : (
                     <>
                       <li>
-                        <Link className="dropdown-item text-black" to={`/user/profile/${users.id}`}>
-                          <FontAwesomeIcon icon={faUser} className="pe-2"/>
+                        <Link
+                          className="dropdown-item text-black"
+                          to={`/user/profile/${users.id}`}
+                        >
+                          <FontAwesomeIcon icon={faUser} className="pe-2" />
                           Profile
                         </Link>
                       </li>

@@ -50,18 +50,17 @@ a{
 .info-header span{
   font-family: 'Dosis', sans-serif;
   font-size: 50px;
-  color:var(--main-color)
+  color:var(--main-color);
 } 
 .header .content-public{
   width:35%;
   text-align: center;
-  
 }
 .header p{
-  color:var(--main);
-  font-family:  'Dancing Script', cursive;;
+  color:rgb(250, 239, 239);
+  font-family:'Dancing Script', cursive;
   font-size: 30px;
-  width: 0;
+  width:0;
   white-space: nowrap;
   overflow: hidden;
   animation: change-p 4s infinite alternate-reverse steps(17) ,blink infinite;
@@ -80,7 +79,7 @@ a{
     width: 0%;
   }
   to{
-    width: 280px;
+    width: 290px;
   }
 }
 @keyframes blink {
@@ -316,14 +315,33 @@ a{
 .services .services-image{
   text-align: center;
 }
-.services .services-image img {
-  width: 30%;
+.services .services-image:hover{
+  cursor: pointer;
+  width: 24%!important;
+  background-color:#82C8D0;
+  border: solid 2px #0077b5;
+  padding: 10px;
   border-radius: 15px;
-  aspect-ratio: 150/100;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+}
+.swiper-hover img:hover{
+  width: 50%!important;
+}
+.services .services-image img {
+  width:40%;
+  border-radius: 15px;
+  aspect-ratio: 100/100;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.services .services-image img:hover{
+  border: solid 3px #c8e2ed;
+  
 }
 .services .services-image p{
   width: 70%;
@@ -351,3 +369,16 @@ a{
   background-color: aliceblue;
 }
 /*end seriveses*/
+/*start blogs*/
+.blog-style{
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  background-color: rgb(241, 238, 238);
+  aspect-ratio: 340/100;
+}
+/*end blogs*/

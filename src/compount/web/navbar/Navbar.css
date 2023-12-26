@@ -1,7 +1,7 @@
 /*start root*/
 :root{
   --main-color:#c8e2ed;
-  --main:#e6b59e;
+  --main:#40E0D0;
 }
 a{
   text-decoration: none;
@@ -13,7 +13,7 @@ a{
   cursor: pointer;
 }
 .navbar .nav-item a:hover{
-  color:var(--main)!important;
+  color: var(--main);
 }
 .text-info-navbar{
   margin-top: 12px;
@@ -42,7 +42,6 @@ a{
 }
 .base-sing a{
   color:white !important;
-
 }
 
 .base-sing a:hover{

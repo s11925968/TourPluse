@@ -28,7 +28,7 @@ export default function Home() {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/categories/tourOperator/${_id}?${params.toString()}&limit=9`,
+        }/categories/tourOperator/${_id}?${params.toString()}&limit=8`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -144,7 +144,7 @@ export default function Home() {
                 const operatorAvgRating = calculateAvgRating(tourOperator.rev);
                 return (
                   <div
-                    className="col-lg-4 services-image text-center my-3"
+                    className="col-lg-3 services-image text-center my-3"
                     key={tourOperator.name}
                     onClick={() => handleCategoryClick(tourOperator)}
                   >

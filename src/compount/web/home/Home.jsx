@@ -120,16 +120,15 @@ export default function Home({ users }) {
       </header>
       <section className="serives">
         <div className="container pt-5">
-        <div className="info-category">
+        <div className="info-category py-3">
           <h2>SERVICES</h2>
-          <p>We Offer Best Services</p>
         </div>
         <div className="services my-5">
           <div className="row">
-            <div className="col-lg-3 col-md-6 services-image text-center">
+            <div className="col-lg-3 col-md-6 services-flight text-center">
               <img
                 src="/img/serives/castle.png"
-                className="img-fluid"
+                className="img-fluid w-50"
                 alt="Historical Tours"
               />
               <h4 className="py-3">Historical Tours</h4>
@@ -138,26 +137,26 @@ export default function Home({ users }) {
                 civilizations
               </p>
             </div>
-            <div className="col-lg-3 col-md-6 services-image text-center">
-              <img src="/img/serives/plane.png" alt="Best Flights Options" />
+            <div className="col-lg-3 col-md-6 text-center">
+              <img src="/img/serives/plane.png" alt="Best Flights Options"className="w-50" />
               <h4 className="py-3">Best Flights Options</h4>
               <p>
                 Various flight classes, First class, Business Class, Premium
                 Economy Class, and Economy Class
               </p>
             </div>
-            <div className="col-lg-3 col-md-6 services-image text-center">
-              <img src="/img/serives/rock.png" alt="Islamic Tours" />
+            <div className="col-lg-3 col-md-6 text-center">
+              <img src="/img/serives/rock.png" alt="Islamic Tours" className="w-50"/>
               <h4 className="py-3">Islamic Tours</h4>
               <p>
                 Hajj and Umrah tours, with appropriate guide and schedule, with
                 all reservations needed
               </p>
             </div>
-            <div className="col-lg-3 col-md-6 services-image text-center">
+            <div className="col-lg-3 col-md-6 text-center">
               <img
                 src="/img/serives/flight.png"
-                className="img-fluid"
+                className="img-fluid w-50"
                 alt="Diversity"
               />
               <h4 className="py-3">Diversity</h4>
@@ -202,7 +201,7 @@ export default function Home({ users }) {
                 <SwiperSlide key={tourOperator._id}>
                   <Link
                     to={`/tour/get/${tourOperator._id}`}
-                    className="text-decoration-none"
+                    className=" text-decoration-none"
                   >
                     <div
                       className={`info-content-operator ${
@@ -210,7 +209,7 @@ export default function Home({ users }) {
                       }`}
                       onClick={() => handleOperatorClick(tourOperator._id)}
                     >
-                      <div className="operator-image my-5">
+                      <div className="swiper-hover operator-image my-5">
                         <img
                           src={tourOperator.image.secure_url}
                           className="img-fluid"
@@ -218,7 +217,7 @@ export default function Home({ users }) {
                         />
                       </div>
                       <div className="d-flex justify-content-center">
-                      <h4 className="py-3 text-center w-75">
+                      <h4 className="text-center w-75">
                         {tourOperator.name.split(" ").slice(0, 4).join(" ")}...
                       </h4>
                       </div>
@@ -335,16 +334,16 @@ export default function Home({ users }) {
                   );
                   return (
                     <div
-                      className="col-md-6 services-image text-center my-3"
+                      className="operater col-md-3 services-image text-center my-3"
                       key={tourOperator.name}
                       onClick={() => handleCategoryClick(tourOperator)}
                     >
                       <img
                         src={tourOperator.image.secure_url}
                         alt={`Operator ${tourOperator._id}`}
-                        className="w-100"
+                        className="hover-images w-100"
                       />
-                      <p className="py-3">
+                      <p className="pt-3">
                         {Array.from({ length: operatorAvgRating }).map(
                           (_, starIndex) => (
                             <FontAwesomeIcon
@@ -355,10 +354,10 @@ export default function Home({ users }) {
                           )
                         )}
                       </p>
-                      <h4 className="py-3">
-                        {tourOperator.name.split(" ").slice(0, 4).join(" ")}...
+                      <h4 className="py-1">
+                        {tourOperator.name.split(" ").slice(0, 2).join(" ")}...
                       </h4>
-                      <Link to="#" className="btn btn-info">
+                      <Link to="#" className="btn btn-info mb-3">
                         Click To Show Details
                       </Link>
                     </div>
@@ -415,19 +414,18 @@ export default function Home({ users }) {
         </div>
         </div>
       </section>
-    
       <section className="about-us container">
         <div className="row info-images mt-5">
           <h2>About us</h2>
           <div className="col-md-6 about-info">
-            <p>
+            <p className="fs-3 ">
               Tour Pulse acts as an intermediary between travel agencies and
               travelers, allowing agencies to display their trips and offers and
               provide travelers with a range of trips, so it provides
               advertising for the agencies and providing a large selection of
               trips for travelers.
-              <Link to="/about">
-                Read more about TOURPLUSE
+              <Link to="/about"className="ms-3">
+                  more about tourpulse
                 <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </p>
@@ -444,10 +442,6 @@ export default function Home({ users }) {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
           navigation
-          loop={true}
-          autoplay={{
-            delay: 3000,
-          }}
           pagination={{
             clickable: true,
           }}
@@ -466,21 +460,8 @@ export default function Home({ users }) {
           {BlogsData.map((blogs) => (
             <SwiperSlide key={blogs._id}>
               <div>
-                <div className="operator-image my-5">
-                  <img
-                    src="/images/images.jpeg"
-                    alt={`Blog ${blogs._id}`}
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="text-center">
-                  <h3>{blogs.title}</h3>
-                  <Link
-                    className="btn btn-info"
-                    to={`/details/${blogs._id}`} // Specify the correct route for details
-                  >
-                    Details
-                  </Link>
+                <div className="blog-style text-center">
+                  <h3 className="w-75 m-auto">{blogs.title}</h3>
                   {selectedBlog === blogs._id && <p>{blogs.description}</p>}
                 </div>
               </div>
