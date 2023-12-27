@@ -125,7 +125,7 @@ export default function Home({ users }) {
               {dataOperater?.map((tourOperator, index) => {
                 return (
                   <div
-                    className="col-md-4 services-image text-center my-3"
+                    className="col-md-3 services-image text-center my-3"
                     key={tourOperator.name}
                     onClick={() => handleCategoryClick(tourOperator)}
                   >
