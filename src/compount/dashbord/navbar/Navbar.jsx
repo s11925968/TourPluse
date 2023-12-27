@@ -64,42 +64,6 @@ export default function Navbar() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Categories
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="">
-                      Categories list
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle text-white"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Operator
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="">
-                      Operators List
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle text-white"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
                   Tours
                 </a>
                 <ul className="dropdown-menu">
@@ -117,11 +81,6 @@ export default function Navbar() {
                       to="/dashboard/selectCategories"
                     >
                       Add Tours
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="">
-                      Update Tours
                     </Link>
                   </li>
                 </ul>
