@@ -23,7 +23,7 @@ export default function Home({ users }) {
       const params = new URLSearchParams();
       params.append("page", current);
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/operator/get?${params.toString()}&limit=9`,
+        `${import.meta.env.VITE_URL_LINK}/operator/get?${params.toString()}&limit=8`,
         {
           headers: {
             Authorization: `ghazal__${token}`,

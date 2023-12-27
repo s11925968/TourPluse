@@ -176,11 +176,6 @@ export default function Navbar({users,setUser}) {
                     Add Agency
                     </Link>
                   </li>
-                  <li>
-                    <Link className="dropdown-item" to="">
-                    Update Agency
-                    </Link>
-                  </li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -248,7 +243,6 @@ export default function Navbar({users,setUser}) {
                   )}
                 </ul>
               </li>
-              
             </ul>
           </div>
         </div>

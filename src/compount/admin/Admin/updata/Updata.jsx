@@ -83,7 +83,6 @@ export default function Updata() {
     <div className="bg-forms">
       <div className="container py-4 d-flex justify-content-center align-items-center ">
         <div className="phone-width">
-          <h2>Update Email and Password</h2>
           <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
             <button type="submit" className="btn btn-primary w-100">

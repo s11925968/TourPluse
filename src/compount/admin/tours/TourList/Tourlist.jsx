@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Link } from 'react-router-dom';
+import './tourlist.css'
 // ... (your imports)
 
 // ... (your imports)
@@ -19,7 +20,7 @@ export default function Tourlist() {
   const getcategories = async () => {
     try {
       const token = localStorage.getItem('userToken');
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/tour/get`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/tour/get?limit=50`, {
         headers: {
           Authorization: `ghazal__${token}`
         },
@@ -51,7 +52,7 @@ export default function Tourlist() {
       {data.length ? (
         data.map((tour) => (
           <div key={tour._id} className="col-lg-4 mb-4">
-            <div>
+            <div className='images-tour-admin'>
               <img src={tour.image.secure_url} className="w-100" alt={tour.name} />
             </div>
             <div className='text-center'>

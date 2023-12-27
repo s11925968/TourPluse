@@ -114,11 +114,11 @@ export default function Creatadmin() {
     <div className="bg-forms">
       <div className="container py-4 d-flex justify-content-center align-items-center ">
         <div className="phone-width">
-          <h2>create admin</h2>
+          <h2></h2>
           <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
             <button type="submit" className="btn btn-primary w-100">
-              submit
+              Create Admin
             </button>
           </form>
         </div>
