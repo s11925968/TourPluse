@@ -128,16 +128,18 @@ export default function Navbar({ users, setUser}) {
                   Tours
                 </Link>
               </li>
+              {users &&
               <li className="nav-item">
-                <Link
-                  className="nav-link  text-white"
-                  aria-current="page"
-                  to="/catagouries"
-                >
-                  <FontAwesomeIcon icon={faPlane} className="pe-1" />
-                  Agencies
-                </Link>
-              </li>
+              <Link
+                className="nav-link  text-white"
+                aria-current="page"
+                to="/catagouries"
+              >
+                <FontAwesomeIcon icon={faPlane} className="pe-1" />
+                Agencies
+              </Link>
+            </li>
+              }
               <li className="nav-item dropdown me-2 mb-4">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"

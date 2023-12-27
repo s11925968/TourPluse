@@ -23,7 +23,7 @@ export default function Navbar() {
     navgite("/logincompany");
   };
   return (
-    <div className="back w-100">
+    <div className="back">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
         <div className="container">
           <Link to="">

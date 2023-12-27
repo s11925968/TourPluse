@@ -92,7 +92,7 @@ export default function Logincompany() {
               className="btn btn-primary w-100"
               disabled={!formik.isValid}
             >
-              Log in
+              Sign in as Agency
             </button>
             <Link to="/auth/sendCode" className="btn btn-primary mt-4">
               Forgot Password

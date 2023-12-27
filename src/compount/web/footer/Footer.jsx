@@ -12,47 +12,47 @@ function Footer() {
       <table>
         <thead>
           <tr>
+            <th>About Tourpulse</th>
             <th></th>
-            <th>Download</th>
-            <th>About</th>
+            <th>Tours</th>
             <th>Resources</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Match way these she avoids seeing</td>
+            <td>Blogs</td>
             <td><FontAwesomeIcon icon={faAws}/> Web Browser </td>
             <td>About social</td>
             <td>Join</td>
           </tr>
           <tr>
-            <td>Death their fat off.</td>
+            <td>TourPluse Highest rated</td>
             <td><FontAwesomeIcon icon={faWindows} /> Windows</td>
-            <td>Security</td>
+            <td>Tours List</td>
             <td>Help center</td>
           </tr>
           <tr>
-            <td>Mobile experience</td>
+            <td>Most popular experiences</td>
             <td><FontAwesomeIcon icon={faMobileAlt} /> Phone</td>
-            <td>Learn about our mobile app</td>
+            <td>add Tours</td>
             <td>Download now</td>
           </tr>
           <tr>
             <td></td>
             <td><FontAwesomeIcon icon={faApple} /> Mack</td>
-            <td>Customer Support</td>
+            <td>Tours Agencies</td>
             <td>Developers</td>
           </tr>
           <tr>
             <td></td>
             <td><FontAwesomeIcon icon={faAndroid} /> Android</td>
-            <td>Partners</td>
+            <td>Hajj and Umrah Tours</td>
             <td>Status</td>
           </tr>
           <tr>
             <td></td>
             <td></td>
-            <td>Careers-Join Us!</td>
+            <td>WorldWide Tours!</td>
             <td>Communities</td>
           </tr>
         </tbody>
