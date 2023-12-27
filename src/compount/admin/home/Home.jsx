@@ -125,16 +125,16 @@ export default function Home({ users }) {
               {dataOperater?.map((tourOperator, index) => {
                 return (
                   <div
-                    className="col-md-3 services-image text-center my-3"
+                    className="col-md-3 services-image text-center "
                     key={tourOperator.name}
                     onClick={() => handleCategoryClick(tourOperator)}
                   >
                     <img
                       src={tourOperator.image.secure_url}
                       alt={`Operator ${tourOperator._id}`}
-                      className=""
+                      className="my-3"
                     />
-                      <h4>{tourOperator.name.split(" ").slice(0, 4).join(" ")}...</h4>  
+                      <h4>{tourOperator.name.split(" ").slice(0, 2).join(" ")}...</h4>  
                     <Link to="#" className="btn btn-info">
                       Click To Show Details
                     </Link>
