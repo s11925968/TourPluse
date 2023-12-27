@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../../../shared/Loader'
-export default function DeleteTour() {
+export default function ForceDelete() {
   const { id } = useParams();
   const [loading,setLoading] = useState(false );
   const navigite=useNavigate();

@@ -63,6 +63,9 @@ export default function Tourlist() {
               <Link to="#" className="btn btn-primary" onClick={() => handleProductClick(tour._id)}>
                 Details
               </Link>
+              <Link to={`/admin/tour/forceDelete/${tour._id}`} className="btn btn-primary ms-2">
+                Force Delete
+              </Link>
               {selectedProduct && selectedProduct._id === tour._id && (
               <div>
               <p>
