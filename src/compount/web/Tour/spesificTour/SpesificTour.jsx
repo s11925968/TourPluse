@@ -52,12 +52,12 @@ export default function SpesificTour() {
                 </p>
                 <p>End Date: {new Date(tour.endDate).toLocaleDateString()}</p>
                 <Link
-                  to="#"
-                  className="btn btn-primary"
-                  onClick={() => handleProductClick(tour._id)}
-                >
-                  Details
-                </Link>
+                    to={`/tour/details/${tour._id}`}
+                    className="btn btn-primary"
+                    onClick={() => handleProductClick(tour._id)}
+                  >
+                    Details
+                  </Link>
                 {selectedProduct && selectedProduct._id === tour._id && (
                   <div>
                     <p>

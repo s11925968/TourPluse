@@ -56,6 +56,7 @@ import ChangeEmailAdmin from "./compount/admin/profile/ChangeEmail";
 import ProtectedCompany from "./compount/web/routeProteced/ProtextedCompany.jsx";
 import ProtectedWeb from "./compount/web/routeProteced/ProtectedWeb.jsx";
 import ForceDelete from './compount/admin/tours/DeleteTour/DeleteTour.jsx'
+import DetilsTour from "./compount/web/Tour/DetilsTour/DetilsTour.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -136,6 +137,10 @@ export default function App() {
         {
           path: "tour/get/:_id",
           element: <SpesificTour />,
+        },
+        {
+          path:'tour/details/:_id',
+          element:<DetilsTour />
         },
         {
           path: "tour/:_id/review",

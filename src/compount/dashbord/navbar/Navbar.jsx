@@ -85,7 +85,6 @@ export default function Navbar() {
                   </li>
                 </ul>
               </li>
-
               <li className="nav-item dropdown me-2">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"

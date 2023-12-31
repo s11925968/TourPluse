@@ -23,7 +23,7 @@ export default function TourlistWeb() {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/tour/getActive?${params.toString()}&limit=6`
+        }/tour/getActive?${params.toString()}&limit=24`
       );
       setTitle(data.title);
       setDataTour(data.tour);
@@ -106,20 +106,20 @@ export default function TourlistWeb() {
                       />
                     ))}
                   </p>
-                  <button
+                  {/* <button
                     className="btn btn-info me-3"
                     onClick={() => handleShowCommentsClick(tour._id)}
                   >
                     {tourStates[tour._id] ? "Hide Comments" : "Show Comments"}
-                  </button>
+                  </button> */}
                   <Link
-                    to="#"
+                    to={`/tour/details/${tour._id}`}
                     className="btn btn-primary"
                     onClick={() => handleProductClick(tour._id)}
                   >
                     Details
                   </Link>
-                  {selectedProduct && selectedProduct._id === tour._id && (
+                  {/* {selectedProduct && selectedProduct._id === tour._id && (
                     <div>
                       {tourStates[tour._id] && (
                         <div>
@@ -165,7 +165,7 @@ export default function TourlistWeb() {
                         Create Review
                       </Link>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             ))}
@@ -184,7 +184,7 @@ export default function TourlistWeb() {
                       Previous
                     </button>
                   </li>
-                  {Array.from({ length: Math.ceil(title / 8) || 0 }).map(
+                  {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
                     (_, pageIndex) => (
                       <li
                         key={pageIndex}

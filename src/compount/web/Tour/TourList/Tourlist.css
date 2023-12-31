@@ -1,10 +1,8 @@
 .tourlist-web{
-  display: flex;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 160px;
 }
 .tourlist-web .image{
-  display: flex;
   width: 100%;
   justify-content: center;
 }

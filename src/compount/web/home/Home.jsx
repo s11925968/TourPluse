@@ -46,14 +46,17 @@ export default function Home({ users }) {
       setIsLoading(true);
       const params = new URLSearchParams();
       params.append("page", current);
-
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/operator/getActive?${params.toString()}&limit=8`
+        }/operator/getActive?${params.toString()}&limit=25`
       );
+      const filteredData = data.tourOperator.filter((operator) => {
+        const operatorAvgRating = calculateAvgRating(operator.rev);
+        return operatorAvgRating >= 4;
+      });
       setTitle(data.title);
-      setData(data.tourOperator);
+      setData(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -234,7 +237,7 @@ export default function Home({ users }) {
       <section className="pagination-operater">
         <div className="container pt-5">
         <div className="info-category">
-          <h2>AGENCIES</h2>
+          <h2>TOP AGENCIES</h2>
         </div>
         <div className="services my-5">
           <div className="row">
@@ -332,6 +335,7 @@ export default function Home({ users }) {
                   const operatorAvgRating = calculateAvgRating(
                     tourOperator.rev
                   );
+                  if (operatorAvgRating >= 4) {
                   return (
                     <div
                       className="operater col-md-3 services-image text-center my-3"
@@ -361,7 +365,10 @@ export default function Home({ users }) {
                         Click To Show Details
                       </Link>
                     </div>
-                  );
+                  );}
+                  else{
+                    return null;
+                  }
                 })}
                 <nav aria-label="Page navigation example ">
                   <ul className="pagination justify-content-center my-5">
@@ -377,7 +384,7 @@ export default function Home({ users }) {
                         Previous
                       </button>
                     </li>
-                    {Array.from({ length: Math.ceil(title / 8) || 0 }).map(
+                    {Array.from({ length: Math.ceil(title / 25) || 0 }).map(
                       (_, pageIndex) => (
                         <li
                           key={pageIndex}
