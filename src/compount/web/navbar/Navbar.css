@@ -3,20 +3,25 @@
   --main-color:#c8e2ed;
   --main:#40E0D0;
 }
+.main-color{
+  color: #40E0D0;
+}
 a{
   text-decoration: none;
 }
 /*end root*/
 /*start navbar*/
 .logo{
-  width:10rem;
+  width: 14rem !important;;
   cursor: pointer;
 }
+/* Navbar.css */
+.logo-small {
+  width: 8rem !important;
+}
+
 .navbar .nav-item a:hover{
   color: var(--main);
-}
-.text-info-navbar{
-  margin-top: 12px;
 }
 .sing-in{
   width:5% !important;
@@ -58,6 +63,8 @@ a{
   text-decoration: none;
   display: block;
 }
+/* Navbar.css */
+
 .navbar{
   border-radius: 25px;
   top:7px;

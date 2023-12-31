@@ -20,6 +20,28 @@
   width: 40px;
   height: 40px;
 }
+.icons-footers .brand{
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  line-height: 40px;
+  border: solid 2px;
+  margin-left:10px;
+  border-radius: 50%;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+.icons-footers .brand:hover{
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+}
 
 .word-spacing-copyright {
   display: flex;

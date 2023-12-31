@@ -218,8 +218,7 @@ a{
   justify-content: center;
 }
 .operator-image img{
-  width: 200px ;
-  height: 200px ;
+  width: 250px !important;
   border-radius: 10%;
   -webkit-border-radius: 10%;
   -moz-border-radius: 10%;
@@ -327,9 +326,7 @@ a{
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
 }
-.swiper-hover img:hover{
-  width: 50%!important;
-}
+
 .services .services-image img {
   width:40%;
   border-radius: 15px;
@@ -359,10 +356,7 @@ a{
     height: 30px;
     width: 30px;
   }
-  .services .services-image img {
-    width: 50%;
-    height: 50%;
-  }
+
   .services .services-image:hover{
     cursor: pointer;
     width:auto!important;
@@ -374,9 +368,6 @@ a{
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
-  }
-  .swiper-hover img:hover{
-    width: auto!important;
   }
   .services .services-image img {
     width:auto;

@@ -22,7 +22,6 @@ export default function Logincompany() {
         `${import.meta.env.VITE_URL_LINK}/auth/tourOperator/signin`,
         user
       );
-      console.log(data);
       if (data.message == "success") {
         localStorage.setItem("companyToken", data.token);
         setCompanycontext();

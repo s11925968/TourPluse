@@ -16,11 +16,10 @@
   -o-border-radius: 15px!;
 }
 @media (max-width:600px){
-  .tourlist-web{
-    display: flex;
-    align-items: center;
-  }
   .tourlist-web .image img{
     width: 25%;
+  }
+  .tourlist-web{
+    margin-top: 100px;
   }
 }

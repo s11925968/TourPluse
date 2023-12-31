@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-
+import './DetilsTour.css'
 export default function DetilsTour() {
   const { _id } = useParams();
   const [data, setDataTour] = useState("");
@@ -33,7 +33,6 @@ export default function DetilsTour() {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
-  console.log(data);
   const dataDate = {
     startDate: "2023-01-01",
     endDate: "2023-12-31",
@@ -44,7 +43,7 @@ export default function DetilsTour() {
   };
 
   const lastRegDateValid = isLastRegDateValid(data.lastRegDate, currentDate);
-
+  console.log(data);
   useEffect(() => {
     getTours();
   }, [_id]);
@@ -52,16 +51,20 @@ export default function DetilsTour() {
     return <Loader />;
   }
   return (
-    <div className="tourlist-web container">
-      <h2 className="py-3 fs-1">{data.name}</h2>
+    <div className="container">
+      
+    <div className="tourlist-web">
+      <div className="">
+        <h2>{data.name}</h2>
+      </div>
       <div className="row">
         <>
           <div key={data._id} className="col-lg-6 mb-4">
             <div className="image">
-              <img src={data.image.secure_url} alt={data.name} />
+              <img src={data.image.secure_url} alt={data.name}className="w-100" />
             </div>
           </div>
-          <div className="col-lg-6 ">
+          <div className="col-lg-6">
             <div className="row">
               <div className="col-lg-3 w-50">
                 <p>
@@ -129,9 +132,39 @@ export default function DetilsTour() {
                   />
                 ))}
               </p>
+              <Link
+                className="w-25 m-auto btn btn-info"
+                to={`/tour/${data._id}/review`}
+              >
+                Review
+              </Link>
             </div>
           </div>
         </>
+      </div>
+    </div>
+    <div className="row mt-5">
+        {data.reviews.length > 0 &&
+          data.reviews.map((review) => (
+            <div key={review._id} className="col-lg-4 bg-info comment-detalis">
+              <p className="fs-5 m-auto text-center">
+                {Array.from({
+                  length: review.rating,
+                }).map((_, starIndex) => (
+                  <FontAwesomeIcon
+                    key={starIndex}
+                    icon={faStar}
+                    className="text-warning"
+                  />
+                ))}
+              </p>
+              <div className="bg-white ps-2 comment-detalis">
+              <p>{review.comment}
+              </p>
+              </div>
+              
+            </div>
+          ))}
       </div>
     </div>
   );

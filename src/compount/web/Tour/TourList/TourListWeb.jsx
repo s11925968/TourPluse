@@ -72,7 +72,6 @@ export default function TourlistWeb() {
   useEffect(() => {
     getTours();
   }, [current]);
-  console.log(dataTour);
   if (isLoading) {
     return <Loader />;
   }
@@ -106,15 +105,10 @@ export default function TourlistWeb() {
                       />
                     ))}
                   </p>
-                  {/* <button
-                    className="btn btn-info me-3"
-                    onClick={() => handleShowCommentsClick(tour._id)}
-                  >
-                    {tourStates[tour._id] ? "Hide Comments" : "Show Comments"}
-                  </button> */}
+              
                   <Link
                     to={`/tour/details/${tour._id}`}
-                    className="btn btn-primary"
+                    className="btn btn-info"
                     onClick={() => handleProductClick(tour._id)}
                   >
                     Details

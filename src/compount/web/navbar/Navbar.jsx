@@ -1,14 +1,12 @@
+// Navbar.js
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBuilding,
-  faCartShopping,
   faCircleExclamation,
   faEarthAmericas,
-  faEnvelope,
   faHouse,
   faPlane,
   faRightToBracket,
@@ -17,35 +15,40 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Loader from "../../shared/Loader";
-export default function Navbar({ users, setUser}) {
-  const token = localStorage.getItem('userToken');
+
+export default function Navbar({ users, setUser }) {
+  const token = localStorage.getItem("userToken");
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState("");
   const navgite = useNavigate();
-  const [navbarBackground, setNavbarBackground] = useState(""); // State to manage navbar background color
-  
+  const [navbarBackground, setNavbarBackground] = useState("");
+  const [hasScrolled, setHasScrolled] = useState(false);
+
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll); // Adding scroll event listener
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll); // Removing scroll event listener on component unmount
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    // Change background color if the user has scrolled, for example, 100 pixels
     if (scrollPosition > 100) {
       setNavbarBackground("#4b5357");
+      setHasScrolled(true);
     } else {
-      setNavbarBackground(""); // Revert back to default background color
+      setNavbarBackground("");
+      setHasScrolled(false);
     }
   };
+
   const handleAboutClick = () => {
-    const aboutElement = document.getElementById('about');
+    const aboutElement = document.getElementById("about");
     if (aboutElement) {
-      aboutElement.scrollIntoView({ behavior: 'smooth' });
+      aboutElement.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
   const getProfile = async () => {
     try {
       setLoader(true);
@@ -53,8 +56,8 @@ export default function Navbar({ users, setUser}) {
         `${import.meta.env.VITE_URL_LINK}/user/${users.id}`,
         {
           headers: {
-            Authorization: `ghazal__${token}`
-          }
+            Authorization: `ghazal__${token}`,
+          },
         }
       );
       setData(data.user);
@@ -63,32 +66,36 @@ export default function Navbar({ users, setUser}) {
     } finally {
       setLoader(false);
     }
-  }
+  };
+
   useEffect(() => {
     if (users) {
       getProfile();
     }
   }, [users]);
+
   const logout = () => {
     localStorage.removeItem("userToken");
     setUser(null);
     navgite("/");
   };
-  if(loader){
-    return <Loader/>
+
+  if (loader) {
+    return <Loader />;
   }
+
   return (
     <div className="back w-100 d-flex justify-content-center">
       <nav
         className={`navbar navbar-expand-lg z-2 position-fixed`}
-        style={{ backgroundColor: navbarBackground }} // Set dynamic background color based on state
+        style={{ backgroundColor: navbarBackground }}
       >
         <div className="container">
           <Link to="/">
             <img
               src="/images/fulllogo_transparent_nobuffer.png"
               alt="logo"
-              className="logo"
+              className={`logo ${hasScrolled ? "scrolled" : ""} ${hasScrolled ? "logo-small" : ""}`}
             />
           </Link>
           <button
@@ -106,75 +113,54 @@ export default function Navbar({ users, setUser}) {
             className="text-info-navbar collapse navbar-collapse"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0  ">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link
-                  className="nav-link active text-white"
-                  aria-current="page"
-                  // to={users&&users.role === "Users" ? "/" : "/admin"}
-                >
+                <Link className="nav-link active text-white" aria-current="page">
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link
-                  className="nav-link text-white"
-                  aria-current="page"
-                  to="/tourlistweb"
-                >
+                <Link className="nav-link text-white" aria-current="page" to="/tourlistweb">
                   <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
                   Tours
                 </Link>
               </li>
-              {users &&
-              <li className="nav-item">
-              <Link
-                className="nav-link  text-white"
-                aria-current="page"
-                to="/catagouries"
-              >
-                <FontAwesomeIcon icon={faPlane} className="pe-1" />
-                Agencies
-              </Link>
-            </li>
-              }
-              <li className="nav-item dropdown me-2 mb-4">
+              {users && (
+                <li className="nav-item">
+                  <Link className="nav-link text-white" aria-current="page" to="/catagouries">
+                    <FontAwesomeIcon icon={faPlane} className="pe-1" />
+                    Agencies
+                  </Link>
+                </li>
+              )}
+              <li className="nav-item dropdown me-2 ">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
                   href="#"
                   role="button"
-                  data-bs-toggle="dropdown" // Add data-bs-toggle attribute
+                  data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {data && data ? data.userName : "Acount"}
+                  {data && data ? data.userName : "Account"}
                 </a>
-                <ul className="dropdown-menu dropdown-menu-start mb-2 text-center">
+                <ul className="dropdown-menu dropdown-menu-start">
                   {!users ? (
                     <>
                       <li>
-                        <Link
-                          className="dropdown-item text-black"
-                          to="/register"
-                        >
-                          <FontAwesomeIcon
-                            icon={faUserPlus}
-                            className="pe-1 text-success"
-                          />
+                        <Link className="dropdown-item text-black" to="/register">
+                          <FontAwesomeIcon icon={faUserPlus} className="pe-1 text-success" />
                           Sign up
                         </Link>
                       </li>
                       <li>
                         <Link className="dropdown-item text-black" to="/login">
-                          <FontAwesomeIcon
-                            icon={faRightToBracket}
-                            className="pe-2 text-success"
-                          />
+                          <FontAwesomeIcon icon={faRightToBracket} className="pe-2 text-success" />
                           Sign in
                         </Link>
                       </li>
-                      <hr className="m-0"/>
+                      <hr className="m-0" />
                       <li className="nav-item">
                         <Link
                           to="/logincompany"
@@ -199,14 +185,8 @@ export default function Navbar({ users, setUser}) {
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          className="dropdown-item text-black"
-                          onClick={logout}
-                        >
-                          <FontAwesomeIcon
-                            icon={faRightToBracket}
-                            className="pe-2 text-danger"
-                          />
+                        <Link className="dropdown-item text-black" onClick={logout}>
+                          <FontAwesomeIcon icon={faRightToBracket} className="pe-2 text-danger" />
                           Logout
                         </Link>
                       </li>
@@ -217,19 +197,13 @@ export default function Navbar({ users, setUser}) {
 
               <li className="nav-item  text-info"></li>
               <li className="nav-item ">
-                {
-                  // Inside Navbar.jsx
-                  <Link
-                    to="/about"
-                    className="about btn nav-link btn-link text-decoration-none text-start"
-                  >
-                    <FontAwesomeIcon
-                      icon={faCircleExclamation}
-                      className="pe-1"
-                    />
-                    About
-                  </Link>
-                }
+                <Link
+                  to="/about"
+                  className="about btn nav-link btn-link text-decoration-none text-start"
+                >
+                  <FontAwesomeIcon icon={faCircleExclamation} className="pe-1" />
+                  About
+                </Link>
               </li>
             </ul>
           </div>

@@ -28,7 +28,7 @@ export default function Home() {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/categories/tourOperator/${_id}?${params.toString()}&limit=8`,
+        }/categories/tourOperator/${_id}?${params.toString()}&limit=24`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -50,7 +50,6 @@ export default function Home() {
     );
     setSelectedOperator(clickedOperator);
   };
-  console.log(dataOperater);
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };

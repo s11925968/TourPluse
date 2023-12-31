@@ -1,8 +1,8 @@
 import React from 'react';
 import './footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faInfoCircle, faCogs, faMobileAlt, faUsers, faBuilding, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { faAndroid, faApple, faAws, faWindows } from '@fortawesome/free-brands-svg-icons';
+import { faDownload, faInfoCircle, faCogs, faMobileAlt, faUsers, faBuilding, faUserFriends, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faAndroid, faApple, faAws, faFacebook, faGoogle, faLinkedinIn, faWindows } from '@fortawesome/free-brands-svg-icons';
 
 function Footer() {
   return (
@@ -13,47 +13,55 @@ function Footer() {
         <thead>
           <tr>
             <th>About Tourpulse</th>
-            <th></th>
             <th>Tours</th>
-            <th>Resources</th>
+            <th>Contect Us</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Blogs</td>
-            <td><FontAwesomeIcon icon={faAws}/> Web Browser </td>
             <td>About social</td>
-            <td>Join</td>
+            <div className='icons-footers'>
+            <td><FontAwesomeIcon icon={faFacebook} className="brand brand-face" /></td>
+            </div>
           </tr>
           <tr>
             <td>TourPluse Highest rated</td>
-            <td><FontAwesomeIcon icon={faWindows} /> Windows</td>
             <td>Tours List</td>
-            <td>Help center</td>
+            <div className='icons-footers'>
+            <td> 
+              <FontAwesomeIcon
+                icon={faLinkedinIn}
+                className="brand brand-linked fs-1"
+              /></td>
+            </div>
           </tr>
           <tr>
             <td>Most popular experiences</td>
-            <td><FontAwesomeIcon icon={faMobileAlt} /> Phone</td>
             <td>add Tours</td>
-            <td>Download now</td>
+            <div className='icons-footers'>
+            <td><FontAwesomeIcon icon={faGoogle} className="brand brand-google" /></td>
+            </div>
           </tr>
           <tr>
             <td></td>
-            <td><FontAwesomeIcon icon={faApple} /> Mack</td>
             <td>Tours Agencies</td>
-            <td>Developers</td>
+            <div className='icons-footers'>
+            <td> 
+              <FontAwesomeIcon
+                    icon={faPhone}
+                    className="brand brand-face"
+                  /></td>
+            </div>
           </tr>
           <tr>
             <td></td>
-            <td><FontAwesomeIcon icon={faAndroid} /> Android</td>
             <td>Hajj and Umrah Tours</td>
-            <td>Status</td>
           </tr>
           <tr>
-            <td></td>
             <td></td>
             <td>WorldWide Tours!</td>
-            <td>Communities</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -68,9 +76,7 @@ function Footer() {
         <div className="copyright">©2023 Webestica All rights reserved.</div>
       </div>
       </div>
-      
     </div>
   );
 }
-
 export default Footer;
