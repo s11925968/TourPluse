@@ -262,7 +262,6 @@ export default function Home({ users }) {
                               alt={`Operator ${tourOperator._id}`}
                             />
                           </div>
-
                           <div className="d-flex justify-content-center">
                             <h4 className="text-center w-75 text-black">
                               {tourOperator.name

@@ -301,30 +301,37 @@ a{
 }
 .info-category h2::after {
   position: absolute;
-  bottom: -36px;
+  bottom: -40px;
   left: 0;
   right: 0;
   top: 0;
   margin: auto;
   height: 3px;
-  width: 140px;
+  width: 138px;
   background-color: #0077b5;
   content: '';
 }
-.services .services-image{
-  text-align: center;
+.services .services-image {
+  transition: width 0.5s ease-out; /* Initial transition for width */
 }
-.services .services-image:hover{
+
+.services .services-image:hover {
   cursor: pointer;
-  width: 24%!important;
-  background-color:#82C8D0;
+  width: 23%!important;
+  transition: width 0.5s ease-in-out, background-color 0.6s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  background-color: #82C8D0;
   border: solid 2px #0077b5;
-  padding: 10px;
+  padding-top: 10px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+}
+
+/* Add this style to remove transitions when not hovered */
+.services .services-image:not(:hover) {
+  transition: width 0.5s ease-out, background-color 0.6s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
 }
 
 .services .services-image img {
@@ -355,6 +362,14 @@ a{
   .icons .brand{
     height: 30px;
     width: 30px;
+  }
+  .operator-image img{
+    width: 150px !important;
+    border-radius: 10%;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    -ms-border-radius: 10%;
+    -o-border-radius: 10%;
   }
 
   .services .services-image:hover{
