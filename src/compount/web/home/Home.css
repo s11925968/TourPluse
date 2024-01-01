@@ -318,7 +318,7 @@ a{
 .services .services-image:hover {
   cursor: pointer;
   width: 23%!important;
-  transition: width 0.5s ease-in-out, background-color 0.6s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  transition: width 0.5s ease-in-out, background-color 0.3s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
   background-color: #82C8D0;
   border: solid 2px #0077b5;
   padding-top: 10px;
@@ -327,6 +327,10 @@ a{
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  -webkit-transition: width 0.5s ease-in-out, background-color 0.3s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -moz-transition: width 0.5s ease-in-out, background-color 0.3s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -ms-transition: width 0.5s ease-in-out, background-color 0.3s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -o-transition: width 0.5s ease-in-out, background-color 0.3s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
 }
 
 /* Add this style to remove transitions when not hovered */
