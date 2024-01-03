@@ -119,7 +119,7 @@ export default function TourlistWeb() {
     <section className="d-flex">
       <aside className="aside">
         <h2>Filters</h2>
-        <div className="form-group">
+        <div className="form-group py-4">
           <label>Price Range</label>
           <Slider
             range
@@ -133,7 +133,7 @@ export default function TourlistWeb() {
             <span>${maxPrice}</span>
           </div>
         </div>
-        <div className="form-group">
+        <div className="form-group py-4">
           <label>Select Location:</label>
           <select
             className="form-control"
@@ -145,7 +145,7 @@ export default function TourlistWeb() {
             <option value="South America">South America</option>
           </select>
         </div>
-        <div className="form-group">
+        <div className="form-group py-4">
           <label>Duration Range</label>
           <Slider
             range
@@ -159,7 +159,7 @@ export default function TourlistWeb() {
             <span>{maxDuration} days</span>
           </div>
         </div>
-        <div className="form-group">
+        <div className="form-group py-4">
           <label>Meals:</label>
           <div>
             <label className="pe-3">
@@ -171,7 +171,7 @@ export default function TourlistWeb() {
               />
               Included
             </label>
-            <label>
+            <label className="pe-3">
               <input
                 type="radio"
                 value="everything"
@@ -179,8 +179,8 @@ export default function TourlistWeb() {
                 onChange={() => setMealsIncluded("everything")}
               />
               Everything
-            </label>
-            <label>
+            </label > 
+            <label className="pe-3">
               <input
                 type="radio"
                 value="Traditional"
