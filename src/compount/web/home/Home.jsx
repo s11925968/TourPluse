@@ -213,7 +213,7 @@ export default function Home({ users }) {
         <div className="info-ACTIVITYS">
           <h2>TOP ACTIVITIES</h2>
         </div>
-        <div className="operator">
+        <div className="operator py-5">
           <div className="container d-flex justify-content-start align-items-center">
             {dataTour && dataTour.length > 0 ? (
               <Swiper
