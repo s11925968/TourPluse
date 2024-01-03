@@ -4,7 +4,7 @@
   
 }
 .aside{
-  width: 10%;
+  width: 20%;
   padding-top: 200px;
   padding-left: 5px;
 }
@@ -26,10 +26,17 @@
 }
 
 @media (max-width:600px){
-  .tourlist-web .image img{
-    width: 25%;
+  .tourlist-web .image{
+    display: flex;
+    justify-content: center;
   }
   .tourlist-web{
     margin-top: 100px;
   }
+  .tourlist-web .image img{
+    width: 50%;
+    border-radius: 15px!important;
+    aspect-ratio: auto !important;
+    
+}
 }

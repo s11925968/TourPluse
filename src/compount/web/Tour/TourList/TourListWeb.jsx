@@ -194,7 +194,7 @@ export default function TourlistWeb() {
       </aside>
 
       <div className="tourlist-web container">
-        <div className="col-12 mb-4">
+        <div className="col-md-12 mb-4">
           <form>
             <div className="input-group">
               <input
@@ -275,7 +275,7 @@ export default function TourlistWeb() {
                   </div>
                 </div>
               ))}
-              <div className="col-12">
+              <div className="col-md-12">
                 <nav aria-label="Page navigation example">
                   <ul className="pagination justify-content-center my-5">
                     <li
