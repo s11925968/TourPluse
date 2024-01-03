@@ -57,6 +57,7 @@ import ProtectedCompany from "./compount/web/routeProteced/ProtextedCompany.jsx"
 import ProtectedWeb from "./compount/web/routeProteced/ProtectedWeb.jsx";
 import ForceDelete from './compount/admin/tours/DeleteTour/DeleteTour.jsx'
 import DetilsTour from "./compount/web/Tour/DetilsTour/DetilsTour.jsx";
+import Agencies from "./compount/web/All_Acencies/Agencies.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -105,6 +106,10 @@ export default function App() {
         {
           path: "auth/sendCode",
           element: <SendCode />,
+        },
+        {
+          path:'allAgencies',
+          element:<Agencies/>
         },
         {
           path: "auth/forgetPassword",

@@ -43,7 +43,6 @@ export default function DetilsTour() {
   };
 
   const lastRegDateValid = isLastRegDateValid(data.lastRegDate, currentDate);
-  console.log(data);
   useEffect(() => {
     getTours();
   }, [_id]);

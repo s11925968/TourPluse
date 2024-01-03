@@ -152,7 +152,7 @@ export default function Home({ users }) {
       </header>
       <section className="serives">
         <div className="container pt-5">
-          <div className="info-category py-3">
+          <div className="info-SERVICES py-3">
             <h2>SERVICES</h2>
           </div>
           <div className="services my-5">
@@ -210,7 +210,85 @@ export default function Home({ users }) {
         </div>
       </section>
       <div className="">
-        <div className="info-category">
+        <div className="info-ACTIVITYS">
+          <h2>TOP ACTIVITIES</h2>
+        </div>
+        <div className="operator">
+          <div className="container d-flex justify-content-start align-items-center">
+            {dataTour && dataTour.length > 0 ? (
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={50}
+                navigation
+                loop={true}
+                autoplay={{
+                  delay: 10000,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                breakpoints={{
+                  600: {
+                    slidesPerView: 1,
+                  },
+                  900: {
+                    slidesPerView: 1,
+                  },
+                  1024: {
+                    slidesPerView: 1,
+                  },
+                }}
+              >
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/felipe-giacometti-q80sx583gzE-unsplash.jpg"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/amien-taryamin-IEcqd914qpw-unsplash.jpg" className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/kamil-pietrzak-AlA8S9tALAs-unsplash.jpg" className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/omer-f-arslan-W0FhhtnMd8k-unsplash.jpg" className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/rihards-sarma-JHeCuXiERFo-unsplash.jpg"className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/tommy-lisbin-2DH-qMX6M4E-unsplash.jpg"className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/toomas-tartes-Yizrl9N_eDA-unsplash.jpg"className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="Activity-image w-100">
+                        <img src="/Top Activaty/david-marcu-VfUN94cUy4o-unsplash.jpg"className="img-fluid"/>
+                      </div>
+                    </SwiperSlide>
+                    
+              </Swiper>
+            ) : (
+              <p>No top-rated tours available</p>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="my-3">
+        <div className="info-TOURS">
           <h2>TOP TOURS</h2>
         </div>
         <div className="operator">
@@ -488,7 +566,9 @@ export default function Home({ users }) {
       </section>
       <section className="about-us container">
         <div className="row info-images mt-5">
-          <h2>About us</h2>
+        <div className="info-About">
+          <h2>About Us</h2>
+        </div>
           <div className="col-md-6 about-info">
             <p className="fs-3 ">
               Tour Pulse acts as an intermediary between travel agencies and

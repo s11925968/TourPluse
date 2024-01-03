@@ -307,7 +307,7 @@ a{
   top: 0;
   margin: auto;
   height: 3px;
-  width: 138px;
+  width: 169px;
   background-color: #0077b5;
   content: '';
 }
@@ -416,3 +416,80 @@ a{
   aspect-ratio: 340/100;
 }
 /*end blogs*/
+/*start activity*/
+.Activity-image img{
+  width: 100%;
+  height: 80%;
+  aspect-ratio: 200/100;
+  border-radius:25px ;
+  -webkit-border-radius:25px ;
+  -moz-border-radius:25px ;
+  -ms-border-radius:25px ;
+  -o-border-radius:25px ;
+}
+.info-ACTIVITYS h2{
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.info-ACTIVITYS h2::after{
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 3px;
+  width: 177px;
+  background-color: #0077b5;
+  content: '';
+}
+
+.info-TOURS h2{
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.info-TOURS h2::after{
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 3px;
+  width: 130px;
+  background-color: #0077b5;
+  content: '';
+}
+.info-About h2{
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.info-About h2::after{
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 3px;
+  width: 105px;
+  background-color: #0077b5;
+  content: '';
+}
+.info-SERVICES h2{
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.info-SERVICES h2::after{
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  height: 3px;
+  width: 110px;
+  background-color: #0077b5;
+  content: '';
+}
+/*end activity*/
