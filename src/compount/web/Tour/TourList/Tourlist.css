@@ -3,6 +3,13 @@
   margin-top: 160px;
   
 }
+.search{
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
 .aside{
   width: 20%;
   padding-top: 200px;
@@ -38,5 +45,10 @@
     border-radius: 15px!important;
     aspect-ratio: auto !important;
     
+}
+.aside{
+  width: 30%;
+  padding-top: 200px;
+  padding-left: 10px;
 }
 }

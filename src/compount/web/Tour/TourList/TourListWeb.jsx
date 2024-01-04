@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import Loader from "../../../shared/Loader.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./Tourlist.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -94,7 +94,6 @@ export default function TourlistWeb() {
     setCurrent(pageNumber + 1);
     setSelectedProduct(null);
   };
-
   const calculateAvgRating = (reviews) => {
     if (reviews.length === 0) {
       return 0;
@@ -102,14 +101,36 @@ export default function TourlistWeb() {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
-
+  const handleClearAll = () => {
+    setMinPrice(0);
+    setMaxPrice(5000);
+    setMinDuration(0);
+    setMaxDuration(30);
+    setSelectedLocation("");
+    setMealsIncluded(null);
+  };
+  
   const handleSortOptionChange = (event) => {
     setSelectedSortOption(event.target.value);
   };
-
+  
   useEffect(() => {
-    getTours();
-  }, [current, selectedSortOption, minPrice, maxPrice, selectedLocation, mealsIncluded, minDuration, maxDuration]);
+    const delayTimer = setTimeout(() => {
+      getTours();
+    }, 1000);
+
+    return () => clearTimeout(delayTimer);
+  }, [
+    current,
+    selectedSortOption,
+    minPrice,
+    maxPrice,
+    selectedLocation,
+    mealsIncluded,
+    minDuration,
+    maxDuration,
+    searchInput,
+  ]);
 
   if (isLoading) {
     return <Loader />;
@@ -134,6 +155,21 @@ export default function TourlistWeb() {
           </div>
         </div>
         <div className="form-group py-4">
+          <label>Duration Range</label>
+          <Slider
+            range
+            value={[minDuration, maxDuration]}
+            onChange={handleDurationChange}
+            min={0}
+            max={30}
+          />
+          <div className="d-flex justify-content-between mt-2">
+            <span>{minDuration} days</span>
+            <span>{maxDuration} days</span>
+          </div>
+        </div>
+
+        <div className="form-group py-4">
           <label>Select Location:</label>
           <select
             className="form-control"
@@ -143,21 +179,12 @@ export default function TourlistWeb() {
             <option value="">All</option>
             <option value="Sudi Arabia">Saudi Arabia</option>
             <option value="South America">South America</option>
+            <option value="Germany">Germany</option>
+            <option value="Egypt">Egypt</option>
+            <option value="India">India</option>
+            <option value="Maldives">Maldives</option>
+            <option value="America">America</option>
           </select>
-        </div>
-        <div className="form-group py-4">
-          <label>Duration Range</label>
-          <Slider
-            range
-            value={[minDuration, maxDuration]}
-            onChange={handleDurationChange}
-            min={0}
-            max={30} // Assuming a maximum duration of 30 days, adjust as needed
-          />
-          <div className="d-flex justify-content-between mt-2">
-            <span>{minDuration} days</span>
-            <span>{maxDuration} days</span>
-          </div>
         </div>
         <div className="form-group py-4">
           <label>Meals:</label>
@@ -179,7 +206,7 @@ export default function TourlistWeb() {
                 onChange={() => setMealsIncluded("everything")}
               />
               Everything
-            </label > 
+            </label>
             <label className="pe-3">
               <input
                 type="radio"
@@ -191,10 +218,15 @@ export default function TourlistWeb() {
             </label>
           </div>
         </div>
+        <div className="form-group py-4">
+          <button className="btn btn-info text-white" onClick={handleClearAll}>
+            Clear All
+          </button>
+        </div>
       </aside>
 
-      <div className="tourlist-web container">
-        <div className="col-md-12 mb-4">
+      <div className="tourlist-web container z-1">
+        <div className="search  col-12 mb-4 w-50 m-auto border border-5 border-info">
           <form>
             <div className="input-group">
               <input
@@ -206,14 +238,14 @@ export default function TourlistWeb() {
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline-secondary bg-info"
                   type="submit"
                   onClick={(e) => {
                     e.preventDefault();
                     getTours();
                   }}
                 >
-                  Search
+                  <FontAwesomeIcon icon={faSearch} className="text-white" />
                 </button>
               </div>
             </div>
@@ -221,9 +253,9 @@ export default function TourlistWeb() {
         </div>
         <div className="mb-4 w-25 d-flex justify-content-end w-100 ">
           <div>
-            <label>Sort by:</label>
+            <label className="me-1">Sort By: </label>
             <select
-              className="form-control"
+              className="search border border-5 border-info p-1"
               value={selectedSortOption}
               onChange={handleSortOptionChange}
             >
@@ -237,7 +269,7 @@ export default function TourlistWeb() {
           </div>
         </div>
         <div className="row">
-          {dataTour.length ? (
+          {dataTour && dataTour.length ? (
             <>
               {dataTour.map((tour) => (
                 <div key={tour._id} className="col-lg-4 mb-4">
