@@ -99,12 +99,10 @@ export default function Login({ saveCurrentUser, users }) {
                 error={formik.errors}
               />
               <div className="form-check d-flex align-items-center">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="showPassword"
-                  checked={showPassword}
-                  onChange={() => setShowPassword(!showPassword)}
+              <FontAwesomeIcon
+                  icon={showPassword ? faEye : faEyeSlash}
+                  className="ms-2"
+                  onClick={() => setShowPassword(!showPassword)}
                 />
                 <div className="d-block ms-2">
                 </div>

@@ -68,18 +68,24 @@ export default function Navbar({ users, setUser }) {
     }
   };
 
-  useEffect(() => {
-    if (users) {
-      getProfile();
-    }
-  }, [users]);
+ 
 
   const logout = () => {
+    if (!users) {
+      return;
+    }
+
     localStorage.removeItem("userToken");
     setUser(null);
     navgite("/");
   };
-
+  useEffect(() => {
+    if (users) {
+      getProfile();
+    }else{
+      logout();
+    }
+  }, [users]);
   if (loader) {
     return <Loader />;
   }
@@ -135,14 +141,7 @@ export default function Navbar({ users, setUser }) {
                   </Link>
                 </li>
               )}
-                {/* {users && (
-                <li className="nav-item">
-                  <Link className="nav-link text-white" aria-current="page" to="/allAgencies">
-                    <FontAwesomeIcon icon={faPlane} className="pe-1" />
-                    All Agencies
-                  </Link>
-                </li>
-              )} */}
+                
               <li className="nav-item dropdown me-2 ">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"

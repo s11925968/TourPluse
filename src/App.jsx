@@ -58,6 +58,8 @@ import ProtectedWeb from "./compount/web/routeProteced/ProtectedWeb.jsx";
 import ForceDelete from './compount/admin/tours/DeleteTour/DeleteTour.jsx'
 import DetilsTour from "./compount/web/Tour/DetilsTour/DetilsTour.jsx";
 import Agencies from "./compount/web/All_Acencies/Agencies.jsx";
+import DisplayOpearater from "./compount/admin/Operator/DisplayOperater/DisplayOpearater.jsx";
+import Restore from "./compount/admin/tours/Restore/Restore.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -239,6 +241,10 @@ export default function App() {
           element: <UpdateOperator />,
         },
         {
+          path:"operator/getOperator",
+          element:<DisplayOpearater/>
+        },
+        {
           path: "tour/get",
           element: <Tourlist />,
         },
@@ -249,6 +255,10 @@ export default function App() {
         {
           path:'tour/forceDelete/:_id',
           element:<ForceDelete/>
+        },
+        {
+          path:'tour/restore/:_id',
+          element:<Restore/>
         },
         {
           path: "blog/createBlog",

@@ -109,11 +109,11 @@ export default function TourlistWeb() {
     setSelectedLocation("");
     setMealsIncluded(null);
   };
-  
+
   const handleSortOptionChange = (event) => {
     setSelectedSortOption(event.target.value);
   };
-  
+
   useEffect(() => {
     const delayTimer = setTimeout(() => {
       getTours();
@@ -139,7 +139,22 @@ export default function TourlistWeb() {
   return (
     <section className="d-flex">
       <aside className="aside">
-        <h2>Filters</h2>
+        <div className="row">
+          <div className="col-md-6">
+            <h2>Filters</h2>
+          </div>
+
+          <div className="col-md-6">
+            <div className="form-group w-100 ">
+              <button
+                className="btn btn-info text-white"
+                onClick={handleClearAll}
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="form-group py-4">
           <label>Price Range</label>
           <Slider
@@ -177,15 +192,45 @@ export default function TourlistWeb() {
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
             <option value="">All</option>
-            <option value="Sudi Arabia">Saudi Arabia</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
             <option value="South America">South America</option>
             <option value="Germany">Germany</option>
             <option value="Egypt">Egypt</option>
             <option value="India">India</option>
             <option value="Maldives">Maldives</option>
             <option value="America">America</option>
+            <option value="Palestine">Internal Tour</option>
+            <option value="Austria">Austria</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Belgium/Luxembourg">Belgium / Luxembourg</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Cyprus">Cyprus</option>
+            <option value="Czechia">Czechia</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Finland">Finland</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Greece">Greece</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Italy">Italy</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Malta">Malta</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Romania">Romania</option>
+            <option value="Slovakia">Slovakia</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="Spain">Spain</option>
+            <option value="Sweden">Sweden</option>
           </select>
         </div>
+
         <div className="form-group py-4">
           <label>Meals:</label>
           <div>
@@ -218,15 +263,9 @@ export default function TourlistWeb() {
             </label>
           </div>
         </div>
-        <div className="form-group py-4">
-          <button className="btn btn-info text-white" onClick={handleClearAll}>
-            Clear All
-          </button>
-        </div>
       </aside>
-
       <div className="tourlist-web container z-1">
-        <div className="search  col-12 mb-4 w-50 m-auto border border-5 border-info">
+        <div className="search col-12 mb-4 w-50 m-auto border border-5 border-info">
           <form>
             <div className="input-group">
               <input
@@ -272,7 +311,7 @@ export default function TourlistWeb() {
           {dataTour && dataTour.length ? (
             <>
               {dataTour.map((tour) => (
-                <div key={tour._id} className="col-lg-4 mb-4">
+                <div key={tour._id} className="col-lg-4 mb-4 tour-pointer">
                   <div className="image">
                     <img src={tour.image.secure_url} alt={tour.name} />
                   </div>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faStar } from "@fortawesome/free-solid-svg-icons";
 import "./CategoriestourOperator.css";
 
 import Loader from "../../shared/Loader";
@@ -18,12 +18,26 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showComments, setShowComments] = useState(false); // Add showComments state
   const { _id } = useParams();
+  const [searchInput, setSearchInput] = useState("");
+  const [selectedSortOption, setSelectedSortOption] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState("");
 
   const getOperator = async () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem("userToken");
       const params = new URLSearchParams();
+      
+      if (searchInput.trim() !== "") {
+        params.append("search", searchInput.trim());
+      } 
+      if (selectedSortOption) {
+        params.append("sort", selectedSortOption);
+      }
+      if (selectedLocation) {
+        params.append("address", selectedLocation);
+      }
+
       params.append("page", current);
       const { data } = await axios.get(
         `${
@@ -43,12 +57,8 @@ export default function Home() {
       setIsLoading(false);
     }
   };
-
-  const handleOperatorClick = (operatorId) => {
-    const clickedOperator = dataOperater.find(
-      (operator) => operator._id === operatorId
-    );
-    setSelectedOperator(clickedOperator);
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
   };
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -66,20 +76,87 @@ export default function Home() {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
+  const handleSortOptionChange = (event) => {
+    setSelectedSortOption(event.target.value);
+  };
+  console.log(dataOperater)
   useEffect(() => {
-    getOperator();
-  }, [current]);
+    const delayTimer = setTimeout(() => {
+      getOperator();
+    }, 1000);
+
+    return () => clearTimeout(delayTimer);
+  }, [current, searchInput,selectedSortOption,selectedLocation]);
 
   if (isLoading) {
     return <Loader />;
   }
 
   return (
+    <div className="d-flex">
+    <aside className="aside-cat">
+    <div className="form-group Select-Location">
+          <label>Select Location:</label>
+          <select
+            className="form-control"
+            value={selectedLocation}
+            onChange={(e) => setSelectedLocation(e.target.value)}
+          >
+            <option value="">All</option>
+            <option value="Nablus">Nablus</option>
+            <option value="Jenin">Jenin</option>
+            <option value="Qalqilya">Qalqilya</option>
+            <option value="Ramallah">Ramallah</option>
+            <option value="Hebron">Hebron</option>
+          </select>
+        </div>
+    </aside>
+
     <section className="category-serives container pt-5">
-      <div className="info-category">
+      <div className="info-SERVICES py-5">
         <h2>AGENCIES</h2>
       </div>
+      <div className="search col-12 my-4 w-50 m-auto border border-5 border-info">
+          <form>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search..."
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary bg-info"
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    getOperator();
+                  }}
+                >
+                  <FontAwesomeIcon icon={faSearch} className="text-white" />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       <div className="services my-5">
+      <div className="mb-4 w-25 d-flex justify-content-end w-100 pe-5">
+          <div>
+            <label className="me-1">Sort By: </label>
+            <select
+              className="search border border-5 border-info"
+              value={selectedSortOption}
+              onChange={handleSortOptionChange}
+            >
+              <option value="">None</option>
+              <option value="-createdAt">Recently Added</option>
+              <option value="name">Name</option>
+
+            </select>
+          </div>
+        </div>
         <div className="row">
           {selectedCategory ? (
             <div className="col-md-12 text-center">
@@ -184,7 +261,7 @@ export default function Home() {
                       Previous
                     </button>
                   </li>
-                  {Array.from({ length: Math.ceil(title / 8) || 0 }).map(
+                  {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
                     (_, pageIndex) => (
                       <li
                         key={pageIndex}
@@ -220,5 +297,6 @@ export default function Home() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

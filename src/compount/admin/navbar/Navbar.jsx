@@ -167,7 +167,7 @@ export default function Navbar({users,setUser}) {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/admin">
+                    <Link className="dropdown-item" to="/admin/operator/getOperator">
                     Agency List
                     </Link>
                   </li>

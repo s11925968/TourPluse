@@ -50,14 +50,10 @@ export default function Home({ users }) {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/operator/getActive?${params.toString()}&limit=25`
+        }/operator/getTopOp`
       );
-      const filteredData = data.tourOperator.filter((operator) => {
-        const operatorAvgRating = calculateAvgRating(operator.rev);
-        return operatorAvgRating >= 4;
-      });
-      setTitle(data.title);
-      setData(filteredData);
+      console.log(data.topRatedTours);
+      setData(data.topRatedTours);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -69,20 +65,8 @@ export default function Home({ users }) {
       setIsLoading(true);
       const params = new URLSearchParams();
       params.append("page", current);
-      const { data } = await axios.get(
-        `${
-          import.meta.env.VITE_URL_LINK
-        }/tour/getActive?${params.toString()}&limit=24`
-      );
-      const toursWithAverageRating = data.tour.map((tour) => {
-        const totalRating = tour.reviews.reduce((sum, review) => sum + review.rating, 0);
-        const averageRating = totalRating / (tour.reviews.length || 1); // Avoid division by zero
-        return { ...tour, averageRating };
-      });
-  
-      const filteredTours = toursWithAverageRating.filter((tour) => tour.averageRating >= 4);
-      
-      setDataTour(filteredTours);
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/tour/getTop`);     
+      setDataTour(data.topRatedTours);
     } catch (error) {
       setIsLoading(false);
       console.error("Error fetching tour data:", error);
@@ -344,7 +328,7 @@ export default function Home({ users }) {
                             <h4 className="text-center w-75 text-black">
                               {tourOperator.name
                                 .split(" ")
-                                .slice(0, 4)
+                                .slice(0, 3)
                                 .join(" ")}
                               ...
                             </h4>
@@ -354,7 +338,7 @@ export default function Home({ users }) {
                           </p>
                           <p className="text-center">
                             {Array.from({
-                              length: calculateAvgRating(tourOperator.reviews),
+                              length:tourOperator.averageRating,
                             }).map((_, starIndex) => (
                               <FontAwesomeIcon
                                 key={starIndex}
@@ -490,7 +474,7 @@ export default function Home({ users }) {
                             className="hover-images w-100"
                           />
                           <p className="pt-3">
-                            {Array.from({ length: operatorAvgRating }).map(
+                            {Array.from({ length: tourOperator.averageRating }).map(
                               (_, starIndex) => (
                                 <FontAwesomeIcon
                                   key={starIndex}

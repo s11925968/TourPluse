@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader.jsx";
 import { CompanyContext } from "../../../web/context/company/Companycontext";
+
 export default function CreatTour() {
   const { company } = useContext(CompanyContext);
   const [errorBackend, setErrorBackend] = useState("");
@@ -59,14 +60,14 @@ export default function CreatTour() {
           formdata,
           {
             headers: {
-              Authorization: `ghazal__${token}`, // Replace YOUR_TOKEN_HERE with your actual token
+              Authorization: `ghazal__${token}`,
             },
           }
         );
 
-        if (data.message == "success") {
+        if (data.message === "success") {
           formik.resetForm();
-          toast.success("you seccess create tour", {
+          toast.success("you successfully created a tour", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -85,6 +86,7 @@ export default function CreatTour() {
       }
     },
   });
+
   const handelFileChange = (event) => {
     formik.setFieldValue("image", event.target.files[0]);
   };
@@ -108,14 +110,51 @@ export default function CreatTour() {
       name: "discount",
       type: "number",
       id: "discount",
-      title: "discount",
+      title: "Discount",
       value: formik.values.discount,
     },
     {
       name: "location",
-      type: "text",
+      type: "select",
       id: "location",
-      title: "location",
+      options: [
+        "Saudi Arabia",
+        "South America",
+        "Germany",
+        "Egypt",
+        "India",
+        "Maldives",
+        "America",
+        "Palestine",
+        "Austria",
+        "Belgium",
+        "Belgium / Luxembourg",
+        "Bulgaria",
+        "Croatia",
+        "Cyprus",
+        "Czechia",
+        "Denmark",
+        "Estonia",
+        "Finland",
+        "France",
+        "Germany",
+        "Greece",
+        "Hungary",
+        "Ireland",
+        "Italy",
+        "Latvia",
+        "Lithuania",
+        "Luxembourg",
+        "Malta",
+        "Netherlands",
+        "Poland",
+        "Portugal",
+        "Romania",
+        "Slovakia",
+        "Slovenia",
+        "Spain",
+        "Sweden",
+      ],
       value: formik.values.location,
     },
     {
@@ -136,14 +175,14 @@ export default function CreatTour() {
       name: "startDate",
       type: "date",
       id: "startDate",
-      title: "StartDate",
+      title: "Start Date",
       value: formik.values.startDate,
     },
     {
       name: "endDate",
       type: "date",
       id: "endDate",
-      title: "EndDate",
+      title: "End Date",
       value: formik.values.endDate,
     },
     {
@@ -157,28 +196,28 @@ export default function CreatTour() {
       name: "whatToPack",
       type: "text",
       id: "whatToPack",
-      title: "whatToPack",
+      title: "What To Pack",
       value: formik.values.whatToPack,
     },
     {
       name: "lastRegDate",
       type: "date",
       id: "lastRegDate",
-      title: "LastRegDate",
+      title: "Last Registration Date",
       value: formik.values.lastRegDate,
     },
     {
       name: "note",
       type: "text",
       id: "note",
-      title: "note",
+      title: "Note",
       value: formik.values.note,
     },
     {
       name: "tourPlan",
       type: "text",
       id: "tourPlan",
-      title: "tourPlan",
+      title: "Tour Plan",
       value: formik.values.tourPlan,
     },
     {
@@ -191,24 +230,52 @@ export default function CreatTour() {
   ];
 
   const renderInput = inputs.map((input, index) => {
-    return (
-      <Inpute
-        key={index}
-        name={input.name}
-        type={input.type}
-        title={input.title}
-        id={input.id}
-        value={input.value}
-        onChange={input.onChange || formik.handleChange}
-        onBlur={formik.handleBlur}
-        touched={formik.touched}
-        error={formik.errors}
-      />
-    );
+    if (input.type === "select") {
+      return (
+        <div key={index} className="mb-3">
+          <label htmlFor={input.id} className="form-label">{input.title}</label>
+          <select
+            className="form-select"
+            id={input.id}
+            name={input.name}
+            value={input.value}
+            onChange={input.onChange || formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            <option value="" disabled>Select a location</option>
+            {input.options.map((option, optionIndex) => (
+              <option key={optionIndex} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {formik.touched[input.name] && formik.errors[input.name] && (
+            <div className="text-danger">{formik.errors[input.name]}</div>
+          )}
+        </div>
+      );
+    } else {
+      return (
+        <Inpute
+          key={index}
+          name={input.name}
+          type={input.type}
+          title={input.title}
+          id={input.id}
+          value={input.value}
+          onChange={input.onChange || formik.handleChange}
+          onBlur={formik.handleBlur}
+          touched={formik.touched}
+          error={formik.errors}
+        />
+      );
+    }
   });
+
   if (loading) {
     return <Loader />;
   }
+
   return (
     <div className="bg-forms py-4">
       <div className="container d-flex justify-content-center align-items-center mt-5">
