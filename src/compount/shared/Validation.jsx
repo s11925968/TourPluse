@@ -58,3 +58,13 @@ export const registerCreateTour = yup.object({
     .max(yup.ref('startDate'), 'Last registration date must be before the start date'),
 
 });
+
+
+export const registerCreateOperater = yup.object({
+  name: yup.string().required("name is required").min(3, "Must be greater than 3").max(30, "Must be less than 30"),
+  address:yup.string().required("address is required"),
+  email:yup.string().required("Email is required"),
+  password: yup.string()
+  .required("Password is required")
+  .matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character'),
+});

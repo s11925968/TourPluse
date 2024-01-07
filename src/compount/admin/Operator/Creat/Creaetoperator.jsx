@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader";
+import { registerCreateOperater } from "../../../shared/Validation";
 export default function Creaetoperator() {
   const { _id } = useParams();
   const [errorBackend, setErrorBackend] = useState("");
@@ -68,6 +69,8 @@ export default function Creaetoperator() {
         setLoading(false);
       }
     },
+    validationSchema: registerCreateOperater,
+
   });
   const handelFileChange = (event) => {
     formik.setFieldValue("image", event.target.files[0]);
@@ -83,9 +86,56 @@ export default function Creaetoperator() {
     },
     {
       name: "address",
-      type: "text",
+      type: "select",
       id: "address",
-      title: "Agency Address",
+      options: [
+        "Nablus",
+        "Jenin",
+        "Qalqilya",
+        "Ramallah",
+        "Hebron",
+        "Jericho",
+        "Bethlehem",
+        "Gaza",
+        "Khan Yunis",
+        "Jerusalem",
+        "Rafah",
+        "Al-Bireh",
+        "Bayt Jala",
+        "Bayt Sahur",
+        "Tulkarm",
+        "Halhul",
+        ">Deir al Balah",
+        "Beitunia",
+        "Qalqilya",
+        "Tubas",
+        "Beit Lahia",
+        "Bani Suheila",
+        "Surif",
+        "Yamun",
+        "ad-Dhahiriya",
+        "Idhna",
+        "Dura",
+        "Bani Naim",
+        "Yata",
+        "Beit Ummar",
+        "Ya'bad",
+        "Abasan al-Kabira",
+        "Beit Hanoun",
+        "Abu Dis",
+        "Qabatiya",
+        "Jannatah",
+        "Beit Aryeh-Ofarim",
+        "Salfit",
+        "Anata",
+        "Burin",
+        "Silwad",
+        "Nahalin",
+        "Awarta",
+        "Azzun",
+        "Bayt Lid",
+        "al-Khader",
+      ],
       value: formik.values.address,
     },
     {
@@ -140,40 +190,71 @@ export default function Creaetoperator() {
   ];
 
   const renderInput = inputs.map((input, index) => {
-    return (
-      <Inpute
-        key={index}
-        name={input.name}
-        type={input.type}
-        title={input.title}
-        id={input.id}
-        value={input.value}
-        onChange={input.onChange || formik.handleChange}
-        onBlur={formik.handleBlur}
-        touched={formik.touched}
-        error={formik.errors}
-      />
-    );
+    if (input.type === "select") {
+      return (
+        <div key={index} className="mb-3">
+          <label htmlFor={input.id} className="form-label">{input.title}</label>
+          <select
+            className="form-select"
+            id={input.id}
+            name={input.name}
+            value={input.value}
+            onChange={input.onChange || formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            <option value="" disabled>Select A Location</option>
+            {input.options.map((option, optionIndex) => (
+              <option key={optionIndex} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {formik.touched[input.name] && formik.errors[input.name] && (
+            <div className="text-danger">{formik.errors[input.name]}</div>
+          )}
+        </div>
+      );
+    } else {
+      return (
+        <Inpute
+          key={index}
+          name={input.name}
+          type={input.type}
+          title={input.title}
+          id={input.id}
+          value={input.value}
+          onChange={input.onChange || formik.handleChange}
+          onBlur={formik.handleBlur}
+          touched={formik.touched}
+          error={formik.errors}
+        />
+      );
+    }
   });
+
   if(loading){
     return <Loader />;
   }
   return (
     <div className="bg-forms py-4">
-      <div className="container d-flex justify-content-center align-items-center mt-5">
-        <div className="forms p-4">
-          <h2 className="text-center"></h2>
-          <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-            {renderInput}
-            <button type="submit" className="w-100">
-              Add Agency
-            </button>
-          </form>
+    <div className="container d-flex justify-content-center align-items-center mt-5">
+      <div className=" p-4">
+        <h2 className="text-center"></h2>
+        <form onSubmit={formik.handleSubmit} className="forms p-3">
+          {renderInput}
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={!formik.isValid}
+          >
+            Add Tour
+          </button>
           <div className="text-center w-100">
-            {errorBackend && <p className="text text-danger">{errorBackend}</p>}
-          </div>
+          {errorBackend && <p className="text text-danger">{errorBackend}</p>}
         </div>
+        </form>
       </div>
     </div>
+  </div>
   );
 }

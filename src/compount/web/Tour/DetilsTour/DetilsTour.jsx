@@ -135,9 +135,9 @@ export default function DetilsTour() {
                     />
                   ))}
                 </p>
-                {}
+                <div className="text-center">
                 <Link
-                  className="w-25 m-auto btn btn-info"
+                  className="w-25 m-auto btn me-2 btn-info"
                   to={`/tour/${data._id}/review`}
                 >
                   Review
@@ -147,7 +147,8 @@ export default function DetilsTour() {
                   to={`/tourlistweb`}
                 >
                   Back to tours
-                </Link>
+                </Link></div>
+
               </div>
             </div>
           </>

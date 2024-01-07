@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import Loader from "../../../shared/Loader.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 import "./Tourlist.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -25,7 +25,8 @@ export default function TourlistWeb() {
   const [minDuration, setMinDuration] = useState(0);
   const [maxDuration, setMaxDuration] = useState(30); // Assuming a maximum duration of 30 days, adjust as needed
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
-
+  const [minRating, setMinRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(5);
   const getTours = async () => {
     try {
       setIsLoading(true);
@@ -48,7 +49,8 @@ export default function TourlistWeb() {
       if (selectedLocation) {
         params.append("location", selectedLocation);
       }
-
+      params.append("averageRating[gt]", minRating);
+      params.append("averageRating[lt]", maxRating);
       params.append("duration[gt]", minDuration);
       params.append("duration[lt]", maxDuration);
 
@@ -75,9 +77,14 @@ export default function TourlistWeb() {
       setIsLoading(false);
     }
   };
+  console.log(dataTour);
   const handlePriceChange = (value) => {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
+  };
+  const handleRatingChange= (value) => {
+    setMinRating(value[0]);
+    setMaxRating(value[1]);
   };
   const handleDurationChange = (value) => {
     setMinDuration(value[0]);
@@ -112,7 +119,8 @@ export default function TourlistWeb() {
     setSelectedLocation("");
     setMealsIncluded(null);
     setSelectedCategoryId("");
-
+    setMinRating(0);
+    setMaxRating(5);
   };
 
   const handleSortOptionChange = (event) => {
@@ -120,10 +128,12 @@ export default function TourlistWeb() {
   };
 
   useEffect(() => {
+
+  
     const delayTimer = setTimeout(() => {
       getTours();
     }, 1000);
-
+  
     return () => clearTimeout(delayTimer);
   }, [
     current,
@@ -135,7 +145,7 @@ export default function TourlistWeb() {
     minDuration,
     maxDuration,
     searchInput,
-    selectedCategoryId,
+    selectedCategoryId,minRating,maxRating
 
   ]);
 
@@ -190,7 +200,21 @@ export default function TourlistWeb() {
             <span>{maxDuration} days</span>
           </div>
         </div>
-
+        <div className="form-group py-4">
+            <label>Rating Range</label>
+            <Slider
+              range
+              value={[minRating, maxRating]}
+              onChange={handleRatingChange}
+              min={0}
+              max={5} // Update max to 10 to allow increments of 0.5
+              step={0.5} // Set the step to 0.5
+            />
+            <div className="d-flex justify-content-between mt-2">
+              <span>${minRating}</span>
+              <span>${maxRating}</span>
+            </div>
+          </div>
         <div className="form-group py-4">
           <label>Select Location:</label>
           <select
@@ -250,38 +274,6 @@ export default function TourlistWeb() {
             <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
           </select>
         </div>
-        {/* <div className="form-group py-4">
-          <label>Meals:</label>
-          <div>
-            <label className="pe-3">
-              <input
-                type="radio"
-                value="included"
-                checked={mealsIncluded === "included"}
-                onChange={() => setMealsIncluded("included")}
-              />
-              Included
-            </label>
-            <label className="pe-3">
-              <input
-                type="radio"
-                value="everything"
-                checked={mealsIncluded === "everything"}
-                onChange={() => setMealsIncluded("everything")}
-              />
-              Everything
-            </label>
-            <label className="pe-3">
-              <input
-                type="radio"
-                value="Traditional"
-                checked={mealsIncluded === "Traditional"}
-                onChange={() => setMealsIncluded("Traditional")}
-              />
-              Traditional
-            </label>
-          </div>
-        </div> */}
       </aside>
       <div className="tourlist-web container z-1">
         <div className="search col-12 mb-4 w-50 m-auto border border-5 border-info">
@@ -327,95 +319,104 @@ export default function TourlistWeb() {
           </div>
         </div>
         <div className="row">
-          {dataTour && dataTour.length ? (
-            <>
-              {dataTour.map((tour) => (
-                <div key={tour._id} className="col-lg-4 mb-4 tour-pointer">
-                  <div className="image">
-                    <img src={tour.image.secure_url} alt={tour.name} />
-                  </div>
-                  <div className="text-center">
-                    <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
-                    <p>Price: ${tour.price}</p>
-                    <p>
-                      Start Date:{" "}
-                      {new Date(tour.startDate).toLocaleDateString()}
-                    </p>
-                    <p>
-                      End Date: {new Date(tour.endDate).toLocaleDateString()}
-                    </p>
-                    <p className="py-3">
-                      {Array.from({
-                        length: calculateAvgRating(tour.reviews),
-                      }).map((_, starIndex) => (
-                        <FontAwesomeIcon
-                          key={starIndex}
-                          icon={faStar}
-                          className="text-warning"
-                        />
-                      ))}
-                    </p>
-                    <Link
-                      to={`/tour/details/${tour._id}`}
-                      className="btn btn-info"
-                      onClick={() => handleProductClick(tour._id)}
-                    >
-                      Details
-                    </Link>
-                  </div>
-                </div>
+        {dataTour && dataTour.length ? (
+  <>
+    {dataTour.map((tour) => {
+      const fullStars = Math.floor(tour.averageRating);
+      const hasHalfStar = tour.averageRating % 1 !== 0;
+
+      return (
+        <div key={tour._id} className="col-lg-4 mb-4 tour-pointer">
+          <div className="image">
+            <img src={tour.image.secure_url} alt={tour.name} />
+          </div>
+          <div className="text-center">
+            <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
+            <p>Price: ${tour.price}</p>
+            <p>
+              Start Date: {new Date(tour.startDate).toLocaleDateString()}
+            </p>
+            <p>
+              End Date: {new Date(tour.endDate).toLocaleDateString()}
+            </p>
+            <p className="py-3">
+              {[...Array(fullStars)].map((_, starIndex) => (
+                <FontAwesomeIcon
+                  key={starIndex}
+                  icon={faStar}
+                  className="text-warning"
+                />
               ))}
-              <div className="col-md-12">
-                <nav aria-label="Page navigation example">
-                  <ul className="pagination justify-content-center my-5">
-                    <li
-                      className={`z-1 page-item ${
-                        current === 1 ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(current - 2)}
-                      >
-                        Previous
-                      </button>
-                    </li>
-                    {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
-                      (_, pageIndex) => (
-                        <li
-                          key={pageIndex}
-                          className={`z-1 page-item ${
-                            current === pageIndex + 1 ? "active" : ""
-                          }`}
-                        >
-                          <button
-                            className="page-link"
-                            onClick={() => handlePageClick(pageIndex)}
-                          >
-                            {pageIndex + 1}
-                          </button>
-                        </li>
-                      )
-                    )}
-                    <li
-                      className={`z-1 page-item ${
-                        current === Math.ceil(title / 8) ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(current)}
-                      >
-                        Next
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </>
-          ) : (
-            <p>No data available</p>
+              {hasHalfStar && (
+                <FontAwesomeIcon
+                  icon={faStarHalf}
+                  className="text-warning"
+                />
+              )}
+            </p>
+            <Link
+              to={`/tour/details/${tour._id}`}
+              className="btn btn-info"
+              onClick={() => handleProductClick(tour._id)}
+            >
+              Details
+            </Link>
+          </div>
+        </div>
+      );
+    })}
+    <div className="col-md-12">
+      <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-center my-5">
+          <li
+            className={`z-1 page-item ${
+              current === 1 ? "disabled" : ""
+            }`}
+          >
+            <button
+              className="page-link"
+              onClick={() => handlePageClick(current - 2)}
+            >
+              Previous
+            </button>
+          </li>
+          {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
+            (_, pageIndex) => (
+              <li
+                key={pageIndex}
+                className={`z-1 page-item ${
+                  current === pageIndex + 1 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => handlePageClick(pageIndex)}
+                >
+                  {pageIndex + 1}
+                </button>
+              </li>
+            )
           )}
+          <li
+            className={`z-1 page-item ${
+              current === Math.ceil(title / 8) ? "disabled" : ""
+            }`}
+          >
+            <button
+              className="page-link"
+              onClick={() => handlePageClick(current)}
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </>
+) : (
+  <p>No data available</p>
+)}
+
         </div>
       </div>
     </section>
