@@ -52,103 +52,113 @@ export default function DetilsTour() {
   }
   return (
     <div className="container">
-      
-    <div className="tourlist-web">
-      <div className="">
-        <h2>{data.name}</h2>
-      </div>
-      <div className="row">
-        <>
-          <div key={data._id} className="col-lg-6 mb-4">
-            <div className="image">
-              <img src={data.image.secure_url} alt={data.name}className="w-100" />
+      <div className="tourlist-web">
+        <div className="">
+          <h2>{data.name}</h2>
+        </div>
+        <div className="row">
+          <>
+            <div key={data._id} className="col-lg-6 mb-4">
+              <div className="image">
+                <img
+                  src={data.image.secure_url}
+                  alt={data.name}
+                  className="w-100"
+                />
+              </div>
             </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="row">
-              <div className="col-lg-3 w-50">
-                <p>
-                  <strong>Price: $</strong>
-                  {data.price}
-                </p>
-                <p>
-                  <strong>Start Date: </strong>
-                  {new Date(dataDate.startDate).toLocaleDateString()}
-                </p>
-                {data.whatToPack ? (
+            <div className="col-lg-6">
+              <div className="row">
+                <div className="col-lg-3 w-50">
                   <p>
-                    <strong>What To Pack: </strong>
-                    {data.whatToPack}
+                    <strong>Price: $</strong>
+                    {data.price}
                   </p>
-                ) : null}
-                <p>
-                  <strong>Last Reg Date: </strong>
-                  <span style={{ color: lastRegDateValid ? "green" : "red" }}>
-                    {new Date(data.lastRegDate).toLocaleDateString()}
-                  </span>
-                </p>
-              </div>
-              <div className="col-lg-3 w-50">
-                <p>
-                  <strong>Location: </strong> {data.location}
-                </p>
-                <p>
-                  <strong>End Date: </strong>
-                  {new Date(dataDate.endDate).toLocaleDateString()}
-                </p>
-                <div>
-                  {data.meals ? (
+                  <p>
+                    <strong>Start Date: </strong>
+                    {new Date(dataDate.startDate).toLocaleDateString()}
+                  </p>
+                  {data.whatToPack ? (
                     <p>
-                      <strong>Meals: </strong>
-                      {data.meals}
+                      <strong>What To Pack: </strong>
+                      {data.whatToPack}
                     </p>
                   ) : null}
+                  <p>
+                    <strong>Last Reg Date: </strong>
+                    <span style={{ color: lastRegDateValid ? "green" : "red" }}>
+                      {new Date(data.lastRegDate).toLocaleDateString()}
+                    </span>
+                  </p>
                 </div>
+                <div className="col-lg-3 w-50">
+                  <p>
+                    <strong>Location: </strong> {data.location}
+                  </p>
+                  <p>
+                    <strong>End Date: </strong>
+                    {new Date(dataDate.endDate).toLocaleDateString()}
+                  </p>
+                  <div>
+                    {data.meals ? (
+                      <p>
+                        <strong>Meals: </strong>
+                        {data.meals}
+                      </p>
+                    ) : null}
+                  </div>
+                  <p>
+                    {data.note ? (
+                      <p>
+                        <strong>Note: </strong>
+                        {data.note}
+                      </p>
+                    ) : null}
+                  </p>
+                </div>
+                {data.tourPlan !== notEqualValue && (
+                  <p>
+                    <strong>Tour Plan:</strong> {data.tourPlan}
+                  </p>
+                )}
                 <p>
-                  {data.note ? (
-                    <p>
-                      <strong>Note: </strong>
-                      {data.note}
-                    </p>
-                  ) : null}
+                  <strong>Description:</strong> {data.description}
                 </p>
+                <p className="py-3 fs-2 text-center">
+                  {Array.from({
+                    length: calculateAvgRating(data.reviews),
+                  }).map((_, starIndex) => (
+                    <FontAwesomeIcon
+                      key={starIndex}
+                      icon={faStar}
+                      className="text-warning"
+                    />
+                  ))}
+                </p>
+                {}
+                <Link
+                  className="w-25 m-auto btn btn-info"
+                  to={`/tour/${data._id}/review`}
+                >
+                  Review
+                </Link>
+                <Link
+                  className="w-25 m-auto btn btn-info"
+                  to={`/tourlistweb`}
+                >
+                  Back to tours
+                </Link>
               </div>
-              {data.tourPlan !== notEqualValue && (
-                <p>
-                  <strong>Tour Plan:</strong> {data.tourPlan}
-                </p>
-              )}
-              <p>
-                <strong>Description:</strong> {data.description}
-              </p>
-              <p className="py-3 fs-2 text-center">
-                {Array.from({
-                  length: calculateAvgRating(data.reviews),
-                }).map((_, starIndex) => (
-                  <FontAwesomeIcon
-                    key={starIndex}
-                    icon={faStar}
-                    className="text-warning"
-                  />
-                ))}
-              </p>
-              {}
-              <Link
-      className="w-25 m-auto btn btn-info"
-      to={`/tour/${data._id}/review`}
-    >
-      Review
-    </Link>
             </div>
-          </div>
-        </>
+          </>
+        </div>
       </div>
-    </div>
-    <div className="row mt-5">
+      <div className="row mt-5">
         {data.reviews.length > 0 &&
           data.reviews.map((review) => (
-            <div key={review._id} className="col-lg-4 bg-info comment-detalis">
-              <p className="fs-5 m-auto text-center">
+            <div key={review._id} className="col-lg-3 my-2 bg-info comment-detalis">
+              <div >
+                <p className="fs-5 m-auto text-center">
                 {Array.from({
                   length: review.rating,
                 }).map((_, starIndex) => (
@@ -160,10 +170,8 @@ export default function DetilsTour() {
                 ))}
               </p>
               <div className="bg-white ps-2 comment-detalis">
-              <p>{review.comment}
-              </p>
-              </div>
-              
+                <p>{review.comment}</p>
+              </div></div>
             </div>
           ))}
       </div>
