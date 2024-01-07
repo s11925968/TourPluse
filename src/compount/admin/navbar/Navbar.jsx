@@ -4,13 +4,19 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBlog,
   faCartShopping,
   faCircleExclamation,
   faEarthAmericas,
   faEnvelope,
   faHouse,
+  faJetFighterUp,
+  faLandmarkFlag,
+  faLayerGroup,
+  faLock,
   faPlane,
   faRightToBracket,
+  faShop,
   faUser,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -95,6 +101,7 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  <FontAwesomeIcon icon={faBlog} className="me-1" />
                   Blogs
                 </a>
                 <ul className="dropdown-menu">
@@ -113,7 +120,8 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Admin
+                  <FontAwesomeIcon icon={faLock} className="me-1" />
+                  Admins
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -139,6 +147,7 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  <FontAwesomeIcon icon={faLayerGroup} className="me-1"/>
                   Categories
                 </a>
                 <ul className="dropdown-menu">
@@ -163,7 +172,8 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Agency
+                  <FontAwesomeIcon icon={faLandmarkFlag} className="me-1"/>
+                  Agencys
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -186,6 +196,7 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  <FontAwesomeIcon icon={faJetFighterUp} className="me-1" />
                   Tours
                 </a>
                 <ul className="dropdown-menu">

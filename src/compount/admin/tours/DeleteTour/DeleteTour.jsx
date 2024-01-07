@@ -32,7 +32,7 @@ export default function DeleteTour() {
           progress: undefined,
           theme: "light",
         });
-        navigate('/admin/tour/get');
+        navigate('/admin');
       } else {
         toast.error('Delete failed. Please try again.', {
           position: "top-center",

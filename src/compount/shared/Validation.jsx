@@ -42,3 +42,19 @@ export const registerChangeEmail = yup.object({
     .required("Password is required")
     .matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character'),
 });
+export const registerCreateTour = yup.object({
+  name: yup.string().required("Username is required").min(3, "Must be greater than 3").max(30, "Must be less than 30"),
+  location:yup.string().required("Location is required"),
+  price:yup.number().required("Price is required"),
+  startDate: yup
+  .date()
+  .required('Start date is required')
+  .min(new Date(), 'Start date must be today or later'),
+  
+  lastRegDate: yup
+    .date()
+    .required('Last registration date is required')
+    .min(new Date(), 'Last registration must be today or later')
+    .max(yup.ref('startDate'), 'Last registration date must be before the start date'),
+
+});

@@ -60,6 +60,7 @@ import DetilsTour from "./compount/web/Tour/DetilsTour/DetilsTour.jsx";
 import Agencies from "./compount/web/All_Acencies/Agencies.jsx";
 import DisplayOpearater from "./compount/admin/Operator/DisplayOperater/DisplayOpearater.jsx";
 import Restore from "./compount/admin/tours/Restore/Restore.jsx";
+import DetilsTourAdmin from"./compount/admin/tours/DetilsTour/DetilsTour.jsx"
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -259,6 +260,10 @@ export default function App() {
         {
           path:'tour/restore/:_id',
           element:<Restore/>
+        },
+        {
+          path:'tour/detils/:_id',
+          element:<DetilsTourAdmin/>
         },
         {
           path: "blog/createBlog",

@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { registerReview } from "../../../shared/Validation.jsx";
 export default function CreateRivew({users}) {
-  const navigte = useNavigate();
+  const navigate = useNavigate();
   useEffect(()=>{
     if(!users){
-      return navigte('/login');
+      return navigate('/login');
     }
   },[])
   const { _id } = useParams();
@@ -39,7 +39,8 @@ export default function CreateRivew({users}) {
         progress: undefined,
         theme: "light",
       });
-      navigte("/");
+      navigate(`/tour/details/${_id}`);
+
     }
   };
   const formik = useFormik({

@@ -12,7 +12,7 @@ export default function Tourlist() {
   
   const getCategories = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getTour/${operators}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getTour/${operators}?limit=10`);
       setData(data.tour);
     } catch (error) {
       console.error('Error fetching tour data:', error);

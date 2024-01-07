@@ -5,48 +5,58 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { registerReview } from "../../../shared/Validation.jsx";
-export default function CreateRivew({users}) {
-  const navigte = useNavigate();
-  useEffect(()=>{
-    if(!users){
-      return navigte('/login');
+
+export default function CreateReview({ users }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!users) {
+      return navigate('/login');
     }
-  },[])
+  }, [users, navigate]);
+
   const { _id } = useParams();
   const initialValues = {
     comment: "",
     rating: "",
   };
+
   const onSubmit = async (users) => {
     const token = localStorage.getItem("userToken");
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_URL_LINK}/tour/${_id}/review`,
-      users,
-      {
-        headers: {
-          Authorization: `ghazal__${token}`,
-        },
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL_LINK}/tour/${_id}/review`,
+        users,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`,
+          },
+        }
+      );
+
+      if (data.message === "success") {
+        toast.success("Review submitted successfully", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        console.log(_id)
+        navigate(`/tour/details/${_id}`);
       }
-    );
-    if (data.message == "success") {
-      toast.success("review success", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      navigte("/");
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      // Handle error, show error toast, etc.
     }
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema:registerReview,
-
+    validationSchema: registerReview,
   });
 
   const inputs = [
@@ -65,6 +75,7 @@ export default function CreateRivew({users}) {
       value: formik.values.rating,
     },
   ];
+
   const renderInput = inputs.map((input, index) => (
     <Inputs
       type={input.type}
@@ -79,6 +90,7 @@ export default function CreateRivew({users}) {
       touched={formik.touched}
     />
   ));
+
   return (
     <div className="bg-forms">
       <div className="container d-flex justify-content-center align-items-center vh-100">
@@ -87,11 +99,7 @@ export default function CreateRivew({users}) {
             <form onSubmit={formik.handleSubmit} className="forms p-3">
               <h2 className="text-center">Create Review</h2>
               {renderInput}
-              <button
-                type="submit"
-                disabled={!formik.isValid}
-                className="w-100"
-              >
+              <button type="submit" disabled={!formik.isValid} className="w-100">
                 Submit
               </button>
             </form>

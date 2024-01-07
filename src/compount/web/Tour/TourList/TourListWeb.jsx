@@ -24,6 +24,7 @@ export default function TourlistWeb() {
   const [maxPrice, setMaxPrice] = useState(5000);
   const [minDuration, setMinDuration] = useState(0);
   const [maxDuration, setMaxDuration] = useState(30); // Assuming a maximum duration of 30 days, adjust as needed
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
   const getTours = async () => {
     try {
@@ -33,6 +34,9 @@ export default function TourlistWeb() {
 
       if (searchInput.trim() !== "") {
         params.append("search", searchInput.trim());
+      }
+      if (selectedCategoryId) {
+        params.append("categoryId", selectedCategoryId);
       }
 
       if (selectedSortOption) {
@@ -71,7 +75,6 @@ export default function TourlistWeb() {
       setIsLoading(false);
     }
   };
-
   const handlePriceChange = (value) => {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
@@ -108,6 +111,8 @@ export default function TourlistWeb() {
     setMaxDuration(30);
     setSelectedLocation("");
     setMealsIncluded(null);
+    setSelectedCategoryId("");
+
   };
 
   const handleSortOptionChange = (event) => {
@@ -130,6 +135,8 @@ export default function TourlistWeb() {
     minDuration,
     maxDuration,
     searchInput,
+    selectedCategoryId,
+
   ]);
 
   if (isLoading) {
@@ -199,7 +206,7 @@ export default function TourlistWeb() {
             <option value="India">India</option>
             <option value="Maldives">Maldives</option>
             <option value="America">America</option>
-            <option value="Palestine">Internal Tour</option>
+            <option value="Palestine">Palestine</option>
             <option value="Austria">Austria</option>
             <option value="Belgium">Belgium</option>
             <option value="Belgium/Luxembourg">Belgium / Luxembourg</option>
@@ -230,8 +237,20 @@ export default function TourlistWeb() {
             <option value="Sweden">Sweden</option>
           </select>
         </div>
-
         <div className="form-group py-4">
+          <label>Select Category:</label>
+          <select
+            className="form-control"
+            value={selectedCategoryId}
+            onChange={(e) => setSelectedCategoryId(e.target.value)}
+          >
+            <option value="">All</option>
+            <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
+            <option value="656fa08c14243f1b40d2e3c8">HAJ AND OMRA</option>
+            <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
+          </select>
+        </div>
+        {/* <div className="form-group py-4">
           <label>Meals:</label>
           <div>
             <label className="pe-3">
@@ -262,7 +281,7 @@ export default function TourlistWeb() {
               Traditional
             </label>
           </div>
-        </div>
+        </div> */}
       </aside>
       <div className="tourlist-web container z-1">
         <div className="search col-12 mb-4 w-50 m-auto border border-5 border-info">

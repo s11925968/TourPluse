@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -13,24 +12,31 @@ import './Getoperator.css';
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export default function Home({ users }) {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const getcategories = async () => {
+  const getCategories = async () => {
     try {
       const token = localStorage.getItem('userToken');
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/tour/get?limit=50`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/tour/get?isDeleted=true&limit=200`, {
         headers: {
           Authorization: `ghazal__${token}`
         },
       });
-      return data.tour;
+      setData(data.tour);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching admin data:', error);
-      throw error;
+      setIsLoading(false);
+    }finally{
+      setIsLoading(false);
     }
-  }
+  };
 
-  const { data, isLoading } = useQuery("getcategories", getcategories);
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   const handleProductClick = (productId) => {
     const clickedProduct = data.find((tour) => tour._id === productId);
@@ -59,6 +65,7 @@ export default function Home({ users }) {
       <Swiper.Navigation.Next />
     );
   };
+
   if (isLoading) {
     return <Loader />;
   }

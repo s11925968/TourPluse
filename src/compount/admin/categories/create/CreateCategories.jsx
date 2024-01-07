@@ -55,14 +55,14 @@ export default function CreateCatgories() {
       name: "name",
       type: "text",
       id: "name",
-      title: "User name",
+      title: "Category Name",
       value: formik.values.name,
     },
     {
       name: "image",
       type: "file",
       id: "image",
-      title: "User image",
+      title: "Category Image",
       onChange: handelFileChange,
     },
   ];
@@ -90,7 +90,7 @@ export default function CreateCatgories() {
           <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
             <button type="submit" className="btn btn-primary w-100">
-            Create Categories
+            Create Category
             </button>
           </form>
         </div>

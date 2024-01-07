@@ -6,10 +6,11 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader.jsx";
 import { CompanyContext } from "../../../web/context/company/Companycontext";
+import { registerCreateTour } from "../../../shared/Validation.jsx";
 
 export default function CreatTour() {
   const { company } = useContext(CompanyContext);
-  const [errorBackend, setErrorBackend] = useState("");
+  const [errorBackend, setErrorBackend] = useState(null);
   const [loading, setLoading] = useState(false);
   const id = company?.id || null;
   const { _id } = useParams();
@@ -20,7 +21,6 @@ export default function CreatTour() {
       image: "",
       operatorId: id,
       price: "",
-      discount: "",
       location: "",
       duration: "",
       endDate: "",
@@ -40,7 +40,6 @@ export default function CreatTour() {
       formdata.append("image", users.image);
       formdata.append("operatorId", users.operatorId);
       formdata.append("price", users.price);
-      formdata.append("discount", users.discount);
       formdata.append("location", users.location);
       formdata.append("duration", users.duration);
       formdata.append("description", users.description);
@@ -80,11 +79,15 @@ export default function CreatTour() {
           navgite("/dashboard/tour/getActive");
         }
       } catch (error) {
-        setErrorBackend(error.response.data.message);
+        console.log("samehj");
+        console.log(error);
+        setErrorBackend(error?.message || "An error occurred");
       } finally {
         setLoading(false);
       }
     },
+    validationSchema: registerCreateTour,
+
   });
 
   const handelFileChange = (event) => {
@@ -96,7 +99,7 @@ export default function CreatTour() {
       name: "name",
       type: "text",
       id: "name",
-      title: "Operator Name",
+      title: "Name",
       value: formik.values.name,
     },
     {
@@ -105,13 +108,6 @@ export default function CreatTour() {
       id: "price",
       title: "Price",
       value: formik.values.price,
-    },
-    {
-      name: "discount",
-      type: "number",
-      id: "discount",
-      title: "Discount",
-      value: formik.values.discount,
     },
     {
       name: "location",
@@ -171,20 +167,7 @@ export default function CreatTour() {
       title: "Description",
       value: formik.values.description,
     },
-    {
-      name: "startDate",
-      type: "date",
-      id: "startDate",
-      title: "Start Date",
-      value: formik.values.startDate,
-    },
-    {
-      name: "endDate",
-      type: "date",
-      id: "endDate",
-      title: "End Date",
-      value: formik.values.endDate,
-    },
+   
     {
       name: "meals",
       type: "text",
@@ -199,13 +182,7 @@ export default function CreatTour() {
       title: "What To Pack",
       value: formik.values.whatToPack,
     },
-    {
-      name: "lastRegDate",
-      type: "date",
-      id: "lastRegDate",
-      title: "Last Registration Date",
-      value: formik.values.lastRegDate,
-    },
+    
     {
       name: "note",
       type: "text",
@@ -221,10 +198,32 @@ export default function CreatTour() {
       value: formik.values.tourPlan,
     },
     {
+      name: "startDate",
+      type: "date",
+      id: "startDate",
+      title: "Start Date",
+      value: formik.values.startDate,
+    },
+    {
+      name: "endDate",
+      type: "date",
+      id: "endDate",
+      title: "End Date",
+      value: formik.values.endDate,
+    },
+
+    {
+      name: "lastRegDate",
+      type: "date",
+      id: "lastRegDate",
+      title: "Last Registration Date",
+      value: formik.values.lastRegDate,
+    },
+    {
       name: "image",
       type: "file",
       id: "image",
-      title: "Operator Image",
+      title: "Agencies Image",
       onChange: handelFileChange,
     },
   ];
@@ -242,7 +241,7 @@ export default function CreatTour() {
             onChange={input.onChange || formik.handleChange}
             onBlur={formik.handleBlur}
           >
-            <option value="" disabled>Select a location</option>
+            <option value="" disabled>Select A Location</option>
             {input.options.map((option, optionIndex) => (
               <option key={optionIndex} value={option}>
                 {option}
@@ -279,17 +278,21 @@ export default function CreatTour() {
   return (
     <div className="bg-forms py-4">
       <div className="container d-flex justify-content-center align-items-center mt-5">
-        <div className="forms p-4">
+        <div className=" p-4">
           <h2 className="text-center"></h2>
-          <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+          <form onSubmit={formik.handleSubmit} className="forms p-3">
             {renderInput}
-            <button type="submit" className="w-100">
-              Add tour
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={!formik.isValid}
+            >
+              Add Tour
             </button>
-          </form>
-          <div className="text-center w-100">
+            <div className="text-center w-100">
             {errorBackend && <p className="text text-danger">{errorBackend}</p>}
           </div>
+          </form>
         </div>
       </div>
     </div>

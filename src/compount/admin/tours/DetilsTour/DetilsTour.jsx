@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import './DetilsTour.css'
 export default function DetilsTour() {
-  const navigate = useNavigate();
-  console.log(location)
   const { _id } = useParams();
   const [data, setDataTour] = useState("");
   const [isLoading, setIsLoading] = useState(true); // New state for loading
@@ -43,6 +41,7 @@ export default function DetilsTour() {
     // Implement your logic for checking if lastRegDate is still valid
     return lastRegDate >= currentDate;
   };
+
   const lastRegDateValid = isLastRegDateValid(data.lastRegDate, currentDate);
   useEffect(() => {
     getTours();
@@ -132,13 +131,12 @@ export default function DetilsTour() {
                   />
                 ))}
               </p>
-              {}
               <Link
-      className="w-25 m-auto btn btn-info"
-      to={`/tour/${data._id}/review`}
-    >
-      Review
-    </Link>
+                className="w-25 m-auto btn btn-info"
+                to={`/tour/${data._id}/review`}
+              >
+                Review
+              </Link>
             </div>
           </div>
         </>
