@@ -75,7 +75,6 @@ export default function DisplayOpearater() {
   const handleStatusChange = (status) => {
     setSelectedStatus(status);
   };
-  console.log(dataOperater);
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
@@ -93,9 +92,6 @@ export default function DisplayOpearater() {
     setSelectedLocation("");
     setSelectedStatus("");
     setSelectedCategoryId("");
-  };
-  const handleSortOptionChange = (event) => {
-    setSelectedSortOption(event.target.value);
   };
   useEffect(() => {
     const delayTimer = setTimeout(() => {
