@@ -30,6 +30,30 @@
   background-color:rgb(245, 28, 46);
   content: '';
 }
+.info-Inactive h2{
+  text-align: left;
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.images{
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.info-Inactive h2::after{
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right:50;
+  top: 0;
+  margin: auto;
+  height: 5px;
+  width: 200px;
+  background-color:rgb(245, 28, 46);
+  content: '';
+}
 .info-tour{
   font-size: 15px !important;
 }

@@ -25,7 +25,8 @@ export default function Tourlist() {
   const [maxDuration, setMaxDuration] = useState(30); // Assuming a maximum duration of 30 days, adjust as needed
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [showDeletedTours, setShowDeletedTours] = useState(false);
-
+  const [minRating, setMinRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(5);
   const getTours = async () => {
     try {
       setIsLoading(true);
@@ -42,25 +43,29 @@ export default function Tourlist() {
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
       }
-      params.append("price[gt]", minPrice);
-      params.append("price[lt]", maxPrice);
+
+      params.append("price[gte]", minPrice);
+      params.append("price[lte]", maxPrice);
 
       if (selectedLocation) {
         params.append("location", selectedLocation);
       }
 
-      params.append("duration[gt]", minDuration);
-      params.append("duration[lt]", maxDuration);
-      if (showDeletedTours) {
-        params.append("isDeleted", true);
-      }
+      params.append("duration[gte]", minDuration);
+      params.append("duration[lte]", maxDuration);
+      // if (showDeletedTours) {
+      //   params.append("isDeleted", true);
+      // }
       if (mealsIncluded !== null) {
         params.append("meals", mealsIncluded);
       }
+      params.append("isDeleted", showDeletedTours);
 
+      // params.append("averageRating[gte]", minRating);
+      // params.append("averageRating[lte]", maxRating);
       const token = localStorage.getItem("userToken");
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/tour/get?limit=50`,
+        `${import.meta.env.VITE_URL_LINK}/tour/get?limit=24`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -105,13 +110,7 @@ export default function Tourlist() {
     setCurrent(pageNumber + 1);
     setSelectedProduct(null);
   };
-  const calculateAvgRating = (reviews) => {
-    if (reviews.length === 0) {
-      return 0;
-    }
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return Math.round(totalRating / reviews.length);
-  };
+
   const handleClearAll = () => {
     setMinPrice(0);
     setMaxPrice(5000);
@@ -121,9 +120,13 @@ export default function Tourlist() {
     setMealsIncluded(null);
     setSelectedCategoryId("");
     setShowDeletedTours(false);
-
+    setMinRating(0);
+    setMaxRating(5);
   };
-
+  const handleRatingChange = (value) => {
+    setMinRating(value[0]);
+    setMaxRating(value[1]);
+  };
   const handleSortOptionChange = (event) => {
     setSelectedSortOption(event.target.value);
   };
@@ -146,6 +149,8 @@ export default function Tourlist() {
     searchInput,
     selectedCategoryId,
     showDeletedTours,
+    minRating,
+    maxRating,
   ]);
 
   if (isLoading) {
@@ -159,7 +164,6 @@ export default function Tourlist() {
           <div className="col-md-6">
             <h2>Filters</h2>
           </div>
-
           <div className="col-md-6">
             <div className="form-group w-100 ">
               <button
@@ -199,7 +203,7 @@ export default function Tourlist() {
             <span>{maxDuration} days</span>
           </div>
         </div>
-
+        
         <div className="form-group py-4">
           <label>Select Location:</label>
           <select
@@ -260,20 +264,17 @@ export default function Tourlist() {
           </select>
         </div>
         <div className="form-group form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="showDeletedToursCheckbox"
-            checked={showDeletedTours}
-            onChange={() => setShowDeletedTours(!showDeletedTours)}
-          />
-          <label
-            className="form-check-label"
-            htmlFor="showDeletedToursCheckbox"
-          >
-            Show Deleted Tours
-          </label>
-        </div>
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="showDeletedToursCheckbox"
+          checked={showDeletedTours}
+          onChange={() => setShowDeletedTours(!showDeletedTours)}
+        />
+        <label className="form-check-label" htmlFor="showDeletedToursCheckbox">
+          Show Deleted Tours
+        </label>
+      </div>
       </aside>
       <div className="tourlist-web container z-1">
         <div className="search col-12 mb-4 w-50 m-auto border border-5 border-info">

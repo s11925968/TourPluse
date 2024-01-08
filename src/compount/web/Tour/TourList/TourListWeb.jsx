@@ -43,16 +43,17 @@ export default function TourlistWeb() {
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
       }
-      params.append("price[gt]", minPrice);
-      params.append("price[lt]", maxPrice);
+      params.append("price[gte]", minPrice);
+      params.append("price[lte]", maxPrice);
 
       if (selectedLocation) {
         params.append("location", selectedLocation);
       }
-      params.append("averageRating[gt]", minRating);
-      params.append("averageRating[lt]", maxRating);
-      params.append("duration[gt]", minDuration);
-      params.append("duration[lt]", maxDuration);
+      params.append("averageRating[gte]", minRating);
+      params.append("averageRating[lte]", maxRating);
+
+      params.append("duration[gte]", minDuration);
+      params.append("duration[lte]", maxDuration);
 
       if (mealsIncluded !== null) {
         params.append("meals", mealsIncluded);

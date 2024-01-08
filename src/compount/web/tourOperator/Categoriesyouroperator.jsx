@@ -40,8 +40,8 @@ export default function Home() {
       if (selectedLocation) {
         params.append("address", selectedLocation);
       }
-      params.append("averageRating[gt]", minRating);
-      params.append("averageRating[lt]", maxRating);
+      params.append("averageRating[gte]", minRating);
+      params.append("averageRating[lte]", maxRating);
 
       params.append("page", current);
       const { data } = await axios.get(
