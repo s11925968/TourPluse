@@ -61,6 +61,8 @@ import Agencies from "./compount/web/All_Acencies/Agencies.jsx";
 import DisplayOpearater from "./compount/admin/Operator/DisplayOperater/DisplayOpearater.jsx";
 import Restore from "./compount/admin/tours/Restore/Restore.jsx";
 import DetilsTourAdmin from"./compount/admin/tours/DetilsTour/DetilsTour.jsx"
+import Users from "./compount/admin/Users/Users.jsx";
+import Block from "./compount/admin/Users/Block/Block.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -206,12 +208,20 @@ export default function App() {
           element: <Admin />,
         },
         {
+          path:"getUsers",
+          element:<Users />
+        },
+        {
           path: "creatadmin",
           element: <Creatadmin />,
         },
         {
           path: "updata/:_id",
           element: <Updata />,
+        },
+        {
+          path:'block/:_id',
+          element:<Block />
         },
         {
           path: "categories/get",

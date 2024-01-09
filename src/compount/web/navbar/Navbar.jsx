@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBuilding,
   faCircleExclamation,
+  faCircleUser,
   faEarthAmericas,
   faHouse,
   faPlane,
@@ -150,6 +151,7 @@ export default function Navbar({ users, setUser }) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+                  <FontAwesomeIcon icon={faCircleUser}className="me-1" />
                   {data && data ? data.userName : "Account"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start">

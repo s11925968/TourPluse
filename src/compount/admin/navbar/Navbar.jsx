@@ -7,6 +7,7 @@ import {
   faBlog,
   faCartShopping,
   faCircleExclamation,
+  faCircleUser,
   faEarthAmericas,
   faEnvelope,
   faHouse,
@@ -19,6 +20,7 @@ import {
   faShop,
   faUser,
   faUserPlus,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../shared/Loader";
 import axios from "axios";
@@ -91,6 +93,16 @@ export default function Navbar({users,setUser}) {
                 >
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
                   Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/admin/getUsers"
+                >
+              <FontAwesomeIcon icon={faUsers}className="me-1" /> 
+                Users
                 </Link>
               </li>
               <li className="nav-item dropdown">
@@ -215,6 +227,7 @@ export default function Navbar({users,setUser}) {
                   data-bs-toggle="dropdown" // Add data-bs-toggle attribute
                   aria-expanded="false"
                 >
+                  <FontAwesomeIcon icon={faCircleUser}className="me-1" />
                   {data &&data?data.userName:"acount"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start text-center">
