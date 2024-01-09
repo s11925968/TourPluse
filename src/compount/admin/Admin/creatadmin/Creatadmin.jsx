@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Inpute from "../../../shared/Inpute";
 import { useFormik } from "formik";
 import { registerValidation } from "../../../shared/Validation";
@@ -15,6 +15,8 @@ const initialValues = {
 };
 export default function Creatadmin() {
   const navigite = useNavigate();
+  let [errorBack, setErrorBack] = useState("");
+
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
@@ -44,7 +46,7 @@ export default function Creatadmin() {
           navigite("/admin/getAdmin");
         }
       } catch (error) {
-        console.error("Error creating admin:", error);
+        setErrorBack(error.response.data.message);
       }
     },
   });
@@ -120,6 +122,9 @@ export default function Creatadmin() {
             <button type="submit" className="btn btn-primary w-100">
               Create Admin
             </button>
+            <div className="text-center w-100">
+            {errorBack && <p className="text text-danger">{errorBack}</p>}
+          </div>
           </form>
         </div>
       </div>

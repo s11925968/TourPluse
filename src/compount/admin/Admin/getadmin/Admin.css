@@ -1,0 +1,25 @@
+.admin{
+  border-radius: 15px!important;
+  -webkit-border-radius: 15px!;
+  -moz-border-radius: 15px!;
+  -ms-border-radius: 15px!;
+  -o-border-radius: 15px!;
+}
+
+.aside-admin{
+  width: 20%!important;
+  padding-top: 200px;
+  padding-left: 10px;
+}
+.aside-admin h2{
+  text-align: left!important;
+}
+
+
+@media (max-width:600px){
+.aside-admin{
+  width: 50%!important;
+  padding-top: 200px;
+  padding-left: 10px;
+}
+}

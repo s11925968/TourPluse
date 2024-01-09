@@ -158,278 +158,284 @@ export default function Tourlist() {
   }
 
   return (
-    <section className="d-flex">
-      <aside className="aside">
-        <div className="row">
-          <div className="col-md-6">
-            <h2>Filters</h2>
-          </div>
-          <div className="col-md-6">
-            <div className="form-group w-100 ">
+    <div className="">
+      <div className="search col-12 mt-5 z-1 mb-4 w-50 m-auto border border-5 border-info">
+        <form>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <div className="input-group-append">
               <button
-                className="btn btn-info text-white"
-                onClick={handleClearAll}
+                className="btn btn-outline-secondary bg-info"
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  getTours();
+                }}
               >
-                Clear All
+                <FontAwesomeIcon icon={faSearch} className="text-white" />
               </button>
             </div>
           </div>
-        </div>
-        <div className="form-group py-4">
-          <label>Price Range</label>
-          <Slider
-            range
-            value={[minPrice, maxPrice]}
-            onChange={handlePriceChange}
-            min={0}
-            max={5000}
-          />
-          <div className="d-flex justify-content-between mt-2">
-            <span>${minPrice}</span>
-            <span>${maxPrice}</span>
-          </div>
-        </div>
-        <div className="form-group py-4">
-          <label>Duration Range</label>
-          <Slider
-            range
-            value={[minDuration, maxDuration]}
-            onChange={handleDurationChange}
-            min={0}
-            max={30}
-          />
-          <div className="d-flex justify-content-between mt-2">
-            <span>{minDuration} days</span>
-            <span>{maxDuration} days</span>
-          </div>
-        </div>
-        
-        <div className="form-group py-4">
-          <label>Select Location:</label>
-          <select
-            className="form-control"
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="Saudi Arabia">Saudi Arabia</option>
-            <option value="South America">South America</option>
-            <option value="Germany">Germany</option>
-            <option value="Egypt">Egypt</option>
-            <option value="India">India</option>
-            <option value="Maldives">Maldives</option>
-            <option value="America">America</option>
-            <option value="Palestine">Palestine</option>
-            <option value="Austria">Austria</option>
-            <option value="Belgium">Belgium</option>
-            <option value="Belgium/Luxembourg">Belgium / Luxembourg</option>
-            <option value="Bulgaria">Bulgaria</option>
-            <option value="Croatia">Croatia</option>
-            <option value="Cyprus">Cyprus</option>
-            <option value="Czechia">Czechia</option>
-            <option value="Denmark">Denmark</option>
-            <option value="Estonia">Estonia</option>
-            <option value="Finland">Finland</option>
-            <option value="France">France</option>
-            <option value="Germany">Germany</option>
-            <option value="Greece">Greece</option>
-            <option value="Hungary">Hungary</option>
-            <option value="Ireland">Ireland</option>
-            <option value="Italy">Italy</option>
-            <option value="Latvia">Latvia</option>
-            <option value="Lithuania">Lithuania</option>
-            <option value="Luxembourg">Luxembourg</option>
-            <option value="Malta">Malta</option>
-            <option value="Netherlands">Netherlands</option>
-            <option value="Poland">Poland</option>
-            <option value="Portugal">Portugal</option>
-            <option value="Romania">Romania</option>
-            <option value="Slovakia">Slovakia</option>
-            <option value="Slovenia">Slovenia</option>
-            <option value="Spain">Spain</option>
-            <option value="Sweden">Sweden</option>
-          </select>
-        </div>
-        <div className="form-group py-4">
-          <label>Select Category:</label>
-          <select
-            className="form-control"
-            value={selectedCategoryId}
-            onChange={(e) => setSelectedCategoryId(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
-            <option value="656fa08c14243f1b40d2e3c8">HAJ AND OMRA</option>
-            <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
-          </select>
-        </div>
-        <div className="form-group form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="showDeletedToursCheckbox"
-          checked={showDeletedTours}
-          onChange={() => setShowDeletedTours(!showDeletedTours)}
-        />
-        <label className="form-check-label" htmlFor="showDeletedToursCheckbox">
-          Show Deleted Tours
-        </label>
+        </form>
       </div>
-      </aside>
-      <div className="tourlist-web container z-1">
-        <div className="search col-12 mb-4 w-50 m-auto border border-5 border-info">
-          <form>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search..."
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-              />
-              <div className="input-group-append">
+
+      <section className="d-flex">
+        <aside className="aside">
+          <div className="row">
+            <div className="col-md-6">
+              <h2>Filters</h2>
+            </div>
+            <div className="col-md-6">
+              <div className="form-group w-100 ">
                 <button
-                  className="btn btn-outline-secondary bg-info"
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    getTours();
-                  }}
+                  className="btn btn-info text-white"
+                  onClick={handleClearAll}
                 >
-                  <FontAwesomeIcon icon={faSearch} className="text-white" />
+                  Clear All
                 </button>
               </div>
             </div>
-          </form>
-        </div>
-        <div className="mb-4 w-25 d-flex justify-content-end w-100 ">
-          <div>
-            <label className="me-1">Sort By: </label>
+          </div>
+          <div className="form-group py-4">
+            <label>Price Range</label>
+            <Slider
+              range
+              value={[minPrice, maxPrice]}
+              onChange={handlePriceChange}
+              min={0}
+              max={5000}
+            />
+            <div className="d-flex justify-content-between mt-2">
+              <span>${minPrice}</span>
+              <span>${maxPrice}</span>
+            </div>
+          </div>
+          <div className="form-group py-4">
+            <label>Duration Range</label>
+            <Slider
+              range
+              value={[minDuration, maxDuration]}
+              onChange={handleDurationChange}
+              min={0}
+              max={30}
+            />
+            <div className="d-flex justify-content-between mt-2">
+              <span>{minDuration} days</span>
+              <span>{maxDuration} days</span>
+            </div>
+          </div>
+
+          <div className="form-group py-4">
+            <label>Select Location:</label>
             <select
-              className="search border border-5 border-info p-1"
-              value={selectedSortOption}
-              onChange={handleSortOptionChange}
+              className="form-control"
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
             >
-              <option value="">None</option>
-              <option value="-price">Price High To Low</option>
-              <option value="price">Price Low To High</option>
-              <option value="startDate">Start Date</option>
-              <option value="duration">Duration</option>
-              <option value="-createdAt">Recently Added</option>
+              <option value="">All</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="South America">South America</option>
+              <option value="Germany">Germany</option>
+              <option value="Egypt">Egypt</option>
+              <option value="India">India</option>
+              <option value="Maldives">Maldives</option>
+              <option value="America">America</option>
+              <option value="Palestine">Palestine</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Belgium/Luxembourg">Belgium / Luxembourg</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czechia">Czechia</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Finland">Finland</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Greece">Greece</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Italy">Italy</option>
+              <option value="Latvia">Latvia</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malta">Malta</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Poland">Poland</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Romania">Romania</option>
+              <option value="Slovakia">Slovakia</option>
+              <option value="Slovenia">Slovenia</option>
+              <option value="Spain">Spain</option>
+              <option value="Sweden">Sweden</option>
             </select>
           </div>
-        </div>
+          <div className="form-group py-4">
+            <label>Select Category:</label>
+            <select
+              className="form-control"
+              value={selectedCategoryId}
+              onChange={(e) => setSelectedCategoryId(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
+              <option value="656fa08c14243f1b40d2e3c8">HAJ AND OMRA</option>
+              <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
+            </select>
+          </div>
+          <div className="form-group form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="showDeletedToursCheckbox"
+              checked={showDeletedTours}
+              onChange={() => setShowDeletedTours(!showDeletedTours)}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="showDeletedToursCheckbox"
+            >
+              Show Deleted Tours
+            </label>
+          </div>
+        </aside>
+        <div className="tourlist-web container z-1">
+          <div className="mb-4 w-25 d-flex justify-content-end w-100 ">
+            <div>
+              <label className="me-1">Sort By: </label>
+              <select
+                className="search border border-5 border-info p-1"
+                value={selectedSortOption}
+                onChange={handleSortOptionChange}
+              >
+                <option value="">None</option>
+                <option value="-price">Price High To Low</option>
+                <option value="price">Price Low To High</option>
+                <option value="startDate">Start Date</option>
+                <option value="duration">Duration</option>
+                <option value="-createdAt">Recently Added</option>
+              </select>
+            </div>
+          </div>
 
-        <div className="row">
-          {dataTour && dataTour.length ? (
-            <>
-              {dataTour.map((tour) => (
-                <div key={tour._id} className="col-lg-4 mb-4 tour-pointer">
-                  <div className="image">
-                    <img src={tour.image.secure_url} alt={tour.name} />
-                  </div>
-                  <div className="text-center">
-                    <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
-                    <p>Price: ${tour.price}</p>
-                    <p>
-                      Start Date:{" "}
-                      {new Date(tour.startDate).toLocaleDateString()}
-                    </p>
-                    <p>
-                      End Date: {new Date(tour.endDate).toLocaleDateString()}
-                    </p>
-                    <p className="py-3">
-                      {Array.from({
-                        length: tour.averageRating,
-                      }).map((_, starIndex) => (
-                        <FontAwesomeIcon
-                          key={starIndex}
-                          icon={faStar}
-                          className="text-warning"
-                        />
-                      ))}
-                    </p>
-                    <Link
-                      to={`/admin/tour/detils/${tour._id}`}
-                      className="btn btn-info"
-                      onClick={() => handleProductClick(tour._id)}
-                    >
-                      Details
-                    </Link>
-                    <Link
-                      to={`/admin/tour/forceDelete/${tour._id}`}
-                      className={`info-tour btn btn-info ms-2`}
-                      style={{
-                        display: tour.isDeleted ? "inline-block" : "none",
-                      }}
-                    >
-                      Force Delete
-                    </Link>
-                    <Link
-                      to={`/admin/tour/restore/${tour._id}`}
-                      className={`info-tour btn btn-info ms-2`}
-                      style={{
-                        display: tour.isDeleted ? "inline-block" : "none",
-                      }}
-                    >
-                      Restore Tour
-                    </Link>
-                  </div>
-                </div>
-              ))}
-              <div className="col-md-12">
-                <nav aria-label="Page navigation example">
-                  <ul className="pagination justify-content-center my-5">
-                    <li
-                      className={`z-1 page-item ${
-                        current === 1 ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(current - 2)}
+          <div className="row">
+            {dataTour && dataTour.length ? (
+              <>
+                {dataTour.map((tour) => (
+                  <div key={tour._id} className="col-lg-4 mb-4 tour-pointer">
+                    <div className="image">
+                      <img src={tour.image.secure_url} alt={tour.name} />
+                    </div>
+                    <div className="text-center">
+                      <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
+                      <p>Price: ${tour.price}</p>
+                      <p>
+                        Start Date:{" "}
+                        {new Date(tour.startDate).toLocaleDateString()}
+                      </p>
+                      <p>
+                        End Date: {new Date(tour.endDate).toLocaleDateString()}
+                      </p>
+                      <p className="py-3">
+                        {Array.from({
+                          length: tour.averageRating,
+                        }).map((_, starIndex) => (
+                          <FontAwesomeIcon
+                            key={starIndex}
+                            icon={faStar}
+                            className="text-warning"
+                          />
+                        ))}
+                      </p>
+                      <Link
+                        to={`/admin/tour/detils/${tour._id}`}
+                        className="btn btn-info"
+                        onClick={() => handleProductClick(tour._id)}
                       >
-                        Previous
-                      </button>
-                    </li>
-                    {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
-                      (_, pageIndex) => (
-                        <li
-                          key={pageIndex}
-                          className={`z-1 page-item ${
-                            current === pageIndex + 1 ? "active" : ""
-                          }`}
+                        Details
+                      </Link>
+                      <Link
+                        to={`/admin/tour/forceDelete/${tour._id}`}
+                        className={`info-tour btn btn-info ms-2`}
+                        style={{
+                          display: tour.isDeleted ? "inline-block" : "none",
+                        }}
+                      >
+                        Force Delete
+                      </Link>
+                      <Link
+                        to={`/admin/tour/restore/${tour._id}`}
+                        className={`info-tour btn btn-info ms-2`}
+                        style={{
+                          display: tour.isDeleted ? "inline-block" : "none",
+                        }}
+                      >
+                        Restore Tour
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+                <div className="col-md-12">
+                  <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-center my-5">
+                      <li
+                        className={`z-1 page-item ${
+                          current === 1 ? "disabled" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(current - 2)}
                         >
-                          <button
-                            className="page-link"
-                            onClick={() => handlePageClick(pageIndex)}
+                          Previous
+                        </button>
+                      </li>
+                      {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
+                        (_, pageIndex) => (
+                          <li
+                            key={pageIndex}
+                            className={`z-1 page-item ${
+                              current === pageIndex + 1 ? "active" : ""
+                            }`}
                           >
-                            {pageIndex + 1}
-                          </button>
-                        </li>
-                      )
-                    )}
-                    <li
-                      className={`z-1 page-item ${
-                        current === Math.ceil(title / 8) ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(current)}
+                            <button
+                              className="page-link"
+                              onClick={() => handlePageClick(pageIndex)}
+                            >
+                              {pageIndex + 1}
+                            </button>
+                          </li>
+                        )
+                      )}
+                      <li
+                        className={`z-1 page-item ${
+                          current === Math.ceil(title / 8) ? "disabled" : ""
+                        }`}
                       >
-                        Next
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </>
-          ) : (
-            <p>No data available</p>
-          )}
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(current)}
+                        >
+                          Next
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </>
+            ) : (
+              <p>No data available</p>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

@@ -110,7 +110,17 @@ export default function Home({ users }) {
         </div>
         <Swiper
           spaceBetween={20}
-          slidesPerView={4.3}
+          breakpoints={{
+            600: {
+              slidesPerView: 1.3,
+            },
+            900: {
+              slidesPerView: 2.3,
+            },
+            1024: {
+              slidesPerView: 3.3,
+            },
+          }}
           navigation={{
             prevEl: renderPrevButton,
             nextEl: renderNextButton,
@@ -130,7 +140,7 @@ export default function Home({ users }) {
                 </div>
                 <div className="text-center">
                   <h4 className="text-center text-black">
-                    {tour.name.split(" ").slice(0, 5).join(" ")}
+                    {tour.name.split(" ").slice(0,3).join(" ")}..
                   </h4>
                   <Link
                     to="#"
@@ -196,7 +206,17 @@ export default function Home({ users }) {
       </div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={4.3}
+        breakpoints={{
+          600: {
+            slidesPerView: 1.3,
+          },
+          900: {
+            slidesPerView: 2.3,
+          },
+          1024: {
+            slidesPerView: 3.3,
+          },
+        }}
         navigation={{
           prevEl: renderPrevButton,
           nextEl: renderNextButton,
