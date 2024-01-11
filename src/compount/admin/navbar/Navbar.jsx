@@ -52,11 +52,15 @@ export default function Navbar({users,setUser}) {
       getProfile();
     }
   }, [users]);
-
   const logout = () => {
+    if (!users) {
+      return;
+    }
+  
     localStorage.removeItem("userToken");
+    const navigate = useNavigate(); // Add this line to get the navigate function
+    navigate("/"); // Use the navigate function for redirection
     setUser(null);
-    navgite("/login");
   };
   if(loader){
     return <Loader />;
@@ -138,7 +142,7 @@ export default function Navbar({users,setUser}) {
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="/admin/getAdmin">
-                    Admin list
+                    Admins list
                     </Link>
                   </li>
                   <li>
@@ -146,9 +150,7 @@ export default function Navbar({users,setUser}) {
                     Add admin
                     </Link>
                   </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
+                  
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -185,7 +187,7 @@ export default function Navbar({users,setUser}) {
                   aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faLandmarkFlag} className="me-1"/>
-                  Agencys
+                  Agencies
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -200,24 +202,15 @@ export default function Navbar({users,setUser}) {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle text-white"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+              <li className="nav-item">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/admin/tour/get"
                 >
-                  <FontAwesomeIcon icon={faJetFighterUp} className="me-1" />
+                  <FontAwesomeIcon icon={faEarthAmericas} className="pe-1" />
                   Tours
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="/admin/tour/get">
-                      Tours List
-                    </Link>
-                  </li>
-                </ul>
+                </Link>
               </li>
               <li className="nav-item dropdown me-2">
                 <a

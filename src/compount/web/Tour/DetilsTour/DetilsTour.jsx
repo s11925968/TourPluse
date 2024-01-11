@@ -7,7 +7,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import './DetilsTour.css'
 export default function DetilsTour() {
   const navigate = useNavigate();
-  console.log(location)
   const { _id } = useParams();
   const [data, setDataTour] = useState("");
   const [isLoading, setIsLoading] = useState(true); // New state for loading
@@ -144,22 +143,24 @@ export default function DetilsTour() {
                 </Link>
                 <Link
                   className="w-25 m-auto btn btn-info"
-                  to={`/tourlistweb`}
+                  to={`/tour/get/company/${data._id}`}
                 >
-                  Back to tours
-                </Link></div>
+                  Show To Operater
+                </Link>
+                
+                </div>
 
               </div>
             </div>
           </>
         </div>
       </div>
-      <div className="row mt-5">
+      <div className="row mt-5 ">
         {data.reviews.length > 0 &&
           data.reviews.map((review) => (
-            <div key={review._id} className="col-lg-3 my-2 bg-info comment-detalis">
-              <div >
-                <p className="fs-5 m-auto text-center">
+            <div key={review._id} className="col-lg-4   comment-detalis">
+              <div className="bg-info px-2 pb-1 comment-detalis ">
+                <p className="fs-5 m-auto text-center px-3">
                 {Array.from({
                   length: review.rating,
                 }).map((_, starIndex) => (
@@ -170,9 +171,10 @@ export default function DetilsTour() {
                   />
                 ))}
               </p>
-              <div className="bg-white ps-2 comment-detalis">
+              <div className="bg-white px-3  comment-detalis">
                 <p>{review.comment}</p>
-              </div></div>
+              </div>
+              </div>
             </div>
           ))}
       </div>

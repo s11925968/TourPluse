@@ -398,25 +398,55 @@ export default function Tourlist() {
                         </button>
                       </li>
                       {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
-                        (_, pageIndex) => (
-                          <li
-                            key={pageIndex}
-                            className={`z-1 page-item ${
-                              current === pageIndex + 1 ? "active" : ""
-                            }`}
-                          >
-                            <button
-                              className="page-link"
-                              onClick={() => handlePageClick(pageIndex)}
-                            >
-                              {pageIndex + 1}
-                            </button>
-                          </li>
-                        )
+                        (_, pageIndex) => {
+                          const isCurrent = current === pageIndex + 1;
+                          const isWithinRange =
+                            pageIndex + 1 >= current - 2 &&
+                            pageIndex + 1 <= current + 2;
+
+                          if (isWithinRange) {
+                            return (
+                              <li
+                                key={pageIndex}
+                                className={`z-1 page-item ${
+                                  isCurrent ? "active" : ""
+                                }`}
+                              >
+                                <button
+                                  className="page-link"
+                                  onClick={() => handlePageClick(pageIndex)}
+                                >
+                                  {pageIndex + 1}
+                                </button>
+                              </li>
+                            );
+                          } else if (pageIndex === 0) {
+                            // Render ellipsis for pages before the visible range
+                            return (
+                              <li
+                                key="ellipsis-before"
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          } else if (pageIndex === Math.ceil(title / 24) - 1) {
+                            return (
+                              <li
+                                key="ellipsis-after"
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          }
+
+                          return null;
+                        }
                       )}
                       <li
                         className={`z-1 page-item ${
-                          current === Math.ceil(title / 8) ? "disabled" : ""
+                          current === Math.ceil(title / 24) ? "disabled" : ""
                         }`}
                       >
                         <button

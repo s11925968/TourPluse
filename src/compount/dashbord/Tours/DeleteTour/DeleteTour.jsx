@@ -7,6 +7,17 @@ export default function ForceDelete() {
   const { id } = useParams();
   const [loading,setLoading] = useState(false );
   const navigite=useNavigate();
+  const handleDeleteConfirmation = () => {
+    const isConfirmed = window.confirm('Are you sure you want to soft delete this tour?');
+
+    if (isConfirmed) {
+      removeTour();
+    } else {
+      // User clicked "Cancel" in the confirmation dialog
+      navigite('/dashboard/tour/getActive'); // or any other action you want to take
+    }
+  };
+
   const removeTour = async () => {
     try {
       setLoading(true);
@@ -20,30 +31,35 @@ export default function ForceDelete() {
           },
         }
       );
-      if(data.message=="success"){
-        toast.success('delete success', {
-          position: "top-center",
+
+      if (data.message === 'success') {
+        toast.success('Delete success', {
+          position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
-          });
-          navigite('/dashboard/tour/getActive');
+          theme: 'light',
+        });
+
+        navigite('/dashboard/tour/getActive');
       }
     } catch (error) {
-      console.error("Error deleting tour:", error);
-    }finally{
+      console.error('Error deleting tour:', error);
+    } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
-    removeTour();
-  },[]);
-  if(loading){
-    return <Loader/>
+    handleDeleteConfirmation(); // Show the confirmation dialog on component mount
+  }, []);
+
+  if (loading) {
+    return <Loader />;
   }
+
   return <div>DeleteTour</div>;
 }

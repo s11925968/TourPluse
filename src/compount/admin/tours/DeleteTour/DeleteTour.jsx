@@ -9,6 +9,17 @@ export default function DeleteTour() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const handleDeleteConfirmation = () => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this tour?');
+
+    if (isConfirmed) {
+      removeTour();
+    } else {
+      // User clicked "Cancel" in the confirmation dialog
+      navigate('/admin'); // or any other action you want to take
+    }
+  };
+
   const removeTour = async () => {
     try {
       setLoading(true);
@@ -21,41 +32,43 @@ export default function DeleteTour() {
           },
         }
       );
-      if (data.message === "success") {
+
+      if (data.message === 'success') {
         toast.success('Delete success', {
-          position: "top-center",
+          position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: 'light',
         });
+
         navigate('/admin');
       } else {
         toast.error('Delete failed. Please try again.', {
-          position: "top-center",
+          position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: 'light',
         });
       }
     } catch (error) {
-      console.error("Error deleting tour:", error);
+      console.error('Error deleting tour:', error);
       toast.error('An unexpected error occurred. Please try again later.', {
-        position: "top-center",
+        position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: 'light',
       });
     } finally {
       setLoading(false);
@@ -63,7 +76,7 @@ export default function DeleteTour() {
   };
 
   useEffect(() => {
-    removeTour();
+    handleDeleteConfirmation(); // Show the confirmation dialog on component mount
   }, []);
 
   if (loading) {

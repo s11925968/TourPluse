@@ -21,7 +21,7 @@ export default function Navbar({ users, setUser }) {
   const token = localStorage.getItem("userToken");
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState("");
-  const navgite = useNavigate();
+  const navigate = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState("");
   const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -35,21 +35,12 @@ export default function Navbar({ users, setUser }) {
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     if (scrollPosition > 100) {
-      setNavbarBackground("#4b5357");
       setHasScrolled(true);
     } else {
       setNavbarBackground("");
       setHasScrolled(false);
     }
   };
-
-  const handleAboutClick = () => {
-    const aboutElement = document.getElementById("about");
-    if (aboutElement) {
-      aboutElement.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const getProfile = async () => {
     try {
       setLoader(true);
@@ -68,25 +59,21 @@ export default function Navbar({ users, setUser }) {
       setLoader(false);
     }
   };
-
- 
-
+  
   const logout = () => {
     if (!users) {
       return;
     }
-
+  
     localStorage.removeItem("userToken");
+    const navigate = useNavigate(); // Add this line to get the navigate function
+    navigate("/"); // Use the navigate function for redirection
     setUser(null);
-    navgite("/");
   };
   useEffect(() => {
-    if (users) {
-      getProfile();
-    }else{
-      logout();
-    }
+    getProfile();
   }, [users]);
+  
   if (loader) {
     return <Loader />;
   }

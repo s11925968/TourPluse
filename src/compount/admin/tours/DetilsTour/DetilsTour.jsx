@@ -131,22 +131,28 @@ export default function DetilsTour() {
                   />
                 ))}
               </p>
+              <div className="d-flex justify-content-center">
               <Link
-                className="w-25 m-auto btn btn-info"
+                className="w-25  btn btn-info"
                 to={`/tour/${data._id}/review`}
               >
                 Review
               </Link>
+              <Link className="w-25 ms-2 btn btn-info" to={`/admin/tour/get/operater/${data._id}`}>
+                Show Agencie
+              </Link>
+              </div>
             </div>
           </div>
         </>
       </div>
     </div>
-    <div className="row mt-5">
+    <div className="row mt-5 ">
         {data.reviews.length > 0 &&
           data.reviews.map((review) => (
-            <div key={review._id} className="col-lg-4 bg-info comment-detalis">
-              <p className="fs-5 m-auto text-center">
+            <div key={review._id} className="col-lg-4   comment-detalis">
+              <div className="bg-info px-2 pb-1 comment-detalis ">
+                <p className="fs-5 m-auto text-center px-3">
                 {Array.from({
                   length: review.rating,
                 }).map((_, starIndex) => (
@@ -157,11 +163,10 @@ export default function DetilsTour() {
                   />
                 ))}
               </p>
-              <div className="bg-white ps-2 comment-detalis">
-              <p>{review.comment}
-              </p>
+              <div className="bg-white px-3  comment-detalis">
+                <p>{review.comment}</p>
               </div>
-              
+              </div>
             </div>
           ))}
       </div>

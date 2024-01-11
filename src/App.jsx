@@ -63,6 +63,8 @@ import Restore from "./compount/admin/tours/Restore/Restore.jsx";
 import DetilsTourAdmin from"./compount/admin/tours/DetilsTour/DetilsTour.jsx"
 import Users from "./compount/admin/Users/Users.jsx";
 import Block from "./compount/admin/Users/Block/Block.jsx";
+import GetOperater from "./compount/web/Tour/getOperater/GetOperater.jsx";
+import GetOperaterAdmin from "./compount/admin/tours/returnOperater/GetOperater.jsx"
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -151,6 +153,10 @@ export default function App() {
         {
           path:'tour/details/:_id',
           element:<DetilsTour />
+        },
+        {
+          path:'tour/get/company/:_id',
+          element:<GetOperater/>
         },
         {
           path: "tour/:_id/review",
@@ -262,6 +268,10 @@ export default function App() {
         {
           path: "tour/get/:_id",
           element: <Spesific />,
+        },
+        {
+          path:"tour/get/operater/:_id",
+          element:<GetOperaterAdmin />
         },
         {
           path:'tour/forceDelete/:_id',

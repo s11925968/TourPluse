@@ -105,13 +105,6 @@ export default function TourlistWeb() {
     setCurrent(pageNumber + 1);
     setSelectedProduct(null);
   };
-  const calculateAvgRating = (reviews) => {
-    if (reviews.length === 0) {
-      return 0;
-    }
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return Math.round(totalRating / reviews.length);
-  };
   const handleClearAll = () => {
     setMinPrice(0);
     setMaxPrice(5000);
@@ -366,53 +359,63 @@ export default function TourlistWeb() {
         </div>
       );
     })}
-    <div className="col-md-12">
-      <nav aria-label="Page navigation example">
-        <ul className="pagination justify-content-center my-5">
-          <li
-            className={`z-1 page-item ${
-              current === 1 ? "disabled" : ""
-            }`}
-          >
-            <button
-              className="page-link"
-              onClick={() => handlePageClick(current - 2)}
-            >
-              Previous
-            </button>
-          </li>
-          {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
-            (_, pageIndex) => (
-              <li
-                key={pageIndex}
-                className={`z-1 page-item ${
-                  current === pageIndex + 1 ? "active" : ""
-                }`}
+  <div className="col-md-12">
+  <nav aria-label="Page navigation example">
+    <ul className="pagination justify-content-center my-5">
+      <li className={`z-1 page-item ${current === 1 ? "disabled" : ""}`}>
+        <button className="page-link" onClick={() => handlePageClick(current - 2)}>
+          Previous
+        </button>
+      </li>
+      {Array.from({ length: Math.ceil(title / 24) || 0 }).map((_, pageIndex) => {
+        const isCurrent = current === pageIndex + 1;
+        const isWithinRange =
+          pageIndex + 1 >= current - 2 && pageIndex + 1 <= current + 2;
+
+        if (isWithinRange) {
+          return (
+            <li key={pageIndex} className={`z-1 page-item ${isCurrent ? "active" : ""}`}>
+              <button
+                className="page-link"
+                onClick={() => handlePageClick(pageIndex)}
               >
-                <button
-                  className="page-link"
-                  onClick={() => handlePageClick(pageIndex)}
-                >
-                  {pageIndex + 1}
-                </button>
-              </li>
-            )
-          )}
-          <li
-            className={`z-1 page-item ${
-              current === Math.ceil(title / 8) ? "disabled" : ""
-            }`}
-          >
-            <button
-              className="page-link"
-              onClick={() => handlePageClick(current)}
-            >
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>
+                {pageIndex + 1}
+              </button>
+            </li>
+          );
+        } else if (pageIndex === 0) {
+          // Render ellipsis for pages before the visible range
+          return (
+            <li key="ellipsis-before" className="z-1 page-item disabled">
+              <span className="page-link">...</span>
+            </li>
+          );
+        } else if (pageIndex === Math.ceil(title / 24) - 1) {
+          return (
+            <li key="ellipsis-after" className="z-1 page-item disabled">
+              <span className="page-link">...</span>
+            </li>
+          );
+        }
+
+        return null;
+      })}
+      <li
+        className={`z-1 page-item ${
+          current === Math.ceil(title / 24) ? "disabled" : ""
+        }`}
+      >
+        <button
+          className="page-link"
+          onClick={() => handlePageClick(current)}
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
   </>
 ) : (
   <p>No data available</p>

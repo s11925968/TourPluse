@@ -11,6 +11,12 @@
 .Select-Location{
 margin-top: 100px;
 }
+/* Add this to your CSS */
+.page-link.liked {
+  background-color: #ffcc00; /* Change the color as needed */
+  color: #333; /* Change the color as needed */
+}
+
 @media (max-width:600px){
   .operator-image img{
     width: 90px;
