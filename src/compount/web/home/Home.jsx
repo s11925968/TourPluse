@@ -117,7 +117,7 @@ export default function Home({ users }) {
         <div className="info-header">
           <div className="info-home text-center">
             <div className="d-flex d-flex justify-content-center align-items-center">
-              <p>Welcome to Tourpulse</p>
+              <p>Welcome to TourPulse</p>
             </div>
             <span>
               All Palestinian Trips offers,
@@ -193,7 +193,7 @@ export default function Home({ users }) {
           </div>
         </div>
       </section>
-      <div className="">
+      <div className="ACTIVITIES my-5">
         <div className="info-ACTIVITYS d-flex justify-content-center align-items-end m-0 py-3">
           <h2 className="m-0">TOP ACTIVITIES</h2>
         </div>
@@ -211,7 +211,7 @@ export default function Home({ users }) {
               }}
               breakpoints={{
                 600: {
-                  slidesPerView: 1.3,
+                  slidesPerView: 1.5,
                 },
                 900: {
                   slidesPerView: 2.2,
@@ -288,11 +288,11 @@ export default function Home({ users }) {
           )}
         </div>
       </div>
-      <div className="TOURS m-0">
+      <div className="TOURS my-5">
         <div className="info-TOURS">
           <h2>TOP TOURS</h2>
         </div>
-        <div className="operator m-0">
+        <div className="m-0">
           {dataTour && dataTour.length > 0 ? (
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
@@ -309,10 +309,10 @@ export default function Home({ users }) {
                   slidesPerView: 1.3,
                 },
                 900: {
-                  slidesPerView: 2.2,
+                  slidesPerView: 3.2,
                 },
                 1024: {
-                  slidesPerView: 2.3,
+                  slidesPerView: 3.3,
                 },
               }}
               className="m-0"
@@ -475,7 +475,7 @@ export default function Home({ users }) {
                     if (operatorAvgRating >= 4) {
                       return (
                         <div
-                          className="operater col-md-3 services-image text-center my-3"
+                          className="operater col-md-4 col-lg-3 services-image text-center my-3"
                           key={tourOperator.name}
                           onClick={() => handleCategoryClick(tourOperator)}
                         >
@@ -583,7 +583,7 @@ export default function Home({ users }) {
           </div>
         </div>
       </section>
-      <div>
+      <div className="BLOGS">
         {BlogsData && BlogsData.length > 0 ? (
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
