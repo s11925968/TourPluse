@@ -158,10 +158,10 @@ export default function TourlistWeb() {
           <div className="col-md-6">
             <div className="form-group w-100 ">
               <button
-                className="btn btn-info text-white"
+                className="btn btn-info clear text-white"
                 onClick={handleClearAll}
               >
-                Clear All
+                Clear
               </button>
             </div>
           </div>

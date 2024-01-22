@@ -505,4 +505,10 @@ a{
   background-color: #0077b5;
   content: '';
 }
+.operator-image-home img{
+  width: 100% !important;
+  height: 80%;
+  aspect-ratio: 200/100;
+  border-radius:25px ;
+}
 /*end activity*/

@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../../shared/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import {
   faArrowRight,
   faEnvelope,
@@ -27,7 +27,7 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 export default function Home({ users }) {
-  const [t,i18n]=useTranslation("global");
+  const [t, i18n] = useTranslation("global");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(1);
@@ -48,9 +48,7 @@ export default function Home({ users }) {
       const params = new URLSearchParams();
       params.append("page", current);
       const { data } = await axios.get(
-        `${
-          import.meta.env.VITE_URL_LINK
-        }/operator/getTopOp`
+        `${import.meta.env.VITE_URL_LINK}/operator/getTopOp`
       );
       console.log(data.topRatedTours);
       setData(data.topRatedTours);
@@ -65,7 +63,9 @@ export default function Home({ users }) {
       setIsLoading(true);
       const params = new URLSearchParams();
       params.append("page", current);
-      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/tour/getTop`);     
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/tour/getTop`
+      );
       setDataTour(data.topRatedTours);
     } catch (error) {
       setIsLoading(false);
@@ -194,173 +194,185 @@ export default function Home({ users }) {
         </div>
       </section>
       <div className="">
-        <div className="info-ACTIVITYS py-3">
-          <h2>TOP ACTIVITIES</h2>
+        <div className="info-ACTIVITYS d-flex justify-content-center align-items-end m-0 py-3">
+          <h2 className="m-0">TOP ACTIVITIES</h2>
         </div>
-        <div className="operator py-5">
-          <div className="container d-flex justify-content-start align-items-center">
-            {dataTour && dataTour.length > 0 ? (
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={50}
-                navigation
-                loop={true}
-                autoplay={{
-                  delay: 10000,
-                }}
-                pagination={{
-                  clickable: true,
-                }}
-                breakpoints={{
-                  600: {
-                    slidesPerView: 1,
-                  },
-                  900: {
-                    slidesPerView: 1,
-                  },
-                  1024: {
-                    slidesPerView: 1,
-                  },
-                }}
-              >
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/felipe-giacometti-q80sx583gzE-unsplash.jpg"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/amien-taryamin-IEcqd914qpw-unsplash.jpg" className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/kamil-pietrzak-AlA8S9tALAs-unsplash.jpg" className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/omer-f-arslan-W0FhhtnMd8k-unsplash.jpg" className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/rihards-sarma-JHeCuXiERFo-unsplash.jpg"className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/tommy-lisbin-2DH-qMX6M4E-unsplash.jpg"className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/toomas-tartes-Yizrl9N_eDA-unsplash.jpg"className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="Activity-image w-100">
-                        <img src="/Top Activaty/david-marcu-VfUN94cUy4o-unsplash.jpg"className="img-fluid"/>
-                      </div>
-                    </SwiperSlide>
-                    
-              </Swiper>
-            ) : (
-              <p>No top-rated tours available</p>
-            )}
-          </div>
+        <div>
+          {dataTour && dataTour.length > 0 ? (
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={50}
+              loop={true}
+              autoplay={{
+                delay: 10000,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                600: {
+                  slidesPerView: 1.3,
+                },
+                900: {
+                  slidesPerView: 2.2,
+                },
+                1024: {
+                  slidesPerView: 2.3,
+                },
+              }}
+            >
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img src="/Top Activaty/felipe-giacometti-q80sx583gzE-unsplash.jpg" />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/amien-taryamin-IEcqd914qpw-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/kamil-pietrzak-AlA8S9tALAs-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/omer-f-arslan-W0FhhtnMd8k-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/rihards-sarma-JHeCuXiERFo-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/tommy-lisbin-2DH-qMX6M4E-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/toomas-tartes-Yizrl9N_eDA-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="Activity-image w-100">
+                  <img
+                    src="/Top Activaty/david-marcu-VfUN94cUy4o-unsplash.jpg"
+                    className="img-fluid"
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          ) : (
+            <p>No top-rated tours available</p>
+          )}
         </div>
       </div>
-      <div className="my-3">
+      <div className="TOURS m-0">
         <div className="info-TOURS">
           <h2>TOP TOURS</h2>
         </div>
-        <div className="operator">
-          <div className="container d-flex justify-content-start align-items-center">
-            {dataTour && dataTour.length > 0 ? (
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={50}
-                navigation
-                loop={true}
-                autoplay={{
-                  delay: 10000,
-                }}
-                pagination={{
-                  clickable: true,
-                }}
-                breakpoints={{
-                  600: {
-                    slidesPerView: 1,
-                  },
-                  900: {
-                    slidesPerView: 2,
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                  },
-                }}
-              >
-                {dataTour
-                  .filter((tour) => tour.averageRating >= 1)
-                  .map((tourOperator) => (
-                    <SwiperSlide key={tourOperator._id}>
-                      <Link
-                        to={`/tour/details/${tourOperator._id}`}
-                        className="text-decoration-none"
+        <div className="operator m-0">
+          {dataTour && dataTour.length > 0 ? (
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={50}
+              loop={true}
+              autoplay={{
+                delay: 10000,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={{
+                600: {
+                  slidesPerView: 1.3,
+                },
+                900: {
+                  slidesPerView: 2.2,
+                },
+                1024: {
+                  slidesPerView: 2.3,
+                },
+              }}
+              className="m-0"
+            >
+              {dataTour
+                .filter((tour) => tour.averageRating >= 1)
+                .map((tourOperator) => (
+                  <SwiperSlide key={tourOperator._id}>
+                    <Link
+                      to={`/tour/details/${tourOperator._id}`}
+                      className="text-decoration-none"
+                    >
+                      <div
+                        className={`info-content-operator ${
+                          selectedOperator === tourOperator._id
+                            ? "selected"
+                            : ""
+                        }`}
+                        onClick={() => handleOperatorClick(tourOperator._id)}
                       >
-                        <div
-                          className={`info-content-operator ${
-                            selectedOperator === tourOperator._id
-                              ? "selected"
-                              : ""
-                          }`}
-                          onClick={() => handleOperatorClick(tourOperator._id)}
-                        >
-                          <div className="swiper-hover operator-image">
-                            <img
-                              src={tourOperator.image.secure_url}
-                              className="img-fluid"
-                              alt={`Operator ${tourOperator._id}`}
-                            />
-                          </div>
-                          <div className="d-flex justify-content-center">
-                            <h4 className="text-center w-75 text-black">
-                              {tourOperator.name
-                                .split(" ")
-                                .slice(0, 3)
-                                .join(" ")}
-                              ...
-                            </h4>
-                          </div>
-                          <p className="text-center">
-                            <strong>{tourOperator.price}$</strong>
-                          </p>
-                          <p className="text-center">
-                            {Array.from({
-                              length:tourOperator.averageRating,
-                            }).map((_, starIndex) => (
-                              <FontAwesomeIcon
-                                key={starIndex}
-                                icon={faStar}
-                                className="text-warning"
-                              />
-                            ))}
-                          </p>
+                        <div className="swiper-hover operator-image-home">
+                          <img
+                            src={tourOperator.image.secure_url}
+                            className=""
+                            alt={`Operator ${tourOperator._id}`}
+                          />
                         </div>
-                      </Link>
-                    </SwiperSlide>
-                  ))}
-              </Swiper>
-            ) : (
-              <p>No top-rated tours available</p>
-            )}
-          </div>
+                        <div className="d-flex justify-content-center">
+                          <h4 className="text-center w-75 text-black">
+                            {tourOperator.name.split(" ").slice(0, 5).join(" ")}
+                            ...
+                          </h4>
+                        </div>
+                        <p className="text-center">
+                          <strong>{tourOperator.price}$</strong>
+                        </p>
+                        <p className="text-center">
+                          {Array.from({
+                            length: tourOperator.averageRating,
+                          }).map((_, starIndex) => (
+                            <FontAwesomeIcon
+                              key={starIndex}
+                              icon={faStar}
+                              className="text-warning"
+                            />
+                          ))}
+                        </p>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          ) : (
+            <p>No top-rated tours available</p>
+          )}
         </div>
       </div>
       <section className="pagination-operater">
         <div className="container pt-5">
-          <div className="info-category">
+          <div className="info-category  py-3">
             <h2>TOP AGENCIES</h2>
           </div>
           <div className="services">
@@ -438,10 +450,9 @@ export default function Home({ users }) {
                                   )
                                 )}
                                 <div className="mx-2 bg-white comment-detalis">
-                                <p>{review.comment}</p>
+                                  <p>{review.comment}</p>
+                                </div>
                               </div>
-                              </div>
-                              
                             </div>
                           </SwiperSlide>
                         ))}
@@ -474,15 +485,15 @@ export default function Home({ users }) {
                             className="hover-images w-100"
                           />
                           <p className="pt-3">
-                            {Array.from({ length: tourOperator.averageRating }).map(
-                              (_, starIndex) => (
-                                <FontAwesomeIcon
-                                  key={starIndex}
-                                  icon={faStar}
-                                  className="text-warning"
-                                />
-                              )
-                            )}
+                            {Array.from({
+                              length: tourOperator.averageRating,
+                            }).map((_, starIndex) => (
+                              <FontAwesomeIcon
+                                key={starIndex}
+                                icon={faStar}
+                                className="text-warning"
+                              />
+                            ))}
                           </p>
                           <h4 className="py-1">
                             {tourOperator.name.split(" ").slice(0, 2).join(" ")}
@@ -550,9 +561,9 @@ export default function Home({ users }) {
       </section>
       <section className="about-us container">
         <div className="row info-images mt-5">
-        <div className="info-About">
-          <h2>About Us</h2>
-        </div>
+          <div className="info-About">
+            <h2>About Us</h2>
+          </div>
           <div className="col-md-6 about-info">
             <p className="fs-3 ">
               Tour Pulse acts as an intermediary between travel agencies and

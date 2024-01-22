@@ -34,7 +34,9 @@
   -ms-border-radius: 15px!;
   -o-border-radius: 15px!;
 }
-
+.clear{
+  margin-left: 20px;
+}
 @media (max-width:600px){
   .tourlist-web .image{
     display: flex;
@@ -54,4 +56,33 @@
   padding-top: 200px;
   padding-left: 10px;
 }
+.clear{
+  margin-left: auto;
+}
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .tourlist-web .image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .tourlist-web {
+    margin-top: 100px;
+  }
+
+  .tourlist-web .image img {
+    width: 50%;
+    border-radius: 15px !important;
+    aspect-ratio: auto !important;
+  }
+
+  .aside {
+    width: 30%;
+    padding-top: 200px;
+    padding-left: 10px;
+  }
+
+  .clear {
+    margin-left: auto;
+  }
 }
