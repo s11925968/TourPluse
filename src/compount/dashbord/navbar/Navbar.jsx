@@ -16,6 +16,7 @@ import {
 import { CompanyContext } from "../../web/context/company/Companycontext";
 export default function Navbar() {
   const {company,setCompanycontext}=useContext(CompanyContext);
+  console.log(company);
   const navgite=useNavigate();
   const logout = () => {
     localStorage.removeItem("companyToken");
@@ -56,35 +57,16 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle text-white"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Tours
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to="/dashboard/tour/getActive"
-                    >
-                      Tours List
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to="/dashboard/selectCategories"
-                    >
-                      Add Tours
-                    </Link>
-                  </li>
-                </ul>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/dashboard/selectCategories"
+                  >
+                  Add Tours
+                </Link>
               </li>
+              
               <li className="nav-item dropdown me-2">
                 <a
                   className="nav-link dropdown-toggle text-white text-decoration-none"
@@ -99,7 +81,7 @@ export default function Navbar() {
                   {company !== null ? (
                     <>
                       <li>
-                        <Link className="dropdown-item text-black">
+                      <Link className="dropdown-item text-black" to={`/dashboard/company/profile/${company.id}`}>
                           <FontAwesomeIcon icon={faUser} className="pe-2" />
                           Profile
                         </Link>

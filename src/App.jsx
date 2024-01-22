@@ -65,6 +65,12 @@ import Users from "./compount/admin/Users/Users.jsx";
 import Block from "./compount/admin/Users/Block/Block.jsx";
 import GetOperater from "./compount/web/Tour/getOperater/GetOperater.jsx";
 import GetOperaterAdmin from "./compount/admin/tours/returnOperater/GetOperater.jsx"
+import ProfileCompany from "./compount/dashbord/Profile/Profile.jsx";
+import UserinfoCompany from "./compount/dashbord/Profile/Userinfo.jsx";
+import ContectCompany  from "./compount/dashbord/Profile/Usercontact.jsx";
+import ChangeInfo from "./compount/dashbord/Profile/ChangeInfo.jsx";
+import UpdateTour from "./compount/dashbord/Tours/Update/UpdateTour.jsx";
+import DetilsTourCompany from "./compount/dashbord/Tours/DetilsTour/DetilsTour.jsx"
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -342,8 +348,38 @@ export default function App() {
           element: <Createtour />,
         },
         {
+          path: "Update/Tour/:_id",
+          element: <UpdateTour />,
+        },
+        {
+          path:'tour/detils/:_id',
+          element:<DetilsTourCompany/>
+        },
+        {
           path: "tour/forceDelete/:id",
           element: <DeleteTour />,
+        },
+        {
+          path: "company/profile/:_id",
+          element: <ProfileCompany />,
+          children: [
+            {
+              path: "",
+              element: <UserinfoCompany />,
+            },
+            {
+              path: "contact",
+              element: <ContectCompany />,
+            },
+            {
+              path: "ChangeInfo",
+              element: <ChangeInfo/>,
+            },
+            {
+              path: "changeEmail",
+              element: <ChangeEmailAdmin />,
+            },
+          ],
         },
       ],
     },

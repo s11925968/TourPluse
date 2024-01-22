@@ -3,7 +3,7 @@ import React from 'react';
 export default function Inpute({ type = 'text', id, title, name, value, onChange, error, onBlur, touched }) {
   return (
     <div className='w-100'>
-        {type === 'date' && <label htmlFor={id} className="form-label fs-5 m-0 p-0">{title}:</label>}
+        {type === 'date' && <label htmlFor={id} className="form-label fs-2 m-0 p-0">{title}:</label>}
 
     <div className="input-group ">
       <input className='fs-5 my-3'

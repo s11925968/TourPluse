@@ -13,8 +13,7 @@ export default function ForceDelete() {
     if (isConfirmed) {
       removeTour();
     } else {
-      // User clicked "Cancel" in the confirmation dialog
-      navigite('/dashboard/tour/getActive'); // or any other action you want to take
+      navigite('/dashboard/tour/getActive'); 
     }
   };
 

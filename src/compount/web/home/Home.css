@@ -210,7 +210,7 @@ a{
 .operator{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   height: 80vh
 }
 .operator-image{
@@ -265,6 +265,9 @@ a{
     background-position:center center; /* Update this line to center the background image */
     background-size: cover;
     background-attachment:none ;
+  }
+  .info-category h2::after {
+    width: 100px !important;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 1000px) {
@@ -357,9 +360,7 @@ a{
 }
 /*end category*/
 @media screen and (max-width:600px){
-  :root{
-    font-size: 10px;
-  }
+
   .info-home span{
     font-size: 30px;
   }
@@ -375,7 +376,13 @@ a{
     -ms-border-radius: 10%;
     -o-border-radius: 10%;
   }
-
+  .info-SERVICES h2::after{
+    width: 80px!important;
+  }
+  .info-ACTIVITYS h2::after{
+    
+    width: 110px !important;
+  }
   .services .services-image:hover{
     cursor: pointer;
     width:auto!important;
@@ -396,6 +403,13 @@ a{
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
+  }
+  .info-TOURS h2::after{
+    width: 80px !important;
+  }
+  .info-About h2::after{
+
+    width: 70px!important;
   }
 }
 /*start serivese*/
@@ -478,7 +492,6 @@ a{
 }
 .info-SERVICES h2{
   position: relative;
-  font-family: 'Oswald', sans-serif;
 }
 .info-SERVICES h2::after{
   position: absolute;
@@ -488,7 +501,7 @@ a{
   top: 0;
   margin: auto;
   height: 3px;
-  width: 110px;
+  width: 130px;
   background-color: #0077b5;
   content: '';
 }

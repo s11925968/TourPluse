@@ -59,7 +59,16 @@ export const registerCreateTour = yup.object({
 
 });
 
-
+export const registerUpdateTour = yup.object({
+  startDate: yup
+  .date()
+  .min(new Date(), 'Start date must be today or later'),
+  
+  lastRegDate: yup
+    .date()
+    .min(new Date(), 'Last registration must be today or later')
+    .max(yup.ref('startDate'), 'Last registration date must be before the start date'),
+});
 export const registerCreateOperater = yup.object({
   name: yup.string().required("name is required").min(3, "Must be greater than 3").max(30, "Must be less than 30"),
   address:yup.string().required("address is required"),

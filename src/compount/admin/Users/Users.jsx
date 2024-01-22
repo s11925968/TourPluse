@@ -160,7 +160,7 @@ export default function Users() {
                             </Link>
                           ) : (
                             <Link
-                              to={`/admin/unblock/${user._id}`}
+                              to={`/admin/block/${user._id}`}
                               className="btn btn-warning"
                             >
                               Unblock Users

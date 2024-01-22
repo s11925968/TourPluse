@@ -139,7 +139,7 @@ export default function Home({ users }) {
           <div className="info-SERVICES py-3">
             <h2>SERVICES</h2>
           </div>
-          <div className="services my-5">
+          <div className="services">
             <div className="row">
               <div className="col-lg-3 col-md-6 services-flight text-center">
                 <img
@@ -194,7 +194,7 @@ export default function Home({ users }) {
         </div>
       </section>
       <div className="">
-        <div className="info-ACTIVITYS">
+        <div className="info-ACTIVITYS py-3">
           <h2>TOP ACTIVITIES</h2>
         </div>
         <div className="operator py-5">
@@ -363,7 +363,7 @@ export default function Home({ users }) {
           <div className="info-category">
             <h2>TOP AGENCIES</h2>
           </div>
-          <div className="services my-5">
+          <div className="services">
             <div className="row">
               {selectedCategory ? (
                 <div className="col-md-12 text-center">

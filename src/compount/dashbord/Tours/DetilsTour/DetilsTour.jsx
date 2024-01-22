@@ -57,7 +57,7 @@ export default function DetilsTour() {
         </div>
         <div className="row">
           <>
-            <div key={data._id} className="col-lg-6 mb-4">
+            <div key={data._id} className="col-lg-6 mb-4 my-2">
               <div className="image">
                 <img
                   src={data.image.secure_url}
@@ -66,7 +66,7 @@ export default function DetilsTour() {
                 />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 my-2">
               <div className="row">
                 <div className="col-lg-3 w-50">
                   <p>
@@ -135,21 +135,20 @@ export default function DetilsTour() {
                   ))}
                 </p>
                 <div className="text-center">
-                <Link
-                  className="w-25 m-auto btn me-2 btn-info"
-                  to={`/tour/${data._id}/review`}
-                >
-                  Review
-                </Link>
-                <Link
-                  className="w-25 m-auto btn btn-info"
-                  to={`/tour/get/company/${data._id}`}
-                >
-                  Show To Operater
-                </Link>
-                
+                  <Link
+                    to={`/dashboard/tour/forceDelete/${data._id}`}
+                    className="btn ms-2 btn-info"
+                    
+                  >
+                    Delete Tour
+                  </Link>
+                  <Link
+                    to={`/dashboard/Update/Tour/${data._id}`}
+                    className="btn ms-2 btn-info"
+                  >
+                    Update
+                  </Link>
                 </div>
-
               </div>
             </div>
           </>
@@ -181,3 +180,4 @@ export default function DetilsTour() {
     </div>
   );
 }
+

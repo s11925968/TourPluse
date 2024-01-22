@@ -5,21 +5,17 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader.jsx";
-import { CompanyContext } from "../../../web/context/company/Companycontext";
-import { registerCreateTour } from "../../../shared/Validation.jsx";
-
-export default function CreatTour() {
-  const { company } = useContext(CompanyContext);
+import { registerCreateTour, registerUpdateTour } from "../../../shared/Validation.jsx";
+import './Update.css'
+export default function Update() {
   const [errorBackend, setErrorBackend] = useState(null);
   const [loading, setLoading] = useState(false);
-  const id = company?.id || null;
   const { _id } = useParams();
   const navgite = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
       image: "",
-      operatorId: id,
       price: "",
       location: "",
       duration: "",
@@ -30,7 +26,6 @@ export default function CreatTour() {
       lastRegDate: "",
       note: "",
       tourPlan: "",
-      categoryId: _id,
       description: "",
     },
     onSubmit: async (users) => {
@@ -54,8 +49,8 @@ export default function CreatTour() {
 
       try {
         const token = localStorage.getItem("companyToken");
-        const { data } = await axios.post(
-          `${import.meta.env.VITE_URL_LINK}/tour/create`,
+        const { data } = await axios.patch(
+          `${import.meta.env.VITE_URL_LINK}/tour/update/${_id}`,
           formdata,
           {
             headers: {
@@ -76,7 +71,7 @@ export default function CreatTour() {
             progress: undefined,
             theme: "light",
           });
-          navgite("/dashboard/tour/getActive");
+          navgite("/dashboard");
         }
       } catch (error) {
         console.log("samehj");
@@ -86,7 +81,7 @@ export default function CreatTour() {
         setLoading(false);
       }
     },
-    validationSchema: registerCreateTour,
+    validationSchema: registerUpdateTour,
 
   });
 
@@ -276,18 +271,18 @@ export default function CreatTour() {
   }
 
   return (
-    <div className="">
-      <div className="container d-flex justify-content-center align-items-center">
-        <div className="changeEmail ">
+    <div className="py-4">
+      <div className=" container d-flex justify-content-center align-items-center mt-5">
+        <div className="changeEmail p-4">
           <h2 className="text-center"></h2>
-          <form onSubmit={formik.handleSubmit} className="px-3">
+          <form onSubmit={formik.handleSubmit} className="p-3">
             {renderInput}
             <button
               type="submit"
               className="btn btn-primary w-100"
               disabled={!formik.isValid}
             >
-              Add Tour
+              Update Tour
             </button>
             <div className="text-center w-100">
             {errorBackend && <p className="text text-danger">{errorBackend}</p>}
