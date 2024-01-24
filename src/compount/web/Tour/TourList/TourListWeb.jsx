@@ -4,12 +4,12 @@ import { useQuery } from "react-query";
 import Loader from "../../../shared/Loader.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faSearch, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 import "./Tourlist.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-export default function TourlistWeb() {
+export default function TourlistWeb({users}) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [current, setCurrent] = useState(1);
   const [title, setTitle] = useState(null);
@@ -27,6 +27,18 @@ export default function TourlistWeb() {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [minRating, setMinRating] = useState(0);
   const [maxRating, setMaxRating] = useState(5);
+  const sentSearch = async (keyword) => {
+    try {
+      const { data } = await axios.post(
+        `${
+          import.meta.env.VITE_URL_LINK
+          }/user/userSearch/${users.id}`,
+        { keyword } // Pass the keyword to the API
+      );
+    } catch (e) {
+      console.error("Error fetching user search data:", e);
+    }
+  };
   const getTours = async () => {
     try {
       setIsLoading(true);
@@ -34,6 +46,9 @@ export default function TourlistWeb() {
       params.append("page", current);
 
       if (searchInput.trim() !== "") {
+        if(users){
+          await sentSearch(searchInput.trim());
+        }
         params.append("search", searchInput.trim());
       }
       if (selectedCategoryId) {
@@ -78,7 +93,6 @@ export default function TourlistWeb() {
       setIsLoading(false);
     }
   };
-  console.log(dataTour);
   const handlePriceChange = (value) => {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
@@ -148,9 +162,9 @@ export default function TourlistWeb() {
   }
 
   return (
-    <section className="d-flex">
-      <aside className="aside">
-        <div className="row">
+    <section className="d-flex ">
+      <aside className="aside me-4">
+        <div className="row ">
           <div className="col-md-6">
             <h2>Filters</h2>
           </div>
@@ -158,7 +172,7 @@ export default function TourlistWeb() {
           <div className="col-md-6">
             <div className="form-group w-100 ">
               <button
-                className="btn btn-info clear text-white"
+                className="btn btn-info clear text-white rounded-pill "
                 onClick={handleClearAll}
               >
                 Clear
@@ -205,14 +219,14 @@ export default function TourlistWeb() {
               step={0.5} // Set the step to 0.5
             />
             <div className="d-flex justify-content-between mt-2">
-              <span>${minRating}</span>
-              <span>${maxRating}</span>
+              <span>{minRating}</span>
+              <span>{maxRating}</span>
             </div>
           </div>
         <div className="form-group py-4">
-          <label>Select Location:</label>
+          <label>Select Location</label>
           <select
-            className="form-control"
+            className="form-control rounded-pill"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
@@ -256,9 +270,9 @@ export default function TourlistWeb() {
           </select>
         </div>
         <div className="form-group py-4">
-          <label>Select Category:</label>
+          <label>Select Category</label>
           <select
-            className="form-control"
+            className="form-control rounded-pill"
             value={selectedCategoryId}
             onChange={(e) => setSelectedCategoryId(e.target.value)}
           >
@@ -270,40 +284,40 @@ export default function TourlistWeb() {
         </div>
       </aside>
       <div className="tourlist-web container z-1">
-        <div className="search col-12 mb-4 w-50 m-auto border border-5 border-info">
+        <div className="search col-12 mb-3  phone-width m-auto border border-4 border-info">
           <form>
-            <div className="input-group">
+            <div className="input-group ">
               <input
                 type="text"
-                className="form-control"
+                className="form-control rounded-pill"
                 placeholder="Search..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-secondary bg-info"
+                  className="btn btn-outline-secondary bg-info  rounded-pill"
                   type="submit"
                   onClick={(e) => {
                     e.preventDefault();
                     getTours();
                   }}
                 >
-                  <FontAwesomeIcon icon={faSearch} className="text-white" />
+                  <FontAwesomeIcon icon={faSearch} className="text-white  " />
                 </button>
               </div>
             </div>
           </form>
         </div>
-        <div className="mb-4 w-25 d-flex justify-content-end w-100 ">
+        <div className="mb-1 sort d-flex justify-content-end w-100 ">
           <div>
             <label className="me-1">Sort By: </label>
             <select
-              className="search border border-5 border-info p-1"
+              className="search border border-1 border-info "
               value={selectedSortOption}
               onChange={handleSortOptionChange}
             >
-              <option value="">None</option>
+              <option value="">none</option>
               <option value="-price">Price High To Low</option>
               <option value="price">Price Low To High</option>
               <option value="startDate">Start Date</option>
@@ -326,14 +340,13 @@ export default function TourlistWeb() {
           </div>
           <div className="text-center">
             <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
-            <p>Price: ${tour.price}</p>
+            <p><b>$</b>{tour.price}</p>
             <p>
-              Start Date: {new Date(tour.startDate).toLocaleDateString()}
+              {new Date(tour.startDate).toLocaleDateString()}
+              <FontAwesomeIcon icon={faArrowRight}className="px-2 text-black" />
+              {new Date(tour.endDate).toLocaleDateString()}
             </p>
-            <p>
-              End Date: {new Date(tour.endDate).toLocaleDateString()}
-            </p>
-            <p className="py-3">
+            <p className="">
               {[...Array(fullStars)].map((_, starIndex) => (
                 <FontAwesomeIcon
                   key={starIndex}

@@ -71,6 +71,7 @@ import ContectCompany  from "./compount/dashbord/Profile/Usercontact.jsx";
 import ChangeInfo from "./compount/dashbord/Profile/ChangeInfo.jsx";
 import UpdateTour from "./compount/dashbord/Tours/Update/UpdateTour.jsx";
 import DetilsTourCompany from "./compount/dashbord/Tours/DetilsTour/DetilsTour.jsx"
+import Recommender from "./compount/web/Recommender/Recommender.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
   const saveCurrentUser = () => {
@@ -117,6 +118,10 @@ export default function App() {
           element: <Register />,
         },
         {
+          path:"Recommender/:_id",
+          element:<Recommender />,
+        },
+        {
           path: "auth/sendCode",
           element: <SendCode />,
         },
@@ -150,7 +155,7 @@ export default function App() {
         },
         {
           path: "tourlistweb",
-          element: <TourlistWeb />,
+          element: <TourlistWeb users={users}/>,
         },
         {
           path: "tour/get/:_id",

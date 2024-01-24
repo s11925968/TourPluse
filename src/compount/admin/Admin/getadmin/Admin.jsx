@@ -47,7 +47,6 @@ export default function Admin() {
         }
       );
       setTitle(data.title);
-      console.log(data);
       setData(data.users);
     } catch (error) {
       setErrorBack(error.response.data.message);

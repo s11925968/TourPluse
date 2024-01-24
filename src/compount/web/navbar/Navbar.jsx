@@ -24,14 +24,12 @@ export default function Navbar({ users, setUser }) {
   const navigate = useNavigate();
   const [navbarBackground, setNavbarBackground] = useState("");
   const [hasScrolled, setHasScrolled] = useState(false);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     if (scrollPosition > 100) {

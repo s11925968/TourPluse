@@ -39,7 +39,6 @@ export default function Home({ users }) {
       setIsLoading(false);
     }
   };
-  console.log(data);
   const getCategories = async () => {
     try {
       const token = localStorage.getItem("userToken");
@@ -60,7 +59,6 @@ export default function Home({ users }) {
       setIsLoading(false);
     }
   };
-  console.log(dataOperater);
   useEffect(() => {
     getCategories();
     getOperator();

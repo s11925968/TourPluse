@@ -24,11 +24,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../shared/Loader";
 import axios from "axios";
-export default function Navbar({users,setUser}) {
+
+export default function Navbar({ users, setUser }) {
   const token = localStorage.getItem('userToken');
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState("");
-  const navgite=useNavigate();
+  const navigate = useNavigate();
+
   const getProfile = async () => {
     try {
       setLoader(true);
@@ -47,28 +49,31 @@ export default function Navbar({users,setUser}) {
       setLoader(false);
     }
   }
+
   useEffect(() => {
     if (users) {
       getProfile();
     }
   }, [users]);
+
   const logout = () => {
     if (!users) {
       return;
     }
-  
+
     localStorage.removeItem("userToken");
-    const navigate = useNavigate(); // Add this line to get the navigate function
-    navigate("/"); // Use the navigate function for redirection
     setUser(null);
+    navigate("/");
   };
-  if(loader){
+
+  if (loader) {
     return <Loader />;
   }
+
   return (
     <div className="back ">
-      <nav className={`navbar navbar-expand-lg z-2 w-100`}>
-        <div className="container">
+      <div className={`navbar navbar-expand-lg z-2 w-100`}>
+        <div className="ms-3">
           <Link to="/admin">
             <img
               src="/images/fulllogo_transparent_nobuffer.png"
@@ -76,17 +81,18 @@ export default function Navbar({users,setUser}) {
               className="logo"
             />
           </Link>
-          <button
-            className="navbar-toggler bg-primary bg-gradient"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+        </div>
+        <button
+          className="navbar-toggler bg-primary bg-gradient"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-lg-0  ">
               <li className="nav-item">
@@ -263,7 +269,6 @@ export default function Navbar({users,setUser}) {
             </ul>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
   );
 }

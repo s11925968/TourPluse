@@ -100,7 +100,6 @@ export default function DisplayOpearater() {
     const delayTimer = setTimeout(() => {
       getOperator();
     }, 1000);
-    console.log(dataOperater);
     return () => clearTimeout(delayTimer);
   }, [
     current,

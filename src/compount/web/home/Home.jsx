@@ -27,7 +27,6 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 export default function Home({ users }) {
-  const [t, i18n] = useTranslation("global");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState(1);
@@ -38,6 +37,28 @@ export default function Home({ users }) {
   const [showComments, setShowComments] = useState(false);
   const [dataTour, setDataTour] = useState(null);
   const [title, setTitle] = useState(null);
+  const token = localStorage.getItem("userToken");
+  const [dataProfile, setDataProfile] = useState("");
+
+  const getProfile = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/user/${users.id}`,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`,
+          },
+        }
+      );
+      console.log(data);
+      setDataProfile(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const handleBlogClick = (blogId) => {
     setSelectedBlog(selectedBlog === blogId ? null : blogId);
   };
@@ -50,7 +71,6 @@ export default function Home({ users }) {
       const { data } = await axios.get(
         `${import.meta.env.VITE_URL_LINK}/operator/getTopOp`
       );
-      console.log(data.topRatedTours);
       setData(data.topRatedTours);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -64,9 +84,20 @@ export default function Home({ users }) {
       const params = new URLSearchParams();
       params.append("page", current);
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/tour/getTop`
+        `${import.meta.env.VITE_URL_LINK}/reco/getHybRec/${users.id}`
       );
-      setDataTour(data.topRatedTours);
+
+      // Check if the data is an array and has items
+      if (Array.isArray(data) && data.length > 0) {
+        // Extract tourDetails from each item in the array
+        const tourDetailsArray = data.map((item) => item.tourDetails);
+
+        console.log(tourDetailsArray);
+        setDataTour(tourDetailsArray);
+      } else {
+        // Set an empty array if no data or empty array received
+        setDataTour([]);
+      }
     } catch (error) {
       setIsLoading(false);
       console.error("Error fetching tour data:", error);
@@ -75,6 +106,7 @@ export default function Home({ users }) {
       setIsLoading(false);
     }
   };
+
   const getBlogs = async () => {
     const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/blog`);
     setBlogsData(data.blogs);
@@ -106,6 +138,7 @@ export default function Home({ users }) {
     getOperator();
     getBlogs();
     getTours();
+    getProfile();
   }, [current]);
   if (isLoading) {
     return <Loader />;
@@ -198,160 +231,153 @@ export default function Home({ users }) {
           <h2 className="m-0">TOP ACTIVITIES</h2>
         </div>
         <div>
-          {dataTour && dataTour.length > 0 ? (
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={50}
-              loop={true}
-              autoplay={{
-                delay: 10000,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              breakpoints={{
-                600: {
-                  slidesPerView: 1.5,
-                },
-                900: {
-                  slidesPerView: 2.2,
-                },
-                1024: {
-                  slidesPerView: 2.3,
-                },
-              }}
-            >
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img src="/Top Activaty/felipe-giacometti-q80sx583gzE-unsplash.jpg" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/amien-taryamin-IEcqd914qpw-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/kamil-pietrzak-AlA8S9tALAs-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/omer-f-arslan-W0FhhtnMd8k-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/rihards-sarma-JHeCuXiERFo-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/tommy-lisbin-2DH-qMX6M4E-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/toomas-tartes-Yizrl9N_eDA-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="Activity-image w-100">
-                  <img
-                    src="/Top Activaty/david-marcu-VfUN94cUy4o-unsplash.jpg"
-                    className="img-fluid"
-                  />
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          ) : (
-            <p>No top-rated tours available</p>
-          )}
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={50}
+            loop={true}
+            autoplay={{
+              delay: 10000,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              600: {
+                slidesPerView: 1.5,
+              },
+              900: {
+                slidesPerView: 2.2,
+              },
+              1024: {
+                slidesPerView: 2.3,
+              },
+            }}
+          >
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img src="/Top Activaty/felipe-giacometti-q80sx583gzE-unsplash.jpg" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/amien-taryamin-IEcqd914qpw-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/kamil-pietrzak-AlA8S9tALAs-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/omer-f-arslan-W0FhhtnMd8k-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/rihards-sarma-JHeCuXiERFo-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/tommy-lisbin-2DH-qMX6M4E-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/toomas-tartes-Yizrl9N_eDA-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img
+                  src="/Top Activaty/david-marcu-VfUN94cUy4o-unsplash.jpg"
+                  className="img-fluid"
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
       <div className="TOURS my-5">
-        <div className="info-TOURS">
-          <h2>TOP TOURS</h2>
-        </div>
-        <div className="m-0">
-          {dataTour && dataTour.length > 0 ? (
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={50}
-              loop={true}
-              autoplay={{
-                delay: 10000,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              breakpoints={{
-                600: {
-                  slidesPerView: 1.3,
-                },
-                900: {
-                  slidesPerView: 3.2,
-                },
-                1024: {
-                  slidesPerView: 3.3,
-                },
-              }}
-              className="m-0"
-            >
-              {dataTour
-                .filter((tour) => tour.averageRating >= 1)
-                .map((tourOperator) => (
-                  <SwiperSlide key={tourOperator._id}>
+        {users && (
+          <div className="m-0">
+            <h2>{`Top picks for ${
+              dataProfile?.user?.userName || "User"
+            }`}</h2>
+            {dataTour && dataTour.length > 0 ? (
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={50}
+                loop={true}
+                autoplay={{
+                  delay: 10000,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                breakpoints={{
+                  600: {
+                    slidesPerView: 1.3,
+                  },
+                  900: {
+                    slidesPerView: 3.2,
+                  },
+                  1024: {
+                    slidesPerView: 3.3,
+                  },
+                }}
+                className="m-0"
+              >
+                {dataTour.map((tourDetails) => (
+                  <SwiperSlide key={tourDetails._id}>
                     <Link
-                      to={`/tour/details/${tourOperator._id}`}
+                      to={`/tour/details/${tourDetails._id}`}
                       className="text-decoration-none"
                     >
                       <div
                         className={`info-content-operator ${
-                          selectedOperator === tourOperator._id
-                            ? "selected"
-                            : ""
+                          selectedOperator === tourDetails._id ? "selected" : ""
                         }`}
-                        onClick={() => handleOperatorClick(tourOperator._id)}
+                        onClick={() => handleOperatorClick(tourDetails._id)}
                       >
                         <div className="swiper-hover operator-image-home">
                           <img
-                            src={tourOperator.image.secure_url}
+                            src={tourDetails.image.secure_url}
                             className=""
-                            alt={`Operator ${tourOperator._id}`}
+                            alt={`Operator ${tourDetails._id}`}
                           />
                         </div>
                         <div className="d-flex justify-content-center">
                           <h4 className="text-center w-75 text-black">
-                            {tourOperator.name.split(" ").slice(0, 5).join(" ")}
+                            {tourDetails.name.split(" ").slice(0, 5).join(" ")}
                             ...
                           </h4>
                         </div>
                         <p className="text-center">
-                          <strong>{tourOperator.price}$</strong>
+                          <strong>{tourDetails.price}$</strong>
                         </p>
                         <p className="text-center">
                           {Array.from({
-                            length: tourOperator.averageRating,
+                            length: tourDetails.averageRating,
                           }).map((_, starIndex) => (
                             <FontAwesomeIcon
                               key={starIndex}
@@ -364,11 +390,12 @@ export default function Home({ users }) {
                     </Link>
                   </SwiperSlide>
                 ))}
-            </Swiper>
-          ) : (
-            <p>No top-rated tours available</p>
-          )}
-        </div>
+              </Swiper>
+            ) : (
+              <p>No Recommend four you</p>
+            )}
+          </div>
+        )}
       </div>
       <section className="pagination-operater">
         <div className="container pt-5">

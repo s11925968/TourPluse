@@ -50,7 +50,6 @@ export default function Agencies() {
     }
   };
   
-console.log(dataOperater);
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value);
   };

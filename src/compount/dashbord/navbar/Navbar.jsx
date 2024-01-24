@@ -16,7 +16,6 @@ import {
 import { CompanyContext } from "../../web/context/company/Companycontext";
 export default function Navbar() {
   const {company,setCompanycontext}=useContext(CompanyContext);
-  console.log(company);
   const navgite=useNavigate();
   const logout = () => {
     localStorage.removeItem("companyToken");

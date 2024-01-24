@@ -1,14 +1,13 @@
 .tourlist-web{
   align-items: center;
-  margin-top: 160px;
-  
+  margin-top: 110px;
 }
 .search{
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  border-radius: 110px;
+  -webkit-border-radius: 110px;
+  -moz-border-radius: 110px;
+  -ms-border-radius: 110px;
+  -o-border-radius: 110px;
 }
 .tour-pointer{
   cursor: pointer !important;;
@@ -37,10 +36,17 @@
 .clear{
   margin-left: 20px;
 }
+.phone-width{
+  width: 60%!important;
+}
+
 @media (max-width:600px){
   .tourlist-web .image{
     display: flex;
     justify-content: center;
+  }
+  .phone-width{
+    width: 100%!important;
   }
   .tourlist-web{
     margin-top: 100px;
@@ -51,6 +57,7 @@
     aspect-ratio: auto !important;
     
 }
+
 .aside{
   width: 30%;
   padding-top: 200px;

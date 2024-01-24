@@ -96,7 +96,6 @@ export default function Tourlist() {
     setMinDuration(value[0]);
     setMaxDuration(value[1]);
   };
-  console.log(dataTour);
   const handleProductClick = (productId) => {
     const clickedProduct = dataTour.find((tour) => tour._id === productId);
     setSelectedProduct((prevProduct) =>

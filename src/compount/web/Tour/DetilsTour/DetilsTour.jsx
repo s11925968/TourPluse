@@ -145,7 +145,7 @@ export default function DetilsTour() {
                   className="w-25 m-auto btn btn-info"
                   to={`/tour/get/company/${data._id}`}
                 >
-                  Show To Operater
+                  Show To Agencies
                 </Link>
                 
                 </div>

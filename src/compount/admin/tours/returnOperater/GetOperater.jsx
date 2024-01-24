@@ -17,7 +17,6 @@ export default function GetOperator() {
       const { data } = await axios.get(
         `${import.meta.env.VITE_URL_LINK}/tour/get/company/${_id}`
       );
-      console.log(data);
       setDataOperator(data.operator);
     } catch (error) {
       console.error("Error fetching data:", error);

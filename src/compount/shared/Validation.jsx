@@ -77,3 +77,11 @@ export const registerCreateOperater = yup.object({
   .required("Password is required")
   .matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character'),
 });
+
+
+export const registerInterests = yup.object({
+  interests: yup.array()
+    .min(3, 'Please choose at least three interests')
+    .max(3, 'Please choose only three interests')
+    .of(yup.string().oneOf(["Islamic", "Cultural", "Historical", "Educational", "Adventure", "Relaxation", "Nautical","Camping","Couples","Natural"], 'Invalid interest')),
+});

@@ -67,7 +67,6 @@ export default function Home() {
           },
         }
       );
-      console.log(data);
       setTitle(data.title);
       setData(data.tourOperator);
     } catch (error) {

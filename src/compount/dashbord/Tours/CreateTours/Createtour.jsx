@@ -79,7 +79,6 @@ export default function CreatTour() {
           navgite("/dashboard/tour/getActive");
         }
       } catch (error) {
-        console.log("samehj");
         console.log(error);
         setErrorBackend(error?.message || "An error occurred");
       } finally {

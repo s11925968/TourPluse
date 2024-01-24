@@ -24,6 +24,7 @@ export default function Register() {
           "https://gazaaaal.vercel.app/auth/signup",
           values
         );
+        console.log(data);
         if (data.message == "success") {
           formik.resetForm();
           toast.success(
@@ -39,7 +40,7 @@ export default function Register() {
               theme: "light",
             }
           );
-          navigite("/login");
+          navigite(`/Recommender/${data.user}`);
         }
       } catch (error) {
         setErrorBack(error.response.data.message);
@@ -104,7 +105,7 @@ export default function Register() {
             {renderInput}
             <button
               type="submit"
-              className="btn btn-primary w-100"
+              className="btn btn-primary"
               disabled={!formik.isValid}
             >
               Create new account

@@ -44,7 +44,6 @@ export default function CreateReview({ users }) {
           progress: undefined,
           theme: "light",
         });
-        console.log(_id)
         navigate(`/tour/details/${_id}`);
       }
     } catch (error) {

@@ -4,8 +4,8 @@
   transition: all ease 0.3s;
   background-position:center 70%;
   background-color: white!important;
-  aspect-ratio: 500/187;
-  object-fit: cover;
+  width: 66%;
+  margin: auto;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;

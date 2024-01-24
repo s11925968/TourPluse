@@ -112,7 +112,7 @@ export default function Home() {
       <div className="col-md-6">
             <div className="form-group w-100 ">
               <button
-                className="btn btn-info text-white"
+                className="btn btn-info text-white rounded-pill"
                 onClick={handleClearAll}
               >
                 Clear All
@@ -122,7 +122,7 @@ export default function Home() {
         <div className="form-group Select-Location">
           <label>Select Location:</label>
           <select
-            className="form-control"
+            className="form-control rounded-pill"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
@@ -195,30 +195,27 @@ export default function Home() {
         </div>
       </aside>
 
-      <section className="category-serives container pt-5">
-        <div className="info-SERVICES py-5">
-          <h2>AGENCIES</h2>
-        </div>
-        <div className="searchcol-12 my-4 w-50 m-auto border border-5 border-info">
+      <section className="category-serives container pt-5 my-5">
+      <div className="search col-12 mb-3  phone-width m-auto border border-4 border-info">
           <form>
-            <div className="input-group z-1">
+            <div className="input-group ">
               <input
                 type="text"
-                className="form-control"
+                className="form-control rounded-pill"
                 placeholder="Search..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-secondary bg-info"
+                  className="btn btn-outline-secondary bg-info  rounded-pill"
                   type="submit"
                   onClick={(e) => {
                     e.preventDefault();
                     getOperator();
                   }}
                 >
-                  <FontAwesomeIcon icon={faSearch} className="text-white" />
+                  <FontAwesomeIcon icon={faSearch} className="text-white  " />
                 </button>
               </div>
             </div>
@@ -229,7 +226,7 @@ export default function Home() {
             <div>
               <label className="me-1">Sort By: </label>
               <select
-                className="search border border-5 border-info"
+                className="search border border-1 border-info"
                 value={selectedSortOption}
                 onChange={handleSortOptionChange}
               >

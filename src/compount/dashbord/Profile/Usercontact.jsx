@@ -7,7 +7,6 @@ import style from './Userinfo.module.css'; // Make sure to import your CSS modul
 
 export default function Usercontact() {
   const { _id } = useParams();
-  console.log(_id);
   const token = localStorage.getItem("userToken");
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState("");
@@ -25,7 +24,6 @@ export default function Usercontact() {
       setLoader(false);
     }
   };
-  console.log(data);
   useEffect(() => {
     getProfile();
   }, [_id]);

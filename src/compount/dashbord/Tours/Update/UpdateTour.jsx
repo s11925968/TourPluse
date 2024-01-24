@@ -74,7 +74,6 @@ export default function Update() {
           navgite("/dashboard");
         }
       } catch (error) {
-        console.log("samehj");
         console.log(error);
         setErrorBackend(error?.message || "An error occurred");
       } finally {
