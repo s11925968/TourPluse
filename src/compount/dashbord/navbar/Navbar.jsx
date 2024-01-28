@@ -14,14 +14,36 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { CompanyContext } from "../../web/context/company/Companycontext";
+import axios from "axios";
 export default function Navbar() {
   const {company,setCompanycontext}=useContext(CompanyContext);
   const navgite=useNavigate();
+  console.log(company);
+  const token = localStorage.getItem('userToken');
+  const [loader, setLoader] = useState(false);
+  const [data, setData] = useState("");
+
+  const getProfile = async () => {
+    try {
+      setLoader(true);
+      const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/operator/getOp/${company.id}`);
+      setData(data.operator);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoader(false);
+    }
+  }
+  useEffect(() => {
+    getProfile();
+  }, [company.id]);
+  console.log(data);
   const logout = () => {
     localStorage.removeItem("companyToken");
     setCompanycontext(null);
     navgite("/logincompany");
   };
+  
   return (
     <div className="back">
       <nav className={`navbar navbar-expand-lg z-2 w-100`}>
@@ -75,6 +97,7 @@ export default function Navbar() {
                   aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faUser} className="pe-1 fs-4" />
+                  {data && data.name ? data.name.split(' ').slice(0,3).join(' ') : "Account"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start text-center">
                   {company !== null ? (

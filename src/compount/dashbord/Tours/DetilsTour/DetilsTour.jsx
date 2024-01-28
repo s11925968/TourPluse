@@ -1,31 +1,33 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import './DetilsTour.css'
+
 export default function DetilsTour() {
   const navigate = useNavigate();
   const { _id } = useParams();
   const [data, setDataTour] = useState("");
-  const [isLoading, setIsLoading] = useState(true); // New state for loading
+  const [isLoading, setIsLoading] = useState(true);
   const currentDate = new Date().toLocaleDateString("en-CA");
   const notEqualValue = ".";
 
   const getTours = async () => {
     try {
-      setIsLoading(true); // Set loading to true when starting the request
+      setIsLoading(true);
       const { data } = await axios.get(
         `${import.meta.env.VITE_URL_LINK}/tour/get/${_id}`
       );
-      setDataTour(data.tour);
+      setDataTour(data.tour || {});
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setIsLoading(false); // Set loading to false after the request completes
+      setIsLoading(false);
     }
   };
+
   const calculateAvgRating = (reviews) => {
     if (reviews.length === 0) {
       return 0;
@@ -34,21 +36,26 @@ export default function DetilsTour() {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
+
   const dataDate = {
     startDate: "2023-01-01",
     endDate: "2023-12-31",
   };
+
   const isLastRegDateValid = (lastRegDate, currentDate) => {
-    // Implement your logic for checking if lastRegDate is still valid
-    return lastRegDate >= currentDate;
+    return new Date(lastRegDate) >= new Date(currentDate);
   };
-  const lastRegDateValid = isLastRegDateValid(data.lastRegDate, currentDate);
+
+  const lastRegDateValid = data.lastRegDate && isLastRegDateValid(data.lastRegDate, currentDate);
+
   useEffect(() => {
     getTours();
   }, [_id]);
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <div className="container">
       <div className="tourlist-web">
@@ -138,7 +145,6 @@ export default function DetilsTour() {
                   <Link
                     to={`/dashboard/tour/forceDelete/${data._id}`}
                     className="btn ms-2 btn-info"
-                    
                   >
                     Delete Tour
                   </Link>
@@ -155,24 +161,24 @@ export default function DetilsTour() {
         </div>
       </div>
       <div className="row mt-5 ">
-        {data.reviews.length > 0 &&
+        {data.reviews && data.reviews.length > 0 &&
           data.reviews.map((review) => (
             <div key={review._id} className="col-lg-4   comment-detalis">
               <div className="bg-info px-2 my-2 pb-1 comment-detalis ">
                 <p className="fs-5 m-auto text-center px-3">
-                {Array.from({
-                  length: review.rating,
-                }).map((_, starIndex) => (
-                  <FontAwesomeIcon
-                    key={starIndex}
-                    icon={faStar}
-                    className="text-warning"
-                  />
-                ))}
-              </p>
-              <div className="bg-white px-3  comment-detalis">
-                <p>{review.comment}</p>
-              </div>
+                  {Array.from({
+                    length: review.rating,
+                  }).map((_, starIndex) => (
+                    <FontAwesomeIcon
+                      key={starIndex}
+                      icon={faStar}
+                      className="text-warning"
+                    />
+                  ))}
+                </p>
+                <div className="bg-white px-3  comment-detalis">
+                  <p>{review.comment}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -180,4 +186,3 @@ export default function DetilsTour() {
     </div>
   );
 }
-

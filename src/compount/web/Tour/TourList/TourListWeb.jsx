@@ -4,12 +4,17 @@ import { useQuery } from "react-query";
 import Loader from "../../../shared/Loader.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faSearch, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faSearch,
+  faStar,
+  faStarHalf,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Tourlist.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-export default function TourlistWeb({users}) {
+export default function TourlistWeb({ users }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [current, setCurrent] = useState(1);
   const [title, setTitle] = useState(null);
@@ -27,12 +32,11 @@ export default function TourlistWeb({users}) {
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [minRating, setMinRating] = useState(0);
   const [maxRating, setMaxRating] = useState(5);
+  
   const sentSearch = async (keyword) => {
     try {
       const { data } = await axios.post(
-        `${
-          import.meta.env.VITE_URL_LINK
-          }/user/userSearch/${users.id}`,
+        `${import.meta.env.VITE_URL_LINK}/user/userSearch/${users.id}`,
         { keyword } // Pass the keyword to the API
       );
     } catch (e) {
@@ -46,7 +50,7 @@ export default function TourlistWeb({users}) {
       params.append("page", current);
 
       if (searchInput.trim() !== "") {
-        if(users){
+        if (users) {
           await sentSearch(searchInput.trim());
         }
         params.append("search", searchInput.trim());
@@ -77,7 +81,7 @@ export default function TourlistWeb({users}) {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/tour/getActive?${params.toString()}&limit=24`
+        }/tour/getActive?${params.toString()}&limit=21`
       );
 
       setTitle(data.title);
@@ -97,7 +101,7 @@ export default function TourlistWeb({users}) {
     setMinPrice(value[0]);
     setMaxPrice(value[1]);
   };
-  const handleRatingChange= (value) => {
+  const handleRatingChange = (value) => {
     setMinRating(value[0]);
     setMaxRating(value[1]);
   };
@@ -136,12 +140,10 @@ export default function TourlistWeb({users}) {
   };
 
   useEffect(() => {
-
-  
     const delayTimer = setTimeout(() => {
       getTours();
     }, 1000);
-  
+
     return () => clearTimeout(delayTimer);
   }, [
     current,
@@ -153,8 +155,9 @@ export default function TourlistWeb({users}) {
     minDuration,
     maxDuration,
     searchInput,
-    selectedCategoryId,minRating,maxRating
-
+    selectedCategoryId,
+    minRating,
+    maxRating,
   ]);
 
   if (isLoading) {
@@ -162,7 +165,7 @@ export default function TourlistWeb({users}) {
   }
 
   return (
-    <section className="d-flex ">
+    <section className="tourlinst-all d-flex">
       <aside className="aside me-4">
         <div className="row ">
           <div className="col-md-6">
@@ -209,20 +212,20 @@ export default function TourlistWeb({users}) {
           </div>
         </div>
         <div className="form-group py-4">
-            <label>Rating Range</label>
-            <Slider
-              range
-              value={[minRating, maxRating]}
-              onChange={handleRatingChange}
-              min={0}
-              max={5} // Update max to 10 to allow increments of 0.5
-              step={0.5} // Set the step to 0.5
-            />
-            <div className="d-flex justify-content-between mt-2">
-              <span>{minRating}</span>
-              <span>{maxRating}</span>
-            </div>
+          <label>Rating Range</label>
+          <Slider
+            range
+            value={[minRating, maxRating]}
+            onChange={handleRatingChange}
+            min={0}
+            max={5} // Update max to 10 to allow increments of 0.5
+            step={0.5} // Set the step to 0.5
+          />
+          <div className="d-flex justify-content-between mt-2">
+            <span>{minRating}</span>
+            <span>{maxRating}</span>
           </div>
+        </div>
         <div className="form-group py-4">
           <label>Select Location</label>
           <select
@@ -284,156 +287,175 @@ export default function TourlistWeb({users}) {
         </div>
       </aside>
       <div className="tourlist-web container z-1">
-        <div className="search col-12 mb-3  phone-width m-auto border border-4 border-info">
-          <form>
-            <div className="input-group ">
-              <input
-                type="text"
-                className="form-control rounded-pill"
-                placeholder="Search..."
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-              />
-              <div className="input-group-append">
-                <button
-                  className="btn btn-outline-secondary bg-info  rounded-pill"
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    getTours();
-                  }}
-                >
-                  <FontAwesomeIcon icon={faSearch} className="text-white  " />
-                </button>
+        <div>
+          <div className="search col-12 mb-3  phone-width m-auto border border-4 border-info">
+            <form>
+              <div className="input-group ">
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  placeholder="Search..."
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                />
+                
               </div>
-            </div>
-          </form>
-        </div>
-        <div className="mb-1 sort d-flex justify-content-end w-100 ">
-          <div>
-            <label className="me-1">Sort By: </label>
-            <select
-              className="search border border-1 border-info "
-              value={selectedSortOption}
-              onChange={handleSortOptionChange}
-            >
-              <option value="">none</option>
-              <option value="-price">Price High To Low</option>
-              <option value="price">Price Low To High</option>
-              <option value="startDate">Start Date</option>
-              <option value="duration">Duration</option>
-              <option value="-createdAt">Recently Added</option>
-            </select>
+            </form>
           </div>
-        </div>
-        <div className="row">
-        {dataTour && dataTour.length ? (
-  <>
-    {dataTour.map((tour) => {
-      const fullStars = Math.floor(tour.averageRating);
-      const hasHalfStar = tour.averageRating % 1 !== 0;
-
-      return (
-        <div key={tour._id} className="col-lg-4 mb-4 tour-pointer">
-          <div className="image">
-            <img src={tour.image.secure_url} alt={tour.name} />
-          </div>
-          <div className="text-center">
-            <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
-            <p><b>$</b>{tour.price}</p>
-            <p>
-              {new Date(tour.startDate).toLocaleDateString()}
-              <FontAwesomeIcon icon={faArrowRight}className="px-2 text-black" />
-              {new Date(tour.endDate).toLocaleDateString()}
-            </p>
-            <p className="">
-              {[...Array(fullStars)].map((_, starIndex) => (
-                <FontAwesomeIcon
-                  key={starIndex}
-                  icon={faStar}
-                  className="text-warning"
-                />
-              ))}
-              {hasHalfStar && (
-                <FontAwesomeIcon
-                  icon={faStarHalf}
-                  className="text-warning"
-                />
-              )}
-            </p>
-            <Link
-              to={`/tour/details/${tour._id}`}
-              className="btn btn-info"
-              onClick={() => handleProductClick(tour._id)}
-            >
-              Details
-            </Link>
-          </div>
-        </div>
-      );
-    })}
-  <div className="col-md-12">
-  <nav aria-label="Page navigation example">
-    <ul className="pagination justify-content-center my-5">
-      <li className={`z-1 page-item ${current === 1 ? "disabled" : ""}`}>
-        <button className="page-link" onClick={() => handlePageClick(current - 2)}>
-          Previous
-        </button>
-      </li>
-      {Array.from({ length: Math.ceil(title / 24) || 0 }).map((_, pageIndex) => {
-        const isCurrent = current === pageIndex + 1;
-        const isWithinRange =
-          pageIndex + 1 >= current - 2 && pageIndex + 1 <= current + 2;
-
-        if (isWithinRange) {
-          return (
-            <li key={pageIndex} className={`z-1 page-item ${isCurrent ? "active" : ""}`}>
-              <button
-                className="page-link"
-                onClick={() => handlePageClick(pageIndex)}
+          <div className="mb-1 sort d-flex justify-content-end w-100 ">
+            <div>
+              <label className="me-1">Sort By: </label>
+              <select
+                className="search border border-1 border-info "
+                value={selectedSortOption}
+                onChange={handleSortOptionChange}
               >
-                {pageIndex + 1}
-              </button>
-            </li>
-          );
-        } else if (pageIndex === 0) {
-          // Render ellipsis for pages before the visible range
-          return (
-            <li key="ellipsis-before" className="z-1 page-item disabled">
-              <span className="page-link">...</span>
-            </li>
-          );
-        } else if (pageIndex === Math.ceil(title / 24) - 1) {
-          return (
-            <li key="ellipsis-after" className="z-1 page-item disabled">
-              <span className="page-link">...</span>
-            </li>
-          );
-        }
+                <option value="">none</option>
+                <option value="-price">Price High To Low</option>
+                <option value="price">Price Low To High</option>
+                <option value="startDate">Start Date</option>
+                <option value="duration">Duration</option>
+                <option value="-createdAt">Recently Added</option>
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            {dataTour && dataTour.length ? (
+              <>
+                {dataTour.map((tour) => {
+                  const fullStars = Math.floor(tour.averageRating);
+                  const hasHalfStar = tour.averageRating % 1 !== 0;
 
-        return null;
-      })}
-      <li
-        className={`z-1 page-item ${
-          current === Math.ceil(title / 24) ? "disabled" : ""
-        }`}
-      >
-        <button
-          className="page-link"
-          onClick={() => handlePageClick(current)}
-        >
-          Next
-        </button>
-      </li>
-    </ul>
-  </nav>
-</div>
+                  return (
+                    <div
+                      key={tour._id}
+                      className="col-md-6 col-lg-4 mb-4 tour-pointer"
+                    >
+                      <div className="image">
+                        <img src={tour.image.secure_url} alt={tour.name} />
+                      </div>
+                      <div className="text-center">
+                        <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
+                        <p>
+                          <b>$</b>
+                          {tour.price}
+                        </p>
+                        <p>
+                          {new Date(tour.startDate).toLocaleDateString()}
+                          <FontAwesomeIcon
+                            icon={faArrowRight}
+                            className="px-2 text-black"
+                          />
+                          {new Date(tour.endDate).toLocaleDateString()}
+                        </p>
+                        <p className="">
+                          {[...Array(fullStars)].map((_, starIndex) => (
+                            <FontAwesomeIcon
+                              key={starIndex}
+                              icon={faStar}
+                              className="text-warning"
+                            />
+                          ))}
+                          {hasHalfStar && (
+                            <FontAwesomeIcon
+                              icon={faStarHalf}
+                              className="text-warning"
+                            />
+                          )}
+                        </p>
+                        <Link
+                          to={`/tour/details/${tour._id}`}
+                          className="btn btn-info"
+                          onClick={() => handleProductClick(tour._id)}
+                        >
+                          Details
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="col-md-12">
+                  <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-center my-5">
+                      <li
+                        className={`z-1 page-item ${
+                          current === 1 ? "disabled" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(current - 2)}
+                        >
+                          Previous
+                        </button>
+                      </li>
+                      {Array.from({ length: Math.ceil(title / 21) || 0 }).map(
+                        (_, pageIndex) => {
+                          const isCurrent = current === pageIndex + 1;
+                          const isWithinRange =
+                            pageIndex + 1 >= current - 2 &&
+                            pageIndex + 1 <= current + 2;
 
-  </>
-) : (
-  <p>No data available</p>
-)}
+                          if (isWithinRange) {
+                            return (
+                              <li
+                                key={pageIndex}
+                                className={`z-1 page-item ${
+                                  isCurrent ? "active" : ""
+                                }`}
+                              >
+                                <button
+                                  className="page-link"
+                                  onClick={() => handlePageClick(pageIndex)}
+                                >
+                                  {pageIndex + 1}
+                                </button>
+                              </li>
+                            );
+                          } else if (pageIndex === 0) {
+                            // Render ellipsis for pages before the visible range
+                            return (
+                              <li
+                                key="ellipsis-before"
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          } else if (pageIndex === Math.ceil(title / 24) - 1) {
+                            return (
+                              <li
+                                key="ellipsis-after"
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          }
 
+                          return null;
+                        }
+                      )}
+                      <li
+                        className={`z-1 page-item ${
+                          current === Math.ceil(title / 21) ? "disabled" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(current)}
+                        >
+                          Next
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </>
+            ) : (
+              <p>No data available</p>
+            )}
+          </div>
         </div>
       </div>
     </section>

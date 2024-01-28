@@ -47,11 +47,11 @@ export default function Userinfo() {
             <th>Value</th>
           </tr>
           <tr>
-            <td>User Name</td>
+            <td>Admin Name</td>
             <td>{data.userName}</td>
           </tr>
           <tr>
-            <td>Age</td>
+            <td>Admin Age</td>
             <td>{data.age}</td>
           </tr>
 

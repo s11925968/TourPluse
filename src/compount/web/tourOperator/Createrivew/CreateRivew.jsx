@@ -39,7 +39,7 @@ export default function CreateRivew({users}) {
         progress: undefined,
         theme: "light",
       });
-      navigate(`/tour/details/${_id}`);
+      navigate(`/allAgencies`);
 
     }
   };

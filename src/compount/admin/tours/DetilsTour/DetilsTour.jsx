@@ -65,9 +65,9 @@ export default function DetilsTour() {
           </div>
           <div className="col-lg-6">
             <div className="row">
-              <div className="col-lg-3 w-50">
+              <div className="col-lg-3 w-10">
                 <p>
-                  <strong>Price: $</strong>
+                  <strong className="">Price: $</strong>
                   {data.price}
                 </p>
                 <p>
@@ -132,12 +132,6 @@ export default function DetilsTour() {
                 ))}
               </p>
               <div className="d-flex justify-content-center">
-              <Link
-                className="w-25  btn btn-info"
-                to={`/tour/${data._id}/review`}
-              >
-                Review
-              </Link>
               <Link className="w-25 ms-2 btn btn-info" to={`/admin/tour/get/operater/${data._id}`}>
                 Show Agencie
               </Link>
@@ -147,28 +141,35 @@ export default function DetilsTour() {
         </>
       </div>
     </div>
-    <div className="row mt-5 ">
-        {data.reviews.length > 0 &&
-          data.reviews.map((review) => (
-            <div key={review._id} className="col-lg-4   comment-detalis">
-              <div className="bg-info px-2 pb-1 comment-detalis ">
-                <p className="fs-5 m-auto text-center px-3">
-                {Array.from({
-                  length: review.rating,
-                }).map((_, starIndex) => (
-                  <FontAwesomeIcon
-                    key={starIndex}
-                    icon={faStar}
-                    className="text-warning"
-                  />
-                ))}
-              </p>
-              <div className="bg-white px-3  comment-detalis">
-                <p>{review.comment}</p>
-              </div>
-              </div>
-            </div>
-          ))}
+    <div className="mt-5 d-flex justify-content-center text-center">
+        <div className="text-center">
+          <div
+            className="comment-box "
+            style={{ maxHeight: "320px", overflowY: "auto", alignItems:"center"}} // Adjusted maxHeight value
+          >
+            {data.reviews.length > 0 &&
+              data.reviews.map((review) => (
+                <div key={review._id} className="">
+                  <div className="bg-info px-2 my-2 pb-1 comment-detalis">
+                    <p className="fs-5 m-auto text-center px-3">
+                      {Array.from({
+                        length: review.rating,
+                      }).map((_, starIndex) => (
+                        <FontAwesomeIcon
+                          key={starIndex}
+                          icon={faStar}
+                          className="text-warning"
+                        />
+                      ))}
+                    </p>
+                    <div className="bg-white px-3 comment-details">
+                      <p>{review.comment}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

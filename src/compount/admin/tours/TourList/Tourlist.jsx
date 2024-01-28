@@ -158,34 +158,21 @@ export default function Tourlist() {
 
   return (
     <div className="">
-      <div className="search col-12 mt-5 z-1 mb-4 w-50 m-auto border border-5 border-info">
+      <div className="col-12 mt-3 z-1 w-50 m-auto border border-4 border-info  rounded-pill">
         <form>
           <div className="input-group">
             <input
               type="text"
-              className="form-control"
+              className="rounded-pill"
               placeholder="Search..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary bg-info"
-                type="submit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  getTours();
-                }}
-              >
-                <FontAwesomeIcon icon={faSearch} className="text-white" />
-              </button>
-            </div>
           </div>
         </form>
       </div>
-
       <section className="d-flex">
-        <aside className="aside">
+        <aside className="aside-admin">
           <div className="row">
             <div className="col-md-6">
               <h2>Filters</h2>
@@ -233,7 +220,7 @@ export default function Tourlist() {
           <div className="form-group py-4">
             <label>Select Location:</label>
             <select
-              className="form-control"
+              className="form-control rounded-pill"
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
             >
@@ -279,7 +266,7 @@ export default function Tourlist() {
           <div className="form-group py-4">
             <label>Select Category:</label>
             <select
-              className="form-control"
+              className="form-control rounded-pill"
               value={selectedCategoryId}
               onChange={(e) => setSelectedCategoryId(e.target.value)}
             >
@@ -305,7 +292,7 @@ export default function Tourlist() {
             </label>
           </div>
         </aside>
-        <div className="tourlist-web container z-1">
+        <div className="tourlist-web-admin container z-1">
           <div className="mb-4 w-25 d-flex justify-content-end w-100 ">
             <div>
               <label className="me-1">Sort By: </label>

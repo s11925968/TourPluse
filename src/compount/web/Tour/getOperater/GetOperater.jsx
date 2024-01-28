@@ -87,9 +87,46 @@ export default function GetOperator() {
                     >
                       Show Tours
                     </Link>
+                    <button
+                      className="btn btn-info ms-3"
+                      onClick={()=> setShowComments(!showComments)}
+                    >
+                      {showComments ? "Hide Comments" : "Show Comments"}
+                    </button>
                   </div>
                 </h5>
-              
+                {showComments && (
+                  <div className="mt-5  d-flex justify-content-center text-center">
+                  <div className="text-center">
+                    <div
+                      className="comment-box "
+                      style={{ maxHeight: "320px", overflowY: "auto", alignItems:"center"}} // Adjusted maxHeight value
+                    >
+                      {selectedCategory.rev.length > 0 &&
+                        selectedCategory.rev.map((rev) => (
+                          <div key={rev._id} className="w-100 ">
+                            <div className="bg-info px-2 my-2 pb-1 comment-detalis">
+                              <p className="fs-5 m-auto text-center px-3">
+                                {Array.from({
+                                  length: rev.rating,
+                                }).map((_, starIndex) => (
+                                  <FontAwesomeIcon
+                                    key={starIndex}
+                                    icon={faStar}
+                                    className="text-warning"
+                                  />
+                                ))}
+                              </p>
+                              <div className="bg-white px-3 comment-details">
+                                <p>{rev.comment}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+                )}
               </div>
             </>
           )}

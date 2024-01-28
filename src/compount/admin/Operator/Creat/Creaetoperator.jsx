@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../shared/Loader";
 import { registerCreateOperater } from "../../../shared/Validation";
+import './creat.css'
 export default function Creaetoperator() {
   const { _id } = useParams();
   const [errorBackend, setErrorBackend] = useState("");
@@ -237,10 +238,10 @@ export default function Creaetoperator() {
   }
   return (
     <div className="bg-forms py-4">
-    <div className="container d-flex justify-content-center align-items-center mt-5">
+    <div className="container d-flex justify-content-center align-items-center mt-5 w-100">
       <div className=" p-4">
         <h2 className="text-center"></h2>
-        <form onSubmit={formik.handleSubmit} className="forms p-3">
+        <form onSubmit={formik.handleSubmit} className="forms-admin bg-white p-3">
           {renderInput}
           <button
             type="submit"

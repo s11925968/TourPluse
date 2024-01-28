@@ -30,52 +30,48 @@ export default function Catgeoriesselect() {
   }
   return (
     <div>
-            <h1 className='text-center'>Please choose your company category</h1>
-      <div className="catagories container d-flex justify-content-start align-items-center">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={50}
-          navigation
-          loop={true}
-          autoplay={{
-            delay: 3000,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          breakpoints={{
-            // when window width is >= 600px
-            600: {
-              slidesPerView: 1,
-            },
-            // when window width is >= 768px
-            768: {
-              slidesPerView: 1,
-            },
-            // when window width is >= 1024px
-            1024: {
-              slidesPerView: 2,
-            },
-          }}
-        
-        >
-          {data?.length
-            ? data?.map((catagourie ,index) => (
-                <SwiperSlide  key={catagourie._id}>
-                  
-                  <Link to={`/admin/operator/create/${catagourie._id}`} className='text-decoration-none'>
-                  <div className="d-flex justify-content-center">
-                    <img src={catagourie.image.secure_url} className="w-100" />
-                  </div>
+    <p className='text-center mt-2 fs-3 text-danger'>Please choose your company category</p>
+    <div className="categories-container">
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={20}
+        loop={true}
+        autoplay={{
+          delay: 3000,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          600: {
+            slidesPerView: 1.2,
+          },
+          768: {
+            slidesPerView: 1.2,
+          },
+          1024: {
+            slidesPerView: 2.2,
+          },
+        }}
+      >
+        {data?.length ? (
+          data?.map((category, index) => (
+            <SwiperSlide key={category._id}>
+              <Link to={`/admin/operator/create/${category._id}`} className='text-decoration-none'>
+                <div className="category-slide">
+                  <img src={category.image.secure_url} className="w-100" alt={`Category ${index}`} />
                   <div className="text-center pt-3">
-                    <h2 className="fs-5 ps-4">{catagourie.name}</h2>
+                    <h2 className="fs-5">{category.name}</h2>
                   </div>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : "no data available"}
-        </Swiper>
-      </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))
+        ) : (
+          <p>No data available</p>
+        )}
+      </Swiper>
     </div>
+  </div>
   );
 }

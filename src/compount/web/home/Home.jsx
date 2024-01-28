@@ -26,6 +26,7 @@ import "swiper/css/scrollbar";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
+
 export default function Home({ users }) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -59,6 +60,7 @@ export default function Home({ users }) {
       setIsLoading(false);
     }
   };
+
   const handleBlogClick = (blogId) => {
     setSelectedBlog(selectedBlog === blogId ? null : blogId);
   };
@@ -78,30 +80,22 @@ export default function Home({ users }) {
       setIsLoading(false);
     }
   };
+
   const getTours = async () => {
     try {
       setIsLoading(true);
-      const params = new URLSearchParams();
-      params.append("page", current);
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_URL_LINK}/reco/getHybRec/${users.id}`
-      );
-
-      // Check if the data is an array and has items
+      const response = await axios.get(`${import.meta.env.VITE_URL_LINK}/reco/getHybRec/${users.id}`);
+      const { data } = response;
       if (Array.isArray(data) && data.length > 0) {
-        // Extract tourDetails from each item in the array
         const tourDetailsArray = data.map((item) => item.tourDetails);
-
-        console.log(tourDetailsArray);
+        console.log("Tour Details Array:", tourDetailsArray);
         setDataTour(tourDetailsArray);
       } else {
-        // Set an empty array if no data or empty array received
         setDataTour([]);
       }
     } catch (error) {
-      setIsLoading(false);
       console.error("Error fetching tour data:", error);
-      throw error;
+      throw error; 
     } finally {
       setIsLoading(false);
     }
@@ -111,15 +105,18 @@ export default function Home({ users }) {
     const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/blog`);
     setBlogsData(data.blogs);
   };
+
   const handleOperatorClick = (operatorId) => {
     const clickedOperator = data.find(
       (operator) => operator._id === operatorId
     );
     setSelectedOperator(clickedOperator);
   };
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
     setSelectedCategory(null);
@@ -133,17 +130,15 @@ export default function Home({ users }) {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
-
   useEffect(() => {
-    getOperator();
-    getBlogs();
-    getTours();
-    getProfile();
+        getOperator();
+        getBlogs();
+        getTours();
+        getProfile();
   }, [current]);
   if (isLoading) {
     return <Loader />;
   }
-
   return (
     <section id="about">
       <header className="header">
@@ -392,7 +387,7 @@ export default function Home({ users }) {
                 ))}
               </Swiper>
             ) : (
-              <p>No Recommend four you</p>
+              <p>No Recommend for you</p>
             )}
           </div>
         )}

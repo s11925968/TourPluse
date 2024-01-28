@@ -65,6 +65,7 @@ export default function Home() {
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
   };
+  console.log(dataOperater);
   const handleRatingChange= (value) => {
     setMinRating(value[0]);
     setMaxRating(value[1]);
@@ -115,12 +116,12 @@ export default function Home() {
                 className="btn btn-info text-white rounded-pill"
                 onClick={handleClearAll}
               >
-                Clear All
+                Clear
               </button>
             </div>
           </div>
         <div className="form-group Select-Location">
-          <label>Select Location:</label>
+          <label>Select Location</label>
           <select
             className="form-control rounded-pill"
             value={selectedLocation}
@@ -196,8 +197,8 @@ export default function Home() {
       </aside>
 
       <section className="category-serives container pt-5 my-5">
-      <div className="search col-12 mb-3  phone-width m-auto border border-4 border-info">
-          <form>
+      <div className="search z-2 col-12 mb-3 phone-width m-auto border border-4 border-info">
+          <form >
             <div className="input-group ">
               <input
                 type="text"
@@ -206,18 +207,6 @@ export default function Home() {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
               />
-              <div className="input-group-append">
-                <button
-                  className="btn btn-outline-secondary bg-info  rounded-pill"
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    getOperator();
-                  }}
-                >
-                  <FontAwesomeIcon icon={faSearch} className="text-white  " />
-                </button>
-              </div>
             </div>
           </form>
         </div>
@@ -268,23 +257,36 @@ export default function Home() {
                   </div>
                 </div>
                 {showComments && (
-                  <div>
-                    {selectedCategory.rev.map((review, index) => (
-                      <div key={review._id}>
-                        <h1>Comment {index + 1}</h1>
-                        <h2>{review.comment}</h2>
-                        {Array.from({ length: review.rating }).map(
-                          (_, starIndex) => (
-                            <FontAwesomeIcon
-                              key={starIndex}
-                              icon={faStar}
-                              className="text-warning"
-                            />
-                          )
-                        )}
-                      </div>
-                    ))}
+                  <div className="mt-5 d-flex justify-content-center text-center">
+                  <div className="text-center">
+                    <div
+                      className="comment-box "
+                      style={{ maxHeight: "320px", overflowY: "auto", alignItems:"center"}} // Adjusted maxHeight value
+                    >
+                      {selectedCategory.rev.length > 0 &&
+                        selectedCategory.rev.map((rev) => (
+                          <div key={rev._id} className="w-100 ">
+                            <div className="bg-info px-2 my-2 pb-1 comment-detalis">
+                              <p className="fs-5 m-auto text-center px-3">
+                                {Array.from({
+                                  length: rev.rating,
+                                }).map((_, starIndex) => (
+                                  <FontAwesomeIcon
+                                    key={starIndex}
+                                    icon={faStar}
+                                    className="text-warning"
+                                  />
+                                ))}
+                              </p>
+                              <div className="bg-white px-3 comment-details">
+                                <p>{rev.comment}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                   </div>
+                </div>
                 )}
                 <button
                   className="btn btn-info mt-3"

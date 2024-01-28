@@ -47,11 +47,11 @@ export default function Usercontact() {
             <th>Value</th>
           </tr>
           <tr>
-            <td>User Email</td>
+            <td>Admin Email</td>
             <td>{data.email}</td>
           </tr>
           <tr>
-            <td>User Role</td>
+            <td>Admin Role</td>
             <td>{data.role}</td>
           </tr>
         </tbody>

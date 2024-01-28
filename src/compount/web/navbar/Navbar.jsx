@@ -181,7 +181,7 @@ export default function Navbar({ users, setUser }) {
                       <li>
                         <Link className="dropdown-item text-black" onClick={logout}>
                           <FontAwesomeIcon icon={faRightToBracket} className="pe-2 text-danger" />
-                          Logout
+                          Log Out
                         </Link>
                       </li>
                     </>
