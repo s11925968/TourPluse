@@ -121,7 +121,7 @@ export default function Navbar({ users, setUser }) {
               </li>
               {users && (
                 <li className="nav-item">
-                  <Link className="nav-link text-white" aria-current="page" to="/catagouries">
+                  <Link className="nav-link text-white" aria-current="page" to="/operator/getActive">
                     <FontAwesomeIcon icon={faPlane} className="pe-1" />
                     Agencies
                   </Link>
@@ -137,7 +137,7 @@ export default function Navbar({ users, setUser }) {
                   aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faCircleUser}className="me-1" />
-                  {data && data ? data.userName : "Account"}
+                  {data && data ? data.userName.charAt(0).toUpperCase() + data.userName.slice(1) : "Account"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start">
                   {!users ? (

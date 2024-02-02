@@ -43,7 +43,7 @@ export default function ForceDelete() {
           theme: 'light',
         });
 
-        navigite('/dashboard/tour/getActive');
+        navigite('/dashboard');
       }
     } catch (error) {
       console.error('Error deleting tour:', error);

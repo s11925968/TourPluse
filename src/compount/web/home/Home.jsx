@@ -40,7 +40,7 @@ export default function Home({ users }) {
   const [title, setTitle] = useState(null);
   const token = localStorage.getItem("userToken");
   const [dataProfile, setDataProfile] = useState("");
-
+  const id = users && users.id ? users.id : undefined;
   const getProfile = async () => {
     try {
       setIsLoading(true);
@@ -60,11 +60,6 @@ export default function Home({ users }) {
       setIsLoading(false);
     }
   };
-
-  const handleBlogClick = (blogId) => {
-    setSelectedBlog(selectedBlog === blogId ? null : blogId);
-  };
-
   const getOperator = async () => {
     try {
       setIsLoading(true);
@@ -84,23 +79,19 @@ export default function Home({ users }) {
   const getTours = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_URL_LINK}/reco/getHybRec/${users.id}`);
-      const { data } = response;
-      if (Array.isArray(data) && data.length > 0) {
-        const tourDetailsArray = data.map((item) => item.tourDetails);
-        console.log("Tour Details Array:", tourDetailsArray);
-        setDataTour(tourDetailsArray);
-      } else {
-        setDataTour([]);
-      }
+      const response = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/reco/getHybRec/${id}`
+      );
+      const data = response.data;  
+        setDataTour(data.validTours);
     } catch (error) {
       console.error("Error fetching tour data:", error);
-      throw error; 
+      // You can handle the error here, e.g., display a message to the user
     } finally {
       setIsLoading(false);
     }
   };
-
+  
   const getBlogs = async () => {
     const { data } = await axios.get(`${import.meta.env.VITE_URL_LINK}/blog`);
     setBlogsData(data.blogs);
@@ -130,15 +121,22 @@ export default function Home({ users }) {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return Math.round(totalRating / reviews.length);
   };
+
   useEffect(() => {
-        getOperator();
-        getBlogs();
-        getTours();
-        getProfile();
-  }, [current]);
+    const fetchData = async () => {
+      await getOperator();
+      await getBlogs();
+      await getProfile();
+      await getTours();
+    };
+    fetchData();
+  }, [current, id]);
+  
+
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <section id="about">
       <header className="header">
@@ -315,9 +313,13 @@ export default function Home({ users }) {
       <div className="TOURS my-5">
         {users && (
           <div className="m-0">
-            <h2>{`Top picks for ${
-              dataProfile?.user?.userName || "User"
+            <div className="info-TOURS py-3">
+            <h2>{`TOP PICKS FOR ${
+              dataProfile?.user?.userName
+                ? dataProfile.user.userName.toUpperCase()
+                : "USER"
             }`}</h2>
+          </div>
             {dataTour && dataTour.length > 0 ? (
               <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
@@ -584,7 +586,7 @@ export default function Home({ users }) {
       <section className="about-us container">
         <div className="row info-images mt-5">
           <div className="info-About">
-            <h2>About Us</h2>
+            <h2>ABOUT US</h2>
           </div>
           <div className="col-md-6 about-info">
             <p className="fs-3 ">

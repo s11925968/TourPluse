@@ -311,7 +311,7 @@ a{
   right: 0;
   top: 0;
   margin: auto;
-  height: 3px;
+  height: 3.5px;;
   width: 169px;
   background-color: #0077b5;
   content: '';
@@ -320,18 +320,6 @@ a{
   transition: width 0.5s ease-out; /* Initial transition for width */
 }
 
-/* .services .services-image:hover {
-  width: 23%!important;
-  transition: width 0.6s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
-  background-color: #82C8D0;
-  border: solid 2px #0077b5;
-  padding-top: 10px;
-  border-radius: 15px;
-  -webkit-transition: width 0.6s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
-  -moz-transition: width 0.6s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
-  -ms-transition: width 0.6s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
-  -o-transition: width 0.6s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
-} */
 .services .services-image:hover {
   cursor: pointer;
 }
@@ -352,7 +340,17 @@ a{
 }
 .services .services-image img:hover{
   border: solid 3px #c8e2ed;
-  
+  width: 60%!important;
+  box-shadow: 10px 10px 10px #1b1b1b;
+  transition: width 0.2s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -webkit-transition: width 0.2s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -moz-transition: width 0.2s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -ms-transition: width 0.2s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+  -o-transition: width 0.2s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+}
+.services .services-image img:not(:hover){
+  transition: width 0.6s ease-in-out, background-color 0.1s 0.2s, border 0.6s 0.2s, padding-top 0.6s 0.2s;
+
 }
 .services .services-image p{
   width: 70%;
@@ -405,10 +403,9 @@ a{
     -o-border-radius: 15px;
   }
   .info-TOURS h2::after{
-    width: 80px !important;
+    width: 190px !important;
   }
   .info-About h2::after{
-
     width: 70px!important;
   }
 }
@@ -467,8 +464,8 @@ a{
   right: 0;
   top: 0;
   margin: auto;
-  height: 3px;
-  width: 130px;
+  height: 3.5px;
+  width:280px;
   background-color: #0077b5;
   content: '';
 }

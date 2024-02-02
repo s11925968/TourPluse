@@ -50,7 +50,7 @@ export default function GetOperator() {
                 <img
                   src={dataOperator.image.secure_url}
                   alt={`Operator ${dataOperator._id}`}
-                  className="w-25"
+                  className="image-get-operater"
                 />
                 <p className="py-3">
                   {[...Array(Math.floor(dataOperator.averageRating))].map((_, starIndex) => (

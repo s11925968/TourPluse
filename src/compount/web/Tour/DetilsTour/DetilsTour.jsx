@@ -142,10 +142,16 @@ export default function DetilsTour() {
                     Review
                   </Link>
                   <Link
-                    className="w-50 m-auto btn btn-info"
+                    className=" m-auto btn btn-info"
                     to={`/tour/get/company/${data._id}`}
                   >
                     Show To Agencies
+                  </Link>
+                  <Link
+                    className=" w-25 m-auto btn ms-2 btn-info"
+                    to={`/tourlistweb`}
+                  >
+                    Back To Tours
                   </Link>
                 </div>
               </div>
@@ -157,11 +163,15 @@ export default function DetilsTour() {
         <div className="text-center">
           <div
             className="comment-box "
-            style={{ maxHeight: "320px", overflowY: "auto", alignItems:"center"}} // Adjusted maxHeight value
+            style={{
+              maxHeight: "320px",
+              overflowY: "auto",
+              alignItems: "center",
+            }} // Adjusted maxHeight value
           >
             {data.reviews.length > 0 &&
               data.reviews.map((review) => (
-                <div key={review._id} className="w-100 ">
+                <div key={review._id} className="w-100">
                   <div className="bg-info px-2 my-2 pb-1 comment-detalis">
                     <p className="fs-5 m-auto text-center px-3">
                       {Array.from({
@@ -174,8 +184,8 @@ export default function DetilsTour() {
                         />
                       ))}
                     </p>
-                    <div className="bg-white px-3 comment-details">
-                      <p>{review.comment}</p>
+                    <div className="bg-white w-100 px-3 comment ">
+                      <p className="w-100 ">{review.comment}</p>
                     </div>
                   </div>
                 </div>

@@ -16,7 +16,8 @@ import "rc-slider/assets/index.css";
 
 export default function TourlistWeb({ users }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [current, setCurrent] = useState(1);
+  const currentPage = localStorage.getItem("PageNumber") ? parseInt(localStorage.getItem("PageNumber"), 10) : 1;
+  const [current, setCurrent] = useState(currentPage);
   const [title, setTitle] = useState(null);
   const [tourStates, setTourStates] = useState({});
   const [dataTour, setDataTour] = useState(null);
@@ -54,26 +55,45 @@ export default function TourlistWeb({ users }) {
           await sentSearch(searchInput.trim());
         }
         params.append("search", searchInput.trim());
+
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+
       }
       if (selectedCategoryId) {
         params.append("categoryId", selectedCategoryId);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+
       }
 
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
       }
-      params.append("price[gte]", minPrice);
-      params.append("price[lte]", maxPrice);
-
+      if (minPrice !== 0 || maxPrice !== 5000) {
+        params.append("price[gte]", minPrice);
+        params.append("price[lte]", maxPrice);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
       if (selectedLocation) {
         params.append("location", selectedLocation);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
-      params.append("averageRating[gte]", minRating);
-      params.append("averageRating[lte]", maxRating);
+      if (minRating !== 0 || maxRating !== 5) {
+        params.append("averageRating[gte]", minRating);
+        params.append("averageRating[lte]", maxRating);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
 
-      params.append("duration[gte]", minDuration);
-      params.append("duration[lte]", maxDuration);
-
+      if (minDuration !== 0 || maxDuration !== 30) {
+        params.append("duration[gte]", minDuration);
+        params.append("duration[lte]", maxDuration);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
       if (mealsIncluded !== null) {
         params.append("meals", mealsIncluded);
       }
@@ -81,7 +101,7 @@ export default function TourlistWeb({ users }) {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/tour/getActive?${params.toString()}&limit=21`
+        }/tour/getActive?${params.toString()}&limit=18`
       );
 
       setTitle(data.title);
@@ -122,6 +142,7 @@ export default function TourlistWeb({ users }) {
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
     setSelectedProduct(null);
+    localStorage.setItem("PageNumber", pageNumber + 1);
   };
   const handleClearAll = () => {
     setMinPrice(0);
@@ -143,7 +164,6 @@ export default function TourlistWeb({ users }) {
     const delayTimer = setTimeout(() => {
       getTours();
     }, 1000);
-
     return () => clearTimeout(delayTimer);
   }, [
     current,
@@ -229,7 +249,7 @@ export default function TourlistWeb({ users }) {
         <div className="form-group py-4">
           <label>Select Location</label>
           <select
-            className="form-control rounded-pill"
+            className="form-control rounded-pill  border-info"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
@@ -275,13 +295,13 @@ export default function TourlistWeb({ users }) {
         <div className="form-group py-4">
           <label>Select Category</label>
           <select
-            className="form-control rounded-pill"
+            className="form-control rounded-pill border-info"
             value={selectedCategoryId}
             onChange={(e) => setSelectedCategoryId(e.target.value)}
           >
             <option value="">All</option>
             <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
-            <option value="656fa08c14243f1b40d2e3c8">HAJ AND OMRA</option>
+            <option value="656fa08c14243f1b40d2e3c8">HAJJ AND OMRA</option>
             <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
           </select>
         </div>
@@ -298,7 +318,6 @@ export default function TourlistWeb({ users }) {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                 />
-                
               </div>
             </form>
           </div>
@@ -375,11 +394,11 @@ export default function TourlistWeb({ users }) {
                   );
                 })}
                 <div className="col-md-12">
-                  <nav aria-label="Page navigation example">
+                  <nav aria-label="Page navigation example ">
                     <ul className="pagination justify-content-center my-5">
                       <li
                         className={`z-1 page-item ${
-                          current === 1 ? "disabled" : ""
+                          current <= 1 ? "disabled" : ""
                         }`}
                       >
                         <button
@@ -389,43 +408,37 @@ export default function TourlistWeb({ users }) {
                           Previous
                         </button>
                       </li>
-                      {Array.from({ length: Math.ceil(title / 21) || 0 }).map(
+                      {Array.from({ length: Math.ceil(title / 18) || 0 }).map(
                         (_, pageIndex) => {
-                          const isCurrent = current === pageIndex + 1;
                           const isWithinRange =
-                            pageIndex + 1 >= current - 2 &&
-                            pageIndex + 1 <= current + 2;
+                            pageIndex + 1 >= current - 3 &&
+                            pageIndex + 1 <= current + 3;
 
                           if (isWithinRange) {
                             return (
-                              <li
-                                key={pageIndex}
-                                className={`z-1 page-item ${
-                                  isCurrent ? "active" : ""
-                                }`}
-                              >
+                              <li key={pageIndex} className="z-1 page-item">
                                 <button
-                                  className="page-link"
+                                  className={`page-link ${
+                                    current === pageIndex + 1 && current > 0
+                                      ? "active"
+                                      : ""
+                                  }`}
                                   onClick={() => handlePageClick(pageIndex)}
                                 >
                                   {pageIndex + 1}
                                 </button>
                               </li>
                             );
-                          } else if (pageIndex === 0) {
-                            // Render ellipsis for pages before the visible range
+                          } else if (
+                            pageIndex === 0 ||
+                            pageIndex === Math.ceil(title / 18) - 1
+                          ) {
+                            // Render ellipsis for pages before the visible range and after the visible range
                             return (
                               <li
-                                key="ellipsis-before"
-                                className="z-1 page-item disabled"
-                              >
-                                <span className="page-link">...</span>
-                              </li>
-                            );
-                          } else if (pageIndex === Math.ceil(title / 24) - 1) {
-                            return (
-                              <li
-                                key="ellipsis-after"
+                                key={`ellipsis-${
+                                  pageIndex === 0 ? "before" : "after"
+                                }`}
                                 className="z-1 page-item disabled"
                               >
                                 <span className="page-link">...</span>

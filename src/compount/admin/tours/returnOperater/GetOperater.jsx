@@ -75,7 +75,7 @@ export default function GetOperator() {
                   <p>{dataOperator.founderName}</p>
                   <div>
                     <Link
-                      to={`/tour/get/${dataOperator._id}`}
+                      to={`/admin/tour/get/${dataOperator._id}`}
                       className="btn btn-info"
                     >
                       Show Tours

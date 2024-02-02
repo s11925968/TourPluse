@@ -153,9 +153,9 @@ export default function UpdateOperator() {
   return (
     <div className="bg-forms py-4">
     <div className="container d-flex justify-content-center align-items-center mt-5">
-      <div className=" p-4">
+      <div className="p-4">
         <h2 className="text-center"></h2>
-        <form onSubmit={formik.handleSubmit} className="forms p-3">
+        <form onSubmit={formik.handleSubmit} className="forms-admin bg-white p-3">
           {renderInput}
           <button
             type="submit"

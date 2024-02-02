@@ -227,7 +227,7 @@ export default function Navbar({ users, setUser }) {
                   aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faCircleUser}className="me-1" />
-                  {data &&data?data.userName:"acount"}
+                  {data && data ? data.userName.charAt(0).toUpperCase() + data.userName.slice(1) : "Account"}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-start text-center">
                   {!users ? (

@@ -216,11 +216,10 @@ export default function Tourlist() {
               <span>{maxDuration} days</span>
             </div>
           </div>
-
           <div className="form-group py-4">
             <label>Select Location:</label>
             <select
-              className="form-control rounded-pill"
+              className="form-control rounded-pill border-info"
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
             >
@@ -266,7 +265,7 @@ export default function Tourlist() {
           <div className="form-group py-4">
             <label>Select Category:</label>
             <select
-              className="form-control rounded-pill"
+              className="form-control rounded-pill border-info"
               value={selectedCategoryId}
               onChange={(e) => setSelectedCategoryId(e.target.value)}
             >

@@ -138,7 +138,7 @@ export default function App() {
           element: <Catagouries />,
         },
         {
-          path: "categories/tourOperator/:_id",
+          path: "operator/getActive",
           element: <Categoriesyouroperator />,
         },
         {

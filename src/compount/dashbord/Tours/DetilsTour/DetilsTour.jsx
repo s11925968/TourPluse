@@ -160,28 +160,39 @@ export default function DetilsTour() {
           </>
         </div>
       </div>
-      <div className="row mt-5 ">
-        {data.reviews && data.reviews.length > 0 &&
-          data.reviews.map((review) => (
-            <div key={review._id} className="col-lg-4   comment-detalis">
-              <div className="bg-info px-2 my-2 pb-1 comment-detalis ">
-                <p className="fs-5 m-auto text-center px-3">
-                  {Array.from({
-                    length: review.rating,
-                  }).map((_, starIndex) => (
-                    <FontAwesomeIcon
-                      key={starIndex}
-                      icon={faStar}
-                      className="text-warning"
-                    />
-                  ))}
-                </p>
-                <div className="bg-white px-3  comment-detalis">
-                  <p>{review.comment}</p>
+      <div className="mt-5 d-flex justify-content-center text-center">
+        <div className="text-center">
+          <div
+            className="comment-box "
+            style={{
+              maxHeight: "320px",
+              overflowY: "auto",
+              alignItems: "center",
+            }} // Adjusted maxHeight value
+          >
+            {data.reviews.length > 0 &&
+              data.reviews.map((review) => (
+                <div key={review._id} className="w-100">
+                  <div className="bg-info px-2 my-2 pb-1 comment-detalis">
+                    <p className="fs-5 m-auto text-center px-3">
+                      {Array.from({
+                        length: review.rating,
+                      }).map((_, starIndex) => (
+                        <FontAwesomeIcon
+                          key={starIndex}
+                          icon={faStar}
+                          className="text-warning"
+                        />
+                      ))}
+                    </p>
+                    <div className="bg-white w-100 px-3 comment ">
+                      <p className="w-100 ">{review.comment}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -13,7 +13,8 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 export default function DisplayOpearater() {
   const [selectedTour, setSelectedTour] = useState(null);
-  const [current, setCurrent] = useState(1);
+  const currentPage = localStorage.getItem("PageNumber") ? parseInt(localStorage.getItem("PageNumber"), 10) : 1;
+  const [current, setCurrent] = useState(currentPage);
   const [title, setTitle] = useState(null);
   const [dataOperater, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,27 +36,38 @@ export default function DisplayOpearater() {
       const params = new URLSearchParams();
       if (searchInput.trim() !== "") {
         params.append("search", searchInput.trim());
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
       if (selectedCategoryId) {
         params.append("categoryId", selectedCategoryId);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
       }
       if (selectedStatus) {
         params.append("status", selectedStatus);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
       if (selectedLocation) {
         params.append("address", selectedLocation);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
-      params.append("averageRating[gte]", minRating);
-      params.append("averageRating[lte]", maxRating);
-
+      if (minRating !== 0 || maxRating !== 5) {
+        params.append("averageRating[gte]", minRating);
+        params.append("averageRating[lte]", maxRating);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
       params.append("page", current);
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/operator/get?${params.toString()}&limit=24`,
+        }/operator/get?${params.toString()}&limit=20`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -92,6 +104,7 @@ export default function DisplayOpearater() {
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
     setSelectedCategory(null);
+    localStorage.setItem("PageNumber", pageNumber + 1);
   };
   const handleClearAll = () => {
     setMinRating(0);
@@ -150,7 +163,7 @@ export default function DisplayOpearater() {
           <div className="form-group Select-Location">
             <label>Select Location:</label>
             <select
-              className="form-control"
+              className="form-control rounded-pill border-info"
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
             >
@@ -205,7 +218,21 @@ export default function DisplayOpearater() {
               <option value="Bayt Lid">Bayt Lid</option>
               <option value="al-Khader">al-Khader</option>
             </select>
-            <div className="form-group py-4">
+          </div>
+          <div className="form-group py-4">
+            <label>Select Category:</label>
+            <select
+              className="form-control rounded-pill border-info"
+              value={selectedCategoryId}
+              onChange={(e) => setSelectedCategoryId(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
+              <option value="656fa08c14243f1b40d2e3c8">HAJ AND OMRA</option>
+              <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
+            </select>
+          </div>
+          <div className="form-group py-4">
               <label>Rating Range</label>
               <Slider
                 range
@@ -216,16 +243,15 @@ export default function DisplayOpearater() {
                 step={0.5} // Set the step to 0.5
               />
               <div className="d-flex justify-content-between mt-2">
-                <span>${minRating}</span>
-                <span>${maxRating}</span>
+                <span>{minRating}</span>
+                <span>{maxRating}</span>
               </div>
             </div>
-          </div>
           <div className="form-group">
             <label>Select Status</label>
             <div>
-              <label className="mx-2">
-                <input
+              <label className="me-3">
+                <input 
                   type="checkbox"
                   checked={selectedStatus === "Active"}
                   onChange={() => handleStatusChange("Active")}
@@ -242,19 +268,7 @@ export default function DisplayOpearater() {
               </label>
             </div>
           </div>
-          <div className="form-group py-4">
-            <label>Select Category:</label>
-            <select
-              className="form-control"
-              value={selectedCategoryId}
-              onChange={(e) => setSelectedCategoryId(e.target.value)}
-            >
-              <option value="">All</option>
-              <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
-              <option value="656fa08c14243f1b40d2e3c8">HAJ AND OMRA</option>
-              <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
-            </select>
-          </div>
+        
         </aside>
 
         <section className="category-serives container pt-5">
@@ -391,11 +405,11 @@ export default function DisplayOpearater() {
                       </div>
                     );
                   })}
-                  <nav aria-label="Page navigation example ">
+                    <nav aria-label="Page navigation example ">
                     <ul className="pagination justify-content-center my-5">
                       <li
                         className={`z-1 page-item ${
-                          current === 1 ? "disabled" : ""
+                          current <= 1 ? "disabled" : ""
                         }`}
                       >
                         <button
@@ -405,26 +419,48 @@ export default function DisplayOpearater() {
                           Previous
                         </button>
                       </li>
-                      {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
-                        (_, pageIndex) => (
-                          <li
-                            key={pageIndex}
-                            className={`z-1 page-item ${
-                              current === pageIndex + 1 ? "active" : ""
-                            }`}
-                          >
-                            <button
-                              className="page-link"
-                              onClick={() => handlePageClick(pageIndex)}
-                            >
-                              {pageIndex + 1}
-                            </button>
-                          </li>
-                        )
+                      {Array.from({ length: Math.ceil(title / 20) || 0 }).map(
+                        (_, pageIndex) => {
+                          const isWithinRange =
+                            pageIndex + 1 >= current - 3 &&
+                            pageIndex + 1 <= current + 3;
+                          if (isWithinRange) {
+                            return (
+                              <li key={pageIndex} className="z-1 page-item">
+                                <button
+                                  className={`page-link ${
+                                    current === pageIndex + 1 && current > 0
+                                      ? "active"
+                                      : ""
+                                  }`}
+                                  onClick={() => handlePageClick(pageIndex)}
+                                >
+                                  {pageIndex + 1}
+                                </button>
+                              </li>
+                            );
+                          } else if (
+                            pageIndex === 0 ||
+                            pageIndex === Math.ceil(title / 20) - 1
+                          ) {
+                            // Render ellipsis for pages before the visible range and after the visible range
+                            return (
+                              <li
+                                key={`ellipsis-${
+                                  pageIndex === 0 ? "before" : "after"
+                                }`}
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          }
+                          return null;
+                        }
                       )}
                       <li
                         className={`z-1 page-item ${
-                          current === Math.ceil(title / 8) ? "disabled" : ""
+                          current === Math.ceil(title / 20) ? "disabled" : ""
                         }`}
                       >
                         <button

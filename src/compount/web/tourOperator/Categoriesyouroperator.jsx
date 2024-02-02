@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faStar,
+  faStarHalf,
+} from "@fortawesome/free-solid-svg-icons";
 import "./CategoriestourOperator.css";
 
 import Loader from "../../shared/Loader";
@@ -12,7 +16,8 @@ import "rc-slider/assets/index.css";
 
 export default function Home() {
   const [selectedTour, setSelectedTour] = useState(null);
-  const [current, setCurrent] = useState(1);
+  const currentPage = localStorage.getItem("PageNumber") ? parseInt(localStorage.getItem("PageNumber"), 10) : 1;
+  const [current, setCurrent] = useState(currentPage);
   const [title, setTitle] = useState(null);
   const [dataOperater, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,29 +30,43 @@ export default function Home() {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [minRating, setMinRating] = useState(0);
   const [maxRating, setMaxRating] = useState(5);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
+
   const getOperator = async () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem("userToken");
       const params = new URLSearchParams();
-      
+
       if (searchInput.trim() !== "") {
         params.append("search", searchInput.trim());
-      } 
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
+      if (selectedCategoryId) {
+        params.append("categoryId", selectedCategoryId);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
       }
       if (selectedLocation) {
         params.append("address", selectedLocation);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
-      params.append("averageRating[gte]", minRating);
-      params.append("averageRating[lte]", maxRating);
-
+      if (minRating !== 0 || maxRating !== 5) {
+        params.append("averageRating[gte]", minRating);
+        params.append("averageRating[lte]", maxRating);
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
+      }
       params.append("page", current);
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_URL_LINK
-        }/categories/tourOperator/${_id}?${params.toString()}&limit=24`,
+        }/operator/getActive?${params.toString()}&limit=24`,
         {
           headers: {
             Authorization: `ghazal__${token}`,
@@ -66,30 +85,23 @@ export default function Home() {
     setSearchInput(e.target.value);
   };
   console.log(dataOperater);
-  const handleRatingChange= (value) => {
+  const handleRatingChange = (value) => {
     setMinRating(value[0]);
     setMaxRating(value[1]);
   };
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
     setSelectedCategory(null);
-  };
-  const calculateAvgRating = (reviews) => {
-    if (reviews.length === 0) {
-      return 0;
-    }
-
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return Math.round(totalRating / reviews.length);
+    localStorage.setItem("PageNumber", pageNumber + 1);
   };
   const handleClearAll = () => {
     setMinRating(0);
     setMaxRating(5);
     setSelectedLocation("");
+    setSelectedCategoryId("");
   };
   const handleSortOptionChange = (event) => {
     setSelectedSortOption(event.target.value);
@@ -100,7 +112,15 @@ export default function Home() {
     }, 1000);
 
     return () => clearTimeout(delayTimer);
-  }, [current, searchInput,minRating,maxRating,selectedSortOption,selectedLocation]);
+  }, [
+    current,
+    selectedCategoryId,
+    searchInput,
+    minRating,
+    maxRating,
+    selectedSortOption,
+    selectedLocation,
+  ]);
 
   if (isLoading) {
     return <Loader />;
@@ -108,22 +128,21 @@ export default function Home() {
 
   return (
     <div className="d-flex">
-      
       <aside className="aside-cat">
-      <div className="col-md-6">
-            <div className="form-group w-100 ">
-              <button
-                className="btn btn-info text-white rounded-pill"
-                onClick={handleClearAll}
-              >
-                Clear
-              </button>
-            </div>
+        <div className="col-md-6">
+          <div className="form-group w-100 ">
+            <button
+              className="btn btn-info text-white rounded-pill"
+              onClick={handleClearAll}
+            >
+              Clear
+            </button>
           </div>
+        </div>
         <div className="form-group Select-Location">
           <label>Select Location</label>
           <select
-            className="form-control rounded-pill"
+            className="form-control rounded-pill border-info"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
@@ -179,6 +198,19 @@ export default function Home() {
             <option value="al-Khader">al-Khader</option>
           </select>
           <div className="form-group py-4">
+          <label>Select Category:</label>
+          <select
+            className="form-control rounded-pill border-info"
+            value={selectedCategoryId}
+            onChange={(e) => setSelectedCategoryId(e.target.value)}
+          >
+            <option value="">All</option>
+            <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
+            <option value="656fa08c14243f1b40d2e3c8">HAJJ AND UMRAH</option>
+            <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
+          </select>
+        </div>
+          <div className="form-group py-4">
             <label>Rating Range</label>
             <Slider
               range
@@ -195,10 +227,9 @@ export default function Home() {
           </div>
         </div>
       </aside>
-
       <section className="category-serives container pt-5 my-5">
-      <div className="search z-2 col-12 mb-3 phone-width m-auto border border-4 border-info">
-          <form >
+        <div className="search z-2 col-12 mb-3 phone-width m-auto border border-4 border-info">
+          <form>
             <div className="input-group ">
               <input
                 type="text"
@@ -258,35 +289,39 @@ export default function Home() {
                 </div>
                 {showComments && (
                   <div className="mt-5 d-flex justify-content-center text-center">
-                  <div className="text-center">
-                    <div
-                      className="comment-box "
-                      style={{ maxHeight: "320px", overflowY: "auto", alignItems:"center"}} // Adjusted maxHeight value
-                    >
-                      {selectedCategory.rev.length > 0 &&
-                        selectedCategory.rev.map((rev) => (
-                          <div key={rev._id} className="w-100 ">
-                            <div className="bg-info px-2 my-2 pb-1 comment-detalis">
-                              <p className="fs-5 m-auto text-center px-3">
-                                {Array.from({
-                                  length: rev.rating,
-                                }).map((_, starIndex) => (
-                                  <FontAwesomeIcon
-                                    key={starIndex}
-                                    icon={faStar}
-                                    className="text-warning"
-                                  />
-                                ))}
-                              </p>
-                              <div className="bg-white px-3 comment-details">
-                                <p>{rev.comment}</p>
+                    <div className="text-center">
+                      <div
+                        className="comment-box "
+                        style={{
+                          maxHeight: "320px",
+                          overflowY: "auto",
+                          alignItems: "center",
+                        }} // Adjusted maxHeight value
+                      >
+                        {selectedCategory.rev.length > 0 &&
+                          selectedCategory.rev.map((rev) => (
+                            <div key={rev._id} className="w-100 ">
+                              <div className="bg-info px-2 my-2 pb-1 comment-detalis">
+                                <p className="fs-5 m-auto text-center px-3">
+                                  {Array.from({
+                                    length: rev.rating,
+                                  }).map((_, starIndex) => (
+                                    <FontAwesomeIcon
+                                      key={starIndex}
+                                      icon={faStar}
+                                      className="text-warning"
+                                    />
+                                  ))}
+                                </p>
+                                <div className="bg-white px-3 comment-details">
+                                  <p>{rev.comment}</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                      </div>
                     </div>
                   </div>
-                </div>
                 )}
                 <button
                   className="btn btn-info mt-3"
@@ -338,51 +373,73 @@ export default function Home() {
                     </div>
                   );
                 })}
-                <nav aria-label="Page navigation example ">
-                  <ul className="pagination justify-content-center my-5">
-                    <li
-                      className={`z-1 page-item ${
-                        current === 1 ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(current - 2)}
+                  <nav aria-label="Page navigation example ">
+                    <ul className="pagination justify-content-center my-5">
+                      <li
+                        className={`z-1 page-item ${
+                          current <= 1 ? "disabled" : ""
+                        }`}
                       >
-                        Previous
-                      </button>
-                    </li>
-                    {Array.from({ length: Math.ceil(title / 24) || 0 }).map(
-                      (_, pageIndex) => (
-                        <li
-                          key={pageIndex}
-                          className={`z-1 page-item ${
-                            current === pageIndex + 1 ? "active" : ""
-                          }`}
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(current - 2)}
                         >
-                          <button
-                            className="page-link"
-                            onClick={() => handlePageClick(pageIndex)}
-                          >
-                            {pageIndex + 1}
-                          </button>
-                        </li>
-                      )
-                    )}
-                    <li
-                      className={`z-1 page-item ${
-                        current === Math.ceil(title / 8) ? "disabled" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(current)}
+                          Previous
+                        </button>
+                      </li>
+                      {Array.from({ length: Math.ceil(title / 18) || 0 }).map(
+                        (_, pageIndex) => {
+                          const isWithinRange =
+                            pageIndex + 1 >= current - 3 &&
+                            pageIndex + 1 <= current + 3;
+                          if (isWithinRange) {
+                            return (
+                              <li key={pageIndex} className="z-1 page-item">
+                                <button
+                                  className={`page-link ${
+                                    current === pageIndex + 1 && current > 0
+                                      ? "active"
+                                      : ""
+                                  }`}
+                                  onClick={() => handlePageClick(pageIndex)}
+                                >
+                                  {pageIndex + 1}
+                                </button>
+                              </li>
+                            );
+                          } else if (
+                            pageIndex === 0 ||
+                            pageIndex === Math.ceil(title / 18) - 1
+                          ) {
+                            // Render ellipsis for pages before the visible range and after the visible range
+                            return (
+                              <li
+                                key={`ellipsis-${
+                                  pageIndex === 0 ? "before" : "after"
+                                }`}
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          }
+                          return null;
+                        }
+                      )}
+                      <li
+                        className={`z-1 page-item ${
+                          current === Math.ceil(title / 18) ? "disabled" : ""
+                        }`}
                       >
-                        Next
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
+                        <button
+                          className="page-link"
+                          onClick={() => handlePageClick(current)}
+                        >
+                          Next
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
               </>
             )}
           </div>

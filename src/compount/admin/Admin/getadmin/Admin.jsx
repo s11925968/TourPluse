@@ -9,8 +9,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 export default function Admin() {
   const [errorBack, setErrorBack] = useState("");
   const [dataAdmin, setData] = useState(null);
+  const currentPage = localStorage.getItem("PageNumber") ? parseInt(localStorage.getItem("PageNumber"), 10) : 1;
+  const [current, setCurrent] = useState(currentPage);
   const [isLoading, setIsLoading] = useState(true);
-  const [current, setCurrent] = useState(1);
   const [title, setTitle] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [searchInput, setSearchInput] = useState("");
@@ -25,6 +26,8 @@ export default function Admin() {
       params.append("page", current);
       if (searchInput.trim() !== "") {
         params.append("search", searchInput.trim());
+        localStorage.removeItem("PageNumber");
+        setCurrent(1);
       }
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
@@ -57,6 +60,7 @@ export default function Admin() {
 
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
+    localStorage.setItem("PageNumber", pageNumber + 1);
   };
   const handleStatusChange = (status) => {
     setSelectedStatus(status);
@@ -78,9 +82,10 @@ export default function Admin() {
   useEffect(() => {
     const delayTimer = setTimeout(() => {
       getAdmin();
+      localStorage.setItem('currentPage', current);
     }, 1000);
     return () => clearTimeout(delayTimer);
-  }, [current,selectedRole,searchInput,selectedStatus, selectedSortOption]);
+  }, [current, selectedRole, searchInput, selectedStatus, selectedSortOption]);
 
   if (isLoading) {
     return <Loader />;
@@ -88,35 +93,23 @@ export default function Admin() {
 
   return (
     <div>
-      <div className="searchcol-12 mt-5 w-50 m-auto border border-5 border-info">
+      <div className="col-12 mt-3 z-1 w-50 m-auto border border-4 border-info  rounded-pill">
         <form>
-          <div className="input-group z-1">
+          <div className="input-group">
             <input
               type="text"
-              className="form-control"
+              className="rounded-pill"
               placeholder="Search..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary bg-info"
-                type="submit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  getAdmin();
-                }}
-              >
-                <FontAwesomeIcon icon={faSearch} className="text-white" />
-              </button>
-            </div>
           </div>
         </form>
       </div>
       <div className="d-flex">
-        <aside className="aside-admin">
+        <aside className="aside-admin mt-5">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 ">
               <h2>Filters</h2>
             </div>
             <div className="col-md-6">
@@ -137,7 +130,7 @@ export default function Admin() {
                 <label>Select Status</label>
                 <div>
                   <select
-                    className="form-control"
+                    className="form-control rounded-pill border-info"
                     value={selectedStatus}
                     onChange={(e) => handleStatusChange(e.target.value)}
                   >
@@ -154,7 +147,7 @@ export default function Admin() {
             <label>Select Role</label>
             <div>
               <select
-                className="form-control"
+                className="form-control "
                 value={selectedRole}
                 onChange={(e) => handleRoleChange(e.target.value)}
               >
@@ -217,7 +210,7 @@ export default function Admin() {
             <nav aria-label="Page navigation example ">
               <ul className="pagination justify-content-center my-5">
                 <li
-                  className={`z-1 page-item ${current === 1 ? "disabled" : ""}`}
+                  className={`z-1 page-item ${current <= 1 ? "disabled" : ""}`}
                 >
                   <button
                     className="page-link"
@@ -227,25 +220,47 @@ export default function Admin() {
                   </button>
                 </li>
                 {Array.from({ length: Math.ceil(title / 6) || 0 }).map(
-                  (_, pageIndex) => (
-                    <li
-                      key={pageIndex}
-                      className={`z-1 page-item ${
-                        current === pageIndex + 1 ? "active" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageClick(pageIndex)}
-                      >
-                        {pageIndex + 1}
-                      </button>
-                    </li>
-                  )
+                  (_, pageIndex) => {
+                    const isWithinRange =
+                      pageIndex + 1 >= current - 3 &&
+                      pageIndex + 1 <= current + 3;
+                    if (isWithinRange) {
+                      return (
+                        <li key={pageIndex} className="z-1 page-item">
+                          <button
+                            className={`page-link ${
+                              current === pageIndex + 1 && current > 0
+                                ? "active"
+                                : ""
+                            }`}
+                            onClick={() => handlePageClick(pageIndex)}
+                          >
+                            {pageIndex + 1}
+                          </button>
+                        </li>
+                      );
+                    } else if (
+                      pageIndex === 0 ||
+                      pageIndex === Math.ceil(title / 6) - 1
+                    ) {
+                      // Render ellipsis for pages before the visible range and after the visible range
+                      return (
+                        <li
+                          key={`ellipsis-${
+                            pageIndex === 0 ? "before" : "after"
+                          }`}
+                          className="z-1 page-item disabled"
+                        >
+                          <span className="page-link">...</span>
+                        </li>
+                      );
+                    }
+                    return null;
+                  }
                 )}
                 <li
                   className={`z-1 page-item ${
-                    current === Math.ceil(title / 8) ? "disabled" : ""
+                    current === Math.ceil(title / 6) ? "disabled" : ""
                   }`}
                 >
                   <button
