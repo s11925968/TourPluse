@@ -344,7 +344,6 @@ export default function TourlistWeb({ users }) {
                 {dataTour.map((tour) => {
                   const fullStars = Math.floor(tour.averageRating);
                   const hasHalfStar = tour.averageRating % 1 !== 0;
-
                   return (
                     <div
                       key={tour._id}

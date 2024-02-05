@@ -8,12 +8,12 @@ export default function ForceDelete() {
   const [loading,setLoading] = useState(false );
   const navigite=useNavigate();
   const handleDeleteConfirmation = () => {
-    const isConfirmed = window.confirm('Are you sure you want to soft delete this tour?');
-
+    const isConfirmed = window.confirm('Are you sure you want to delete this tour?');
+    
     if (isConfirmed) {
       removeTour();
     } else {
-      navigite('/dashboard/tour/getActive'); 
+      navigite('/dashboard'); 
     }
   };
 

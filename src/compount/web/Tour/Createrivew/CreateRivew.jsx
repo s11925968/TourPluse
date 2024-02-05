@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Inputs from "../../../shared/Inpute.jsx";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -8,9 +8,11 @@ import { registerReview } from "../../../shared/Validation.jsx";
 
 export default function CreateReview({ users }) {
   const navigate = useNavigate();
+  let [errorBack, setErrorBack] = useState("");
+
   useEffect(() => {
     if (!users) {
-      return navigate('/login');
+      return navigate("/login");
     }
   }, [users, navigate]);
 
@@ -47,8 +49,7 @@ export default function CreateReview({ users }) {
         navigate(`/tour/details/${_id}`);
       }
     } catch (error) {
-      console.error("Error submitting review:", error);
-      // Handle error, show error toast, etc.
+      setErrorBack(error.response.data.message);
     }
   };
 
@@ -98,9 +99,16 @@ export default function CreateReview({ users }) {
             <form onSubmit={formik.handleSubmit} className="forms p-3">
               <h2 className="text-center">Create Review</h2>
               {renderInput}
-              <button type="submit" disabled={!formik.isValid} className="w-100">
+              <button
+                type="submit"
+                disabled={!formik.isValid}
+                className="w-100"
+              >
                 Submit
               </button>
+              <div className="text-center w-100">
+                {errorBack && <p className="text text-danger">{errorBack}</p>}
+              </div>
             </form>
           </div>
         </div>

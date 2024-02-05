@@ -152,7 +152,7 @@ export default function DetilsTour() {
                     to={`/dashboard/Update/Tour/${data._id}`}
                     className="btn ms-2 btn-info"
                   >
-                    Update
+                    Update Tour
                   </Link>
                 </div>
               </div>

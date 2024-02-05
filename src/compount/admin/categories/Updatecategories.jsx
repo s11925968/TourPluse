@@ -129,10 +129,10 @@ export default function Updatecategories() {
   });
   return (
     <div className="bg-forms">
-    <div className="container d-flex justify-content-center align-items-center mt-5 vh-100">
+    <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="p-4">
         <h2 className="text-center"></h2>
-        <form onSubmit={formik.handleSubmit} className="forms p-3">
+        <form onSubmit={formik.handleSubmit} className="forms-admin bg-white p-3">
           {renderInput}
           <button
             type="submit"

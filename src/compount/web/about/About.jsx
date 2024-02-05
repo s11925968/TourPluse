@@ -1,17 +1,20 @@
 import React from 'react'
 import './about.css'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 export default function About() {
   return (
     <div className="">
       <section className="about-style about-us container">
-        <div className="row info-images">
+        <div className="row ">
           <h2>About us</h2>
-
-          <div className="col-md-6 about-info">
-            <p>
+          <div className="col-md-8 about-info">
+            <p >
               Tour Pulse acts as an intermediary between travel agencies and
               travelers, allowing agencies to display their trips and offers and
               provide travelers with a range of trips, so it provides
@@ -19,16 +22,14 @@ export default function About() {
               trips for travelers.
             </p>
           </div>
-          <div className="col-md-6 image-about">
-            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
-            <img src="/images/info-images.jpg" />
+          <div className="col-md-4 image-about">
+            <img src="/images/icononly_transparent_nobuffer.png"/>
           </div>
         </div>
       </section>
       <section className="adventures">
         <div className="container rounded-2 px-2">
           <div className="pt-2 text-center">
-            <h1>TourPluse Highest rated </h1>
             <div className="info-adven">
               <h2>Organized Adventures: What are they?</h2>
               <p>
@@ -41,7 +42,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="row py-5">
+          <div className="row">
             <div className="col-md-4">
               <div className="bg-white rounded-2">
                 <p>
@@ -94,90 +95,97 @@ export default function About() {
           </div>
         </div>
       </section>
-      <section className="Most-popular-experiences py-5">
-        <div className="info-experiences text-center py-4">
-          <h3 className="fs-2">Most popular experiences</h3>
-          <span>EXPLORE A DIFFERENT WAY TO TRAVEL</span>
+      <div className="ACTIVITIES my-5">
+        <div className="info-ACTIVITYS d-flex justify-content-center align-items-end m-0 py-3">
+          <h2 className="m-0">TOP ACTIVITIES</h2>
         </div>
-        <div className="container">
-          <div className="row py-2">
-            <div className="col-md-3">
-              <a href="#">
+        <div>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={50}
+            loop={true}
+            autoplay={{
+              delay: 10000,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              600: {
+                slidesPerView: 1.5,
+              },
+              900: {
+                slidesPerView: 2.2,
+              },
+              1024: {
+                slidesPerView: 2.3,
+              },
+            }}
+          >
+            <SwiperSlide>
+              <div className="Activity-image w-100">
+                <img src="/Top Activaty/felipe-giacometti-q80sx583gzE-unsplash.jpg" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/diving.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/amien-taryamin-IEcqd914qpw-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-            <div className="col-md-3">
-              <a href="#">
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/2-3-580x378.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/kamil-pietrzak-AlA8S9tALAs-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-            <div className="col-md-3">
-              <a href="#">
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/beautifuk-scenery.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/omer-f-arslan-W0FhhtnMd8k-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-            <div className="col-md-3">
-              <a href="#">
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/family-fun.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/rihards-sarma-JHeCuXiERFo-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-          </div>
-          <div className="row py-2">
-            <div className="col-md-3">
-              <a href="#">
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/old-colonial-towns.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/tommy-lisbin-2DH-qMX6M4E-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-            <div className="col-md-3">
-              <a href="#">
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/outdoor-adventure.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/toomas-tartes-Yizrl9N_eDA-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-            <div className="col-md-3">
-              <a href="#">
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="Activity-image w-100">
                 <img
-                  src="/img/experneice/snorkeling1.jpg"
-                  alt="experience images"
+                  src="/Top Activaty/david-marcu-VfUN94cUy4o-unsplash.jpg"
                   className="img-fluid"
                 />
-              </a>
-            </div>
-            <div className="col-md-3">
-              <a href="#">
-                <img
-                  src="/img/experneice/white-sands.jpg"
-                  alt="experience images"
-                  className="img-fluid"
-                />
-              </a>
-            </div>
-          </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

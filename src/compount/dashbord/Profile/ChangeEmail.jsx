@@ -5,17 +5,25 @@ import axios from "axios";
 import style from './Profile.module.css';
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import {registerChangeEmail } from "../../shared/Validation.jsx";
 export default function ChangeEmail() {
   const navigte = useNavigate();
   const { _id } = useParams();
+  const token = localStorage.getItem("companyToken");
   const initialValues = {
     password: "",
     newEmail: "",
   };
   const onSubmit = async (users) => {
+
     const { data } = await axios.patch(
-      `${import.meta.env.VITE_URL_LINK}/user/changeEmail/${_id}`,users);
+      `${import.meta.env.VITE_URL_LINK}/operator/changeEmail/${_id}`,users
+      ,
+      {
+        headers: {
+          Authorization: `ghazal__${token}`,
+        },
+      }
+      );
     if (data.message == "success") {
       toast.success("success to change the password", {
         position: "top-center",
@@ -27,14 +35,13 @@ export default function ChangeEmail() {
         progress: undefined,
         theme: "light",
       });
-      navigte("/admin");
+      navigte("/dashboard");
     }
   };
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema:registerChangeEmail,
-
+    // validationSchema:registerChangeEmail,
   });
 
   const inputs = [

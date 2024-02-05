@@ -13,8 +13,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 export default function DisplayOpearater() {
   const [selectedTour, setSelectedTour] = useState(null);
-  const currentPage = localStorage.getItem("PageNumber") ? parseInt(localStorage.getItem("PageNumber"), 10) : 1;
-  const [current, setCurrent] = useState(currentPage);
+  const [current, setCurrent] = useState(1);
   const [title, setTitle] = useState(null);
   const [dataOperater, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,33 +35,22 @@ export default function DisplayOpearater() {
       const params = new URLSearchParams();
       if (searchInput.trim() !== "") {
         params.append("search", searchInput.trim());
-        localStorage.removeItem("PageNumber");
-        setCurrent(1);
       }
       if (selectedCategoryId) {
         params.append("categoryId", selectedCategoryId);
-        localStorage.removeItem("PageNumber");
-        setCurrent(1);
       }
       if (selectedSortOption) {
         params.append("sort", selectedSortOption);
       }
       if (selectedStatus) {
         params.append("status", selectedStatus);
-        localStorage.removeItem("PageNumber");
-        setCurrent(1);
       }
       if (selectedLocation) {
         params.append("address", selectedLocation);
-        localStorage.removeItem("PageNumber");
-        setCurrent(1);
       }
-      if (minRating !== 0 || maxRating !== 5) {
-        params.append("averageRating[gte]", minRating);
-        params.append("averageRating[lte]", maxRating);
-        localStorage.removeItem("PageNumber");
-        setCurrent(1);
-      }
+      params.append("averageRating[gte]", minRating);
+      params.append("averageRating[lte]", maxRating);
+
       params.append("page", current);
       const { data } = await axios.get(
         `${
@@ -104,7 +92,6 @@ export default function DisplayOpearater() {
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
     setSelectedCategory(null);
-    localStorage.setItem("PageNumber", pageNumber + 1);
   };
   const handleClearAll = () => {
     setMinRating(0);
@@ -153,7 +140,7 @@ export default function DisplayOpearater() {
           <div className="col-md-6">
             <div className="form-group w-100 ">
               <button
-                className="btn btn-info text-white"
+                className="btn btn-info text-white "
                 onClick={handleClearAll}
               >
                 Clear All
@@ -277,7 +264,7 @@ export default function DisplayOpearater() {
               <div>
                 <label className="me-1">Sort By: </label>
                 <select
-                  className="search border border-5 border-info"
+                  className="search border border-2 border-info"
                   value={selectedSortOption}
                   onChange={handleSortOptionChange}
                 >

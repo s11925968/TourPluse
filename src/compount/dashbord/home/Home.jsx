@@ -4,7 +4,7 @@ import Loader from '../../shared/Loader.jsx';
 import { Link } from 'react-router-dom';
 import { CompanyContext } from '../../web/context/company/Companycontext.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faSearch, faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'rc-slider';
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -145,13 +145,13 @@ export default function Home() {
   }
   return (
     <section className="d-flex">
-      <aside className="aside-admin py-5 mt-5">
+      <aside className="aside ms-2 py-5 mt-5">
         <div className="row">
           <div className="col-md-6">
             <h2>Filters</h2>
           </div>
           <div className="col-md-6">
-            <div className="form-group w-100 ">
+            <div className="form-group w-100">
               <button
                 className="btn btn-info text-white"
                 onClick={handleClearAll}
@@ -281,9 +281,9 @@ export default function Home() {
         <div className="tourlist-web-admin container z-1">
           <div className="mb-4 w-25 d-flex justify-content-end w-100 ">
             <div>
-              <label className="me-1">Sort By: </label>
+              <label className="me-1 ">Sort By: </label>
               <select
-                className="search border border-5 border-info p-1"
+                className="search border border-2 border-info p-1"
                 value={selectedSortOption}
                 onChange={handleSortOptionChange}
               >
@@ -309,17 +309,20 @@ export default function Home() {
                         <img src={tour.image.secure_url} alt={tour.name} />
                       </div>
                       <div className="text-center">
-                        <h3>{tour.name.split(" ").slice(0, 4).join(" ")}...</h3>
-                        <p>Price: ${tour.price}</p>
+                      <h3>{tour.name.split(" ").slice(0,3).join(" ")}...</h3>
                         <p>
-                          Start Date:{" "}
-                          {new Date(tour.startDate).toLocaleDateString()}
+                          <b>$</b>
+                          {tour.price}
                         </p>
                         <p>
-                          End Date:{" "}
+                          {new Date(tour.startDate).toLocaleDateString()}
+                          <FontAwesomeIcon
+                            icon={faArrowRight}
+                            className="px-2 text-black"
+                          />
                           {new Date(tour.endDate).toLocaleDateString()}
                         </p>
-                        <p className="py-3">
+                        <p>
                           {[...Array(fullStars)].map((_, starIndex) => (
                             <FontAwesomeIcon
                               key={starIndex}
@@ -335,8 +338,21 @@ export default function Home() {
                           )}
                         </p>
                         <Link
+                          to={`/dashboard/tour/forceDelete/${tour._id}`}
+                          className="btn mx-2 btn-info"
+                        >
+                          Delete Tour
+                        </Link>
+                        <Link
+                          to={`/dashboard/Update/Tour/${tour._id}`}
+                          className="btn me-2 btn-info"
+                        >
+                          Update Tour
+                        </Link>
+                        <br />
+                        <Link
                           to={`/dashboard/tour/detils/${tour._id}`}
-                          className="btn btn-info"
+                          className="btn btn-info mt-1"
                         >
                           Details
                         </Link>

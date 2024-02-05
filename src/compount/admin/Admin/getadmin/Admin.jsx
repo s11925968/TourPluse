@@ -6,7 +6,7 @@ import "./Admin.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export default function Admin() {
+export default function Admin({users}) {
   const [errorBack, setErrorBack] = useState("");
   const [dataAdmin, setData] = useState(null);
   const currentPage = localStorage.getItem("PageNumber") ? parseInt(localStorage.getItem("PageNumber"), 10) : 1;
@@ -115,10 +115,10 @@ export default function Admin() {
             <div className="col-md-6">
               <div className="form-group w-100 ">
                 <button
-                  className="btn btn-info text-white"
+                  className="btn btn-info text-white rounded-pill"
                   onClick={handleClearAll}
                 >
-                  Clear All
+                  Clear
                 </button>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function Admin() {
             <label>Select Role</label>
             <div>
               <select
-                className="form-control "
+                className="form-control rounded-pill border-info"
                 value={selectedRole}
                 onChange={(e) => handleRoleChange(e.target.value)}
               >
@@ -164,7 +164,7 @@ export default function Admin() {
               <div>
                 <label className="me-1">Sort By: </label>
                 <select
-                  className="search border border-5 border-info p-1"
+                  className="search border border-2 border-info p-1"
                   value={selectedSortOption}
                   onChange={handleSortOptionChange}
                 >
@@ -195,12 +195,14 @@ export default function Admin() {
                           <p className="text-white">{user.phoneNumber}</p>
                           <p className="text-white">{user.role}</p>
                           <p className="text-white">{user.age}</p>
-                          <Link
-                            to={`/admin/updata/${user._id}`}
-                            className="btn btn-success"
-                          >
-                            Update
-                          </Link>
+                          {users&& users.role === "Superadmin" && (
+                            <Link
+                              to={`/admin/updata/${user._id}`}
+                              className="btn btn-success"
+                            >
+                              Update
+                            </Link>
+                          )}
                         </>
                       )}
                     </div>

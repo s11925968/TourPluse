@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Inputs from "../../../shared/Inpute.jsx";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { registerReview } from "../../../shared/Validation.jsx";
 export default function CreateRivew({users}) {
   const navigate = useNavigate();
+  let [errorBack, setErrorBack] = useState("");
+
   useEffect(()=>{
     if(!users){
       return navigate('/login');
@@ -18,36 +20,39 @@ export default function CreateRivew({users}) {
     rating: "",
   };
   const onSubmit = async (users) => {
-    const token = localStorage.getItem("userToken");
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_URL_LINK}/operator/${_id}/reviewOp`,
-      users,
-      {
-        headers: {
-          Authorization: `ghazal__${token}`,
-        },
-      }
-    );
-    if (data.message == "success") {
-      toast.success("review success", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      navigate(`/allAgencies`);
+    try {
+      const token = localStorage.getItem("userToken");
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL_LINK}/operator/${_id}/reviewOp`,
+        users,
+        {
+          headers: {
+            Authorization: `ghazal__${token}`,
+          },
+        }
+      );
 
+      if (data.message === "success") {
+        toast.success("Review success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate(`/allAgencies`);
+      }
+    } catch (error) {
+      setErrorBack(error.response.data.message);
     }
   };
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema:registerReview,
-
   });
 
   const inputs = [
@@ -90,6 +95,9 @@ export default function CreateRivew({users}) {
               <button type="submit" disabled={!formik.isValid} className="w-100">
                 Create Review
               </button>
+              <div className="text-center w-100">
+                {errorBack && <p className="text text-danger">{errorBack}</p>}
+              </div>
             </form>
           </div>
         </div>

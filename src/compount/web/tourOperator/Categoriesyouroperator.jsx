@@ -128,15 +128,20 @@ export default function Home() {
 
   return (
     <div className="d-flex">
-      <aside className="aside-cat">
-        <div className="col-md-6">
-          <div className="form-group w-100 ">
-            <button
-              className="btn btn-info text-white rounded-pill"
-              onClick={handleClearAll}
-            >
-              Clear
-            </button>
+      <aside className="aside">
+        <div className="row">
+          <div className="col-md-6">
+            <h2>Filters</h2>
+          </div>
+          <div className="col-md-6">
+            <div className="form-group w-100">
+              <button
+                className="btn btn-info clear text-white rounded-pill "
+                onClick={handleClearAll}
+              >
+                Clear
+              </button>
+            </div>
           </div>
         </div>
         <div className="form-group Select-Location">
@@ -198,18 +203,18 @@ export default function Home() {
             <option value="al-Khader">al-Khader</option>
           </select>
           <div className="form-group py-4">
-          <label>Select Category:</label>
-          <select
-            className="form-control rounded-pill border-info"
-            value={selectedCategoryId}
-            onChange={(e) => setSelectedCategoryId(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="6597fe1aa375577ca7ddecbd">INTERNAL</option>
-            <option value="656fa08c14243f1b40d2e3c8">HAJJ AND UMRAH</option>
-            <option value="656fa2f714243f1b40d2e3f9">WORLD WIDE</option>
-          </select>
-        </div>
+            <label>Select Category:</label>
+            <select
+              className="form-control rounded-pill border-info"
+              value={selectedCategoryId}
+              onChange={(e) => setSelectedCategoryId(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="6597fe1aa375577ca7ddecbd">Internal Tours</option>
+              <option value="656fa08c14243f1b40d2e3c8">Hajj & Umrah</option>
+              <option value="656fa2f714243f1b40d2e3f9">World Wide</option>
+            </select>
+          </div>
           <div className="form-group py-4">
             <label>Rating Range</label>
             <Slider
@@ -269,19 +274,19 @@ export default function Home() {
                   <div>
                     <Link
                       to={`/company/${selectedCategory._id}/review`}
-                      className="btn btn-info me-3"
+                      className="btn btn-info"
                     >
                       Create Review
                     </Link>
                     <button
-                      className="btn btn-info me-3"
+                      className="btn btn-info ms-3"
                       onClick={() => setShowComments(!showComments)}
                     >
                       {showComments ? "Hide Comments" : "Show Comments"}
                     </button>
                     <Link
                       to={`/tour/get/${selectedCategory._id}`}
-                      className="btn btn-info"
+                      className="btn btn-info ms-3"
                     >
                       Show Tours
                     </Link>
@@ -373,73 +378,73 @@ export default function Home() {
                     </div>
                   );
                 })}
-                  <nav aria-label="Page navigation example ">
-                    <ul className="pagination justify-content-center my-5">
-                      <li
-                        className={`z-1 page-item ${
-                          current <= 1 ? "disabled" : ""
-                        }`}
+                <nav aria-label="Page navigation example ">
+                  <ul className="pagination justify-content-center my-5">
+                    <li
+                      className={`z-1 page-item ${
+                        current <= 1 ? "disabled" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => handlePageClick(current - 2)}
                       >
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageClick(current - 2)}
-                        >
-                          Previous
-                        </button>
-                      </li>
-                      {Array.from({ length: Math.ceil(title / 18) || 0 }).map(
-                        (_, pageIndex) => {
-                          const isWithinRange =
-                            pageIndex + 1 >= current - 3 &&
-                            pageIndex + 1 <= current + 3;
-                          if (isWithinRange) {
-                            return (
-                              <li key={pageIndex} className="z-1 page-item">
-                                <button
-                                  className={`page-link ${
-                                    current === pageIndex + 1 && current > 0
-                                      ? "active"
-                                      : ""
-                                  }`}
-                                  onClick={() => handlePageClick(pageIndex)}
-                                >
-                                  {pageIndex + 1}
-                                </button>
-                              </li>
-                            );
-                          } else if (
-                            pageIndex === 0 ||
-                            pageIndex === Math.ceil(title / 18) - 1
-                          ) {
-                            // Render ellipsis for pages before the visible range and after the visible range
-                            return (
-                              <li
-                                key={`ellipsis-${
-                                  pageIndex === 0 ? "before" : "after"
+                        Previous
+                      </button>
+                    </li>
+                    {Array.from({ length: Math.ceil(title / 18) || 0 }).map(
+                      (_, pageIndex) => {
+                        const isWithinRange =
+                          pageIndex + 1 >= current - 3 &&
+                          pageIndex + 1 <= current + 3;
+                        if (isWithinRange) {
+                          return (
+                            <li key={pageIndex} className="z-1 page-item">
+                              <button
+                                className={`page-link ${
+                                  current === pageIndex + 1 && current > 0
+                                    ? "active"
+                                    : ""
                                 }`}
-                                className="z-1 page-item disabled"
+                                onClick={() => handlePageClick(pageIndex)}
                               >
-                                <span className="page-link">...</span>
-                              </li>
-                            );
-                          }
-                          return null;
+                                {pageIndex + 1}
+                              </button>
+                            </li>
+                          );
+                        } else if (
+                          pageIndex === 0 ||
+                          pageIndex === Math.ceil(title / 18) - 1
+                        ) {
+                          // Render ellipsis for pages before the visible range and after the visible range
+                          return (
+                            <li
+                              key={`ellipsis-${
+                                pageIndex === 0 ? "before" : "after"
+                              }`}
+                              className="z-1 page-item disabled"
+                            >
+                              <span className="page-link">...</span>
+                            </li>
+                          );
                         }
-                      )}
-                      <li
-                        className={`z-1 page-item ${
-                          current === Math.ceil(title / 18) ? "disabled" : ""
-                        }`}
+                        return null;
+                      }
+                    )}
+                    <li
+                      className={`z-1 page-item ${
+                        current === Math.ceil(title / 18) ? "disabled" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => handlePageClick(current)}
                       >
-                        <button
-                          className="page-link"
-                          onClick={() => handlePageClick(current)}
-                        >
-                          Next
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
+                        Next
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
               </>
             )}
           </div>

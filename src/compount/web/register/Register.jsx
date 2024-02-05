@@ -28,7 +28,7 @@ export default function Register() {
         if (data.message == "success") {
           formik.resetForm();
           toast.success(
-            "account created succesfully,please verify your email to login",
+            "please verify your email to login",
             {
               position: "top-center",
               autoClose: 5000,
@@ -110,10 +110,10 @@ export default function Register() {
             >
               Create new account
             </button>
+            <div className="text-center w-100">
+              {errorBack && <p className="text text-danger">{errorBack}</p>}
+            </div>
           </form>
-          <div className="text-center w-100">
-            {errorBack && <p className="text text-danger">{errorBack}</p>}
-          </div>
         </div>
       </div>
     </div>

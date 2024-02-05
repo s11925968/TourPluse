@@ -9,6 +9,7 @@ import {
   faEnvelope,
   faHouse,
   faPlane,
+  faPlus,
   faRightToBracket,
   faUser,
   faUserPlus,
@@ -75,7 +76,7 @@ export default function Navbar() {
                   to=""
                 >
                   <FontAwesomeIcon icon={faHouse} className="pe-1" />
-                  Home
+                  My Tours
                 </Link>
               </li>
               <li className="nav-item">
@@ -84,6 +85,7 @@ export default function Navbar() {
                   aria-current="page"
                   to="/dashboard/selectCategories"
                   >
+                  <FontAwesomeIcon icon={faPlus} className="me-1" />
                   Add Tours
                 </Link>
               </li>

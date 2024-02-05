@@ -116,10 +116,10 @@ export default function Users() {
             <div className="col-md-6">
               <div className="form-group w-100 ">
                 <button
-                  className="btn btn-info text-white"
+                  className="btn btn-info rounded-pill text-white"
                   onClick={handleClearAll}
                 >
-                  Clear All
+                  Clear
                 </button>
               </div>
             </div>
@@ -165,7 +165,7 @@ export default function Users() {
               <div>
                 <label className="me-1">Sort By: </label>
                 <select
-                  className="search border border-5 border-info p-1"
+                  className="search border border-2 border-info p-1"
                   value={selectedSortOption}
                   onChange={handleSortOptionChange}
                 >

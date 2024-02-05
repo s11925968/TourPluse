@@ -16,3 +16,14 @@
 .swiper{
   padding: 40px!important;
 }
+.categories-admin img{
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border: solid 5px rgb(42, 106, 243);
+}
+.categories-admin img:hover{
+  box-shadow: 3px 3px 3px 3px rgb(184, 186, 190);
+}

@@ -42,6 +42,19 @@
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
 }
+.images-tour img{
+  width: 100%!important;
+  aspect-ratio: 200/100!important;
+}
+.images-tour-admin{
+  display: flex;
+  justify-content: center;
+}
+.images-tour-admin img{
+  
+  width: 60%!important;
+  aspect-ratio: 150/100!important;
+}
 .info-Inactive h2::after{
   position: absolute;
   bottom: -40px;

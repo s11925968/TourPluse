@@ -215,8 +215,8 @@ export default function Creaetoperator() {
     return <Loader />;
   }
   return (
-    <div className="mt-5">
-    <div className="container d-flex justify-content-center align-items-center mt-5">
+    <div className="pt-5">
+    <div className="container d-flex justify-content-center align-items-center pt-5 mt-5 py-5">
       <div className={style.ChangePassword}>
         <h2 className="text-center"></h2>
         <form  onSubmit={formik.handleSubmit} className="p-3">

@@ -13,7 +13,7 @@ const initialValues = {
   phoneNumber: "",
   role: "",
 };
-export default function Creatadmin() {
+export default function CreateAdmin() {
   const navigite = useNavigate();
   let [errorBack, setErrorBack] = useState("");
 
@@ -55,14 +55,14 @@ export default function Creatadmin() {
       name: "userName",
       type: "text",
       id: "userName",
-      title: "Admin Email",
+      title: "Admin Name",
       value: formik.values.userName,
     },
     {
       name: "email",
       type: "email",
       id: "email",
-      title: "Admin Name",
+      title: "Admin Email",
       value: formik.values.email,
     },
     {
@@ -111,7 +111,6 @@ export default function Creatadmin() {
       />
     );
   });
-
   return (
     <div className="bg-forms">
       <div className="container py-4 d-flex justify-content-center align-items-center ">

@@ -71,6 +71,8 @@ import ContectCompany  from "./compount/dashbord/Profile/Usercontact.jsx";
 import ChangeInfo from "./compount/dashbord/Profile/ChangeInfo.jsx";
 import UpdateTour from "./compount/dashbord/Tours/Update/UpdateTour.jsx";
 import DetilsTourCompany from "./compount/dashbord/Tours/DetilsTour/DetilsTour.jsx"
+import ChangeEmailCompany from "./compount/dashbord/Profile/ChangeEmail.jsx"; 
+import ChangePasswordCompany from "./compount/dashbord/Profile/ChangePassword.jsx"
 import Recommender from "./compount/web/Recommender/Recommender.jsx";
 export default function App() {
   const [users, setUser] = useState(null);
@@ -222,14 +224,14 @@ export default function App() {
         },
         {
           path: "getAdmin",
-          element: <Admin />,
+          element: <Admin users={users}/>,
         },
         {
           path:"getUsers",
           element:<Users />
         },
         {
-          path: "creatadmin",
+          path: "CreateAdmin",
           element: <Creatadmin />,
         },
         {
@@ -382,7 +384,11 @@ export default function App() {
             },
             {
               path: "changeEmail",
-              element: <ChangeEmailAdmin />,
+              element: <ChangeEmailCompany />,
+            },
+            {
+              path: "ChangePassword",
+              element: <ChangePasswordCompany />,
             },
           ],
         },

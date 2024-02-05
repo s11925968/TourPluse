@@ -314,12 +314,12 @@ export default function Home({ users }) {
         {users && (
           <div className="m-0">
             <div className="info-TOURS py-3">
-            <h2>{`TOP PICKS FOR ${
-              dataProfile?.user?.userName
-                ? dataProfile.user.userName.toUpperCase()
-                : "USER"
-            }`}</h2>
-          </div>
+              <h2>{`TOP PICKS FOR ${
+                dataProfile?.user?.userName
+                  ? dataProfile.user.userName.toUpperCase()
+                  : "USER"
+              }`}</h2>
+            </div>
             {dataTour && dataTour.length > 0 ? (
               <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
@@ -436,51 +436,39 @@ export default function Home({ users }) {
                     </div>
                   </div>
                   {showComments && (
-                    <div>
-                      <Swiper
-                        modules={[Navigation, Pagination, Autoplay]}
-                        spaceBetween={50}
-                        navigation
-                        loop={true}
-                        autoplay={{
-                          delay: 3000,
-                        }}
-                        pagination={{
-                          clickable: true,
-                        }}
-                        breakpoints={{
-                          600: {
-                            slidesPerView: 2,
-                          },
-                          900: {
-                            slidesPerView: 3,
-                          },
-                          1024: {
-                            slidesPerView: 4,
-                          },
-                        }}
-                      >
-                        {selectedCategory.rev.map((review, index) => (
-                          <SwiperSlide key={review._id}>
-                            <div className="bg-info comment-detalis py-1">
-                              <div>
-                                {Array.from({ length: review.rating }).map(
-                                  (_, starIndex) => (
-                                    <FontAwesomeIcon
-                                      key={starIndex}
-                                      icon={faStar}
-                                      className="text-warning"
-                                    />
-                                  )
-                                )}
-                                <div className="mx-2 bg-white comment-detalis">
-                                  <p>{review.comment}</p>
+                    <div className="mt-5 d-flex justify-content-center text-center">
+                      <div className="text-center">
+                        <div
+                          className="comment-box "
+                          style={{
+                            maxHeight: "320px",
+                            overflowY: "auto",
+                            alignItems: "center",
+                          }} // Adjusted maxHeight value
+                        >
+                          {selectedCategory.rev.length > 0 &&
+                            selectedCategory.rev.map((rev) => (
+                              <div key={rev._id} className="w-100 ">
+                                <div className="bg-info px-2 my-2 pb-1 comment-detalis">
+                                  <p className="fs-5 m-auto text-center px-3">
+                                    {Array.from({
+                                      length: rev.rating,
+                                    }).map((_, starIndex) => (
+                                      <FontAwesomeIcon
+                                        key={starIndex}
+                                        icon={faStar}
+                                        className="text-warning"
+                                      />
+                                    ))}
+                                  </p>
+                                  <div className="bg-white px-3 comment-details">
+                                    <p>{rev.comment}</p>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        ))}
-                      </Swiper>
+                            ))}
+                        </div>
+                      </div>
                     </div>
                   )}
                   <button
@@ -532,11 +520,11 @@ export default function Home({ users }) {
                       return null;
                     }
                   })}
-                  <nav aria-label="Page navigation example ">
+                  <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-center my-5">
                       <li
                         className={`z-1 page-item ${
-                          current === 1 ? "disabled" : ""
+                          current <= 1 ? "disabled" : ""
                         }`}
                       >
                         <button
@@ -546,26 +534,51 @@ export default function Home({ users }) {
                           Previous
                         </button>
                       </li>
-                      {Array.from({ length: Math.ceil(title / 25) || 0 }).map(
-                        (_, pageIndex) => (
-                          <li
-                            key={pageIndex}
-                            className={`z-1 page-item ${
-                              current === pageIndex + 1 ? "active" : ""
-                            }`}
-                          >
-                            <button
-                              className="page-link"
-                              onClick={() => handlePageClick(pageIndex)}
-                            >
-                              {pageIndex + 1}
-                            </button>
-                          </li>
-                        )
+                      {Array.from({ length: Math.ceil(title / 18) || 0 }).map(
+                        (_, pageIndex) => {
+                          const isWithinRange =
+                            pageIndex + 1 >= current - 3 &&
+                            pageIndex + 1 <= current + 3;
+                          if (isWithinRange) {
+                            return (
+                              <li key={pageIndex} className="z-1 page-item">
+                                <button
+                                  className={`page-link ${
+                                    current === pageIndex + 1 && current > 0
+                                      ? "active"
+                                      : ""
+                                  }`}
+                                  onClick={() => handlePageClick(pageIndex)}
+                                >
+                                  {pageIndex + 1}
+                                </button>
+                              </li>
+                            );
+                          } else if (
+                            pageIndex === 0 ||
+                            pageIndex === Math.ceil(title / 18) - 1
+                          ) {
+                            // Render ellipsis for pages before the visible range and after the visible range
+                            return (
+                              <li
+                                key={`ellipsis-${
+                                  pageIndex === 0 ? "before" : "after"
+                                }`}
+                                className="z-1 page-item disabled"
+                              >
+                                <span className="page-link">...</span>
+                              </li>
+                            );
+                          }
+                          return null;
+                        }
                       )}
                       <li
                         className={`z-1 page-item ${
-                          current === Math.ceil(title / 8) ? "disabled" : ""
+                          current === Math.ceil(title / 18) ||
+                          Math.ceil(title / 18) === 1
+                            ? "disabled"
+                            : ""
                         }`}
                       >
                         <button
@@ -588,8 +601,8 @@ export default function Home({ users }) {
           <div className="info-About">
             <h2>ABOUT US</h2>
           </div>
-          <div className="col-md-6 about-info">
-            <p className="fs-3 ">
+          <div className="col-md-8 about-info">
+            <p className=" ">
               Tour Pulse acts as an intermediary between travel agencies and
               travelers, allowing agencies to display their trips and offers and
               provide travelers with a range of trips, so it provides
@@ -601,9 +614,8 @@ export default function Home({ users }) {
               </Link>
             </p>
           </div>
-          <div className="col-md-6 image-about">
-            {/* <img src="/images/info-images.jpg" alt="image-abour-us" /> */}
-            <img src="/images/info-images.jpg" />
+          <div className="col-md-4 image-about ">
+            <img src="/images/icononly_transparent_nobuffer.png" />
           </div>
         </div>
       </section>

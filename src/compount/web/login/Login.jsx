@@ -118,12 +118,13 @@ export default function Login({ saveCurrentUser, users }) {
             <Link to="/auth/sendCode" className="btn btn-primary mt-4">
               Forget Password
             </Link>
-          </form>
-          <div className="text-center w-100">
+            <div className="text-center w-100">
             {errorBackend && (
               <p className="text text-danger">{errorBackend}</p>
             )}
           </div>
+          </form>
+          
         </div>
       </div>
     </div>

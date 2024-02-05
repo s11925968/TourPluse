@@ -41,6 +41,7 @@ export default function Profile() {
           <hr/>
           <Link to="changeEmail">Change Email</Link>
           <hr/>
+          <Link to="ChangePassword">Change Password</Link>
         </nav>
       </div>
       <div className={style.userData}>

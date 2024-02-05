@@ -65,7 +65,9 @@ export default function Home({ users }) {
   }, []);
   const handleOperaterClick = (operaterId) => {
     setSelectedOperater((prevOperater) =>
-      prevOperater && prevOperater._id === operaterId ? null : dataOperater.find((tour) => tour._id === operaterId)
+      prevOperater && prevOperater._id === operaterId
+        ? null
+        : dataOperater.find((tour) => tour._id === operaterId)
     );
   };
   const handleProductClick = (productId) => {
@@ -129,7 +131,7 @@ export default function Home({ users }) {
           {filteredTours.length > 0 ? (
             filteredTours.map((tour) => (
               <SwiperSlide key={tour._id} className="col-lg-3 mb-4">
-                <div className="images-tour-admin">
+                <div className="images-tour">
                   <img
                     src={tour.image.secure_url}
                     className="w-100 images"
@@ -138,7 +140,7 @@ export default function Home({ users }) {
                 </div>
                 <div className="text-center">
                   <h4 className="text-center text-black">
-                    {tour.name.split(" ").slice(0,3).join(" ")}..
+                    {tour.name.split(" ").slice(0, 3).join(" ")}..
                   </h4>
                   <Link
                     to="#"
@@ -199,88 +201,81 @@ export default function Home({ users }) {
         </Swiper>
       </div>
       <div>
-      <div className="info-Inactive ms-5">
-        <h2>Inactive Agencies</h2>
-      </div>
-      <Swiper
-        spaceBetween={20}
-        breakpoints={{
-          600: {
-            slidesPerView: 1.3,
-          },
-          900: {
-            slidesPerView: 2.3,
-          },
-          1024: {
-            slidesPerView: 3.3,
-          },
-        }}
-        navigation={{
-          prevEl: renderPrevButton,
-          nextEl: renderNextButton,
-        }}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
-      >
-        {dataOperater && dataOperater.length > 0 ? (
-          dataOperater.map((tour) => (
-            <SwiperSlide key={tour._id} className="col-lg-3 mb-4">
-              <div className="images-tour-admin">
-                <img
-                  src={tour.image.secure_url}
-                  className="w-100 images"
-                  alt={tour.name}
-                />
-              </div>
-              <div className="text-center">
-                <h4 className="text-center text-black">
-                  {tour.name.split(" ").slice(0, 3).join(" ")}
-                </h4>
-                <Link
-                  to="#"
-                  className="info-tour btn btn-primary"
-                  onClick={() => handleOperaterClick(tour._id)}
-                >
-                  Details
-                </Link>
-                {selectedOperater && selectedOperater._id === tour._id && (
-                  <div className="col-md-12 text-center">
-                    <h2>{selectedOperater.name}</h2>
-                    <p>{selectedOperater.description}</p>
-                    <p>{selectedOperater.address}</p>
-                    <p>{selectedOperater.email}</p>
-                    <p>{selectedOperater.phoneNumber}</p>
-                    <p>{selectedOperater.founderName}</p>
-                    <div className="d-flex w-100 justify-content-center">
-                      <div className="text-center">
-                        <Link
-                          to={`/admin/operator/UpdateOperator/${selectedOperater._id}`}
-                          className="btn btn-info me-4"
-                        >
-                          Update Agency
-                        </Link>
-                      </div>
-                      <div className="d-flex justify-content-center align-items-center">
-                        <div>
-                          <Link
-                            to={`/admin/tour/get/${selectedOperater._id}`}
-                            className="btn btn-info"
-                          >
-                            Show Tours
-                          </Link>
-                        </div>
-                      </div>
+        <div className="info-Inactive ms-5">
+          <h2>Inactive Agencies</h2>
+        </div>
+        <Swiper
+          spaceBetween={20}
+          breakpoints={{
+            600: {
+              slidesPerView: 1.3,
+            },
+            900: {
+              slidesPerView: 2.3,
+            },
+            1024: {
+              slidesPerView: 3.3,
+            },
+          }}
+          navigation={{
+            prevEl: renderPrevButton,
+            nextEl: renderNextButton,
+          }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+        >
+          {dataOperater && dataOperater.length > 0 ? (
+            dataOperater.map((tour) => (
+              <SwiperSlide key={tour._id} className="col-lg-3 mb-4">
+                <div className="images-tour">
+                  <img
+                    src={tour.image.secure_url}
+                    className="images"
+                    alt={tour.name}
+                  />
+                </div>
+                <div className="text-center">
+                  <h4 className="text-center text-black">
+                    {tour.name.split(" ").slice(0, 3).join(" ")}
+                  </h4>
+                  <Link
+                    to="#"
+                    className="info-tour btn btn-primary"
+                    onClick={() => handleOperaterClick(tour._id)}
+                  >
+                    Details
+                  </Link>
+                  <Link
+                    to={`/admin/tour/get/${tour._id}`}
+                    className="btn btn-primary ms-2"
+                  >
+                    Show Tours
+                  </Link>
+                  <Link
+                    to={`/admin/operator/UpdateOperator/${tour._id}`}
+                    className="btn btn-primary ms-2"
+                  >
+                    Update Agency
+                  </Link>
+                  {selectedOperater && selectedOperater._id === tour._id && (
+                    <div className="col-md-12 text-center">
+                      <h2>{selectedOperater.name}</h2>
+                      <p>{selectedOperater.description}</p>
+                      <p>{selectedOperater.address}</p>
+                      <p>{selectedOperater.email}</p>
+                      <p>{selectedOperater.phoneNumber}</p>
+                      <p>{selectedOperater.founderName}</p>
+                      <div className="d-flex w-100 justify-content-center"></div>
                     </div>
-                  </div>
-                )}
-              </div>
-            </SwiperSlide>
-          ))
-        ) : (
-          <p>No data available</p>
-        )}
-      </Swiper>
-    </div>
+                  )}
+                </div>
+              </SwiperSlide>
+            ))
+          ) : (
+            <p>No data available</p>
+          )}
+        </Swiper>
+      </div>
     </section>
   );
 }

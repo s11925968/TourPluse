@@ -2,11 +2,11 @@ a{
   text-decoration: none;
 }
 .about-style{
-  height:100vh;
   display: flex;
   align-items: center;
   width: 80%;
   margin: auto;
+  margin-top: 100px;
 }
 /*start section adventures*/
 /*start section adventures*/
