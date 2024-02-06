@@ -137,16 +137,21 @@ export default function DisplayOpearater() {
       </div>
       <div className="d-flex">
         <aside className="aside-admin mt-5">
+        <div className="row">
           <div className="col-md-6">
-            <div className="form-group w-100 ">
+            <h2>Filters</h2>
+          </div>
+          <div className="col-md-6">
+            <div className="form-group w-100">
               <button
-                className="btn btn-info text-white "
+                className="btn btn-info clear text-white rounded-pill "
                 onClick={handleClearAll}
               >
-                Clear All
+                Clear
               </button>
             </div>
           </div>
+        </div>
           <div className="form-group Select-Location">
             <label>Select Location:</label>
             <select

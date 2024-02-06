@@ -32,7 +32,7 @@ export default function About() {
           <div className="pt-2 text-center">
             <div className="info-adven">
               <h2>Organized Adventures: What are they?</h2>
-              <p>
+              <p className='fs-4'>
                 A multi-day travel experience seamlessly organized by a trusted
                 operator—everything from logistics to meals to experiences to
                 friendly guides. All you have to do is choose your adventure,
@@ -42,63 +42,10 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="bg-white rounded-2">
-                <p>
-                  <img
-                    src="/img/one-adv.jpg"
-                    alt="Groub-Adventures"
-                    className="img-fluid rounded-2"
-                  />
-                  <h3 className="fs-2 ps-2 pt-3 text-dark">Group Adventures</h3>
-                  <p className="fs-3 ps-2 text-dark">
-                    Join a group and forge lifelong friendships.
-                  </p>
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="bg-white rounded-2">
-                <p>
-                  <img
-                    src="/img/tow-adv.jpg"
-                    alt="Private-Adventures"
-                    className="img-fluid rounded-2 text-decoration-none"
-                  />
-                  <h3 className="fs-2 ps-2 pt-3 text-dark">
-                    Private Adventures
-                  </h3>
-                  <p className="fs-3 ps-2 text-dark">
-                    Travel exclusively with your own group.
-                  </p>
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="bg-white rounded-2">
-                <p>
-                  <img
-                    src="/img/tree-adv.jpg"
-                    alt="Personalized-Adventures"
-                    className="img-fluid rounded-2"
-                  />
-                  <h3 className="fs-2 ps-2 pt-3 text-dark">
-                    Personalized Adventures
-                  </h3>
-                  <p className="fs-3 ps-2 text-dark">
-                    Customize an existing itinerary, or create your own.
-                  </p>
-                </p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
-      <div className="ACTIVITIES my-5">
-        <div className="info-ACTIVITYS d-flex justify-content-center align-items-end m-0 py-3">
-          <h2 className="m-0">TOP ACTIVITIES</h2>
-        </div>
+      <div className=" my-5">
         <div>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
